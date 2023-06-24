@@ -1,0 +1,80 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/fonts/primary/primary_regular.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/ui/styles/item_inventory_style.tres" type="StyleBox" id=2]
+[ext_resource path="res://models/weapons/pistol_bufallus/pistol_thumb.png" type="Texture" id=3]
+[ext_resource path="res://assets/ui/styles/inventario_grid_item_style.tres" type="StyleBox" id=4]
+[ext_resource path="res://src/Ui/ItemInventory.cs" type="Script" id=5]
+
+[sub_resource type="Gradient" id=16]
+interpolation_mode = 2
+offsets = PoolRealArray( 0, 0.512048, 1 )
+colors = PoolColorArray( 0, 0, 0, 0, 1, 1, 1, 0.156863, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=17]
+gradient = SubResource( 16 )
+
+[sub_resource type="StyleBoxFlat" id=18]
+content_margin_left = 5.0
+content_margin_right = 5.0
+bg_color = Color( 1, 1, 1, 0.109804 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="ItemInventory" type="Button"]
+margin_bottom = 14.0
+mouse_filter = 2
+custom_styles/hover = ExtResource( 4 )
+custom_styles/normal = ExtResource( 2 )
+script = ExtResource( 5 )
+thumbPath = NodePath("Thumb")
+qtdPath = NodePath("Qtd")
+qtdLabelPath = NodePath("Qtd/Label")
+
+[node name="Bg" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = SubResource( 17 )
+expand = true
+
+[node name="Thumb" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+
+[node name="Qtd" type="PanelContainer" parent="."]
+visible = false
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -38.0
+margin_top = -36.0
+margin_right = -5.0
+margin_bottom = -5.0
+grow_horizontal = 0
+mouse_filter = 2
+custom_styles/panel = SubResource( 18 )
+
+[node name="Label" type="Label" parent="Qtd"]
+margin_left = 5.0
+margin_top = 7.0
+margin_right = 28.0
+margin_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = ExtResource( 1 )
+text = "0"
+align = 1
+valign = 1

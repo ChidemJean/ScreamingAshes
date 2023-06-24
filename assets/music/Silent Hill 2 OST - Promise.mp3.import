@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Silent Hill 2 OST - Promise.mp3-ed6f2c4e247507932d831706a6366cec.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Silent Hill 2 OST - Promise.mp3"
+dest_files=[ "res://.import/Silent Hill 2 OST - Promise.mp3-ed6f2c4e247507932d831706a6366cec.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

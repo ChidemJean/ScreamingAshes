@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=2]
+
+[ext_resource path="res://assets/decals/bullet_decal.png" type="Texture" id=1]
+[ext_resource path="res://assets/decals/bullet_decal_normal_normal.png" type="Texture" id=2]
+[ext_resource path="res://assets/shaders/decal.tres" type="Shader" id=3]
+
+[resource]
+shader = ExtResource( 3 )
+shader_param/albedo = Color( 1, 1, 1, 1 )
+shader_param/clip_based_on_angle = false
+shader_param/use_normals = false
+shader_param/normal_map_strength = 1.0
+shader_param/cube_half_size = 1.0
+shader_param/decal_normal_vector = Vector3( 0, 1, 0 )
+shader_param/decal_normal_vector_angle_tolerance = 0.5
+shader_param/texture_albedo = ExtResource( 1 )
+shader_param/texture_normal = ExtResource( 2 )

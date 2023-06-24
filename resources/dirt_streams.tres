@@ -1,0 +1,23 @@
+[gd_resource type="Resource" load_steps=18 format=2]
+
+[ext_resource path="res://src/Core/Audio/StreamsCategory.cs" type="Script" id=1]
+[ext_resource path="res://assets/sfx/footsteps/dirt/3.mp3" type="AudioStream" id=2]
+[ext_resource path="res://assets/sfx/footsteps/dirt/5.mp3" type="AudioStream" id=3]
+[ext_resource path="res://assets/sfx/footsteps/dirt/11.mp3" type="AudioStream" id=4]
+[ext_resource path="res://assets/sfx/footsteps/dirt/15.mp3" type="AudioStream" id=5]
+[ext_resource path="res://assets/sfx/footsteps/dirt/10.mp3" type="AudioStream" id=6]
+[ext_resource path="res://assets/sfx/footsteps/dirt/2.mp3" type="AudioStream" id=7]
+[ext_resource path="res://assets/sfx/footsteps/dirt/6.mp3" type="AudioStream" id=8]
+[ext_resource path="res://assets/sfx/footsteps/dirt/1.mp3" type="AudioStream" id=9]
+[ext_resource path="res://assets/sfx/footsteps/dirt/13.mp3" type="AudioStream" id=10]
+[ext_resource path="res://assets/sfx/footsteps/dirt/7.mp3" type="AudioStream" id=11]
+[ext_resource path="res://assets/sfx/footsteps/dirt/4.mp3" type="AudioStream" id=12]
+[ext_resource path="res://assets/sfx/footsteps/dirt/16.mp3" type="AudioStream" id=13]
+[ext_resource path="res://assets/sfx/footsteps/dirt/9.mp3" type="AudioStream" id=14]
+[ext_resource path="res://assets/sfx/footsteps/dirt/12.mp3" type="AudioStream" id=15]
+[ext_resource path="res://assets/sfx/footsteps/dirt/14.mp3" type="AudioStream" id=16]
+[ext_resource path="res://assets/sfx/footsteps/dirt/8.mp3" type="AudioStream" id=17]
+
+[resource]
+script = ExtResource( 1 )
+streamsRandom = [ ExtResource( 9 ), ExtResource( 7 ), ExtResource( 2 ), ExtResource( 12 ), ExtResource( 3 ), ExtResource( 8 ), ExtResource( 11 ), ExtResource( 17 ), ExtResource( 14 ), ExtResource( 6 ), ExtResource( 4 ), ExtResource( 15 ), ExtResource( 10 ), ExtResource( 16 ), ExtResource( 5 ), ExtResource( 13 ) ]

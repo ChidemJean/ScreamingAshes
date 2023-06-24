@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/monster_scream.mp3-5b625b0f4948979a9d643b3c7d9ca14b.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/monster_screams/monster_scream.mp3"
+dest_files=[ "res://.import/monster_scream.mp3-5b625b0f4948979a9d643b3c7d9ca14b.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

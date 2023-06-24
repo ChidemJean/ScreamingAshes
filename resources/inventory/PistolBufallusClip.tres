@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://src/Resources/FirearmClipResource.cs" type="Script" id=1]
+[ext_resource path="res://models/firearm_clips/pistol_taurus_clip/pistol_clip_thumb.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+itemId = "PistolBufallusClip"
+texture = ExtResource( 2 )
+slotsX = 1
+slotsY = 2
+maxStack = 1
+scenePath = "res://scenes/firearm_clips/PistolBufallusClip.tscn"
+canHandHold = true
+subitems = 10
+type = 0

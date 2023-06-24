@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://src/Resources/ItemResource.cs" type="Script" id=1]
+[ext_resource path="res://models/ammo/box9mm_thumb.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+itemId = "Box9mm"
+texture = ExtResource( 2 )
+slotsX = 2
+slotsY = 2
+maxStack = 90
+scenePath = "res://scenes/ammo/Box9mm.tscn"
+canHandHold = false
+subitems = 30

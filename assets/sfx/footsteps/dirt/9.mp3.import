@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/9.mp3-752874a51af129d8de0213d7a5de4588.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/footsteps/dirt/9.mp3"
+dest_files=[ "res://.import/9.mp3-752874a51af129d8de0213d7a5de4588.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

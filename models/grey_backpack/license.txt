@@ -1,0 +1,11 @@
+Model Information:
+* title:	Grey backpack
+* source:	https://sketchfab.com/3d-models/grey-backpack-e00d974c4e994e76a8f69e7e3fdf0a30
+* author:	kj3987 (https://sketchfab.com/kj3987)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Grey backpack" (https://sketchfab.com/3d-models/grey-backpack-e00d974c4e994e76a8f69e7e3fdf0a30) by kj3987 (https://sketchfab.com/kj3987) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

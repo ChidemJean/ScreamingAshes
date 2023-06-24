@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/11.mp3-a2eacd71bbab942d5f0c890b4366504b.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/footsteps/concrete/11.mp3"
+dest_files=[ "res://.import/11.mp3-a2eacd71bbab942d5f0c890b4366504b.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

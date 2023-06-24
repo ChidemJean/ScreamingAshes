@@ -1,0 +1,402 @@
+using Godot;
+using System;
+using System.Collections.Generic;
+using ChidemGames.Events;
+using ChidemGames.Core.Items;
+using ChidemGames.Core.Items.Weapons;
+using ChidemGames.Resources;
+
+namespace ChidemGames.Ui
+{
+
+   public class Inventory : Control
+   {
+      [Export]
+      NodePath gridPath;
+      GridContainer grid;
+
+      [Export]
+      PackedScene slotScene;
+
+      [Export]
+      PackedScene itemInvetory;
+
+      GlobalManager globalManager;
+
+      SlotInventory[,] slots;
+
+      [Export]
+      int totalRows = 10;
+
+      [Export]
+      int totalCols = 10;
+
+      GlobalEvents globalEvents;
+
+      ItemInventory itemDrag = null;
+
+      [Export]
+      NodePath itemsHolderPath;
+      Control itemsHolder;
+
+      SlotInventory slotHover = null;
+
+      List<SlotInventory> slotsHovered = new List<SlotInventory>();
+      List<ItemInventory> items = new List<ItemInventory>();
+
+      bool canPlace = true;
+
+      public override void _Ready()
+      {
+         globalManager = GetNode<GlobalManager>("/root/GlobalManager");
+         globalManager.inventory = this;
+         globalEvents = GetNode<GlobalEvents>("/root/GlobalEvents");
+         itemsHolder = GetNode<Control>(itemsHolderPath);
+         grid = GetNode<GridContainer>(gridPath);
+
+         slots = new SlotInventory[totalRows, totalCols];
+
+         for (int y = 0; y < totalCols; y++)
+         {
+            for (int x = 0; x < totalRows; x++)
+            {
+               SlotInventory slot = slotScene.Instance<SlotInventory>();
+               slot.Pos = new Vector2(x, y);
+               grid.AddChild(slot);
+               if ((x == 3 && y == 4) || (x == 4 && y == 4) || (x == 3 && y == 5) || (x == 4 && y == 5))
+               {
+                  slot.IsDamaged = true;
+               }
+               slots[x, y] = slot;
+            }
+         }
+
+         globalEvents.Connect(GameEvent.TakeItem, this, nameof(OnTakeItem));
+         globalEvents.Connect(GameEvent.OnCloseMenu, this, nameof(OnCloseMenu));
+
+         globalEvents.Connect(GameEvent.OnSlotMouseEnter, this, nameof(OnSlotMouseEnter));
+         globalEvents.Connect(GameEvent.OnSlotMouseLeave, this, nameof(OnSlotMouseLeave));
+         globalEvents.Connect(GameEvent.DetachItemFromSlot, this, nameof(OnDetachItem));
+
+      }
+
+      public override void _Input(InputEvent @event)
+      {
+         if (itemDrag != null)
+         {
+            if (@event.IsActionPressed("rotate_item_inventory"))
+            {
+               itemDrag.Rotate();
+               itemDrag.UpdateSize(slots[0, 0].RectSize, GetGridMargin());
+            }
+            if (@event.IsActionPressed("place_item_inventory"))
+            {
+               PlaceItem();
+            }
+         }
+      }
+
+      public List<ItemInventory> RequestItem<T>()
+      {
+         Type type = typeof(T);
+         List<ItemInventory> _items = new List<ItemInventory>();
+
+         if (type.Equals(typeof(FirearmClip))) {
+            foreach (var item in items) {
+               if (item.itemRes is FirearmClipResource && item.GetSubitems() > 0) {
+                  _items.Add(item);
+               }
+            }
+         }
+
+         return _items;
+      }
+
+      public void RemoveItem(ItemInventory itemInventory)
+      {
+         itemDrag = itemInventory;
+         items.Remove(itemInventory);
+         foreach (var slotInventory in GetSlotsForItem(itemInventory))
+         {
+            slotInventory.DetachItem();
+         }
+         itemInventory.slotInventoryPivot = null;
+         Clean();
+      }
+
+      public void OnDetachItem(ItemInventory itemInventory)
+      {
+         itemDrag = itemInventory;
+         itemDrag.isFollowingMouse = true;
+         itemDrag.isPlaced = false;
+         itemDrag.MouseFilter = MouseFilterEnum.Ignore;
+         items.Remove(itemDrag);
+         foreach (var slotInventory in GetSlotsForItem(itemInventory))
+         {
+            slotInventory.DetachItem();
+         }
+         itemDrag.slotInventoryPivot = null;
+      }
+
+      public void PlaceItem()
+      {
+         if (slotsHovered.Count > 0 && canPlace)
+         {
+            foreach (SlotInventory slot in slotsHovered)
+            {
+               slot.PlaceItem(itemDrag.itemId);
+            }
+            itemDrag.Place(slotsHovered, GetGridMargin());
+            ClearHoveredSlots();
+            items.Add(itemDrag);
+            itemDrag = null;
+
+            // globalManager.hud.ShowLoadCursor(5);
+         }
+      }
+
+      public Vector2 GetGridMargin()
+      {
+         return new Vector2(grid.Get("custom_constants/vseparation").ToString().ToFloat(), grid.Get("custom_constants/hseparation").ToString().ToFloat());
+      }
+
+      public void AddItem(string itemId, int subitems = 0)
+      {
+         if (itemId != null && itemInvetory != null)
+         {
+            itemDrag = itemInvetory.Instance<ItemInventory>();
+            itemsHolder.AddChild(itemDrag);
+            itemDrag.InitData(itemId, 1);
+            itemDrag.SetSubitems(subitems);
+            itemDrag.UpdateUi();
+            itemDrag.UpdateSize(slots[0, 0].RectSize, GetGridMargin());
+         
+            TryAutomaticPlaceItem();
+            if (!canPlace)
+            {
+               DropItem(itemDrag.itemScenePath);
+            }
+         }
+      }
+
+      public void OnTakeItem(string itemId, bool openMenu = false)
+      {
+         if (itemId != null && itemInvetory != null && itemDrag == null)
+         {
+            itemDrag = itemInvetory.Instance<ItemInventory>();
+            itemsHolder.AddChild(itemDrag);
+            itemDrag.InitData(itemId, 1);
+            itemDrag.UpdateUi();
+            itemDrag.UpdateSize(slots[0, 0].RectSize, GetGridMargin());
+
+            bool _openMenu = openMenu;
+            
+            if (!openMenu) {
+               TryAutomaticPlaceItem();
+               _openMenu = !canPlace;
+            }
+
+            if (_openMenu)
+            {
+               globalEvents.EmitSignal(GameEvent.OpenMenu);
+               itemDrag.isFollowingMouse = true;
+            }
+         }
+      }
+
+      public void TryAutomaticPlaceItem()
+      {
+         for (int y = 0; y < slots.GetLength(1); y++)
+         {
+            for (int x = 0; x < slots.GetLength(0); x++)
+            {
+               var _slot = slots[x, y];
+               OnSlotMouseEnter(_slot);
+               if (canPlace)
+               {
+                  PlaceItem();
+                  return;
+               }
+            }
+         }
+         // TODO: Notify item added
+      }
+
+      public void Clean()
+      {
+         if (itemDrag != null)
+         {
+            ClearHoveredSlots();
+            itemDrag.isFollowingMouse = false;
+            itemDrag.QueueFree();
+            itemDrag = null;
+         }
+      }
+
+      public void OnCloseMenu()
+      {
+         if (itemDrag != null)
+         {
+            DropItem(itemDrag.itemScenePath);
+         }
+         Clean();
+      }
+
+      public void DropItem(string itemScenePath)
+      {
+         var itemScene = ResourceLoader.Load<PackedScene>(itemScenePath);
+         Item itemNode = itemScene.Instance<Item>();
+         globalManager.main3dNode.AddChild(itemNode);
+         itemNode.GlobalTranslation = globalManager.currentPlayer.GlobalTranslation + (globalManager.currentPlayer.GlobalTransform.basis.z.Normalized() * 3 + (new Vector3(0, 3f, 0)));
+         itemNode.ChangePhysics(RigidBody.ModeEnum.Rigid);
+      }
+
+      public List<SlotInventory> GetSlotsForItem(ItemInventory item)
+      {
+         List<SlotInventory> _slots = new List<SlotInventory>();
+
+         if (item.slotInventoryPivot != null && item.slotInventoryPivot.type != SlotType.Backpack)
+         {
+            _slots.Add(item.slotInventoryPivot);
+            return _slots;
+         }
+
+         int pivotPosX = Mathf.FloorToInt(item.slotPivotPos.x);
+         int pivotPosY = Mathf.FloorToInt(item.slotPivotPos.y);
+
+         for (int x = 0; x < item.slotsX; x++)
+         {
+            for (int y = 0; y < item.slotsY; y++)
+            {
+               int xCurrent = pivotPosX + x;
+               int yCurrent = pivotPosY + y;
+
+               if (!HasPairIndex(xCurrent, yCurrent))
+               {
+                  continue;
+               }
+
+               SlotInventory slotCheck = slots[xCurrent, yCurrent];
+               _slots.Add(slotCheck);
+            }
+         }
+
+         return _slots;
+      }
+
+      public void OnSlotMouseEnter(SlotInventory slotInventory)
+      {
+         slotHover = slotInventory;
+
+         if (itemDrag == null)
+         {
+            return;
+         }
+
+         ClearHoveredSlots();
+
+         if (slotHover.type == SlotType.Backpack)
+         {
+
+            itemDrag.UpdateSize(slots[0, 0].RectSize, GetGridMargin());
+
+            int pivotPosX = Mathf.FloorToInt(slotHover.Pos.x);
+            int pivotPosY = Mathf.FloorToInt(slotHover.Pos.y);
+            canPlace = true;
+
+            for (int x = 0; x < itemDrag.slotsX; x++)
+            {
+               for (int y = 0; y < itemDrag.slotsY; y++)
+               {
+                  int xCurrent = pivotPosX + x;
+                  int yCurrent = pivotPosY + y;
+
+                  if (!HasPairIndex(xCurrent, yCurrent))
+                  {
+                     canPlace = false;
+                     continue;
+                  }
+
+                  SlotInventory slotHovered = slots[xCurrent, yCurrent];
+                  slotsHovered.Add(slotHovered);
+
+                  if (!slotHovered.CanUse())
+                  {
+                     canPlace = false;
+                  }
+               }
+            }
+
+         }
+         else
+         {
+            itemDrag.ResetRotation();
+            itemDrag.UpdateSize(slotHover.RectSize, Vector2.Zero);
+            slotsHovered.Add(slotHover);
+            if (slotHover.type == SlotType.Fast)
+            {
+               canPlace = itemDrag.canHandHold && slotHover.CanUse();
+            }
+            else
+            {
+               canPlace = slotHover.CanUse();
+            }
+         }
+
+         foreach (SlotInventory slot in slotsHovered)
+         {
+            slot.Status = (canPlace) ? SlotInventoryStatus.HoveredOk : SlotInventoryStatus.HoveredBusy;
+         }
+
+         itemDrag.ErrorModulate(!canPlace);
+
+      }
+
+      public void OnSlotMouseLeave(SlotInventory slotInventory)
+      {
+         if (slotInventory == slotHover)
+         {
+            slotHover = null;
+         }
+      }
+
+      public void ClearHoveredSlots()
+      {
+         if (slotsHovered.Count > 0)
+         {
+            foreach (SlotInventory slot in slotsHovered)
+            {
+               if (slot.Status == SlotInventoryStatus.HoveredOk || slot.Status == SlotInventoryStatus.HoveredBusy)
+               {
+                  if (slot.prevStatus != SlotInventoryStatus.Undefined)
+                  {
+                     slot.Status = slot.prevStatus;
+                  }
+                  else
+                  {
+                     slot.Status = SlotInventoryStatus.Free;
+                  }
+               }
+            }
+         }
+         slotsHovered.Clear();
+      }
+
+      public bool HasPairIndex(int rowIndex, int columnIndex)
+      {
+         if (rowIndex < 0 || rowIndex >= slots.GetLength(0) || columnIndex < 0 || columnIndex >= slots.GetLength(1))
+         {
+            return false;
+         }
+         return true;
+      }
+
+      public override void _Process(float delta)
+      {
+         if (Engine.GetFramesDrawn() % 60 == 0) {
+            GD.Print(items.Count);
+         }
+      }
+
+   }
+}

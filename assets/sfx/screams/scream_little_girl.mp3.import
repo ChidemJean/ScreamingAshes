@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/scream_little_girl.mp3-20be2e6b792e3a5717947c3560cbb9c2.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/screams/scream_little_girl.mp3"
+dest_files=[ "res://.import/scream_little_girl.mp3-20be2e6b792e3a5717947c3560cbb9c2.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

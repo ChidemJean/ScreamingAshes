@@ -1,0 +1,18 @@
+[gd_resource type="Shader" format=2]
+
+[resource]
+code = "shader_type canvas_item;
+
+uniform sampler2D offset_image : hint_white;
+uniform float strength = 1.0;
+
+void fragment() {
+	vec4 output = texture(TEXTURE, UV);
+	
+	float shift = strength * texture(offset_image, UV).r / 100.0;
+	output.r = texture(TEXTURE, vec2(UV.x + shift, UV.y)).r;
+	output.g = texture(TEXTURE, UV).g;
+	output.b = texture(TEXTURE, vec2(UV.x - shift, UV.y)).b;
+	
+	COLOR = output;
+}"

@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/9mm-pistol-shot.wav-2f46fa1e559b4cc77a857254adff8b3b.sample"
+
+[deps]
+
+source_file="res://assets/sfx/9mm-pistol-shot.wav"
+dest_files=[ "res://.import/9mm-pistol-shot.wav-2f46fa1e559b4cc77a857254adff8b3b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

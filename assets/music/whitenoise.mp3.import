@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/whitenoise.mp3-df0ccfb5f4b6639b58e31740a5583c0d.mp3str"
+
+[deps]
+
+source_file="res://assets/music/whitenoise.mp3"
+dest_files=[ "res://.import/whitenoise.mp3-df0ccfb5f4b6639b58e31740a5583c0d.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

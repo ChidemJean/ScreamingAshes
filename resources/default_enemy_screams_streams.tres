@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=11 format=2]
+
+[ext_resource path="res://src/Core/Audio/StreamsCategory.cs" type="Script" id=1]
+[ext_resource path="res://assets/sfx/monster_screams/monster_scream_3.mp3" type="AudioStream" id=2]
+[ext_resource path="res://assets/sfx/monster_screams/monster_scream_5.mp3" type="AudioStream" id=3]
+[ext_resource path="res://assets/sfx/monster_screams/monster_scream_6.mp3" type="AudioStream" id=4]
+[ext_resource path="res://assets/sfx/monster_screams/monster_scream_8.mp3" type="AudioStream" id=5]
+[ext_resource path="res://assets/sfx/monster_screams/monster_scream.mp3" type="AudioStream" id=6]
+[ext_resource path="res://assets/sfx/monster_screams/monster_scream_7.mp3" type="AudioStream" id=7]
+[ext_resource path="res://assets/sfx/monster_screams/monster_scream_2.mp3" type="AudioStream" id=8]
+[ext_resource path="res://assets/sfx/monster_screams/monster_scream_9.mp3" type="AudioStream" id=9]
+[ext_resource path="res://assets/sfx/monster_screams/monster_scream_4.mp3" type="AudioStream" id=10]
+
+[resource]
+script = ExtResource( 1 )
+streamsRandom = [ ExtResource( 6 ), ExtResource( 8 ), ExtResource( 2 ), ExtResource( 10 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 5 ), ExtResource( 9 ) ]

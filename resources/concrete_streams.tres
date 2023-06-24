@@ -1,0 +1,18 @@
+[gd_resource type="Resource" load_steps=13 format=2]
+
+[ext_resource path="res://assets/sfx/footsteps/concrete/6.mp3" type="AudioStream" id=1]
+[ext_resource path="res://assets/sfx/footsteps/concrete/8.mp3" type="AudioStream" id=2]
+[ext_resource path="res://assets/sfx/footsteps/concrete/7.mp3" type="AudioStream" id=3]
+[ext_resource path="res://assets/sfx/footsteps/concrete/10.mp3" type="AudioStream" id=4]
+[ext_resource path="res://assets/sfx/footsteps/concrete/4.mp3" type="AudioStream" id=5]
+[ext_resource path="res://assets/sfx/footsteps/concrete/3.mp3" type="AudioStream" id=6]
+[ext_resource path="res://assets/sfx/footsteps/concrete/11.mp3" type="AudioStream" id=7]
+[ext_resource path="res://assets/sfx/footsteps/concrete/5.mp3" type="AudioStream" id=8]
+[ext_resource path="res://assets/sfx/footsteps/concrete/2.mp3" type="AudioStream" id=9]
+[ext_resource path="res://assets/sfx/footsteps/concrete/1.mp3" type="AudioStream" id=10]
+[ext_resource path="res://assets/sfx/footsteps/concrete/9.mp3" type="AudioStream" id=11]
+[ext_resource path="res://src/Core/Audio/StreamsCategory.cs" type="Script" id=12]
+
+[resource]
+script = ExtResource( 12 )
+streamsRandom = [ ExtResource( 10 ), ExtResource( 9 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 8 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 11 ), ExtResource( 4 ), ExtResource( 7 ) ]

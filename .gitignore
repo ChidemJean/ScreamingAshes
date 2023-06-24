@@ -1,0 +1,11 @@
+/_BUILD_/
+/.import/
+/.mono/
+/android/
+/addons/
+/terrain/
+/build/
+/*.keystore
+/assets/models/prototype/
+/assets/kenney/
+/assets/prototype/

@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/ui/styles/inventario_grid_item_style.tres" type="StyleBox" id=1]
+[ext_resource path="res://src/Ui/SlotInventory.cs" type="Script" id=2]
+[ext_resource path="res://assets/fonts/primary/primary_bold_1_5x.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/ui/styles/inventario_grid_item_hover_style.tres" type="StyleBox" id=4]
+[ext_resource path="res://assets/ui/styles/inventario_grid_item_damaged_style.tres" type="StyleBox" id=5]
+
+[node name="Slot" type="Button"]
+margin_right = 63.0
+margin_bottom = 63.0
+rect_min_size = Vector2( 50, 63 )
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_colors/font_color = Color( 1, 1, 1, 0.0784314 )
+custom_fonts/font = ExtResource( 3 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/normal = ExtResource( 1 )
+text = "•"
+script = ExtResource( 2 )
+styleBoxDefault = ExtResource( 1 )
+styleBoxDamaged = ExtResource( 5 )

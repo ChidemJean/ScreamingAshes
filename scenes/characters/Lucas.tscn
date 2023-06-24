@@ -1,0 +1,583 @@
+[gd_scene load_steps=57 format=2]
+
+[ext_resource path="res://src/Core/Characters/Player.cs" type="Script" id=1]
+[ext_resource path="res://models/characters/Lucas/Lucas.glb" type="PackedScene" id=2]
+[ext_resource path="res://src/Core/Characters/SkeletonIK.cs" type="Script" id=3]
+[ext_resource path="res://src/Core/Audio/SfxOptions.cs" type="Script" id=4]
+[ext_resource path="res://models/grey_backpack/scene.gltf" type="PackedScene" id=5]
+[ext_resource path="res://scenes/characters/FootstepSensor.tscn" type="PackedScene" id=6]
+[ext_resource path="res://resources/player_screams.tres" type="Resource" id=7]
+[ext_resource path="res://resources/punch_streams.tres" type="Resource" id=8]
+[ext_resource path="res://scenes/vfx/BloodHitParticles.tscn" type="PackedScene" id=9]
+[ext_resource path="res://resources/player_pain_scream_streams.tres" type="Resource" id=10]
+
+[sub_resource type="CapsuleShape" id=21]
+radius = 2.78499
+height = 12.0
+
+[sub_resource type="CapsuleShape" id=34]
+radius = 2.78499
+height = 7.08862
+
+[sub_resource type="Animation" id=32]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("LookAtAim:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.00535122 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -3.55505, -1.75381, 4.0729 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("LookAtAim:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.00535122 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 4.05736, 84.6481, 89.2938 ) ]
+}
+
+[sub_resource type="Animation" id=33]
+resource_name = "shoot_pistol_recoil"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("LookAtAim:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.00493959, 0.0384473, 0.248626 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -3.55505, -1.22361, 4.0729 ), Vector3( -3.555, -0.922, 3.5 ), Vector3( -3.55505, -1.22361, 4.0729 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("LookAtAim:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.00493959, 0.0386935, 0.248626 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 4.02173, 84.6213, 88.9135 ), Vector3( 2.22339, 83.6649, 71.4924 ), Vector3( 4.02173, 84.6213, 88.9135 ) ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=43]
+animation = "idle_backpackloop"
+
+[sub_resource type="AnimationNodeAnimation" id=45]
+animation = "die_forward"
+
+[sub_resource type="AnimationNodeAnimation" id=46]
+animation = "die_backwards"
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "crouch_idleloop"
+
+[sub_resource type="AnimationNodeAnimation" id=26]
+animation = "reloading_pistol"
+
+[sub_resource type="AnimationNodeAnimation" id=28]
+animation = "shot_pistol"
+
+[sub_resource type="AnimationNodeAnimation" id=29]
+animation = "pistol_idleloop"
+
+[sub_resource type="AnimationNodeAnimation" id=35]
+animation = "knife_idleloop"
+
+[sub_resource type="AnimationNodeAnimation" id=36]
+animation = "knife_stabing"
+
+[sub_resource type="AnimationNodeAnimation" id=39]
+animation = "butt_blow_pistol"
+
+[sub_resource type="AnimationNodeAnimation" id=41]
+animation = "taking_backpack"
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "breathing_idleloop"
+
+[sub_resource type="AnimationNodeBlend2" id=4]
+
+[sub_resource type="AnimationNodeBlend2" id=5]
+
+[sub_resource type="AnimationNodeBlend2" id=37]
+filter_enabled = true
+filters = [ "Armature/Skeleton:hand_ik.L", "Armature/Skeleton:hand_ik.R", "Armature/Skeleton:mixamorig_Head", "Armature/Skeleton:mixamorig_HeadTop_End", "Armature/Skeleton:mixamorig_LeftArm", "Armature/Skeleton:mixamorig_LeftForeArm", "Armature/Skeleton:mixamorig_LeftHand", "Armature/Skeleton:mixamorig_LeftHandIndex1", "Armature/Skeleton:mixamorig_LeftHandIndex2", "Armature/Skeleton:mixamorig_LeftHandIndex3", "Armature/Skeleton:mixamorig_LeftHandIndex4", "Armature/Skeleton:mixamorig_LeftHandMiddle1", "Armature/Skeleton:mixamorig_LeftHandMiddle2", "Armature/Skeleton:mixamorig_LeftHandMiddle3", "Armature/Skeleton:mixamorig_LeftHandMiddle4", "Armature/Skeleton:mixamorig_LeftHandPinky1", "Armature/Skeleton:mixamorig_LeftHandPinky2", "Armature/Skeleton:mixamorig_LeftHandPinky3", "Armature/Skeleton:mixamorig_LeftHandPinky4", "Armature/Skeleton:mixamorig_LeftHandRing1", "Armature/Skeleton:mixamorig_LeftHandRing2", "Armature/Skeleton:mixamorig_LeftHandRing3", "Armature/Skeleton:mixamorig_LeftHandRing4", "Armature/Skeleton:mixamorig_LeftHandThumb1", "Armature/Skeleton:mixamorig_LeftHandThumb2", "Armature/Skeleton:mixamorig_LeftHandThumb3", "Armature/Skeleton:mixamorig_LeftHandThumb4", "Armature/Skeleton:mixamorig_LeftShoulder", "Armature/Skeleton:mixamorig_Neck", "Armature/Skeleton:mixamorig_RightArm", "Armature/Skeleton:mixamorig_RightForeArm", "Armature/Skeleton:mixamorig_RightHand", "Armature/Skeleton:mixamorig_RightHandIndex1", "Armature/Skeleton:mixamorig_RightHandIndex2", "Armature/Skeleton:mixamorig_RightHandIndex3", "Armature/Skeleton:mixamorig_RightHandIndex4", "Armature/Skeleton:mixamorig_RightHandMiddle1", "Armature/Skeleton:mixamorig_RightHandMiddle2", "Armature/Skeleton:mixamorig_RightHandMiddle3", "Armature/Skeleton:mixamorig_RightHandMiddle4", "Armature/Skeleton:mixamorig_RightHandPinky1", "Armature/Skeleton:mixamorig_RightHandPinky2", "Armature/Skeleton:mixamorig_RightHandPinky3", "Armature/Skeleton:mixamorig_RightHandPinky4", "Armature/Skeleton:mixamorig_RightHandRing1", "Armature/Skeleton:mixamorig_RightHandRing2", "Armature/Skeleton:mixamorig_RightHandRing3", "Armature/Skeleton:mixamorig_RightHandRing4", "Armature/Skeleton:mixamorig_RightHandThumb1", "Armature/Skeleton:mixamorig_RightHandThumb2", "Armature/Skeleton:mixamorig_RightHandThumb3", "Armature/Skeleton:mixamorig_RightHandThumb4", "Armature/Skeleton:mixamorig_RightShoulder", "Armature/Skeleton:mixamorig_Spine", "Armature/Skeleton:mixamorig_Spine1", "Armature/Skeleton:mixamorig_Spine2" ]
+
+[sub_resource type="AnimationNodeBlend2" id=30]
+filter_enabled = true
+filters = [ "Armature/Skeleton:hand_ik.L", "Armature/Skeleton:hand_ik.R", "Armature/Skeleton:mixamorig_LeftHand", "Armature/Skeleton:mixamorig_LeftHandIndex1", "Armature/Skeleton:mixamorig_LeftHandIndex2", "Armature/Skeleton:mixamorig_LeftHandIndex3", "Armature/Skeleton:mixamorig_LeftHandIndex4", "Armature/Skeleton:mixamorig_LeftHandMiddle1", "Armature/Skeleton:mixamorig_LeftHandMiddle2", "Armature/Skeleton:mixamorig_LeftHandMiddle3", "Armature/Skeleton:mixamorig_LeftHandMiddle4", "Armature/Skeleton:mixamorig_LeftHandPinky1", "Armature/Skeleton:mixamorig_LeftHandPinky2", "Armature/Skeleton:mixamorig_LeftHandPinky3", "Armature/Skeleton:mixamorig_LeftHandPinky4", "Armature/Skeleton:mixamorig_LeftHandRing1", "Armature/Skeleton:mixamorig_LeftHandRing2", "Armature/Skeleton:mixamorig_LeftHandRing3", "Armature/Skeleton:mixamorig_LeftHandRing4", "Armature/Skeleton:mixamorig_LeftHandThumb1", "Armature/Skeleton:mixamorig_LeftHandThumb2", "Armature/Skeleton:mixamorig_LeftHandThumb3", "Armature/Skeleton:mixamorig_LeftHandThumb4", "Armature/Skeleton:mixamorig_Neck", "Armature/Skeleton:mixamorig_RightHandIndex1", "Armature/Skeleton:mixamorig_RightHandIndex2", "Armature/Skeleton:mixamorig_RightHandIndex3", "Armature/Skeleton:mixamorig_RightHandIndex4", "Armature/Skeleton:mixamorig_RightHandMiddle1", "Armature/Skeleton:mixamorig_RightHandMiddle2", "Armature/Skeleton:mixamorig_RightHandMiddle3", "Armature/Skeleton:mixamorig_RightHandMiddle4", "Armature/Skeleton:mixamorig_RightHandPinky1", "Armature/Skeleton:mixamorig_RightHandPinky2", "Armature/Skeleton:mixamorig_RightHandPinky3", "Armature/Skeleton:mixamorig_RightHandPinky4", "Armature/Skeleton:mixamorig_RightHandRing1", "Armature/Skeleton:mixamorig_RightHandRing2", "Armature/Skeleton:mixamorig_RightHandRing3", "Armature/Skeleton:mixamorig_RightHandRing4", "Armature/Skeleton:mixamorig_RightHandThumb1", "Armature/Skeleton:mixamorig_RightHandThumb2", "Armature/Skeleton:mixamorig_RightHandThumb3", "Armature/Skeleton:mixamorig_RightHandThumb4" ]
+
+[sub_resource type="AnimationNodeOneShot" id=40]
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "crouch_walkloop"
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "crouch_rightloop"
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "crouch_walkloop"
+
+[sub_resource type="AnimationNodeAnimation" id=12]
+animation = "crouch_leftloop"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=6]
+blend_point_0/node = SubResource( 9 )
+blend_point_0/pos = Vector2( 0, 1 )
+blend_point_1/node = SubResource( 10 )
+blend_point_1/pos = Vector2( 1, 0 )
+blend_point_2/node = SubResource( 11 )
+blend_point_2/pos = Vector2( 0, -1 )
+blend_point_3/node = SubResource( 12 )
+blend_point_3/pos = Vector2( -1, 0 )
+
+[sub_resource type="AnimationNodeBlend2" id=44]
+
+[sub_resource type="AnimationNodeOneShot" id=38]
+filter_enabled = true
+filters = [ "Armature/Skeleton:hand_ik.L", "Armature/Skeleton:hand_ik.R", "Armature/Skeleton:mixamorig_Head", "Armature/Skeleton:mixamorig_HeadTop_End", "Armature/Skeleton:mixamorig_LeftArm", "Armature/Skeleton:mixamorig_LeftForeArm", "Armature/Skeleton:mixamorig_LeftHand", "Armature/Skeleton:mixamorig_LeftHandIndex1", "Armature/Skeleton:mixamorig_LeftHandIndex2", "Armature/Skeleton:mixamorig_LeftHandIndex3", "Armature/Skeleton:mixamorig_LeftHandIndex4", "Armature/Skeleton:mixamorig_LeftHandMiddle1", "Armature/Skeleton:mixamorig_LeftHandMiddle2", "Armature/Skeleton:mixamorig_LeftHandMiddle3", "Armature/Skeleton:mixamorig_LeftHandMiddle4", "Armature/Skeleton:mixamorig_LeftHandPinky1", "Armature/Skeleton:mixamorig_LeftHandPinky2", "Armature/Skeleton:mixamorig_LeftHandPinky3", "Armature/Skeleton:mixamorig_LeftHandPinky4", "Armature/Skeleton:mixamorig_LeftHandRing1", "Armature/Skeleton:mixamorig_LeftHandRing2", "Armature/Skeleton:mixamorig_LeftHandRing3", "Armature/Skeleton:mixamorig_LeftHandRing4", "Armature/Skeleton:mixamorig_LeftHandThumb1", "Armature/Skeleton:mixamorig_LeftHandThumb2", "Armature/Skeleton:mixamorig_LeftHandThumb3", "Armature/Skeleton:mixamorig_LeftHandThumb4", "Armature/Skeleton:mixamorig_LeftShoulder", "Armature/Skeleton:mixamorig_Neck", "Armature/Skeleton:mixamorig_RightArm", "Armature/Skeleton:mixamorig_RightForeArm", "Armature/Skeleton:mixamorig_RightHand", "Armature/Skeleton:mixamorig_RightHandIndex1", "Armature/Skeleton:mixamorig_RightHandIndex2", "Armature/Skeleton:mixamorig_RightHandIndex3", "Armature/Skeleton:mixamorig_RightHandIndex4", "Armature/Skeleton:mixamorig_RightHandMiddle1", "Armature/Skeleton:mixamorig_RightHandMiddle2", "Armature/Skeleton:mixamorig_RightHandMiddle3", "Armature/Skeleton:mixamorig_RightHandMiddle4", "Armature/Skeleton:mixamorig_RightHandPinky1", "Armature/Skeleton:mixamorig_RightHandPinky2", "Armature/Skeleton:mixamorig_RightHandPinky3", "Armature/Skeleton:mixamorig_RightHandPinky4", "Armature/Skeleton:mixamorig_RightHandRing1", "Armature/Skeleton:mixamorig_RightHandRing2", "Armature/Skeleton:mixamorig_RightHandRing3", "Armature/Skeleton:mixamorig_RightHandRing4", "Armature/Skeleton:mixamorig_RightHandThumb1", "Armature/Skeleton:mixamorig_RightHandThumb2", "Armature/Skeleton:mixamorig_RightHandThumb3", "Armature/Skeleton:mixamorig_RightHandThumb4", "Armature/Skeleton:mixamorig_RightShoulder", "Armature/Skeleton:mixamorig_Spine", "Armature/Skeleton:mixamorig_Spine1", "Armature/Skeleton:mixamorig_Spine2" ]
+
+[sub_resource type="AnimationNodeBlend2" id=7]
+
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "runloop"
+
+[sub_resource type="AnimationNodeAnimation" id=14]
+animation = "run_rightloop"
+
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "run_leftloop"
+
+[sub_resource type="AnimationNodeAnimation" id=16]
+animation = "walkloop"
+
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "walk_backwardsloop"
+
+[sub_resource type="AnimationNodeAnimation" id=18]
+animation = "walk_leftloop"
+
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "walk_rightloop"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=8]
+blend_point_0/node = SubResource( 13 )
+blend_point_0/pos = Vector2( 0, 1 )
+blend_point_1/node = SubResource( 14 )
+blend_point_1/pos = Vector2( 1, 0 )
+blend_point_2/node = SubResource( 15 )
+blend_point_2/pos = Vector2( -1, 0 )
+blend_point_3/node = SubResource( 16 )
+blend_point_3/pos = Vector2( 0, 0.6 )
+blend_point_4/node = SubResource( 17 )
+blend_point_4/pos = Vector2( 0, -0.6 )
+blend_point_5/node = SubResource( 18 )
+blend_point_5/pos = Vector2( -0.6, 0 )
+blend_point_6/node = SubResource( 19 )
+blend_point_6/pos = Vector2( 0.6, 0 )
+
+[sub_resource type="AnimationNodeOneShot" id=27]
+filter_enabled = true
+filters = [ "Armature/Skeleton:hand_ik.L", "Armature/Skeleton:hand_ik.R", "Armature/Skeleton:mixamorig_Head", "Armature/Skeleton:mixamorig_HeadTop_End", "Armature/Skeleton:mixamorig_LeftArm", "Armature/Skeleton:mixamorig_LeftForeArm", "Armature/Skeleton:mixamorig_LeftHand", "Armature/Skeleton:mixamorig_LeftHandIndex1", "Armature/Skeleton:mixamorig_LeftHandIndex2", "Armature/Skeleton:mixamorig_LeftHandIndex3", "Armature/Skeleton:mixamorig_LeftHandIndex4", "Armature/Skeleton:mixamorig_LeftHandMiddle1", "Armature/Skeleton:mixamorig_LeftHandMiddle2", "Armature/Skeleton:mixamorig_LeftHandMiddle3", "Armature/Skeleton:mixamorig_LeftHandMiddle4", "Armature/Skeleton:mixamorig_LeftHandPinky1", "Armature/Skeleton:mixamorig_LeftHandPinky2", "Armature/Skeleton:mixamorig_LeftHandPinky3", "Armature/Skeleton:mixamorig_LeftHandPinky4", "Armature/Skeleton:mixamorig_LeftHandRing1", "Armature/Skeleton:mixamorig_LeftHandRing2", "Armature/Skeleton:mixamorig_LeftHandRing3", "Armature/Skeleton:mixamorig_LeftHandRing4", "Armature/Skeleton:mixamorig_LeftHandThumb1", "Armature/Skeleton:mixamorig_LeftHandThumb2", "Armature/Skeleton:mixamorig_LeftHandThumb3", "Armature/Skeleton:mixamorig_LeftHandThumb4", "Armature/Skeleton:mixamorig_LeftShoulder", "Armature/Skeleton:mixamorig_Neck", "Armature/Skeleton:mixamorig_RightArm", "Armature/Skeleton:mixamorig_RightForeArm", "Armature/Skeleton:mixamorig_RightHand", "Armature/Skeleton:mixamorig_RightHandIndex1", "Armature/Skeleton:mixamorig_RightHandIndex2", "Armature/Skeleton:mixamorig_RightHandIndex3", "Armature/Skeleton:mixamorig_RightHandIndex4", "Armature/Skeleton:mixamorig_RightHandMiddle1", "Armature/Skeleton:mixamorig_RightHandMiddle2", "Armature/Skeleton:mixamorig_RightHandMiddle3", "Armature/Skeleton:mixamorig_RightHandMiddle4", "Armature/Skeleton:mixamorig_RightHandPinky1", "Armature/Skeleton:mixamorig_RightHandPinky2", "Armature/Skeleton:mixamorig_RightHandPinky3", "Armature/Skeleton:mixamorig_RightHandPinky4", "Armature/Skeleton:mixamorig_RightHandRing1", "Armature/Skeleton:mixamorig_RightHandRing2", "Armature/Skeleton:mixamorig_RightHandRing3", "Armature/Skeleton:mixamorig_RightHandRing4", "Armature/Skeleton:mixamorig_RightHandThumb1", "Armature/Skeleton:mixamorig_RightHandThumb2", "Armature/Skeleton:mixamorig_RightHandThumb3", "Armature/Skeleton:mixamorig_RightHandThumb4", "Armature/Skeleton:mixamorig_RightShoulder" ]
+
+[sub_resource type="AnimationNodeOneShot" id=31]
+filter_enabled = true
+filters = [ "Armature/Skeleton:hand_ik.R", "Armature/Skeleton:mixamorig_RightHandIndex1", "Armature/Skeleton:mixamorig_RightHandIndex2", "Armature/Skeleton:mixamorig_RightHandIndex3", "Armature/Skeleton:mixamorig_RightHandIndex4", "Armature/Skeleton:mixamorig_RightHandMiddle1", "Armature/Skeleton:mixamorig_RightHandMiddle2", "Armature/Skeleton:mixamorig_RightHandMiddle3", "Armature/Skeleton:mixamorig_RightHandMiddle4", "Armature/Skeleton:mixamorig_RightHandPinky1", "Armature/Skeleton:mixamorig_RightHandPinky2", "Armature/Skeleton:mixamorig_RightHandPinky3", "Armature/Skeleton:mixamorig_RightHandPinky4", "Armature/Skeleton:mixamorig_RightHandRing1", "Armature/Skeleton:mixamorig_RightHandRing2", "Armature/Skeleton:mixamorig_RightHandRing3", "Armature/Skeleton:mixamorig_RightHandRing4", "Armature/Skeleton:mixamorig_RightHandThumb1", "Armature/Skeleton:mixamorig_RightHandThumb2", "Armature/Skeleton:mixamorig_RightHandThumb3", "Armature/Skeleton:mixamorig_RightHandThumb4" ]
+
+[sub_resource type="AnimationNodeTransition" id=47]
+input_count = 3
+input_0/name = "default"
+input_0/auto_advance = false
+input_1/name = "die_forward"
+input_1/auto_advance = false
+input_2/name = "die_backward"
+input_2/auto_advance = false
+
+[sub_resource type="AnimationNodeOneShot" id=42]
+
+[sub_resource type="AnimationNodeBlendTree" id=20]
+graph_offset = Vector2( 959.291, -38.4415 )
+nodes/Animation/node = SubResource( 3 )
+nodes/Animation/position = Vector2( -560, 160 )
+"nodes/Animation 10/node" = SubResource( 43 )
+"nodes/Animation 10/position" = Vector2( 1560, 360 )
+"nodes/Animation 11/node" = SubResource( 45 )
+"nodes/Animation 11/position" = Vector2( 2040, 200 )
+"nodes/Animation 12/node" = SubResource( 46 )
+"nodes/Animation 12/position" = Vector2( 2200, 200 )
+"nodes/Animation 2/node" = SubResource( 2 )
+"nodes/Animation 2/position" = Vector2( -560, 280 )
+"nodes/Animation 3/node" = SubResource( 26 )
+"nodes/Animation 3/position" = Vector2( 580, 360 )
+"nodes/Animation 4/node" = SubResource( 28 )
+"nodes/Animation 4/position" = Vector2( 800, 360 )
+"nodes/Animation 5/node" = SubResource( 29 )
+"nodes/Animation 5/position" = Vector2( 360, 340 )
+"nodes/Animation 6/node" = SubResource( 35 )
+"nodes/Animation 6/position" = Vector2( 160, 780 )
+"nodes/Animation 7/node" = SubResource( 36 )
+"nodes/Animation 7/position" = Vector2( 380, 780 )
+"nodes/Animation 8/node" = SubResource( 39 )
+"nodes/Animation 8/position" = Vector2( 980, 380 )
+"nodes/Animation 9/node" = SubResource( 41 )
+"nodes/Animation 9/position" = Vector2( 1340, 360 )
+nodes/blend/node = SubResource( 4 )
+nodes/blend/position = Vector2( -120, 420 )
+nodes/blend_crouch/node = SubResource( 5 )
+nodes/blend_crouch/position = Vector2( -280, 220 )
+nodes/blend_knife/node = SubResource( 37 )
+nodes/blend_knife/position = Vector2( 180, 620 )
+nodes/blend_pistol_aim/node = SubResource( 30 )
+nodes/blend_pistol_aim/position = Vector2( 380, 180 )
+nodes/butt_blow_pistol/node = SubResource( 40 )
+nodes/butt_blow_pistol/position = Vector2( 1020, 200 )
+nodes/crouch_motion_blend/node = SubResource( 6 )
+nodes/crouch_motion_blend/position = Vector2( -560, 620 )
+nodes/idle_backpack/node = SubResource( 44 )
+nodes/idle_backpack/position = Vector2( 1560, 200 )
+nodes/knife_attack/node = SubResource( 38 )
+nodes/knife_attack/position = Vector2( 380, 620 )
+nodes/motion_blend/node = SubResource( 7 )
+nodes/motion_blend/position = Vector2( -320, 540 )
+nodes/motion_blend_space/node = SubResource( 8 )
+nodes/motion_blend_space/position = Vector2( -560, 480 )
+nodes/output/position = Vector2( 2460, -280 )
+nodes/reload_pistol/node = SubResource( 27 )
+nodes/reload_pistol/position = Vector2( 600, 200 )
+nodes/shot_pistol/node = SubResource( 31 )
+nodes/shot_pistol/position = Vector2( 820, 200 )
+nodes/state/node = SubResource( 47 )
+nodes/state/position = Vector2( 2140, 40 )
+nodes/take_backpack/node = SubResource( 42 )
+nodes/take_backpack/position = Vector2( 1340, 200 )
+node_connections = [ "shot_pistol", 0, "reload_pistol", "shot_pistol", 1, "Animation 4", "butt_blow_pistol", 0, "shot_pistol", "butt_blow_pistol", 1, "Animation 8", "idle_backpack", 0, "take_backpack", "idle_backpack", 1, "Animation 10", "motion_blend", 0, "motion_blend_space", "motion_blend", 1, "crouch_motion_blend", "blend_pistol_aim", 0, "knife_attack", "blend_pistol_aim", 1, "Animation 5", "blend_crouch", 0, "Animation", "blend_crouch", 1, "Animation 2", "blend_knife", 0, "blend", "blend_knife", 1, "Animation 6", "knife_attack", 0, "blend_knife", "knife_attack", 1, "Animation 7", "take_backpack", 0, "butt_blow_pistol", "take_backpack", 1, "Animation 9", "reload_pistol", 0, "blend_pistol_aim", "reload_pistol", 1, "Animation 3", "blend", 0, "blend_crouch", "blend", 1, "motion_blend", "state", 0, "idle_backpack", "state", 1, "Animation 11", "state", 2, "Animation 12", "output", 0, "state" ]
+
+[sub_resource type="SpatialMaterial" id=22]
+albedo_color = Color( 0.185791, 0.09375, 1, 1 )
+
+[sub_resource type="CubeMesh" id=23]
+size = Vector3( 0.4, 0.4, 5 )
+
+[sub_resource type="SpatialMaterial" id=24]
+albedo_color = Color( 0.0117647, 0.258824, 1, 1 )
+
+[sub_resource type="PrismMesh" id=25]
+size = Vector3( 1, 1, 0.5 )
+
+[node name="Lucas" type="Spatial"]
+
+[node name="Head" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.031, 0 )
+
+[node name="LookAt" type="Position3D" parent="Head"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.55759, 7.36121 )
+
+[node name="Camera" type="Camera" parent="Head"]
+transform = Transform( -1, 0, -1.19209e-07, 0, 1, 0, 1.19209e-07, 0, -1, -3.65749, 0.441399, -5.28448 )
+cull_mask = 1048063
+current = true
+fov = 80.0
+far = 350.0
+
+[node name="SpotLight" type="SpotLight" parent="Head"]
+transform = Transform( -0.987876, 0, -0.155245, 0, 1, 0, 0.155245, 0, -0.987876, -5.59378, -1.20752, -17.5331 )
+light_energy = 0.2
+light_cull_mask = 4293918722
+spot_range = 26.2729
+spot_angle = 40.191
+
+[node name="Body" type="KinematicBody" parent="."]
+collision_layer = 1025
+collision_mask = 13
+script = ExtResource( 1 )
+animationTreePath = NodePath("AnimationTree")
+speed = 4.5
+sprintSpeedMultiplier = 3.2
+crouchSpeedMultiplier = 0.75
+jumpVelocity = 65.0
+cameraPath = NodePath("../Head/Camera")
+lookAtPath = NodePath("../Head/LookAt")
+skeletonIkRightHandPath = NodePath("Lucas/Armature/Skeleton/SkeletonIKRightHand")
+skeletonIkRightHandCodePath = NodePath("Lucas/Armature/Skeleton/SkeletonIKRightHandCode")
+skeletonIkLeftHandPath = NodePath("Lucas/Armature/Skeleton/SkeletonIKLeftHand")
+lookAtRightPath = NodePath("Pivot/LookAtRight")
+pivotPath = NodePath("Pivot")
+lookAtAimPath = NodePath("Pivot/LookAtAim")
+lookAtHeadPath = NodePath("Lucas/Armature/Skeleton/Spine/LookAtHead")
+itemSlotRightPath = NodePath("Lucas/Armature/Skeleton/RightHand/WeaponSlot")
+handPivotsAnimPlayerPath = NodePath("Pivot/HandPivotAnims")
+buttBlowingTime = 2.45
+knifeAttackTime = 2.0
+standShapePath = NodePath("Stand")
+crouchShapePath = NodePath("Crouch")
+verticalDisplacementCrouch = 1.5
+aimRayPath = NodePath("Pivot/AimRay")
+topRayPath = NodePath("RayCastsOrigin/Top")
+bottomRayPath = NodePath("RayCastsOrigin/Bottom")
+rightRayPath = NodePath("RayCastsOrigin/Right")
+leftRayPath = NodePath("RayCastsOrigin/Left")
+forwardRayPath = NodePath("RayCastsOrigin/Forward")
+backwardRayPath = NodePath("RayCastsOrigin/Backward")
+clipPivotPath = NodePath("Lucas/Armature/Skeleton/LeftHand/ClipPivot")
+lightLevelPosPath = NodePath("Pivot/LightLevelPos")
+flashLightPath = NodePath("Lucas/Armature/Skeleton/Spine/FlashlightSlot/FlashLight")
+flashLightSlotPath = NodePath("Lucas/Armature/Skeleton/Spine/FlashlightSlot")
+flashLightHandSlotPath = NodePath("Lucas/Armature/Skeleton/RightHand/FlashlightSlot")
+maxStaminaValue = 20.0
+cooldownRegenerateStamine = 2.0
+collisionMaskItemsRay = 160
+backpackPath = NodePath("Lucas/Armature/Skeleton/Neck/BackpackSlot/scene")
+neckBackpackSlotPath = NodePath("Lucas/Armature/Skeleton/Neck/BackpackSlot")
+handBackpackSlotPath = NodePath("Lucas/Armature/Skeleton/LeftHand2/BackpackSlot")
+sfxPath = NodePath("Sfx")
+bloodParticles = ExtResource( 9 )
+
+[node name="Stand" type="CollisionShape" parent="Body"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 9.07516, 0 )
+shape = SubResource( 21 )
+
+[node name="Crouch" type="CollisionShape" parent="Body"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 6.58633, 0 )
+shape = SubResource( 34 )
+disabled = true
+
+[node name="Pivot" type="Position3D" parent="Body"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.3472, 0 )
+
+[node name="AimRay" type="RayCast" parent="Body/Pivot"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.64841 )
+enabled = true
+cast_to = Vector3( 0, 0, 7 )
+collision_mask = 12
+debug_shape_custom_color = Color( 0.905882, 0, 0, 1 )
+debug_shape_thickness = 5
+
+[node name="LookAtRight" type="Position3D" parent="Body/Pivot"]
+transform = Transform( 0.15311, 0.106969, 0.982402, 0.961209, -0.24691, -0.122923, 0.229415, 0.963117, -0.140624, -3.37754, -3.26753, 4.00611 )
+
+[node name="LookAtLeft" type="Position3D" parent="Body/Pivot"]
+transform = Transform( 0.0188783, -0.837862, -0.545556, -0.9722, 0.111988, -0.205633, 0.233388, 0.534272, -0.812455, 0.444237, -1.65241, 3.8607 )
+
+[node name="LookAtAim" type="Position3D" parent="Body/Pivot"]
+transform = Transform( 0.0657516, 0.175425, 0.982293, 0.997356, 0.0189239, -0.0701394, -0.030893, 0.984309, -0.173717, -3.9243, -1.22361, 4.0729 )
+
+[node name="InverseLookAtAim" type="Position3D" parent="Body/Pivot/LookAtAim"]
+transform = Transform( 1, -9.31323e-10, -4.00469e-08, -1.86265e-09, 1, 2.98023e-08, 2.20025e-08, -8.9407e-08, 1, 1.96105, -9.76356, 4.60624 )
+
+[node name="LightLevelPos" type="Position3D" parent="Body/Pivot"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.27516, 0 )
+
+[node name="HandPivotAnims" type="AnimationPlayer" parent="Body/Pivot"]
+anims/RESET = SubResource( 32 )
+anims/shoot_pistol_recoil = SubResource( 33 )
+
+[node name="Lucas" parent="Body" instance=ExtResource( 2 )]
+transform = Transform( 0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, 0, 0.321507, 0 )
+
+[node name="Model Lucas 1" parent="Body/Lucas/Armature/Skeleton" index="0"]
+layers = 2
+
+[node name="Spine" type="BoneAttachment" parent="Body/Lucas/Armature/Skeleton" index="1"]
+transform = Transform( 0.894285, 0.00943609, -0.447398, 0.447485, -0.0260814, 0.893911, -0.00323374, -0.999615, -0.0275468, 317.673, -295.692, -12121.1 )
+bone_name = "mixamorig_Spine2"
+
+[node name="LookAtHead" type="Position3D" parent="Body/Lucas/Armature/Skeleton/Spine"]
+transform = Transform( 906.171, 68.0348, -25.9147, -66.3348, 904.925, 56.171, 29.9997, -54.0997, 906.983, 66.1905, 1916.6, 211.217 )
+
+[node name="FlashlightSlot" type="Spatial" parent="Body/Lucas/Armature/Skeleton/Spine"]
+transform = Transform( -0.999961, 0.00881379, 8.70776e-08, 0.008779, 0.996013, 0.0887726, 0.000782337, 0.0887692, -0.996052, 229.84, -18.8213, 1666.67 )
+
+[node name="FlashLight" type="SpotLight" parent="Body/Lucas/Armature/Skeleton/Spine/FlashlightSlot"]
+transform = Transform( 909.091, 0, 0, 0, 909.091, 0, 0, 0, 909.091, 0, 0, 0 )
+light_energy = 10.0
+spot_range = 139.962
+spot_angle = 50.6425
+
+[node name="LeftFoot" type="BoneAttachment" parent="Body/Lucas/Armature/Skeleton" index="2"]
+transform = Transform( -0.972709, -0.16469, 0.163453, -0.169256, 0.98547, -0.0143299, -0.158719, -0.041605, -0.986449, 1085.81, 3483.43, -97.8403 )
+bone_name = "mixamorig_LeftToeBase"
+
+[node name="FootstepSensor" parent="Body/Lucas/Armature/Skeleton/LeftFoot" instance=ExtResource( 6 )]
+playerPath = NodePath("../../../../..")
+foot = 1
+
+[node name="RightFoot" type="BoneAttachment" parent="Body/Lucas/Armature/Skeleton" index="3"]
+transform = Transform( -0.539151, -0.840198, -0.0582834, -0.82587, 0.540997, -0.158966, 0.165094, -0.0375755, -0.985563, -2659.04, -1191.88, -105.243 )
+bone_name = "mixamorig_RightToeBase"
+
+[node name="FootstepSensor" parent="Body/Lucas/Armature/Skeleton/RightFoot" instance=ExtResource( 6 )]
+playerPath = NodePath("../../../../..")
+
+[node name="Neck" type="BoneAttachment" parent="Body/Lucas/Armature/Skeleton" index="4"]
+transform = Transform( 0.894285, 0.00943609, -0.447398, 0.447485, -0.0260814, 0.893911, -0.00323374, -0.999615, -0.0275468, 317.673, -295.692, -12121.1 )
+bone_name = "mixamorig_Spine2"
+
+[node name="BackpackSlot" type="Position3D" parent="Body/Lucas/Armature/Skeleton/Neck"]
+transform = Transform( -1318.68, 420.436, 7879.38, -2418.01, 7582.77, -809.285, -7510.96, -2514.94, -1122.83, -77, -2974.79, -827.641 )
+
+[node name="scene" parent="Body/Lucas/Armature/Skeleton/Neck/BackpackSlot" instance=ExtResource( 5 )]
+
+[node name="backback_Material_0" parent="Body/Lucas/Armature/Skeleton/Neck/BackpackSlot/scene/Sketchfab_model/backpackfbx/RootNode/backback" index="0"]
+layers = 2
+
+[node name="RightHand" type="BoneAttachment" parent="Body/Lucas/Armature/Skeleton" index="5"]
+transform = Transform( 0.189365, 0.0530357, 0.980473, -0.0649596, 0.997029, -0.0413856, -0.979756, -0.0558544, 0.192247, -814.867, 3907.87, -13382.6 )
+bone_name = "mixamorig_RightHand"
+
+[node name="WeaponSlot" type="Spatial" parent="Body/Lucas/Armature/Skeleton/RightHand"]
+transform = Transform( -5.24537e-05, 1200, 5.24537e-05, 0, -5.24537e-05, 1200, 1200, 5.24537e-05, 2.29282e-12, 426.107, 1341.77, 213.466 )
+
+[node name="FlashlightSlot" type="Spatial" parent="Body/Lucas/Armature/Skeleton/RightHand"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -89.1924, 2831.1, -496.052 )
+
+[node name="LeftHand" type="BoneAttachment" parent="Body/Lucas/Armature/Skeleton" index="6"]
+transform = Transform( 0.132278, -0.988174, -0.0775524, -0.169647, 0.0545158, -0.983996, 0.976587, 0.143317, -0.16043, -531.46, 5267.58, -13469.2 )
+bone_name = "mixamorig_LeftHandIndex4"
+
+[node name="ClipPivot" type="Position3D" parent="Body/Lucas/Armature/Skeleton/LeftHand"]
+transform = Transform( -225.003, -578.578, -783.978, -954.303, 293.264, 57.4563, 196.67, 761.08, -618.125, 279.119, -286.729, 14.543 )
+
+[node name="LeftHand2" type="BoneAttachment" parent="Body/Lucas/Armature/Skeleton" index="7"]
+transform = Transform( -0.203401, 0.220079, -0.95404, 0.0432571, 0.975478, 0.215802, 0.978139, 0.00262523, -0.207934, -132.574, 4193.11, -13315.9 )
+bone_name = "mixamorig_LeftHand"
+
+[node name="BackpackSlot" type="Position3D" parent="Body/Lucas/Armature/Skeleton/LeftHand2"]
+transform = Transform( 4462.58, 21.0363, 6639.69, -1801.6, -7696.03, 1235.25, 6390.62, -2184.29, -4288.25, 161.622, 4773.22, 1090.14 )
+
+[node name="SkeletonIKRightHand" type="SkeletonIK" parent="Body/Lucas/Armature/Skeleton" index="8"]
+process_priority = 1
+root_bone = "mixamorig_RightArm"
+tip_bone = "mixamorig_RightHand"
+interpolation = 0.0
+use_magnet = true
+magnet = Vector3( -12000, 0, 10000 )
+target_node = NodePath("../../../../Pivot/LookAtRight")
+min_distance = 10.0
+max_iterations = 15
+script = ExtResource( 3 )
+
+[node name="SkeletonIKRightHandCode" type="SkeletonIK" parent="Body/Lucas/Armature/Skeleton" index="9"]
+process_priority = 1
+root_bone = "mixamorig_RightArm"
+tip_bone = "mixamorig_RightHand"
+use_magnet = true
+magnet = Vector3( -12000, 0, 0 )
+target_node = NodePath("../../../../Pivot/LookAtAim")
+script = ExtResource( 3 )
+
+[node name="SkeletonIKLeftHand" type="SkeletonIK" parent="Body/Lucas/Armature/Skeleton" index="10"]
+process_priority = 1
+root_bone = "mixamorig_LeftArm"
+tip_bone = "mixamorig_LeftHand"
+interpolation = 0.0
+use_magnet = true
+magnet = Vector3( -12000, 0, 0 )
+script = ExtResource( 3 )
+
+[node name="SkeletonIKNeck" type="SkeletonIK" parent="Body/Lucas/Armature/Skeleton" index="11"]
+process_priority = 1
+root_bone = "mixamorig_Neck"
+tip_bone = "mixamorig_Head"
+use_magnet = true
+target_node = NodePath("../Spine/LookAtHead")
+script = ExtResource( 3 )
+
+[node name="AnimationTree" type="AnimationTree" parent="Body"]
+tree_root = SubResource( 20 )
+anim_player = NodePath("../Lucas/AnimationPlayer")
+active = true
+parameters/blend/blend_amount = 0.0
+parameters/blend_crouch/blend_amount = 0.0
+parameters/blend_knife/blend_amount = 0.0
+parameters/blend_pistol_aim/blend_amount = 0.0
+parameters/butt_blow_pistol/active = false
+parameters/crouch_motion_blend/blend_position = Vector2( 0, 0 )
+parameters/idle_backpack/blend_amount = 0.0
+parameters/knife_attack/active = false
+parameters/motion_blend/blend_amount = 0.0
+parameters/motion_blend_space/blend_position = Vector2( -0.00258398, 0.00613499 )
+parameters/reload_pistol/active = false
+parameters/shot_pistol/active = false
+parameters/state/current = 0
+parameters/take_backpack/active = false
+
+[node name="DebugDirection" type="Spatial" parent="Body"]
+visible = false
+
+[node name="CSGMesh" type="CSGMesh" parent="Body/DebugDirection"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.8735, 5.77634 )
+material_override = SubResource( 22 )
+mesh = SubResource( 23 )
+
+[node name="CSGMesh2" type="CSGMesh" parent="Body/DebugDirection"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 10.8735, 8.70304 )
+material_override = SubResource( 24 )
+mesh = SubResource( 25 )
+
+[node name="RayCastsOrigin" type="Position3D" parent="Body"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.6971, 0 )
+
+[node name="Bottom" type="RayCast" parent="Body/RayCastsOrigin"]
+enabled = true
+cast_to = Vector3( 0, -15, 0 )
+collision_mask = 8
+debug_shape_custom_color = Color( 1, 0, 0, 1 )
+debug_shape_thickness = 5
+
+[node name="Top" type="RayCast" parent="Body/RayCastsOrigin"]
+enabled = true
+cast_to = Vector3( 0, 150, 0 )
+collision_mask = 12
+debug_shape_custom_color = Color( 0.921569, 0, 1, 1 )
+debug_shape_thickness = 5
+
+[node name="Right" type="RayCast" parent="Body/RayCastsOrigin"]
+enabled = true
+cast_to = Vector3( -150, 0, 0 )
+collision_mask = 12
+debug_shape_custom_color = Color( 0.992157, 1, 0.027451, 1 )
+debug_shape_thickness = 5
+
+[node name="Left" type="RayCast" parent="Body/RayCastsOrigin"]
+enabled = true
+cast_to = Vector3( 150, -1, 0 )
+collision_mask = 12
+debug_shape_custom_color = Color( 0, 0.0156863, 1, 1 )
+
+[node name="Forward" type="RayCast" parent="Body/RayCastsOrigin"]
+enabled = true
+cast_to = Vector3( 0, 0, 150 )
+collision_mask = 12
+debug_shape_custom_color = Color( 0.0431373, 1, 0.12549, 1 )
+
+[node name="Backward" type="RayCast" parent="Body/RayCastsOrigin"]
+enabled = true
+cast_to = Vector3( 0, 0, -150 )
+collision_mask = 12
+debug_shape_custom_color = Color( 0, 0.952941, 1, 1 )
+
+[node name="Sfx" type="Spatial" parent="Body"]
+script = ExtResource( 4 )
+streamsCategory = {
+"pain_scream": ExtResource( 10 ),
+"punch": ExtResource( 8 ),
+"scream": ExtResource( 7 )
+}
+
+[editable path="Body/Lucas"]
+[editable path="Body/Lucas/Armature/Skeleton/Neck/BackpackSlot/scene"]

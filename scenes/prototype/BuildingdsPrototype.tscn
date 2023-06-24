@@ -1,0 +1,492 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/prototype/prototype.tres" type="Material" id=1]
+[ext_resource path="res://assets/prototype/prototype_2.tres" type="Material" id=2]
+
+[node name="BuildingdsPrototype" type="Spatial"]
+
+[node name="CSGCylinder2" type="CSGCylinder" parent="." groups=["ConcreteBuildings"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 585.782, 26.6928, 475.544 )
+layers = 16
+material_override = ExtResource( 1 )
+use_collision = true
+collision_layer = 8
+collision_mask = 17
+height = 54.25
+
+[node name="CSGCylinder3" type="CSGCylinder" parent="." groups=["ConcreteBuildings"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 559.61, 26.6928, 475.544 )
+layers = 16
+material_override = ExtResource( 1 )
+use_collision = true
+collision_layer = 8
+collision_mask = 17
+height = 54.25
+
+[node name="CSGCylinder4" type="CSGCylinder" parent="." groups=["ConcreteBuildings"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 585.782, 26.6928, 455.813 )
+layers = 16
+material_override = ExtResource( 1 )
+use_collision = true
+collision_layer = 8
+collision_mask = 17
+height = 54.25
+
+[node name="CSGCylinder5" type="CSGCylinder" parent="." groups=["ConcreteBuildings"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 559.61, 26.6928, 455.813 )
+layers = 16
+material_override = ExtResource( 1 )
+use_collision = true
+collision_layer = 8
+collision_mask = 17
+height = 54.25
+
+[node name="CSGCylinder6" type="CSGCylinder" parent="." groups=["ConcreteBuildings"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 533.843, 26.6928, 475.544 )
+layers = 16
+material_override = ExtResource( 1 )
+use_collision = true
+collision_layer = 8
+collision_mask = 17
+height = 54.25
+
+[node name="CSGCylinder7" type="CSGCylinder" parent="." groups=["ConcreteBuildings"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 533.843, 26.6928, 455.813 )
+layers = 16
+material_override = ExtResource( 1 )
+use_collision = true
+collision_layer = 8
+collision_mask = 17
+height = 54.25
+
+[node name="CSGBox" type="CSGBox" parent="." groups=["ConcreteBuildings"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 559.58, 7.26359, 445.448 )
+layers = 16
+material_override = ExtResource( 1 )
+use_collision = true
+collision_layer = 8
+collision_mask = 17
+width = 56.3913
+height = 1.82141
+depth = 63.8905
+
+[node name="CSGBox23" type="CSGBox" parent="." groups=["ConcreteBuildings"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 497.828, -0.426147, 452.804 )
+layers = 16
+material_override = ExtResource( 1 )
+use_collision = true
+collision_layer = 8
+collision_mask = 17
+width = 74.3235
+height = 1.82141
+depth = 84.2417
+
+[node name="CSGBox25" type="CSGBox" parent="." groups=["ConcreteBuildings"]]
+transform = Transform( 0.971887, 0.235447, 0, -0.235447, 0.971887, 0, 0, 0, 1, 458.942, 0.690646, 475.315 )
+layers = 16
+material_override = ExtResource( 1 )
+use_collision = true
+collision_layer = 8
+collision_mask = 17
+width = 13.9047
+height = 1.82141
+depth = 39.0155
+
+[node name="CSGBox24" type="CSGBox" parent="." groups=["ConcreteBuildings"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 417.848, 2.3025, 430.095 )
+layers = 16
+material_override = ExtResource( 1 )
+use_collision = true
+collision_layer = 8
+collision_mask = 17
+width = 69.1499
+height = 1.82141
+depth = 131.201
+
+[node name="CSGBox21" type="CSGBox" parent="." groups=["ConcreteBuildings"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 614.852, 7.26359, 434.274 )
+layers = 16
+material_override = ExtResource( 1 )
+use_collision = true
+collision_layer = 8
+collision_mask = 17
+width = 56.3913
+height = 1.82141
+depth = 28.9439
+
+[node name="CSGCylinder" type="CSGCylinder" parent="CSGBox21"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.264, 0, -5.53668 )
+radius = 0.261796
+height = 9.58139
+
+[node name="CSGCylinder2" type="CSGCylinder" parent="CSGBox21"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21.0912, 0, -5.53668 )
+radius = 0.261796
+height = 9.58139
+
+[node name="CSGCylinder3" type="CSGCylinder" parent="CSGBox21"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.264, 0, 4.84515 )
+radius = 0.261796
+height = 9.58139
+
+[node name="CSGCylinder4" type="CSGCylinder" parent="CSGBox21"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21.0912, 0, 4.84515 )
+radius = 0.261796
+height = 9.58139
+
+[node name="CSGBox" type="CSGBox" parent="CSGBox21"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23.0645, 4.65011, -0.244934 )
+width = 6.05879
+height = 0.272779
+depth = 11.7345
+
+[node name="CSGBox2" type="CSGBox" parent="CSGBox21"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27.6741, 9.52674, 0 )
+width = 1.20661
+height = 20.973
+depth = 28.8571
+
+[node name="CSGBox10" type="CSGBox" parent="CSGBox21"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -27.5438, 9.52674, -1.15274 )
+width = 1.20661
+height = 20.973
+depth = 30.8645
+
+[node name="CSGBox" type="CSGBox" parent="CSGBox21/CSGBox10"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.75897, 0 )
+operation = 2
+width = 3.84774
+height = 9.61386
+depth = 4.23684
+
+[node name="CSGBox3" type="CSGBox" parent="CSGBox21"]
+transform = Transform( 0.0149569, 0, 0.999888, 0, 1, 0, -0.999888, 0, 0.0149569, 2.55127, 9.52674, -14.0778 )
+width = 1.20661
+height = 20.973
+depth = 51.5162
+
+[node name="CSGBox4" type="CSGBox" parent="CSGBox21"]
+transform = Transform( 0.0149569, 0, 0.999888, 0, 1, 0, -0.999888, 0, 0.0149569, 0.195801, 9.52674, 13.5095 )
+width = 1.20661
+height = 20.973
+depth = 56.2955
+
+[node name="CSGBox5" type="CSGBox" parent="CSGBox21"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.8365, 8.13029, 13.0712 )
+operation = 2
+width = 9.16584
+height = 14.3769
+depth = 5.64115
+
+[node name="CSGBox6" type="CSGBox" parent="CSGBox21"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.8365, 8.13029, -14.3761 )
+operation = 2
+width = 9.16584
+height = 14.3769
+depth = 5.64115
+
+[node name="CSGBox7" type="CSGBox" parent="CSGBox21"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4903, 0, -26.6602 )
+width = 49.2833
+depth = 24.8378
+
+[node name="CSGBox8" type="CSGBox" parent="CSGBox21"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9151, 21.0466, -11.1306 )
+width = 56.0557
+depth = 54.402
+
+[node name="CSGBox9" type="CSGBox" parent="CSGBox21"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.95227, 20.2029, -24.5144 )
+operation = 2
+width = 24.1264
+height = 8.32819
+depth = 7.1137
+
+[node name="SpotLight4" type="SpotLight" parent="CSGBox21"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -18.2807, 18.9172, -0.968231 )
+light_energy = 12.0
+spot_range = 41.3288
+spot_angle = 41.5377
+
+[node name="SpotLight5" type="SpotLight" parent="CSGBox21"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 15.9355, 18.9172, -0.968231 )
+light_energy = 12.0
+spot_range = 37.2433
+spot_angle = 41.5377
+
+[node name="SpotLight6" type="SpotLight" parent="CSGBox21"]
+transform = Transform( 0.551748, -3.64558e-08, 0.834011, -0.834011, -2.41177e-08, 0.551748, 0, -1, -4.37114e-08, 25.209, 18.9172, -23.53 )
+light_energy = 10.0
+spot_range = 47.1464
+spot_angle = 41.5377
+
+[node name="CSGBox11" type="CSGBox" parent="CSGBox21"]
+transform = Transform( -0.761628, -0.646959, 0.0369576, -0.647402, 0.762149, 0, -0.0281672, -0.0239264, -0.999317, 3.34229, 15.3193, -24.9499 )
+material_override = ExtResource( 2 )
+use_collision = true
+collision_layer = 8
+collision_mask = 17
+width = 19.0677
+height = 1.26942
+depth = 6.7276
+
+[node name="CSGBox12" type="CSGBox" parent="CSGBox21"]
+transform = Transform( -0.0369575, 0, -0.999317, 0, 1, 0, 0.999317, 0, -0.0369575, -6.51477, 8.98559, -22.0905 )
+material_override = ExtResource( 2 )
+use_collision = true
+collision_layer = 8
+collision_mask = 17
+width = 14.3211
+height = 1.26942
+depth = 9.93363
+
+[node name="CSGBox13" type="CSGBox" parent="CSGBox21"]
+transform = Transform( 0.761628, 0.64696, -0.0369575, -0.647402, 0.762149, 0, 0.0281671, 0.0239264, 0.999317, 6.22394, 1.98076, -18.0026 )
+material_override = ExtResource( 2 )
+use_collision = true
+collision_layer = 8
+collision_mask = 17
+width = 22.1744
+height = 1.26942
+depth = 6.7276
+
+[node name="CSGBox3" type="CSGBox" parent="." groups=["ConcreteBuildings"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 509.153, 7.26359, 430.908 )
+layers = 16
+material_override = ExtResource( 1 )
+use_collision = true
+collision_layer = 8
+collision_mask = 17
+width = 44.3333
+height = 1.82141
+depth = 34.8045
+
+[node name="CSGBox12" type="CSGBox" parent="." groups=["ConcreteBuildings"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 431.053, 2.15321, 423.414 )
+layers = 16
+material_override = ExtResource( 1 )
+use_collision = true
+collision_layer = 8
+collision_mask = 17
+width = 71.7393
+height = 1.82141
+depth = 87.5354
+
+[node name="CSGBox10" type="CSGBox" parent="." groups=["ConcreteBuildings"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 531.908, 13.1811, 461.208 )
+layers = 16
+material_override = ExtResource( 1 )
+use_collision = true
+collision_layer = 8
+collision_mask = 17
+width = 1.45239
+height = 43.4325
+depth = 30.7603
+
+[node name="CSGBox13" type="CSGBox" parent="." groups=["ConcreteBuildings"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 466.229, 13.1811, 424.558 )
+layers = 16
+material_override = ExtResource( 1 )
+use_collision = true
+collision_layer = 8
+collision_mask = 17
+width = 1.45239
+height = 76.3133
+depth = 82.6728
+
+[node name="CSGBox14" type="CSGBox" parent="." groups=["ConcreteBuildings"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 395.367, 13.1811, 424.464 )
+layers = 16
+material_override = ExtResource( 1 )
+use_collision = true
+collision_layer = 8
+collision_mask = 17
+width = 1.45239
+height = 74.9881
+depth = 85.032
+
+[node name="CSGBox15" type="CSGBox" parent="." groups=["ConcreteBuildings"]]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 420.329, 21.4667, 382.77 )
+layers = 16
+material_override = ExtResource( 1 )
+use_collision = true
+collision_layer = 8
+collision_mask = 17
+width = 1.45239
+height = 58.211
+depth = 50.1052
+
+[node name="CSGBox9" type="CSGBox" parent="." groups=["ConcreteBuildings"]]
+transform = Transform( 1, 0, 0, 0, 0.95657, -0.291504, 0, 0.291504, 0.95657, 509.153, 2.25775, 464.422 )
+layers = 16
+material_override = ExtResource( 1 )
+use_collision = true
+collision_layer = 8
+collision_mask = 17
+width = 44.3333
+height = 1.82141
+depth = 34.8045
+
+[node name="CSGBox22" type="CSGBox" parent="." groups=["ConcreteBuildings"]]
+transform = Transform( 1, 0, 0, 0, 0.95657, -0.291504, 0, 0.291504, 0.95657, 628.087, 2.25775, 464.422 )
+layers = 16
+material_override = ExtResource( 1 )
+use_collision = true
+collision_layer = 8
+collision_mask = 17
+width = 15.152
+height = 1.82141
+depth = 34.8045
+
+[node name="CSGBox2" type="CSGBox" parent="." groups=["ConcreteBuildings"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 572.604, 15.1492, 465.472 )
+layers = 16
+material_override = ExtResource( 1 )
+use_collision = true
+collision_layer = 8
+collision_mask = 17
+width = 28.7253
+height = 1.82141
+depth = 22.3342
+
+[node name="CSGBox4" type="CSGBox" parent="." groups=["ConcreteBuildings"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 546.974, 33.9684, 461.184 )
+layers = 16
+material_override = ExtResource( 1 )
+use_collision = true
+collision_layer = 8
+collision_mask = 17
+width = 28.7253
+height = 1.82141
+depth = 30.997
+
+[node name="CSGBox11" type="CSGBox" parent="." groups=["ConcreteBuildings"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 559.772, 53.7634, 461.184 )
+layers = 16
+material_override = ExtResource( 1 )
+use_collision = true
+collision_layer = 8
+collision_mask = 17
+width = 53.8436
+height = 1.82141
+depth = 30.997
+
+[node name="CSGBox6" type="CSGBox" parent="." groups=["ConcreteBuildings"]]
+transform = Transform( -0.0126577, 0.549402, 0.835462, 0.00832279, 0.835558, -0.549339, -0.999885, 0, -0.0151488, 566.265, 30.4962, 472.589 )
+layers = 16
+material_override = ExtResource( 1 )
+use_collision = true
+collision_layer = 8
+collision_mask = 17
+width = 7.55572
+height = 1.82141
+depth = 13.3603
+
+[node name="CSGBox8" type="CSGBox" parent="." groups=["ConcreteBuildings"]]
+transform = Transform( -0.999929, 0.0116688, 0.00259907, 0.00820792, 0.828179, -0.560403, -0.00869174, -0.560342, -0.828216, 576.587, 15.8973, 452.786 )
+layers = 16
+material_override = ExtResource( 1 )
+use_collision = true
+collision_layer = 8
+collision_mask = 17
+width = 7.55572
+height = 1.82141
+depth = 40.0593
+
+[node name="CSGBox7" type="CSGBox" parent="." groups=["ConcreteBuildings"]]
+transform = Transform( -0.0151488, -0.00258309, 0.999882, -3.91305e-05, 0.999997, 0.00258274, -0.999885, 0, -0.0151488, 576.064, 26.9902, 472.589 )
+layers = 16
+material_override = ExtResource( 1 )
+use_collision = true
+collision_layer = 8
+collision_mask = 17
+width = 7.55572
+height = 1.82141
+depth = 9.39187
+
+[node name="CSGBox5" type="CSGBox" parent="." groups=["ConcreteBuildings"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 497.927, 33.9684, 465.472 )
+layers = 16
+material_override = ExtResource( 1 )
+use_collision = true
+collision_layer = 8
+collision_mask = 17
+width = 64.0383
+height = 1.82141
+depth = 1.56698
+
+[node name="CSGBox16" type="CSGBox" parent="." groups=["ConcreteBuildings"]]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 471.709, 33.9684, 433.005 )
+layers = 16
+material_override = ExtResource( 1 )
+use_collision = true
+collision_layer = 8
+collision_mask = 17
+width = 64.0383
+height = 1.82141
+depth = 11.5421
+
+[node name="CSGCylinder" type="CSGCylinder" parent="." groups=["ConcreteBuildings"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 592.389, 29.6939, 413.703 )
+layers = 16
+material_override = ExtResource( 1 )
+use_collision = true
+collision_layer = 8
+collision_mask = 17
+radius = 6.60509
+height = 45.482
+
+[node name="CSGCylinder8" type="CSGCylinder" parent="." groups=["ConcreteBuildings"]]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 431.053, 53.0247, 424.352 )
+layers = 16
+material_override = ExtResource( 1 )
+use_collision = true
+collision_layer = 8
+collision_mask = 17
+radius = 36.1143
+height = 82.7844
+sides = 12
+
+[node name="CSGBox" type="CSGBox" parent="CSGCylinder8"]
+transform = Transform( 1, 0, 0, 0, 1, 7.10543e-15, 0, -7.10543e-15, 1, -0.245483, 0, 19.8151 )
+layers = 16
+operation = 2
+width = 69.3056
+height = 171.313
+depth = 34.668
+
+[node name="CSGBox17" type="CSGBox" parent="."]
+transform = Transform( 0.998124, -0.0612227, 0, 0.0612227, 0.998124, 0, 0, 0, 1, 673.673, 6.3679, 648.006 )
+use_collision = true
+collision_layer = 8
+collision_mask = 17
+width = 327.702
+height = 18.4633
+depth = 47.8993
+
+[node name="CSGBox20" type="CSGBox" parent="."]
+transform = Transform( 0.998124, -0.0612227, 0, 0.0612227, 0.998124, 0, 0, 0, 1, 673.673, 59.3716, 649.025 )
+use_collision = true
+collision_layer = 8
+collision_mask = 17
+width = 331.424
+height = 2.09074
+depth = 50.7466
+
+[node name="CSGBox18" type="CSGBox" parent="."]
+transform = Transform( 0.998124, -0.0612227, 0, 0.0612227, 0.998124, 0, 0, 0, 1, 673.673, 21.9743, 625.495 )
+use_collision = true
+collision_layer = 8
+collision_mask = 17
+width = 327.702
+height = 72.9393
+depth = 3.91751
+
+[node name="CSGBox19" type="CSGBox" parent="."]
+transform = Transform( 0.998124, -0.0612227, 0, 0.0612227, 0.998124, 0, 0, 0, 1, 673.673, 21.9743, 672.315 )
+use_collision = true
+collision_layer = 8
+collision_mask = 17
+width = 327.702
+height = 72.9393
+depth = 3.91751
