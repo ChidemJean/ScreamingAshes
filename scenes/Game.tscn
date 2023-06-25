@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bckm7wfx8c6pw"]
+[gd_scene load_steps=17 format=3 uid="uid://bckm7wfx8c6pw"]
 
 [ext_resource type="Script" path="res://src/Core/Main3dNode.cs" id="1_qw7o4"]
 [ext_resource type="Environment" uid="uid://c2tgto0rwklep" path="res://default_env.tres" id="1_x11dp"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cuwtqh7yx4aoy" path="res://scenes/doors/DoorWood.tscn" id="9_a78lw"]
 [ext_resource type="PackedScene" uid="uid://455eameebvee" path="res://scenes/firearm_clips/PistolBufallusClip.tscn" id="10_6lnhf"]
 [ext_resource type="PackedScene" uid="uid://ds8nt3fxap61x" path="res://scenes/melee/Knife.tscn" id="11_na4ol"]
+[ext_resource type="PackedScene" uid="uid://btw78yl2xtnas" path="res://models/enemies/DefaultEnemy/default_enemy.glb" id="12_2e08u"]
 [ext_resource type="PackedScene" uid="uid://djj2jwexpvc0p" path="res://scenes/enemies/DefaultEnemy.tscn" id="17"]
 [ext_resource type="PackedScene" uid="uid://cbata51tj4ksd" path="res://scenes/weapons/PistolBufallus.tscn" id="20"]
 [ext_resource type="PackedScene" uid="uid://dthjxusctbm14" path="res://scenes/furniture/CabinetWood.tscn" id="24"]
@@ -44,6 +45,9 @@ transform = Transform3D(0.041213, -0.99915, 0, 0.99915, 0.041213, 0, 0, 0, 1, -2
 [node name="Trap" parent="." instance=ExtResource("5_vod7o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.119, 3.84941, 34.5544)
 
+[node name="DefaultEnemy" parent="." instance=ExtResource("17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.3306, 20.1452, 36.437)
+
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_uinu8")
 
@@ -59,9 +63,6 @@ shape = SubResource("ConcavePolygonShape3D_e5k6d")
 
 [node name="CabinetWood" parent="NavigationRegion3D" instance=ExtResource("24")]
 transform = Transform3D(1.22, 0, 0, 0, 1.22, 0, 0, 0, 1.22, 0, 0, 56.9522)
-
-[node name="DefaultEnemy" parent="NavigationRegion3D" instance=ExtResource("17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.95885, 20.1452, -76.6171)
 
 [node name="DefaultEnemy2" parent="NavigationRegion3D" instance=ExtResource("17")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.95172, 20.1452, -91.3305)
@@ -113,3 +114,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.20631, 5.60033, 57.6268)
 
 [node name="Knife" parent="." instance=ExtResource("11_na4ol")]
 transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 4.08544, 5.60033, 57.0998)
+
+[node name="default_enemy" parent="." instance=ExtResource("12_2e08u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.8653, 0.5, 22.3238)

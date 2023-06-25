@@ -1,8 +1,14 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://s2mfycsxyw0k"]
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://s2mfycsxyw0k"]
+
+[ext_resource type="Texture2D" uid="uid://b781yswje1p4v" path="res://models/enemies/DefaultEnemy/Enemie 1_Mask_gloss.png" id="1_8rvfu"]
+[ext_resource type="Texture2D" uid="uid://c458olfml0crx" path="res://models/enemies/DefaultEnemy/Enemie 1_Mask_normal.png" id="2_net87"]
 
 [resource]
 resource_name = "mask"
 cull_mode = 2
 vertex_color_use_as_albedo = true
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
+albedo_texture = ExtResource("1_8rvfu")
 roughness = 0.5
+normal_enabled = true
+normal_texture = ExtResource("2_net87")

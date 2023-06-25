@@ -246,9 +246,9 @@ namespace ChidemGames.Core.Enemies
 
 			float curMotionBlend = (animationTree.Get($"parameters/motion/blend_amount")).ToString().ToFloat();
 			if (velocity.Length() > 0.2f) {
-				animationTree.Set($"parameters/motion/blend_amount", Mathf.Lerp(curMotionBlend, 1, delta * 6.5f));
+				animationTree.Set("parameters/motion/blend_amount", 1);
 			} else {
-				animationTree.Set($"parameters/motion/blend_amount", Mathf.Lerp(curMotionBlend, 0, delta * 4.5f));
+				animationTree.Set("parameters/motion/blend_amount", 0);
 			}
 
 			// DEBUG ------------------------------------------------
@@ -268,7 +268,7 @@ namespace ChidemGames.Core.Enemies
 
 			if (DistanceToPlayer() <= rangeToAttack) {
 				isAttacking = true;
-				animationTree.Set("parameters/long_attack/active", true);
+				animationTree.Set("parameters/long_attack/request", (int) AnimationNodeOneShot.OneShotRequest.Fire);
 				await ToSignal(GetTree().CreateTimer(timeAttack), "timeout");
 				if (DistanceToPlayer() <= rangeToAttack) {
 					globalManager.currentPlayer.TakeDamage(attackDamage);
