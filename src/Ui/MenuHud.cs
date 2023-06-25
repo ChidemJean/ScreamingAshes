@@ -21,13 +21,15 @@ namespace ChidemGames.Ui
 		globalManager = GetNode<GlobalManager>("/root/GlobalManager");
 		globalEvents = GetNode<GlobalEvents>("/root/GlobalEvents");
 		holderMenu = GetNode<Control>(holderMenuPath);
-		holderMenu.GlobalPosition = new Vector2(GetViewport().Size.x, 0);
+		holderMenu.GlobalPosition = new Vector2(GetViewport().GetVisibleRect().Size.X, 0);
 		Color modulate = holderMenu.Modulate;
 		modulate.A = 0;
 		holderMenu.Modulate = modulate;
 
-		globalEvents.Connect(GameEvent.OpenMenu, this, nameof(OpenMenu));
-		globalEvents.Connect(GameEvent.CloseMenu, this, nameof(CloseMenu));
+		// globalEvents.Connect(GameEvent.OpenMenu, this, nameof(OpenMenu));
+		// globalEvents.Connect(GameEvent.CloseMenu, this, nameof(CloseMenu));
+		globalEvents.OpenMenu += OpenMenu;
+		globalEvents.CloseMenu += CloseMenu;
       }
 
       public override void _Process(double delta)
@@ -66,7 +68,7 @@ namespace ChidemGames.Ui
 			globalManager.ChangeStateFocus(StateFocus.GAME);
 			var tween = GetTree().CreateTween();
 			tween.TweenProperty(holderMenu, "modulate:a", 0f, .2f);
-			tween.Parallel().TweenProperty(holderMenu, "rect_global_position:x", GetViewport().Size.x, .35f);
+			tween.Parallel().TweenProperty(holderMenu, "rect_global_position:x", GetViewport().GetVisibleRect().Size.X, .35f);
 			isOpen = false;
 			globalEvents.EmitSignal(GameEvent.OnCloseMenu);
 			if (globalManager.currentPlayer != null) {

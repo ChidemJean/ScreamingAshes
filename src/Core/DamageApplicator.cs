@@ -13,7 +13,8 @@ namespace ChidemGames.Core
 
         public override void _Ready()
         {
-            Connect("body_entered", this, nameof(OnBodyEntered));
+            // Connect("body_entered", this, nameof(OnBodyEntered));
+            BodyEntered += OnBodyEntered;
         }
 
         public void OnBodyEntered(Node node)

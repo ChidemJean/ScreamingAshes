@@ -71,12 +71,17 @@ namespace ChidemGames.Ui
             }
          }
 
-         globalEvents.Connect(GameEvent.TakeItem, this, nameof(OnTakeItem));
-         globalEvents.Connect(GameEvent.OnCloseMenu, this, nameof(OnCloseMenu));
+         // globalEvents.Connect(GameEvent.TakeItem, this, nameof(OnTakeItem));
+         // globalEvents.Connect(GameEvent.OnCloseMenu, this, nameof(OnCloseMenu));
+         globalEvents.TakeItem += OnTakeItem;
+         globalEvents.OnCloseMenu += OnCloseMenu;
 
-         globalEvents.Connect(GameEvent.OnSlotMouseEnter, this, nameof(OnSlotMouseEnter));
-         globalEvents.Connect(GameEvent.OnSlotMouseLeave, this, nameof(OnSlotMouseLeave));
-         globalEvents.Connect(GameEvent.DetachItemFromSlot, this, nameof(OnDetachItem));
+         // globalEvents.Connect(GameEvent.OnSlotMouseEnter, this, nameof(OnSlotMouseEnter));
+         // globalEvents.Connect(GameEvent.OnSlotMouseLeave, this, nameof(OnSlotMouseLeave));
+         // globalEvents.Connect(GameEvent.DetachItemFromSlot, this, nameof(OnDetachItem));
+         globalEvents.OnSlotMouseEnter += OnSlotMouseEnter;
+         globalEvents.OnSlotMouseLeave += OnSlotMouseLeave;
+         globalEvents.DetachItemFromSlot += OnDetachItem;
 
       }
 

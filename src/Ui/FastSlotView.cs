@@ -42,8 +42,10 @@ namespace ChidemGames.Ui
 
 			globalManager = GetNode<GlobalManager>("/root/GlobalManager");
 			globalEvents = GetNode<GlobalEvents>("/root/GlobalEvents");
-			globalEvents.Connect(GameEvent.OnFastSlotAttach, this, nameof(OnFasSlotAttach));
-			globalEvents.Connect(GameEvent.OnFastSlotDetach, this, nameof(OnFasSlotDetach));
+			// globalEvents.Connect(GameEvent.OnFastSlotAttach, this, nameof(OnFasSlotAttach));
+			// globalEvents.Connect(GameEvent.OnFastSlotDetach, this, nameof(OnFasSlotDetach));
+			globalEvents.OnFastSlotAttach += OnFasSlotAttach;
+			globalEvents.OnFastSlotDetach += OnFasSlotDetach;
       }
 
 		public override void _Input(InputEvent @event)

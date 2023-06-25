@@ -27,7 +27,8 @@ namespace ChidemGames.Core.Characters
             debugPlayer = GetNode<DebugPlayer>("/root/MainScene/DebugPlayer");
             player = GetNode<Player>(playerPath);
             sfx = GetNode<SfxOptions>(sfxPath);
-            Connect("body_entered", this, nameof(OnBodyEntered));
+            // Connect("body_entered", this, nameof(OnBodyEntered));
+            BodyEntered += OnBodyEntered;
         }
 
         public void OnBodyEntered(Node node)

@@ -5,7 +5,7 @@ using ChidemGames.Events;
 namespace ChidemGames.Game
 {
 
-   public class Viewport3D : SubViewport
+   public partial class Viewport3D : SubViewport
    {
       [Export] 
 		private float scaleFactor = 1.0f;
@@ -18,30 +18,36 @@ namespace ChidemGames.Game
 
       public async override void _Ready()
       {
-         globalEvents = GetNode<GlobalEvents>("/root/GlobalEvents");
-			originalSize = Size;
-         currentScale = scaleFactor;
-         SizeChanged += OnResize;
-         await ToSignal(GetTree().CreateTimer(.75f), "timeout");
-			UpdateViewport3DSize(scaleFactor);
-         globalEvents.ChangeRenderSize += UpdateViewport3DSize;
+         // globalEvents = GetNode<GlobalEvents>("/root/GlobalEvents");
+			// originalSize = Size;
+         // currentScale = scaleFactor;
+         // SizeChanged += OnResize;
+         // await ToSignal(GetTree().CreateTimer(.75f), "timeout");
+			// UpdateViewport3DSize(scaleFactor);
+         // globalEvents.ChangeRenderSize += UpdateViewport3DSize;
       }
 
       public void OnResize()
       {
-			originalSize = this.Size;
-         UpdateViewport3DSize(this.currentScale);
+			// originalSize = this.Size;
+         // UpdateViewport3DSize(this.currentScale);
       }
 
       public void UpdateViewport3DSize(float value)
       {
 
-         float scaleFactorClamped = Mathf.Clamp(value, 0.2f, 1f);
-         this.Size = OS.WindowSize * scaleFactorClamped;
-         GetTree().Root.GetViewport().Size = OS.WindowSize;
-         this.currentScale = scaleFactorClamped;
+         // float scaleFactorClamped = Mathf.Clamp(value, 0.2f, 1f);
 
-         globalEvents.EmitSignal(GameEvent.RenderSizeChanged, this.Size, scaleFactorClamped);
+         // int newX = Mathf.CeilToInt(GetWindow().Size.X * scaleFactorClamped);
+         // int newY = Mathf.CeilToInt(GetWindow().Size.Y * scaleFactorClamped);
+         // this.Size = new Vector2I(newX, newY);
+
+         // Rect2 rectMainViewport = GetTree().Root.GetViewport().GetVisibleRect();
+         // rectMainViewport.Size = new Vector2(GetWindow().Size.X, GetWindow().Size.Y);
+         
+         // this.currentScale = scaleFactorClamped;
+
+         // globalEvents.EmitSignal(GameEvent.RenderSizeChanged, this.Size, scaleFactorClamped);
       }
    }
 }

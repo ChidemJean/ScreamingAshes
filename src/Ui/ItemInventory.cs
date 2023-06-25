@@ -59,7 +59,8 @@ namespace ChidemGames.Ui
 			qtd = GetNode<Control>(qtdPath);
 			qtdLabel = GetNode<Label>(qtdLabelPath);
 
-			Connect("gui_input", this, nameof(OnGuiInput));
+			// Connect("gui_input", this, nameof(OnGuiInput));
+			GuiInput += OnGuiInput;
       }
 
 		public void OnGuiInput(InputEvent @event)

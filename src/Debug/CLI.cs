@@ -40,9 +40,12 @@ namespace ChidemGames.Debug
             input = GetNode<LineEdit>(inputPath);
             close = GetNode<Control>(closePath);
             initialCmdText = cmdLabel.Text;
-            input.Connect("text_entered", this, nameof(OnTextEntered));
-            input.Connect("gui_input", this, nameof(OnGuiInput));
-            close.Connect("gui_input", this, nameof(OnGuiInputClose));
+            // input.Connect("text_entered", this, nameof(OnTextEntered));
+            // input.Connect("gui_input", this, nameof(OnGuiInput));
+            // close.Connect("gui_input", this, nameof(OnGuiInputClose));
+            input.TextChanged += OnTextEntered;
+            input.GuiInput += OnGuiInput;
+            close.GuiInput += OnGuiInputClose;
         }
 
         public override void _Input(InputEvent @event)

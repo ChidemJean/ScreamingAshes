@@ -99,8 +99,10 @@ namespace ChidemGames.Ui
       public override void _Ready()
       {
 			globalEvents = GetNode<GlobalEvents>("/root/GlobalEvents");
-			Connect("mouse_entered", this, nameof(OnMouseEntered));
-			Connect("mouse_exited", this, nameof(OnMouseExited));
+			// Connect("mouse_entered", this, nameof(OnMouseEntered));
+			// Connect("mouse_exited", this, nameof(OnMouseExited));
+			MouseEntered += OnMouseEntered;
+			MouseExited += OnMouseExited;
       }
 
 		public void OnMouseEntered()

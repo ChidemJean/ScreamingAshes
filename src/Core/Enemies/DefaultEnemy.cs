@@ -151,10 +151,15 @@ namespace ChidemGames.Core.Enemies
 			farSight = GetNode<Area3D>(farSightPath);
 			head = GetNode<Area3D>(headPath);
 
-			closeSight.Connect("body_entered", this, nameof(OnCloseSightEntered));
-			closeSight.Connect("body_exited", this, nameof(OnCloseSightExited));
-			farSight.Connect("body_entered", this, nameof(OnFarSightEntered));
-			farSight.Connect("body_exited", this, nameof(OnFarSightExited));
+			// closeSight.Connect("body_entered", this, nameof(OnCloseSightEntered));
+			// closeSight.Connect("body_exited", this, nameof(OnCloseSightExited));
+			// farSight.Connect("body_entered", this, nameof(OnFarSightEntered));
+			// farSight.Connect("body_exited", this, nameof(OnFarSightExited));
+
+			closeSight.BodyEntered += OnCloseSightEntered;
+			closeSight.BodyExited += OnCloseSightExited;
+			farSight.BodyExited += OnFarSightEntered;
+			farSight.BodyExited += OnFarSightExited;
 
 			aimRay = GetNode<RayCast3D>(aimRayPath);
          topRay = GetNode<RayCast3D>(topRayPath);

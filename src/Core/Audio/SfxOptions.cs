@@ -73,7 +73,8 @@ namespace ChidemGames.Core.Audio
 				streamPlayer3D.Bus = this.bus;
          	streamPlayer3D.Play();
 			}
-			streamPlayer3D.Connect("finished", this, nameof(OnStreamPlayerFinished), new Godot.Collections.Array() { streamPlayer3D });
+			// streamPlayer3D.Connect("finished", this, nameof(OnStreamPlayerFinished), new Godot.Collections.Array() { streamPlayer3D });
+			streamPlayer3D.Finished += () => OnStreamPlayerFinished(streamPlayer3D);
 		}
 
 		public void OnStreamPlayerFinished(object streamPlayer) 
