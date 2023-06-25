@@ -215,6 +215,8 @@ namespace ChidemGames.Core.Characters
       [Export]
       PackedScene bloodParticles;
 
+      String[] states = new String[] { "default", "die_forward", "die_backward" };
+
       public override void _Ready()
       {
          globalManager = GetNode<GlobalManager>("/root/GlobalManager");
@@ -301,7 +303,7 @@ namespace ChidemGames.Core.Characters
          Shootable weapon = ((Shootable)itemRightHand);
          if (weapon.Reload())
          {
-            animationTree.Set("parameters/reload_pistol/request", AnimationNodeOneShot.OneShotRequest.Fire.ToString());
+            animationTree.Set("parameters/reload_pistol/request", (int) AnimationNodeOneShot.OneShotRequest.Fire);
             weapon.PlayReloadSfx(reloadTime, clipPivot);
             await ToSignal(GetTree().CreateTimer(reloadTime), "timeout");
             weapon.ReloadFinish();
@@ -312,7 +314,7 @@ namespace ChidemGames.Core.Characters
       public async void KnifeAttack()
       {
          isButtBlowing = true;
-         animationTree.Set("parameters/knife_attack/request", AnimationNodeOneShot.OneShotRequest.Fire.ToString());
+         animationTree.Set("parameters/knife_attack/request", (int) AnimationNodeOneShot.OneShotRequest.Fire);
          await ToSignal(GetTree().CreateTimer(knifeAttackTime), "timeout");
          isButtBlowing = false;
       }
@@ -321,7 +323,7 @@ namespace ChidemGames.Core.Characters
       {
          isButtBlowing = true;
          Shootable weapon = ((Shootable)itemRightHand);
-         animationTree.Set("parameters/butt_blow_pistol/request", AnimationNodeOneShot.OneShotRequest.Fire.ToString());
+         animationTree.Set("parameters/butt_blow_pistol/request", (int) AnimationNodeOneShot.OneShotRequest.Fire);
          await ToSignal(GetTree().CreateTimer(buttBlowingTime), "timeout");
          isButtBlowing = false;
       }
@@ -536,7 +538,7 @@ namespace ChidemGames.Core.Characters
             {
                if (Input.IsActionJustPressed("shot") && isAiming)
                {
-                  animationTree.Set("parameters/shot_pistol/request", AnimationNodeOneShot.OneShotRequest.Fire.ToString());
+                  animationTree.Set("parameters/shot_pistol/request", (int) AnimationNodeOneShot.OneShotRequest.Fire);
                   if (((Shootable)itemRightHand).Shoot())
                   {
                      handPivotsAnimPlayer.Play("shoot_pistol_recoil");
@@ -694,7 +696,7 @@ namespace ChidemGames.Core.Characters
          RandomNumberGenerator rng = new RandomNumberGenerator();
          rng.Randomize();
 
-         animationTree.Set("parameters/state/current", rng.RandiRange(1, 2));
+         animationTree.Set("parameters/state/transition_request", states[rng.RandiRange(1, 2)]);
       }
 
       public async void BackpackToHand()

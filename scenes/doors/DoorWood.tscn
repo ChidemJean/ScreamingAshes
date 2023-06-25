@@ -170,6 +170,7 @@ _data = {
 }
 
 [node name="DoorWood" type="Node3D"]
+transform = Transform3D(1.08, 0, 0, 0, 1.08, 0, 0, 0, 1.08, 0, 0, 0)
 
 [node name="door_wood_border" parent="." instance=ExtResource("1")]
 

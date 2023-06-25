@@ -4,22 +4,30 @@
 [ext_resource type="Script" path="res://src/Core/Items/Weapons/Pistol.cs" id="2"]
 [ext_resource type="Script" path="res://src/Core/Audio/SfxOptions.cs" id="4"]
 [ext_resource type="AudioStream" uid="uid://cihnh1vfym3cm" path="res://assets/sfx/reload.mp3" id="5"]
+[ext_resource type="Texture2D" uid="uid://blm2wl836xeg5" path="res://assets/vfx/muzzle.jpg" id="5_fn3ev"]
 [ext_resource type="AudioStream" uid="uid://cgc7nscn71ik5" path="res://assets/sfx/9mm-pistol-shot.wav" id="6"]
 [ext_resource type="PackedScene" path="res://scenes/ammo/BulletCapsule.tscn" id="7"]
 [ext_resource type="AudioStream" uid="uid://cj6tea1kdqsrr" path="res://assets/sfx/empty_pistol.wav" id="8"]
 [ext_resource type="PackedScene" uid="uid://455eameebvee" path="res://scenes/firearm_clips/PistolBufallusClip.tscn" id="9"]
 [ext_resource type="PackedScene" path="res://scenes/decals/ShotDecal.tscn" id="10"]
-[ext_resource type="Shader" path="res://assets/shaders/muzzle.gdshader" id="11"]
 
 [sub_resource type="BoxShape3D" id="12"]
 size = Vector3(0.278773, 1.42543, 1.67172)
 
-[sub_resource type="ShaderMaterial" id="7"]
-render_priority = 0
-shader = ExtResource("11")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uxpiy"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("5_fn3ev")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
 
 [sub_resource type="ParticleProcessMaterial" id="4"]
 gravity = Vector3(0, 0, 0)
+angle_max = 360.0
 
 [sub_resource type="QuadMesh" id="5"]
 size = Vector2(1.2, 1.2)
@@ -80,7 +88,7 @@ omni_range = 7000.0
 
 [node name="MuzzleParticles" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.272408, 1.09818)
-material_override = SubResource("7")
+material_override = SubResource("StandardMaterial3D_uxpiy")
 emitting = false
 amount = 1
 lifetime = 0.02
