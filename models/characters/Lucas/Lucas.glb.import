@@ -28,5 +28,28 @@ animation/fps=15
 animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
-_subresources={}
+_subresources={
+"materials": {
+"Body": {
+"use_external/enabled": true,
+"use_external/path": "res://models/characters/Lucas/Body.tres"
+},
+"Bottom": {
+"use_external/enabled": true,
+"use_external/path": "res://models/characters/Lucas/Bottom.tres"
+},
+"FBHead_preview_mat": {
+"use_external/enabled": true,
+"use_external/path": "res://models/characters/Lucas/FBHead_preview_mat.tres"
+},
+"Shoes": {
+"use_external/enabled": true,
+"use_external/path": "res://models/characters/Lucas/Shoes.tres"
+},
+"Top": {
+"use_external/enabled": true,
+"use_external/path": "res://models/characters/Lucas/Top.tres"
+}
+}
+}
 gltf/embedded_image_handling=1

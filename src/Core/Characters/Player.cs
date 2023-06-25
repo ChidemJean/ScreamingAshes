@@ -301,7 +301,7 @@ namespace ChidemGames.Core.Characters
          Shootable weapon = ((Shootable)itemRightHand);
          if (weapon.Reload())
          {
-            animationTree.Set("parameters/reload_pistol/active", true);
+            animationTree.Set("parameters/reload_pistol/request", AnimationNodeOneShot.OneShotRequest.Fire.ToString());
             weapon.PlayReloadSfx(reloadTime, clipPivot);
             await ToSignal(GetTree().CreateTimer(reloadTime), "timeout");
             weapon.ReloadFinish();
@@ -312,7 +312,7 @@ namespace ChidemGames.Core.Characters
       public async void KnifeAttack()
       {
          isButtBlowing = true;
-         animationTree.Set("parameters/knife_attack/active", true);
+         animationTree.Set("parameters/knife_attack/request", AnimationNodeOneShot.OneShotRequest.Fire.ToString());
          await ToSignal(GetTree().CreateTimer(knifeAttackTime), "timeout");
          isButtBlowing = false;
       }
@@ -321,7 +321,7 @@ namespace ChidemGames.Core.Characters
       {
          isButtBlowing = true;
          Shootable weapon = ((Shootable)itemRightHand);
-         animationTree.Set("parameters/butt_blow_pistol/active", true);
+         animationTree.Set("parameters/butt_blow_pistol/request", AnimationNodeOneShot.OneShotRequest.Fire.ToString());
          await ToSignal(GetTree().CreateTimer(buttBlowingTime), "timeout");
          isButtBlowing = false;
       }
@@ -497,14 +497,14 @@ namespace ChidemGames.Core.Characters
                   skeletonIKRightHand.Interpolation = 0;
                   skeletonIKRightCodeHand.Start();
                   skeletonIKRightCodeHand.Interpolation = Mathf.Lerp(skeletonIKRightCodeHand.Interpolation, 1f, delta * 10f);
-                  // skeletonIKRightCodeHand.Target = lookAtAim.GlobalTransform;
+                  skeletonIKRightCodeHand.Target = lookAtAim.GlobalTransform;
                   if (itemRightHand != null && itemRightHand.LeftHandPosition != null)
                   {
                      skeletonIKLeftHand.Target = itemRightHand.LeftHandPosition.GlobalTransform;
                      skeletonIKLeftHand.Interpolation = Mathf.Lerp(skeletonIKLeftHand.Interpolation, 1f, delta * 18.5f);
                   }
                   float blendAimAmount = 1.0f;
-                  animationTree.Set($"parameters/{currentBlendAim}/blend_amount", Mathf.Lerp(curAimBlend, blendAimAmount, delta * 6.5f));
+                  // animationTree.Set($"parameters/{currentBlendAim}/blend_amount", Mathf.Lerp(curAimBlend, blendAimAmount, delta * 6.5f));
                }
             }
             else
@@ -536,7 +536,7 @@ namespace ChidemGames.Core.Characters
             {
                if (Input.IsActionJustPressed("shot") && isAiming)
                {
-                  animationTree.Set("parameters/shot_pistol/active", true);
+                  animationTree.Set("parameters/shot_pistol/request", AnimationNodeOneShot.OneShotRequest.Fire.ToString());
                   if (((Shootable)itemRightHand).Shoot())
                   {
                      handPivotsAnimPlayer.Play("shoot_pistol_recoil");

@@ -7,12 +7,12 @@
 [ext_resource type="AudioStream" uid="uid://cgc7nscn71ik5" path="res://assets/sfx/9mm-pistol-shot.wav" id="6"]
 [ext_resource type="PackedScene" path="res://scenes/ammo/BulletCapsule.tscn" id="7"]
 [ext_resource type="AudioStream" uid="uid://cj6tea1kdqsrr" path="res://assets/sfx/empty_pistol.wav" id="8"]
-[ext_resource type="PackedScene" path="res://scenes/firearm_clips/PistolBufallusClip.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://455eameebvee" path="res://scenes/firearm_clips/PistolBufallusClip.tscn" id="9"]
 [ext_resource type="PackedScene" path="res://scenes/decals/ShotDecal.tscn" id="10"]
 [ext_resource type="Shader" path="res://assets/shaders/muzzle.gdshader" id="11"]
 
 [sub_resource type="BoxShape3D" id="12"]
-size = Vector3(0.212333, 0.664947, 0.854965)
+size = Vector3(0.278773, 1.42543, 1.67172)
 
 [sub_resource type="ShaderMaterial" id="7"]
 render_priority = 0

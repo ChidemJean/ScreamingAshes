@@ -1,41 +1,41 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://455eameebvee"]
 
-[ext_resource path="res://models/firearm_clips/pistol_taurus_clip/pistol_taurus_clip.glb" type="PackedScene" id=1]
-[ext_resource path="res://src/Core/Items/Weapons/FirearmClip.cs" type="Script" id=2]
+[ext_resource type="PackedScene" uid="uid://j7bykw6bw68j" path="res://models/firearm_clips/pistol_taurus_clip/pistol_taurus_clip.glb" id="1"]
+[ext_resource type="Script" path="res://src/Core/Items/Weapons/FirearmClip.cs" id="2"]
 
-[sub_resource type="BoxShape3D" id=1]
-size = Vector3( 0.117804, 0.416699, 0.19319 )
+[sub_resource type="BoxShape3D" id="1"]
+size = Vector3(0.272716, 0.75639, 0.426141)
 
-[sub_resource type="StandardMaterial3D" id=2]
-albedo_color = Color( 1, 0.819608, 0, 1 )
+[sub_resource type="StandardMaterial3D" id="2"]
+albedo_color = Color(1, 0.819608, 0, 1)
 metallic = 1.0
 roughness = 0.65
 
-[sub_resource type="CylinderMesh" id=3]
+[sub_resource type="CylinderMesh" id="3"]
 height = 4.0
 radial_segments = 8
 
 [node name="PistolBufallusClip" type="RigidBody3D"]
 collision_layer = 32
 collision_mask = 4108
-mode = 3
-script = ExtResource( 2 )
+freeze = true
+script = ExtResource("2")
+bullets = 10
+maxBullets = 10
 meshesHolderPath = NodePath("pistol_taurus_clip")
 defaultLayer = 1
 layerHighlight = 64
 itemId = "PistolBufallusClip"
-bullets = 10
-maxBullets = 10
 
-[node name="pistol_taurus_clip" parent="." instance=ExtResource( 1 )]
+[node name="pistol_taurus_clip" parent="." instance=ExtResource("1")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.371579, 0 )
-shape = SubResource( 1 )
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.371579, 0)
+shape = SubResource("1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D( 0.052, 0, 0, 0, -2.27299e-09, 0.052, 0, -0.052, -2.27299e-09, 0, 0.694341, 0 )
-material_override = SubResource( 2 )
-mesh = SubResource( 3 )
+transform = Transform3D(0.052, 0, 0, 0, -2.27299e-09, 0.052, 0, -0.052, -2.27299e-09, 0, 0.694341, 0)
+material_override = SubResource("2")
+mesh = SubResource("3")
 
 [editable path="pistol_taurus_clip"]

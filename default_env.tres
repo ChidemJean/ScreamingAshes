@@ -5,4 +5,10 @@
 [resource]
 background_mode = 2
 sky = SubResource("1")
+reflected_light_source = 2
+tonemap_mode = 2
+tonemap_exposure = 0.75
+glow_enabled = true
 fog_enabled = true
+fog_light_color = Color(0.231373, 0.254902, 0.290196, 1)
+adjustment_saturation = 5.21

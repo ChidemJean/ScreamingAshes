@@ -104,8 +104,8 @@ namespace ChidemGames.Core.Items.Weapons
             return false;
          }
 
-         var tween = GetTree().CreateTween();
-         tween.TweenProperty(slide, "translation:z", initilSlidePosition.Z + slideAmount, .07f);
+         var tween = CreateTween();
+         tween.TweenProperty(slide, "position:z", initilSlidePosition.Z + slideAmount, .07f);
          isSlideOpen = true;
 
          if (currentClip.bullets - 1 < 0)
@@ -126,9 +126,9 @@ namespace ChidemGames.Core.Items.Weapons
          {
             Vector3 shootPosition = (Vector3)resultShootRay["position"];
             Vector3 shootNormal = (Vector3)resultShootRay["normal"];
-            var decalNode = bulletDecal.Instantiate<ShotDecal>();
-            GetNode<Node3D>("/root/MainScene/ViewportContainer/Viewport/Game").AddChild(decalNode);
-            decalNode.GlobalPosition = shootPosition;
+            // var decalNode = bulletDecal.Instantiate<ShotDecal>();
+            // GetNode<Node3D>("/root/MainScene/ViewportContainer/Viewport/Game").AddChild(decalNode);
+            // decalNode.GlobalPosition = shootPosition;
          }
          //
 
@@ -136,7 +136,7 @@ namespace ChidemGames.Core.Items.Weapons
 
          if (currentClip.bullets > 0)
          {
-            tween.TweenProperty(slide, "translation:z", initilSlidePosition.Z, .06f);
+            tween.TweenProperty(slide, "position:z", initilSlidePosition.Z, .06f);
             isSlideOpen = false;
          }
 
@@ -193,12 +193,12 @@ namespace ChidemGames.Core.Items.Weapons
 
       public async void PlayReloadSfx(float reloadTime, Node3D clipPivot)
       {
-         var tween = GetTree().CreateTween();
-         tween.TweenProperty(slide, "translation:z", initilSlidePosition.Z + slideAmount, .07f);
+         var tween = CreateTween();
+         tween.TweenProperty(slide, "position:z", initilSlidePosition.Z + slideAmount, .07f);
          CatchClip(reloadTime, clipPivot);
          await ToSignal(GetTree().CreateTimer(reloadTime * .85f), "timeout");
-         tween = GetTree().CreateTween();
-         tween.TweenProperty(slide, "translation:z", initilSlidePosition.Z, .07f);
+         tween = CreateTween();
+         tween.TweenProperty(slide, "position:z", initilSlidePosition.Z, .07f);
          sfx.PlaySfx("cock", player);
       }
 
@@ -218,8 +218,8 @@ namespace ChidemGames.Core.Items.Weapons
          {
             var clipToDrop = currentClip;
             currentClip = null;
-            var tween = GetTree().CreateTween();
-            tween.TweenProperty(clipToDrop, "global_translation:y", clipToDrop.GlobalPosition.Y - 10f, 1.27f);
+            var tween = CreateTween();
+            tween.TweenProperty(clipToDrop, "global_position:y", clipToDrop.GlobalPosition.Y - 10f, 1.27f);
             await ToSignal(tween, "finished");
             clipToDrop.QueueFree();
          }

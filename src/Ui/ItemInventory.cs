@@ -164,7 +164,7 @@ namespace ChidemGames.Ui
 			if (slotsX == slotsXOriginal) {
 				slotsX = slotsYOriginal;
 				slotsY = slotsXOriginal;
-				Rotation = 90;
+				Rotation = Mathf.DegToRad(90);
 				return;
 			}
 			slotsX = slotsXOriginal;

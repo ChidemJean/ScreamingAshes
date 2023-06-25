@@ -38,7 +38,7 @@ namespace ChidemGames.Core.Enemies
 		float huntingSpeed = 4.6f;
 
       [Export]
-      public EnemyState state;
+      public EnemyState state = EnemyState.Patrol;
 
       [Export]
       NodePath animationTreePath;
@@ -357,7 +357,10 @@ namespace ChidemGames.Core.Enemies
 				var targetPos = navigationAgent.GetNextPathPosition();
 				direction = GlobalPosition.DirectionTo(targetPos);
 				Vector3 lookingPos = lastTargetPos.Lerp(targetPos, 1.25f);
-				LookAt(new Vector3(lookingPos.X, GlobalPosition.Y, lookingPos.Z), Vector3.Up);
+				Vector3 lookAtTargetPos = new Vector3(lookingPos.X, GlobalPosition.Y, lookingPos.Z);
+				if (GlobalPosition.DistanceTo(lookAtTargetPos) > .2f) {
+					LookAt(lookAtTargetPos, Vector3.Up);
+				}
 				lastTargetPos = lookingPos;
 			}
 			if (state == EnemyState.Hunting && DistanceToPlayer() <= rangeToAttack) {

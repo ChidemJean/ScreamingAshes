@@ -30,7 +30,7 @@
 [ext_resource type="FontFile" path="res://assets/fonts/primary/primary_regular_small.tres" id="31"]
 [ext_resource type="PackedScene" uid="uid://b3870ceo7ir6k" path="res://scenes/ui/MenuHud.tscn" id="32"]
 [ext_resource type="Script" path="res://src/Core/MainCameraFollower.cs" id="33"]
-[ext_resource type="Shader" path="res://assets/shaders/outline_2d_with_rainbow.tres" id="34"]
+[ext_resource type="Shader" uid="uid://c6vrfo723bcb3" path="res://assets/shaders/outline_2d_with_rainbow.tres" id="34"]
 [ext_resource type="Script" path="res://src/Ui/InteractFeedback.cs" id="35"]
 [ext_resource type="FontFile" path="res://assets/fonts/secondary/secondary_regular_small.tres" id="36"]
 [ext_resource type="Script" path="res://src/Ui/HUD.cs" id="37"]

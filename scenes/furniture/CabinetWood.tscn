@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dthjxusctbm14"]
+[gd_scene load_steps=23 format=3 uid="uid://dthjxusctbm14"]
 
 [ext_resource type="PackedScene" uid="uid://dp7o54k2lmxkc" path="res://models/furniture/cabinet_wood/cabinet_wood.glb" id="1"]
 [ext_resource type="Script" path="res://src/Core/Scenario/Interactable.cs" id="2"]
@@ -8,45 +8,45 @@
 [ext_resource type="PackedScene" uid="uid://cmkg6cd4wgfag" path="res://models/furniture/cabinet_wood/cabinet_wood_drawer.glb" id="6"]
 
 [sub_resource type="BoxShape3D" id="1"]
-size = Vector3(4.45761, 2.29952, 1.25869)
+size = Vector3(8.97737, 3.53561, 2.35634)
 
 [sub_resource type="BoxShape3D" id="2"]
-size = Vector3(0.932515, 1.73316, 0.104893)
+size = Vector3(1.74543, 3.12827, 0.104893)
 
 [sub_resource type="Animation" id="4"]
 resource_name = "interact_in"
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation_degrees:x")
+tracks/0/path = NodePath(".:rotation:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(),
-"points": PackedFloat32Array(),
-"times": PackedFloat32Array()
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation_degrees:y")
+tracks/1/path = NodePath(".:rotation:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(),
-"points": PackedFloat32Array(),
-"times": PackedFloat32Array()
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1.58825, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".:rotation_degrees:z")
+tracks/2/path = NodePath(".:rotation:z")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(),
-"points": PackedFloat32Array(),
-"times": PackedFloat32Array()
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
 }
 
 [sub_resource type="Animation" id="5"]
@@ -54,35 +54,35 @@ resource_name = "interact_out"
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation_degrees:x")
+tracks/0/path = NodePath(".:rotation:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(),
-"points": PackedFloat32Array(),
-"times": PackedFloat32Array()
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation_degrees:y")
+tracks/1/path = NodePath(".:rotation:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(),
-"points": PackedFloat32Array(),
-"times": PackedFloat32Array()
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1.58825, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".:rotation_degrees:z")
+tracks/2/path = NodePath(".:rotation:z")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(),
-"points": PackedFloat32Array(),
-"times": PackedFloat32Array()
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dghm8"]
@@ -96,35 +96,35 @@ resource_name = "interact_in"
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation_degrees:x")
+tracks/0/path = NodePath(".:rotation:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(),
-"points": PackedFloat32Array(),
-"times": PackedFloat32Array()
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation_degrees:y")
+tracks/1/path = NodePath(".:rotation:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(),
-"points": PackedFloat32Array(),
-"times": PackedFloat32Array()
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -1.58825, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".:rotation_degrees:z")
+tracks/2/path = NodePath(".:rotation:z")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(),
-"points": PackedFloat32Array(),
-"times": PackedFloat32Array()
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
 }
 
 [sub_resource type="Animation" id="9"]
@@ -132,35 +132,35 @@ resource_name = "interact_out"
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation_degrees:x")
+tracks/0/path = NodePath(".:rotation:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(),
-"points": PackedFloat32Array(),
-"times": PackedFloat32Array()
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation_degrees:y")
+tracks/1/path = NodePath(".:rotation:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(),
-"points": PackedFloat32Array(),
-"times": PackedFloat32Array()
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-1.58825, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".:rotation_degrees:z")
+tracks/2/path = NodePath(".:rotation:z")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(),
-"points": PackedFloat32Array(),
-"times": PackedFloat32Array()
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j8n2a"]
@@ -169,196 +169,40 @@ _data = {
 "interact_out": SubResource("9")
 }
 
-[sub_resource type="Animation" id="6"]
-resource_name = "interact_in"
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation_degrees:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(),
-"points": PackedFloat32Array(),
-"times": PackedFloat32Array()
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation_degrees:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(),
-"points": PackedFloat32Array(),
-"times": PackedFloat32Array()
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:rotation_degrees:z")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(),
-"points": PackedFloat32Array(),
-"times": PackedFloat32Array()
-}
-
-[sub_resource type="Animation" id="7"]
-resource_name = "interact_out"
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation_degrees:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(),
-"points": PackedFloat32Array(),
-"times": PackedFloat32Array()
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation_degrees:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(),
-"points": PackedFloat32Array(),
-"times": PackedFloat32Array()
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:rotation_degrees:z")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(),
-"points": PackedFloat32Array(),
-"times": PackedFloat32Array()
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_qhmk5"]
-_data = {
-"interact_in": SubResource("6"),
-"interact_out": SubResource("7")
-}
-
-[sub_resource type="Animation" id="10"]
-resource_name = "interact_in"
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation_degrees:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(),
-"points": PackedFloat32Array(),
-"times": PackedFloat32Array()
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation_degrees:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(),
-"points": PackedFloat32Array(),
-"times": PackedFloat32Array()
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:rotation_degrees:z")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(),
-"points": PackedFloat32Array(),
-"times": PackedFloat32Array()
-}
-
-[sub_resource type="Animation" id="11"]
-resource_name = "interact_out"
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation_degrees:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(),
-"points": PackedFloat32Array(),
-"times": PackedFloat32Array()
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation_degrees:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(),
-"points": PackedFloat32Array(),
-"times": PackedFloat32Array()
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:rotation_degrees:z")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(),
-"points": PackedFloat32Array(),
-"times": PackedFloat32Array()
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_uhrsk"]
-_data = {
-"interact_in": SubResource("10"),
-"interact_out": SubResource("11")
-}
-
 [sub_resource type="Animation" id="12"]
 resource_name = "interact_in"
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation_degrees:x")
+tracks/0/path = NodePath(".:rotation:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(),
-"points": PackedFloat32Array(),
-"times": PackedFloat32Array()
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation_degrees:y")
+tracks/1/path = NodePath(".:rotation:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(),
-"points": PackedFloat32Array(),
-"times": PackedFloat32Array()
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -1.58825, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".:rotation_degrees:z")
+tracks/2/path = NodePath(".:rotation:z")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(),
-"points": PackedFloat32Array(),
-"times": PackedFloat32Array()
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
 }
 
 [sub_resource type="Animation" id="13"]
@@ -396,6 +240,39 @@ tracks/2/keys = {
 "points": PackedFloat32Array(),
 "times": PackedFloat32Array()
 }
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:rotation:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-1.58825, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:rotation:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p5a6d"]
 _data = {
@@ -412,9 +289,9 @@ tracks/0/path = NodePath("RigidBody3D/Drawer:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(),
-"points": PackedFloat32Array(),
-"times": PackedFloat32Array()
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-0.419139, -0.25, 0, 0.25, 0, -0.419139, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -423,9 +300,9 @@ tracks/1/path = NodePath("RigidBody3D/Drawer:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(),
-"points": PackedFloat32Array(),
-"times": PackedFloat32Array()
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(3.71307, -0.25, 0, 0.25, 0, 3.71307, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
@@ -434,9 +311,9 @@ tracks/2/path = NodePath("RigidBody3D/Drawer:position:z")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(),
-"points": PackedFloat32Array(),
-"times": PackedFloat32Array()
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-0.202573, -0.25, 0, 0.25, 0, -1.95866, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
 }
 
 [sub_resource type="Animation" id="16"]
@@ -448,9 +325,9 @@ tracks/0/path = NodePath("RigidBody3D/Drawer:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(),
-"points": PackedFloat32Array(),
-"times": PackedFloat32Array()
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-0.419139, -0.25, 0, 0.25, 0, -0.419139, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -459,9 +336,9 @@ tracks/1/path = NodePath("RigidBody3D/Drawer:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(),
-"points": PackedFloat32Array(),
-"times": PackedFloat32Array()
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(3.71307, -0.25, 0, 0.25, 0, 3.71307, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
@@ -470,9 +347,9 @@ tracks/2/path = NodePath("RigidBody3D/Drawer:position:z")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(),
-"points": PackedFloat32Array(),
-"times": PackedFloat32Array()
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-1.95866, -0.25, 0, 0.25, 0, -0.206133, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kdlar"]
@@ -482,26 +359,28 @@ _data = {
 }
 
 [sub_resource type="BoxShape3D" id="17"]
-size = Vector3(0.966653, 0.127648, 1.25039)
+size = Vector3(1.67905, 0.127648, 2.18995)
 
 [sub_resource type="BoxShape3D" id="14"]
-size = Vector3(0.966653, 0.357783, 0.15048)
+size = Vector3(1.89796, 0.75399, 0.15048)
 
 [node name="CabinetWood" type="Node3D"]
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
+collision_layer = 16384
 freeze = true
 
 [node name="cabinet_wood" parent="RigidBody3D" instance=ExtResource("1")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375802, 2.31262, 0.375801)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375802, 2.82263, 0.375801)
 shape = SubResource("1")
 
-[node name="DoorLeft1" type="Area3D" parent="RigidBody3D"]
+[node name="DoorLeft1" type="RigidBody3D" parent="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.51768, 1.26184, -0.89946)
 collision_layer = 128
 collision_mask = 4096
+freeze = true
 script = ExtResource("2")
 animationPlayerPath = NodePath("AnimationPlayer")
 meshesHolderPath = NodePath("cabinet_wood_left_door")
@@ -519,10 +398,11 @@ libraries = {
 "": SubResource("AnimationLibrary_dghm8")
 }
 
-[node name="DoorRight1" type="Area3D" parent="RigidBody3D"]
+[node name="DoorRight1" type="RigidBody3D" parent="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.06948, 1.26184, -0.89946)
 collision_layer = 128
 collision_mask = 4096
+freeze = true
 script = ExtResource("2")
 animationPlayerPath = NodePath("AnimationPlayer")
 meshesHolderPath = NodePath("cabinet_wood_right_door")
@@ -541,10 +421,11 @@ libraries = {
 "": SubResource("AnimationLibrary_j8n2a")
 }
 
-[node name="DoorLeft2" type="Area3D" parent="RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.73858, 1.26184, -0.89946)
+[node name="DoorLeft2" type="RigidBody3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.75477, 1.26184, -0.89946)
 collision_layer = 128
 collision_mask = 4096
+freeze = true
 script = ExtResource("2")
 animationPlayerPath = NodePath("AnimationPlayer")
 meshesHolderPath = NodePath("cabinet_wood_left_door")
@@ -559,13 +440,14 @@ shape = SubResource("2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="RigidBody3D/DoorLeft2"]
 libraries = {
-"": SubResource("AnimationLibrary_qhmk5")
+"": SubResource("AnimationLibrary_dghm8")
 }
 
-[node name="DoorRight2" type="Area3D" parent="RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.27069, 1.26184, -0.89946)
+[node name="DoorRight2" type="RigidBody3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.20297, 1.26184, -0.89946)
 collision_layer = 128
 collision_mask = 4096
+freeze = true
 script = ExtResource("2")
 animationPlayerPath = NodePath("AnimationPlayer")
 meshesHolderPath = NodePath("cabinet_wood_right_door")
@@ -581,13 +463,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0120358, 0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="RigidBody3D/DoorRight2"]
 libraries = {
-"": SubResource("AnimationLibrary_uhrsk")
+"": SubResource("AnimationLibrary_j8n2a")
 }
 
-[node name="DoorSmall" type="Area3D" parent="RigidBody3D"]
+[node name="DoorSmall" type="RigidBody3D" parent="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.523147, 1.26184, -0.89946)
 collision_layer = 128
 collision_mask = 4096
+freeze = true
 script = ExtResource("2")
 animationPlayerPath = NodePath("AnimationPlayer")
 meshesHolderPath = NodePath("cabinet_wood_small_door")
@@ -605,10 +488,11 @@ libraries = {
 "": SubResource("AnimationLibrary_p5a6d")
 }
 
-[node name="Drawer" type="Area3D" parent="RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.419139, 3.71307, -0.198712)
+[node name="Drawer" type="RigidBody3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.419139, 3.71307, -0.202573)
 collision_layer = 128
 collision_mask = 4096
+freeze = true
 script = ExtResource("2")
 animationPlayerPath = NodePath("AnimationPlayer")
 meshesHolderPath = NodePath("cabinet_wood_drawer")
@@ -622,11 +506,11 @@ libraries = {
 }
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D/Drawer"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.172612, 0.463973)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00222728, 0.172612, 0.463973)
 shape = SubResource("17")
 
 [node name="CollisionShape2" type="CollisionShape3D" parent="RigidBody3D/Drawer"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.420478, -0.64866)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.400788, -0.64866)
 shape = SubResource("14")
 
 [node name="cabinet_wood_drawer" parent="RigidBody3D/Drawer" instance=ExtResource("6")]

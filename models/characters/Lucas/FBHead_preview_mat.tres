@@ -1,0 +1,22 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://47q81flxobkh"]
+
+[ext_resource type="Texture2D" uid="uid://1ra23y6bor8l" path="res://models/characters/Lucas/Lucas_FBHead_baked_tex.png" id="1_7uutd"]
+[ext_resource type="Texture2D" uid="uid://cs002v1ejf6ah" path="res://models/characters/Lucas/FBHead_baked_tex_normal.png" id="2_68dcu"]
+[ext_resource type="Texture2D" uid="uid://rr5kwfvd1adm" path="res://models/characters/Lucas/FBHead_baked_tex_displace.png" id="3_4aqi1"]
+
+[resource]
+resource_name = "FBHead_preview_mat"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_7uutd")
+metallic_specular = 0.1
+roughness = 0.65
+normal_enabled = true
+normal_scale = 0.15
+normal_texture = ExtResource("2_68dcu")
+ao_light_affect = 0.04
+subsurf_scatter_strength = 1.0
+subsurf_scatter_skin_mode = true
+subsurf_scatter_texture = ExtResource("3_4aqi1")
+backlight = Color(0.952941, 0.952941, 0.952941, 1)
+texture_filter = 2
