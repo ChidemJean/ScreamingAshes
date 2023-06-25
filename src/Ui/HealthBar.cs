@@ -3,7 +3,7 @@ using System;
 
 namespace ChidemGames.Ui
 {
-    public class HealthBar : Panel
+    public partial class HealthBar : Panel
     {
         [Export]
         NodePath progressPath;
@@ -22,7 +22,7 @@ namespace ChidemGames.Ui
             icon = GetNode<TextureRect>(iconPath);
         }
 
-        public override void _Process(float delta)
+        public override void _Process(double delta)
         {
             if (globalManager.currentPlayer != null) {
                 progress.Value = Mathf.Lerp((float) progress.Value, globalManager.currentPlayer.health / globalManager.currentPlayer.maxHealth, .15f);

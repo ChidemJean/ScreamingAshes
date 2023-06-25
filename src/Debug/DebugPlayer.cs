@@ -6,15 +6,15 @@ using ChidemGames.Core.Characters;
 namespace ChidemGames.Debug
 {
     public struct RayData {
-        public RayCast ray;
+        public RayCast3D ray;
         public Label label;
-        public RayData(RayCast ray, Label label) {
+        public RayData(RayCast3D ray, Label label) {
             this.ray = ray;
             this.label = label;
         }
     }
 
-    public class DebugPlayer : MarginContainer
+    public partial class DebugPlayer : MarginContainer
     {
         [Export] NodePath upLabelPath;
         [Export] NodePath downLabelPath;
@@ -44,7 +44,7 @@ namespace ChidemGames.Debug
         Label footstepLeftLabel;
         Label lightLevelLabel;
         Label itemHighlight;
-        ViewportContainer lightLevelDebug;
+        SubViewportContainer lightLevelDebug;
 
         [Export] NodePath playerPath;
         Player player;
@@ -73,7 +73,7 @@ namespace ChidemGames.Debug
             footstepLeftLabel = GetNode<Label>(footstepLeftLabelPath);
             lightLevelLabel = GetNode<Label>(lightLevelLabelPath);
             itemHighlight = GetNode<Label>(itemHighlightPath);
-            lightLevelDebug = GetNode<ViewportContainer>(lightLevelDebugPath);
+            lightLevelDebug = GetNode<SubViewportContainer>(lightLevelDebugPath);
 
             raysData.Add(new RayData(player.GetTopRay(), upLabel));
             raysData.Add(new RayData(player.GetBottomRay(), downLabel));
@@ -84,12 +84,12 @@ namespace ChidemGames.Debug
             raysData.Add(new RayData(player.GetAimRay(), aimLabel));
         }
 
-        public override void _PhysicsProcess(float delta)
+        public override void _PhysicsProcess(double delta)
         {
             foreach (RayData rayData in raysData) {
                 if (rayData.ray.IsColliding()) {
                     Vector3 cpVec = rayData.ray.GetCollisionPoint();
-                    string cp = $"({cpVec.x.ToString("0.00")}, {cpVec.y.ToString("0.00")}, {cpVec.z.ToString("0.00")})";
+                    string cp = $"({cpVec.X.ToString("0.00")}, {cpVec.Y.ToString("0.00")}, {cpVec.Z.ToString("0.00")})";
                     rayData.label.Text = $"{cp}";
                     rayData.label.Set("custom_colors/font_color", positiveColor);
                 } else {

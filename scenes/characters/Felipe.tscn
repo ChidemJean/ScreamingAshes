@@ -2,7 +2,7 @@
 
 [ext_resource path="res://models/characters/FelipeOld.glb" type="PackedScene" id=1]
 [ext_resource path="res://src/Core/Characters/Player.cs" type="Script" id=2]
-[ext_resource path="res://src/Core/Characters/SkeletonIK.cs" type="Script" id=4]
+[ext_resource path="res://src/Core/Characters/SkeletonIK3D.cs" type="Script" id=4]
 
 [sub_resource type="AnimationNodeAnimation" id=2]
 animation = "crouch_idleloop"
@@ -94,79 +94,79 @@ nodes/motion_blend_space/position = Vector2( -380, 440 )
 nodes/output/position = Vector2( 500, 200 )
 node_connections = [ "blend_crouch", 0, "Animation", "blend_crouch", 1, "Animation 2", "motion_blend", 0, "motion_blend_space", "motion_blend", 1, "crouch_motion_blend", "blend", 0, "blend_crouch", "blend", 1, "motion_blend", "output", 0, "blend" ]
 
-[sub_resource type="CapsuleShape" id=21]
+[sub_resource type="CapsuleShape3D" id=21]
 radius = 3.19599
 height = 13.5418
 
-[sub_resource type="SpatialMaterial" id=24]
+[sub_resource type="StandardMaterial3D" id=24]
 albedo_color = Color( 0.185791, 0.09375, 1, 1 )
 
-[sub_resource type="CubeMesh" id=22]
+[sub_resource type="BoxMesh" id=22]
 size = Vector3( 0.4, 0.4, 5 )
 
-[sub_resource type="SpatialMaterial" id=25]
+[sub_resource type="StandardMaterial3D" id=25]
 albedo_color = Color( 0.0117647, 0.258824, 1, 1 )
 
 [sub_resource type="PrismMesh" id=23]
 size = Vector3( 1, 1, 0.5 )
 
-[node name="Felipe" type="Spatial"]
+[node name="Felipe" type="Node3D"]
 
-[node name="Head" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.031, 0 )
+[node name="Head" type="Marker3D" parent="."]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.031, 0 )
 
-[node name="LookAt" type="Position3D" parent="Head"]
-transform = Transform( 0.966407, 0, 0.257015, 0, 1, 0, -0.257015, 0, 0.966407, -1.2098, -3.43819, 16.6295 )
+[node name="LookAt" type="Marker3D" parent="Head"]
+transform = Transform3D( 0.966407, 0, 0.257015, 0, 1, 0, -0.257015, 0, 0.966407, -1.2098, -3.43819, 16.6295 )
 
-[node name="Camera" type="Camera" parent="Head"]
-transform = Transform( -1, 0, -1.19209e-07, 0, 1, 0, 1.19209e-07, 0, -1, -5.93573, -1.63415, -7.30489 )
+[node name="Camera3D" type="Camera3D" parent="Head"]
+transform = Transform3D( -1, 0, -1.19209e-07, 0, 1, 0, 1.19209e-07, 0, -1, -5.93573, -1.63415, -7.30489 )
 fov = 80.0
 far = 30000.0
 
-[node name="SpotLight" type="SpotLight" parent="Head"]
-transform = Transform( -0.987876, 0, -0.155245, 0, 1, 0, 0.155245, 0, -0.987876, -6.55538, -1.20752, -17.5331 )
+[node name="SpotLight3D" type="SpotLight3D" parent="Head"]
+transform = Transform3D( -0.987876, 0, -0.155245, 0, 1, 0, 0.155245, 0, -0.987876, -6.55538, -1.20752, -17.5331 )
 light_energy = 0.2
 light_cull_mask = 4293918722
 spot_range = 20.2571
 spot_angle = 54.8546
 
-[node name="Body" type="KinematicBody" parent="."]
+[node name="Body" type="CharacterBody3D" parent="."]
 script = ExtResource( 2 )
 animationTreePath = NodePath("AnimationTree")
 speed = 38.0
 sprintSpeedMultiplier = 3.0
 jumpVelocity = 12.0
-cameraPath = NodePath("../Head/Camera")
+cameraPath = NodePath("../Head/Camera3D")
 lookAtPath = NodePath("../Head/LookAt")
 pivotPath = NodePath("Pivot")
 
 [node name="FelipeOld" parent="Body" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.226721, -1.16466, 0 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.226721, -1.16466, 0 )
 
-[node name="Skeleton" parent="Body/FelipeOld/Armature" index="0"]
+[node name="Skeleton3D" parent="Body/FelipeOld/Armature" index="0"]
 bones/5/bound_children = [ NodePath("Head") ]
 bones/35/bound_children = [ NodePath("RightHand") ]
 
-[node name="shoes03Mesh" parent="Body/FelipeOld/Armature/Skeleton" index="0"]
+[node name="shoes03Mesh" parent="Body/FelipeOld/Armature/Skeleton3D" index="0"]
 layers = 3
 
-[node name="Head" type="BoneAttachment" parent="Body/FelipeOld/Armature/Skeleton" index="1"]
-transform = Transform( 0.992369, -0.0954394, -0.0780644, 0.0934095, 0.168662, 0.981237, -0.0804821, -0.981042, 0.17629, -129.843, 9.22062, -1543.66 )
+[node name="Head" type="BoneAttachment3D" parent="Body/FelipeOld/Armature/Skeleton3D" index="1"]
+transform = Transform3D( 0.992369, -0.0954394, -0.0780644, 0.0934095, 0.168662, 0.981237, -0.0804821, -0.981042, 0.17629, -129.843, 9.22062, -1543.66 )
 bone_name = "mixamorig_Head"
 
-[node name="RightHand" type="BoneAttachment" parent="Body/FelipeOld/Armature/Skeleton" index="2"]
-transform = Transform( 0.506575, -0.125988, 0.852941, 0.855045, 0.200551, -0.478202, -0.11081, 0.971549, 0.20932, -340.838, 142.903, -981.893 )
+[node name="RightHand" type="BoneAttachment3D" parent="Body/FelipeOld/Armature/Skeleton3D" index="2"]
+transform = Transform3D( 0.506575, -0.125988, 0.852941, 0.855045, 0.200551, -0.478202, -0.11081, 0.971549, 0.20932, -340.838, 142.903, -981.893 )
 bone_name = "mixamorig_RightHand"
 
-[node name="SpotLight" type="SpotLight" parent="Body/FelipeOld/Armature/Skeleton/RightHand"]
-transform = Transform( 13.5353, -99.0798, 4.37093e-06, 6.33945e-07, -4.32492e-06, -100, 99.0798, 13.5353, 4.27219e-08, 115.819, 147.751, -25.0826 )
+[node name="SpotLight3D" type="SpotLight3D" parent="Body/FelipeOld/Armature/Skeleton3D/RightHand"]
+transform = Transform3D( 13.5353, -99.0798, 4.37093e-06, 6.33945e-07, -4.32492e-06, -100, 99.0798, 13.5353, 4.27219e-08, 115.819, 147.751, -25.0826 )
 light_energy = 3.0
 light_indirect_energy = 1.4
 shadow_enabled = true
 spot_range = 303.655
 spot_angle = 31.1262
 
-[node name="RightHandIK" type="SkeletonIK" parent="Body/FelipeOld/Armature/Skeleton" index="3"]
+[node name="RightHandIK" type="SkeletonIK3D" parent="Body/FelipeOld/Armature/Skeleton3D" index="3"]
 process_priority = 1
 root_bone = "mixamorig_RightForeArm"
 tip_bone = "hand_ik.R"
@@ -186,21 +186,21 @@ parameters/crouch_motion_blend/blend_position = Vector2( -1, 0.0242214 )
 parameters/motion_blend/blend_amount = 0.0
 parameters/motion_blend_space/blend_position = Vector2( 0, 0 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Body"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 8.51215, 0 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body"]
+transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 8.51215, 0 )
 shape = SubResource( 21 )
 
-[node name="CSGMesh" type="CSGMesh" parent="Body"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.8735, 5.77634 )
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Body"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.8735, 5.77634 )
 material_override = SubResource( 24 )
 mesh = SubResource( 22 )
 
-[node name="CSGMesh2" type="CSGMesh" parent="Body"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 10.8735, 8.70304 )
+[node name="CSGMesh2" type="CSGMesh3D" parent="Body"]
+transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 10.8735, 8.70304 )
 material_override = SubResource( 25 )
 mesh = SubResource( 23 )
 
-[node name="Pivot" type="Position3D" parent="Body"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.3472, 0 )
+[node name="Pivot" type="Marker3D" parent="Body"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.3472, 0 )
 
 [editable path="Body/FelipeOld"]

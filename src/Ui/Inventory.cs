@@ -9,7 +9,7 @@ using ChidemGames.Resources;
 namespace ChidemGames.Ui
 {
 
-   public class Inventory : Control
+   public partial class Inventory : Control
    {
       [Export]
       NodePath gridPath;
@@ -60,7 +60,7 @@ namespace ChidemGames.Ui
          {
             for (int x = 0; x < totalRows; x++)
             {
-               SlotInventory slot = slotScene.Instance<SlotInventory>();
+               SlotInventory slot = slotScene.Instantiate<SlotInventory>();
                slot.Pos = new Vector2(x, y);
                grid.AddChild(slot);
                if ((x == 3 && y == 4) || (x == 4 && y == 4) || (x == 3 && y == 5) || (x == 4 && y == 5))
@@ -87,7 +87,7 @@ namespace ChidemGames.Ui
             if (@event.IsActionPressed("rotate_item_inventory"))
             {
                itemDrag.Rotate();
-               itemDrag.UpdateSize(slots[0, 0].RectSize, GetGridMargin());
+               itemDrag.UpdateSize(slots[0, 0].Size, GetGridMargin());
             }
             if (@event.IsActionPressed("place_item_inventory"))
             {
@@ -164,12 +164,12 @@ namespace ChidemGames.Ui
       {
          if (itemId != null && itemInvetory != null)
          {
-            itemDrag = itemInvetory.Instance<ItemInventory>();
+            itemDrag = itemInvetory.Instantiate<ItemInventory>();
             itemsHolder.AddChild(itemDrag);
             itemDrag.InitData(itemId, 1);
             itemDrag.SetSubitems(subitems);
             itemDrag.UpdateUi();
-            itemDrag.UpdateSize(slots[0, 0].RectSize, GetGridMargin());
+            itemDrag.UpdateSize(slots[0, 0].Size, GetGridMargin());
          
             TryAutomaticPlaceItem();
             if (!canPlace)
@@ -183,11 +183,11 @@ namespace ChidemGames.Ui
       {
          if (itemId != null && itemInvetory != null && itemDrag == null)
          {
-            itemDrag = itemInvetory.Instance<ItemInventory>();
+            itemDrag = itemInvetory.Instantiate<ItemInventory>();
             itemsHolder.AddChild(itemDrag);
             itemDrag.InitData(itemId, 1);
             itemDrag.UpdateUi();
-            itemDrag.UpdateSize(slots[0, 0].RectSize, GetGridMargin());
+            itemDrag.UpdateSize(slots[0, 0].Size, GetGridMargin());
 
             bool _openMenu = openMenu;
             
@@ -245,10 +245,10 @@ namespace ChidemGames.Ui
       public void DropItem(string itemScenePath)
       {
          var itemScene = ResourceLoader.Load<PackedScene>(itemScenePath);
-         Item itemNode = itemScene.Instance<Item>();
+         Item itemNode = itemScene.Instantiate<Item>();
          globalManager.main3dNode.AddChild(itemNode);
-         itemNode.GlobalTranslation = globalManager.currentPlayer.GlobalTranslation + (globalManager.currentPlayer.GlobalTransform.basis.z.Normalized() * 3 + (new Vector3(0, 3f, 0)));
-         itemNode.ChangePhysics(RigidBody.ModeEnum.Rigid);
+         itemNode.GlobalPosition = globalManager.currentPlayer.GlobalPosition + (globalManager.currentPlayer.GlobalTransform.basis.z.Normalized() * 3 + (new Vector3(0, 3f, 0)));
+         itemNode.ChangePhysics(false);
       }
 
       public List<SlotInventory> GetSlotsForItem(ItemInventory item)

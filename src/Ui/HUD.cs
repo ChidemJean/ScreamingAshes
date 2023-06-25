@@ -3,7 +3,7 @@ using System;
 
 namespace ChidemGames.Ui
 {
-   public class HUD : Control
+   public partial class HUD : Control
    {
       public enum CursorType
       {
@@ -28,7 +28,7 @@ namespace ChidemGames.Ui
 
       [Export]
       NodePath cursorLoadPath;
-      TextureProgress cursorLoad;
+      TextureProgressBar cursorLoad;
 
       public CursorType cursorType = CursorType.Normal;
       public CrosshairType crosshairType = CrosshairType.Normal;
@@ -42,7 +42,7 @@ namespace ChidemGames.Ui
 			globalManager = GetNode<GlobalManager>("/root/GlobalManager");
          crosshair = GetNode<TextureRect>(crosshairPath);
          crosshairHand = GetNode<TextureRect>(crosshairHandPath);
-         cursorLoad = GetNode<TextureProgress>(cursorLoadPath);
+         cursorLoad = GetNode<TextureProgressBar>(cursorLoadPath);
 
          Input.SetCustomMouseCursor(ResourceLoader.Load("res://assets/ui/cursor/cursor.png"));
 
@@ -98,12 +98,12 @@ namespace ChidemGames.Ui
 			}
 		}
 
-      public override void _Process(float delta)
+      public override void _Process(double delta)
       {
          if (!isLoadShow) {
 				return;
 			}
-			cursorLoad.RectGlobalPosition = GetViewport().GetMousePosition();
+			cursorLoad.GlobalPosition = GetViewport().GetMousePosition();
       }
    }
 }

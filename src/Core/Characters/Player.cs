@@ -10,7 +10,7 @@ using ChidemGames.Core.Vfx;
 
 namespace ChidemGames.Core.Characters
 {
-   public class Player : KinematicBody, AdaptiveAudioEmitter
+   public partial class Player : CharacterBody3D, AdaptiveAudioEmitter
    {
       [Export]
       NodePath animationTreePath;
@@ -38,45 +38,45 @@ namespace ChidemGames.Core.Characters
 
       [Export]
       NodePath skeletonIkRightHandPath;
-      Godot.SkeletonIK skeletonIKRightHand;
+      Godot.SkeletonIK3D skeletonIKRightHand;
 
       [Export]
       NodePath skeletonIkRightHandCodePath;
-      Godot.SkeletonIK skeletonIKRightCodeHand;
+      Godot.SkeletonIK3D skeletonIKRightCodeHand;
 
       [Export]
       NodePath skeletonIkLeftHandPath;
-      Godot.SkeletonIK skeletonIKLeftHand;
+      Godot.SkeletonIK3D skeletonIKLeftHand;
 
       [Export]
       NodePath lookAtRightPath;
-      Position3D lookAtRight;
+      Marker3D lookAtRight;
 
       [Export]
       NodePath pivotPath;
 
-      public Position3D pivot;
-      Position3D lookAt;
+      public Marker3D pivot;
+      Marker3D lookAt;
 
       [Export]
       NodePath lookAtAimPath;
-      Position3D lookAtAim;
-      Position3D inverseLookAtAim;
+      Marker3D lookAtAim;
+      Marker3D inverseLookAtAim;
 
       [Export]
       NodePath lookAtHeadPath;
-      Position3D lookAtHead;
+      Marker3D lookAtHead;
 
       [Export]
       NodePath itemSlotRightPath;
-      Spatial itemSlotRight;
+      Node3D itemSlotRight;
 
       [Export]
       NodePath handPivotsAnimPlayerPath;
       AnimationPlayer handPivotsAnimPlayer;
 
-      public Camera camera;
-      Spatial head;
+      public Camera3D camera;
+      Node3D head;
 
       AnimationTree animationTree;
 
@@ -105,8 +105,8 @@ namespace ChidemGames.Core.Characters
       [Export]
       NodePath crouchShapePath;
 
-      CollisionShape standShape;
-      CollisionShape crouchShape;
+      CollisionShape3D standShape;
+      CollisionShape3D crouchShape;
 
       float gravity = (float)ProjectSettings.GetSetting("physics/3d/default_gravity");
 
@@ -125,20 +125,20 @@ namespace ChidemGames.Core.Characters
       [Export] NodePath leftRayPath;
       [Export] NodePath forwardRayPath;
       [Export] NodePath backwardRayPath;
-      RayCast aimRay;
-      RayCast topRay;
-      RayCast bottomRay;
-      RayCast rightRay;
-      RayCast leftRay;
-      RayCast forwardRay;
-      RayCast backwardRay;
+      RayCast3D aimRay;
+      RayCast3D topRay;
+      RayCast3D bottomRay;
+      RayCast3D rightRay;
+      RayCast3D leftRay;
+      RayCast3D forwardRay;
+      RayCast3D backwardRay;
 
       [Export]
       NodePath clipPivotPath;
-      Position3D clipPivot;
+      Marker3D clipPivot;
 
       [Export] NodePath lightLevelPosPath;
-      public Position3D lightLevelPos;
+      public Marker3D lightLevelPos;
       public float lightLevel = 0f;
 
       public bool isButtBlowing = false;
@@ -148,15 +148,15 @@ namespace ChidemGames.Core.Characters
 
       [Export]
       NodePath flashLightPath;
-      SpotLight flashLight;
+      SpotLight3D flashLight;
 
       [Export]
       NodePath flashLightSlotPath;
-      Spatial flashLightSlot;
+      Node3D flashLightSlot;
 
       [Export]
       NodePath flashLightHandSlotPath;
-      Spatial flashLightHandSlot;
+      Node3D flashLightHandSlot;
 
       bool isFlashlightOnHand = false;
 
@@ -175,7 +175,7 @@ namespace ChidemGames.Core.Characters
 
       float currentCooldownRegenerateStamine = 0;
 
-      [Export(PropertyHint.Layers3dPhysics)]
+      [Export(PropertyHint.Layers3DPhysics)]
       uint collisionMaskItemsRay;
 
       public Item currentSelectedItem = null;
@@ -188,17 +188,17 @@ namespace ChidemGames.Core.Characters
 
       [Export]
       NodePath backpackPath;
-      Spatial backpack;
+      Node3D backpack;
 
       [Export]
       NodePath neckBackpackSlotPath;
-      Position3D neckBackpackSlot;
+      Marker3D neckBackpackSlot;
 
       [Export]
       NodePath handBackpackSlotPath;
-      Position3D handBackpackSlot;
+      Marker3D handBackpackSlot;
 
-      SceneTreeTween tweenBackpack;
+      Tween tweenBackpack;
 
       [Export]
       public float maxHealth = 1;
@@ -224,32 +224,32 @@ namespace ChidemGames.Core.Characters
          currentStaminaVariation = defaultStaminaVariation;
 
          animationTree = GetNode<AnimationTree>(animationTreePath);
-         lookAt = GetNode<Position3D>(lookAtPath);
-         lookAtRight = GetNode<Position3D>(lookAtRightPath);
-         lookAtAim = GetNode<Position3D>(lookAtAimPath);
-         pivot = GetNode<Position3D>(pivotPath);
-         lookAtHead = GetNode<Position3D>(lookAtHeadPath);
-         clipPivot = GetNode<Position3D>(clipPivotPath);
-         camera = GetNode<Camera>(cameraPath);
-         head = camera.GetParent<Spatial>();
-         itemSlotRight = GetNode<Spatial>(itemSlotRightPath);
+         lookAt = GetNode<Marker3D>(lookAtPath);
+         lookAtRight = GetNode<Marker3D>(lookAtRightPath);
+         lookAtAim = GetNode<Marker3D>(lookAtAimPath);
+         pivot = GetNode<Marker3D>(pivotPath);
+         lookAtHead = GetNode<Marker3D>(lookAtHeadPath);
+         clipPivot = GetNode<Marker3D>(clipPivotPath);
+         camera = GetNode<Camera3D>(cameraPath);
+         head = camera.GetParent<Node3D>();
+         itemSlotRight = GetNode<Node3D>(itemSlotRightPath);
          handPivotsAnimPlayer = GetNode<AnimationPlayer>(handPivotsAnimPlayerPath);
-         skeletonIKRightHand = GetNode<Godot.SkeletonIK>(skeletonIkRightHandPath);
-         skeletonIKLeftHand = GetNode<Godot.SkeletonIK>(skeletonIkLeftHandPath);
-         skeletonIKRightCodeHand = GetNode<Godot.SkeletonIK>(skeletonIkRightHandCodePath);
-         inverseLookAtAim = lookAtAim.GetNode<Position3D>("InverseLookAtAim");
+         skeletonIKRightHand = GetNode<Godot.SkeletonIK3D>(skeletonIkRightHandPath);
+         skeletonIKLeftHand = GetNode<Godot.SkeletonIK3D>(skeletonIkLeftHandPath);
+         skeletonIKRightCodeHand = GetNode<Godot.SkeletonIK3D>(skeletonIkRightHandCodePath);
+         inverseLookAtAim = lookAtAim.GetNode<Marker3D>("InverseLookAtAim");
          sfx = GetNode<SfxOptions>(sfxPath);
-         backpack = GetNode<Spatial>(backpackPath);
-         neckBackpackSlot = GetNode<Position3D>(neckBackpackSlotPath);
-         handBackpackSlot = GetNode<Position3D>(handBackpackSlotPath);
+         backpack = GetNode<Node3D>(backpackPath);
+         neckBackpackSlot = GetNode<Marker3D>(neckBackpackSlotPath);
+         handBackpackSlot = GetNode<Marker3D>(handBackpackSlotPath);
 
-         flashLight = GetNode<SpotLight>(flashLightPath);
-         flashLightSlot = GetNode<Spatial>(flashLightSlotPath);
-         flashLightHandSlot = GetNode<Spatial>(flashLightHandSlotPath);
+         flashLight = GetNode<SpotLight3D>(flashLightPath);
+         flashLightSlot = GetNode<Node3D>(flashLightSlotPath);
+         flashLightHandSlot = GetNode<Node3D>(flashLightHandSlotPath);
 
-         lightLevelPos = GetNode<Position3D>(lightLevelPosPath);
-         standShape = GetNode<CollisionShape>(standShapePath);
-         crouchShape = GetNode<CollisionShape>(crouchShapePath);
+         lightLevelPos = GetNode<Marker3D>(lightLevelPosPath);
+         standShape = GetNode<CollisionShape3D>(standShapePath);
+         crouchShape = GetNode<CollisionShape3D>(crouchShapePath);
 
          itemRightHand = itemSlotRight.GetChildOrNull<Item>(0);
          if (itemRightHand != null && itemRightHand.player == null)
@@ -259,20 +259,20 @@ namespace ChidemGames.Core.Characters
 
          initialRotationLookAtHead = lookAtHead.Rotation;
 
-         aimRay = GetNode<RayCast>(aimRayPath);
-         topRay = GetNode<RayCast>(topRayPath);
-         bottomRay = GetNode<RayCast>(bottomRayPath);
-         rightRay = GetNode<RayCast>(rightRayPath);
-         leftRay = GetNode<RayCast>(leftRayPath);
-         forwardRay = GetNode<RayCast>(forwardRayPath);
-         backwardRay = GetNode<RayCast>(backwardRayPath);
+         aimRay = GetNode<RayCast3D>(aimRayPath);
+         topRay = GetNode<RayCast3D>(topRayPath);
+         bottomRay = GetNode<RayCast3D>(bottomRayPath);
+         rightRay = GetNode<RayCast3D>(rightRayPath);
+         leftRay = GetNode<RayCast3D>(leftRayPath);
+         forwardRay = GetNode<RayCast3D>(forwardRayPath);
+         backwardRay = GetNode<RayCast3D>(backwardRayPath);
 
       }
 
       public void PlaceItemOnRightHand(string itemScenePath)
       {
          var itemScene = ResourceLoader.Load<PackedScene>(itemScenePath);
-         var itemNode = itemScene.Instance<Item>();
+         var itemNode = itemScene.Instantiate<Item>();
          if (itemRightHand != null)
          {
             itemRightHand.QueueFree();
@@ -336,8 +336,8 @@ namespace ChidemGames.Core.Characters
          if (_event is InputEventMouseMotion && IsPlaying())
          {
             InputEventMouseMotion motionEvent = (InputEventMouseMotion)_event;
-            head.Rotation = new Vector3(Mathf.Clamp(head.Rotation.x - motionEvent.Relative.y * -1 / 1000 * sensitivity, -1, 1f), head.Rotation.y - motionEvent.Relative.x / 1000 * sensitivity, 0);
-            // camera.LookAt(head.GlobalTranslation, Vector3.Up);
+            head.Rotation = new Vector3(Mathf.Clamp(head.Rotation.X - motionEvent.Relative.Y * -1 / 1000 * sensitivity, -1, 1f), head.Rotation.Y - motionEvent.Relative.X / 1000 * sensitivity, 0);
+            // camera.LookAt(head.GlobalPosition, Vector3.Up);
          }
       }
 
@@ -385,7 +385,7 @@ namespace ChidemGames.Core.Characters
                flashLightSlot.AddChild(flashLight);
             }
          }
-         flashLight.Translation = Vector3.Zero;
+         flashLight.Position = Vector3.Zero;
          flashLight.RotationDegrees = Vector3.Zero;
       }
 
@@ -407,12 +407,13 @@ namespace ChidemGames.Core.Characters
          currentStamina = Mathf.Clamp(currentStamina + variation, 0, maxStaminaValue);
       }
 
-      public override void _PhysicsProcess(float delta)
+      public override void _PhysicsProcess(double _delta)
       {
+         float delta = (float) _delta;
 
          if (!IsOnFloor())
          {
-            velocity.y -= gravity * 7f * delta;
+            velocity.Y -= gravity * 7f * delta;
          }
 
          float speedMultiplier = 1.0f;
@@ -420,12 +421,12 @@ namespace ChidemGames.Core.Characters
          if (IsPlaying())
          {
             // ROTATE THE PIVOT OF ALL ---------------------------------
-            head.GlobalTranslation = head.GlobalTranslation.LinearInterpolate(pivot.GlobalTranslation, delta * 30f);
+            head.GlobalPosition = head.GlobalPosition.Lerp(pivot.GlobalPosition, delta * 30f);
 
             // JUMP ----------------------------------------------------
             if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
             {
-               velocity.y = jumpVelocity;
+               velocity.Y = jumpVelocity;
             }
 
 
@@ -455,7 +456,7 @@ namespace ChidemGames.Core.Characters
                {
                   crouchShape.Disabled = false;
                   standShape.Disabled = true;
-                  pivot.GlobalTranslation = new Vector3(pivot.GlobalTranslation.x, pivot.GlobalTranslation.y - verticalDisplacementCrouch, pivot.GlobalTranslation.z);
+                  pivot.GlobalPosition = new Vector3(pivot.GlobalPosition.X, pivot.GlobalPosition.Y - verticalDisplacementCrouch, pivot.GlobalPosition.Z);
                }
             }
             else
@@ -465,18 +466,18 @@ namespace ChidemGames.Core.Characters
                {
                   crouchShape.Disabled = true;
                   standShape.Disabled = false;
-                  pivot.GlobalTranslation = new Vector3(pivot.GlobalTranslation.x, pivot.GlobalTranslation.y + verticalDisplacementCrouch, pivot.GlobalTranslation.z);
+                  pivot.GlobalPosition = new Vector3(pivot.GlobalPosition.X, pivot.GlobalPosition.Y + verticalDisplacementCrouch, pivot.GlobalPosition.Z);
                }
             }
 
 
             // HEAD LOOK AT AIM ----------------------------------------
-            var headTargetVec = inverseLookAtAim.GlobalTranslation;
+            var headTargetVec = inverseLookAtAim.GlobalPosition;
             var newLookAtHeadTransform = lookAtHead.GlobalTransform.LookingAt(headTargetVec, Vector3.Up);
             lookAtHead.GlobalTransform = lookAtHead.GlobalTransform.InterpolateWith(newLookAtHeadTransform, delta * 2f);
 
             // AIM LOOK AT CAMERA ANGLE --------------------------------
-            lookAtAim.GlobalTransform = lookAtAim.GlobalTransform.LookAtWithY(camera.GlobalTransform.basis.z * -1, camera.GlobalTransform.basis.x);
+            lookAtAim.GlobalTransform = lookAtAim.GlobalTransform.LookAtWithY(camera.GlobalTransform.Basis.Z * -1, camera.GlobalTransform.Basis.X);
 
             // HEAD AND AIM --------------------------------------------
             string aimBlendAnim = BlendAimForItem(itemRightHand);
@@ -572,15 +573,15 @@ namespace ChidemGames.Core.Characters
             direction = Vector3.Zero;
          }
 
-         Vector3 rotationVec = GlobalTranslation.DirectionTo(lookAt.GlobalTranslation);
+         Vector3 rotationVec = GlobalPosition.DirectionTo(lookAt.GlobalPosition);
          if (direction != Vector3.Zero || isAiming)
          {
-            float rotationY = Rotation.y;
-            Rotation = new Vector3(Rotation.x, Mathf.LerpAngle(rotationY, Mathf.Atan2(rotationVec.x, rotationVec.z), delta * (isAiming ? 20f : 15.5f)), Rotation.z);
-            Vector3 rotationVecAim = pivot.GlobalTranslation.DirectionTo(new Vector3(pivot.GlobalTranslation.x, lookAt.GlobalTranslation.y, lookAt.GlobalTranslation.z));
+            float rotationY = Rotation.Y;
+            Rotation = new Vector3(Rotation.X, Mathf.LerpAngle(rotationY, Mathf.Atan2(rotationVec.X, rotationVec.Z), delta * (isAiming ? 20f : 15.5f)), Rotation.Z);
+            Vector3 rotationVecAim = pivot.GlobalPosition.DirectionTo(new Vector3(pivot.GlobalPosition.X, lookAt.GlobalPosition.Y, lookAt.GlobalPosition.Z));
             // float angleToAim = Mathf.LerpAngle(pivot.Rotation.x, Mathf.Atan2(-rotationVecAim.y, rotationVecAim.z), delta * (isAiming ? 14f : 4.5f));
-            float angleToAim = Mathf.LerpAngle(pivot.Rotation.x, head.Rotation.x, delta * (isAiming ? 20f : 15.5f));
-            pivot.Rotation = new Vector3(head.Rotation.x, pivot.Rotation.y, pivot.Rotation.z);
+            float angleToAim = Mathf.LerpAngle(pivot.Rotation.X, head.Rotation.X, delta * (isAiming ? 20f : 15.5f));
+            pivot.Rotation = new Vector3(head.Rotation.X, pivot.Rotation.Y, pivot.Rotation.Z);
          }
 
          // MOTION --------------------------------------------
@@ -595,22 +596,22 @@ namespace ChidemGames.Core.Characters
                float blendMotionAmount = 1.0f;
                float curMotionBlend = (float)animationTree.Get("parameters/motion_blend/blend_amount");
                animationTree.Set("parameters/motion_blend/blend_amount", Mathf.Lerp(curMotionBlend, blendMotionAmount, delta * 4.5f));
-               animationTree.Set("parameters/crounch_blend_space/blend_position", new Vector2(velocity.x, velocity.z));
+               animationTree.Set("parameters/crounch_blend_space/blend_position", new Vector2(velocity.X, velocity.Z));
             }
             else
             {
                var blendMotionAmount = 0.0f;
                var curMotionBlend = (float)animationTree.Get("parameters/motion_blend/blend_amount");
                animationTree.Set("parameters/motion_blend/blend_amount", Mathf.Lerp(curMotionBlend, blendMotionAmount, delta * 4.5f));
-               var blendSpaceVec = (new Vector2(-direction.x, direction.z)).Normalized() * (isSprinting ? 1.0f : 0.5f);
+               var blendSpaceVec = (new Vector2(-direction.X, direction.Z)).Normalized() * (isSprinting ? 1.0f : 0.5f);
                var curBlendSpaceVec = (Vector2)animationTree.Get("parameters/motion_blend_space/blend_position");
-               animationTree.Set("parameters/motion_blend_space/blend_position", curBlendSpaceVec.LinearInterpolate(blendSpaceVec, delta * 4.8f));
+               animationTree.Set("parameters/motion_blend_space/blend_position", curBlendSpaceVec.Lerp(blendSpaceVec, delta * 4.8f));
             }
 
-            Vector3 moveVec = GlobalTranslation.Normalized().DirectionTo(direction);
-            Vector3 motion = direction.Rotated(Vector3.Up, Mathf.Atan2(rotationVec.x, rotationVec.z)) * speed * speedMultiplier;
-            velocity.x = motion.x;
-            velocity.z = motion.z;
+            Vector3 moveVec = GlobalPosition.Normalized().DirectionTo(direction);
+            Vector3 motion = direction.Rotated(Vector3.Up, Mathf.Atan2(rotationVec.X, rotationVec.Z)) * speed * speedMultiplier;
+            velocity.X = motion.X;
+            velocity.Z = motion.Z;
 
          }
          else
@@ -632,16 +633,17 @@ namespace ChidemGames.Core.Characters
                animationTree.Set("parameters/blend_crouch/blend_amount", Mathf.Lerp(curCrouchBlend, blendCrouchAmount, delta * 3));
                var blendSpaceVec = Vector2.Zero;
                var curBlendSpaceVec = (Vector2)animationTree.Get("parameters/motion_blend_space/blend_position");
-               animationTree.Set("parameters/motion_blend_space/blend_position", curBlendSpaceVec.LinearInterpolate(blendSpaceVec, delta * 2.8f));
+               animationTree.Set("parameters/motion_blend_space/blend_position", curBlendSpaceVec.Lerp(blendSpaceVec, delta * 2.8f));
                animationTree.Set("parameters/crounch_blend_space/blend_position", Vector2.Zero);
             }
 
-            velocity.x = 0f;
-            velocity.z = 0f;
+            velocity.X = 0f;
+            velocity.Z = 0f;
 
          }
 
-         velocity = MoveAndSlide(velocity, Vector3.Up, true, 3);
+         Velocity = velocity;
+         MoveAndSlide();
 
          RayForInteract();      
       }
@@ -669,9 +671,9 @@ namespace ChidemGames.Core.Characters
 
          sfx.PlayRandomSfxByCategory("punch", -1, this);
 
-         var particles = bloodParticles.Instance<BloodHitParticles>();
+         var particles = bloodParticles.Instantiate<BloodHitParticles>();
          globalManager.main3dNode.AddChild(particles);
-         particles.GlobalTranslation = GlobalTranslation + new Vector3(0,5f,0);
+         particles.GlobalPosition = GlobalPosition + new Vector3(0,5f,0);
          particles.Play();
 
          if (health == 0 && !isDead) {
@@ -700,7 +702,7 @@ namespace ChidemGames.Core.Characters
          await ToSignal(GetTree().CreateTimer(2), "timeout");
          neckBackpackSlot.RemoveChild(backpack);
          handBackpackSlot.AddChild(backpack);
-         backpack.Translation = Vector3.Zero;
+         backpack.Position = Vector3.Zero;
          backpack.RotationDegrees = Vector3.Zero;
       }
 
@@ -715,7 +717,7 @@ namespace ChidemGames.Core.Characters
          isPlaying = true;
          handBackpackSlot.RemoveChild(backpack);
          neckBackpackSlot.AddChild(backpack);
-         backpack.Translation = Vector3.Zero;
+         backpack.Position = Vector3.Zero;
          backpack.RotationDegrees = Vector3.Zero;
       }
 
@@ -724,11 +726,12 @@ namespace ChidemGames.Core.Characters
          // RAY ITEMS ------------------------------------------
          if (IsPlaying() && !isSprinting)
          {
-            Vector3 from = camera.GlobalTranslation;
-            Vector3 to = from + camera.GlobalTransform.basis.z * -1 * 10f;
-            var space = GetWorld().DirectSpaceState;
-            var itemRay = space.IntersectRay(from, to, null, collisionMaskItemsRay, true, true);
-            if (itemRay != null && itemRay.Contains("position"))
+            Vector3 from = camera.GlobalPosition;
+            Vector3 to = from + camera.GlobalTransform.Basis.Z * -1 * 10f;
+            var space = GetWorld3D().DirectSpaceState;
+            var rayQuery = PhysicsRayQueryParameters3D.Create(from, to, collisionMaskItemsRay);
+            var itemRay = space.IntersectRay(rayQuery);
+            if (itemRay.Count > 0)
             {
                Node item = (Node)itemRay["collider"];
                if (item is Item)
@@ -797,37 +800,37 @@ namespace ChidemGames.Core.Characters
          currentSelectedInteractable = newInteractable;
       }
 
-      public RayCast GetTopRay()
+      public RayCast3D GetTopRay()
       {
          return topRay;
       }
 
-      public RayCast GetLeftRay()
+      public RayCast3D GetLeftRay()
       {
          return leftRay;
       }
 
-      public RayCast GetRightRay()
+      public RayCast3D GetRightRay()
       {
          return rightRay;
       }
 
-      public RayCast GetForwardRay()
+      public RayCast3D GetForwardRay()
       {
          return forwardRay;
       }
 
-      public RayCast GetBackwardRay()
+      public RayCast3D GetBackwardRay()
       {
          return backwardRay;
       }
 
-      public RayCast GetAimRay()
+      public RayCast3D GetAimRay()
       {
          return aimRay;
       }
 
-      public RayCast GetBottomRay()
+      public RayCast3D GetBottomRay()
       {
          return bottomRay;
       }

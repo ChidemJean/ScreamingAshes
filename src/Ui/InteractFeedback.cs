@@ -7,7 +7,7 @@ using ChidemGames.Core.Scenario;
 namespace ChidemGames.Ui
 {
 
-   public class InteractFeedback : MarginContainer
+   public partial class InteractFeedback : MarginContainer
    {
 
 		[Export]
@@ -34,7 +34,7 @@ namespace ChidemGames.Ui
 			interact = GetNode<Control>(interactPath);
       }
 
-		public override void _Process(float delta)
+		public override void _Process(double delta)
 		{
 			if (globalManager.currentPlayer != null) {
 				Item curItem = globalManager.currentPlayer.currentSelectedItem;

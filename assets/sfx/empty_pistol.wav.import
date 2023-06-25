@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/empty_pistol.wav-c36405398b8ef00e0f438e8ae2f30b0c.sample"
+type="AudioStreamWAV"
+uid="uid://cj6tea1kdqsrr"
+path="res://.godot/imported/empty_pistol.wav-c36405398b8ef00e0f438e8ae2f30b0c.sample"
 
 [deps]
 
 source_file="res://assets/sfx/empty_pistol.wav"
-dest_files=[ "res://.import/empty_pistol.wav-c36405398b8ef00e0f438e8ae2f30b0c.sample" ]
+dest_files=["res://.godot/imported/empty_pistol.wav-c36405398b8ef00e0f438e8ae2f30b0c.sample"]
 
 [params]
 

@@ -4,7 +4,7 @@ using System;
 
 namespace ChidemGames.Core.Audio
 {
-    public class StreamsCategory : Resource
+    public partial class StreamsCategory : Resource
     {
         [Export]
         public Array<AudioStream> streamsRandom = new Array<AudioStream>();

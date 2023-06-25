@@ -2,8 +2,8 @@
 
 shader_type spatial;
 render_mode async_visible,blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx,shadows_disabled,ambient_light_disabled,unshaded;
-uniform vec4 albedo : hint_color;
-uniform sampler2D texture_albedo : hint_albedo;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color;
 uniform float specular;
 uniform float metallic;
 uniform float roughness : hint_range(0,1);
@@ -11,8 +11,8 @@ uniform float point_size : hint_range(0,128);
 uniform int particles_anim_h_frames;
 uniform int particles_anim_v_frames;
 uniform bool particles_anim_loop;
-uniform sampler2D texture_emission : hint_black_albedo;
-uniform vec4 emission : hint_color;
+uniform sampler2D texture_emission : hint_default_black;
+uniform vec4 emission : source_color;
 uniform float emission_energy;
 uniform vec3 uv1_scale;
 uniform vec3 uv1_offset;
@@ -22,9 +22,9 @@ uniform vec3 uv2_offset;
 
 void vertex() {
 	UV=UV*uv1_scale.xy+uv1_offset.xy;
-	mat4 mat_world = mat4(normalize(CAMERA_MATRIX[0])*length(WORLD_MATRIX[0]),normalize(CAMERA_MATRIX[1])*length(WORLD_MATRIX[0]),normalize(CAMERA_MATRIX[2])*length(WORLD_MATRIX[2]),WORLD_MATRIX[3]);
+	mat4 mat_world = mat4(normalize(INV_VIEW_MATRIX[0])*length(MODEL_MATRIX[0]),normalize(INV_VIEW_MATRIX[1])*length(MODEL_MATRIX[0]),normalize(INV_VIEW_MATRIX[2])*length(MODEL_MATRIX[2]),MODEL_MATRIX[3]);
 	mat_world = mat_world * mat4( vec4(cos(INSTANCE_CUSTOM.x),-sin(INSTANCE_CUSTOM.x), 0.0, 0.0), vec4(sin(INSTANCE_CUSTOM.x), cos(INSTANCE_CUSTOM.x), 0.0, 0.0),vec4(0.0, 0.0, 1.0, 0.0),vec4(0.0, 0.0, 0.0, 1.0));
-	MODELVIEW_MATRIX = INV_CAMERA_MATRIX * mat_world;
+	MODELVIEW_MATRIX = VIEW_MATRIX * mat_world;
 	float h_frames = float(particles_anim_h_frames);
 	float v_frames = float(particles_anim_v_frames);
 	float particle_total_frames = float(particles_anim_h_frames * particles_anim_v_frames);

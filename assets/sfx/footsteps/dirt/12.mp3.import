@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/12.mp3-0e747fd3fc2add83b8c08854ba6d073c.mp3str"
+uid="uid://8drryngqcnma"
+path="res://.godot/imported/12.mp3-0e747fd3fc2add83b8c08854ba6d073c.mp3str"
 
 [deps]
 
 source_file="res://assets/sfx/footsteps/dirt/12.mp3"
-dest_files=[ "res://.import/12.mp3-0e747fd3fc2add83b8c08854ba6d073c.mp3str" ]
+dest_files=["res://.godot/imported/12.mp3-0e747fd3fc2add83b8c08854ba6d073c.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

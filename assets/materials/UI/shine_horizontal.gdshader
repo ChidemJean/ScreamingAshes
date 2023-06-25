@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-uniform vec4 shine_color : hint_color = vec4(1.0);
+uniform vec4 shine_color : source_color = vec4(1.0);
 uniform float shine_size : hint_range(0.01, 1.0, 0.01) = 0.1;
 uniform float shine_angle : hint_range(0.0, 89.9, 0.1) = 45.0;
 uniform float speed : hint_range(0.0, 1) = .1;

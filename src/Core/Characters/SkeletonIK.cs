@@ -4,7 +4,7 @@ using System;
 namespace ChidemGames.Core.Characters
 {
     [Tool]
-    public class SkeletonIK : Godot.SkeletonIK
+    public partial class SkeletonIK : SkeletonIK3D
     {
         public override void _EnterTree()
         {

@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/22_magnum_shoot.wav-26f93d7381b51dd7bb9d6ea96e18522b.sample"
+type="AudioStreamWAV"
+uid="uid://d1ihn0ism4vt0"
+path="res://.godot/imported/22_magnum_shoot.wav-26f93d7381b51dd7bb9d6ea96e18522b.sample"
 
 [deps]
 
 source_file="res://assets/sfx/22_magnum_shoot.wav"
-dest_files=[ "res://.import/22_magnum_shoot.wav-26f93d7381b51dd7bb9d6ea96e18522b.sample" ]
+dest_files=["res://.godot/imported/22_magnum_shoot.wav-26f93d7381b51dd7bb9d6ea96e18522b.sample"]
 
 [params]
 

@@ -4,7 +4,7 @@
 code = "shader_type canvas_item;
 
 uniform bool rainbow  = false;
-uniform vec4 line_color : hint_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform vec4 line_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
 uniform float line_scale : hint_range(0, 20) = 1.2;
 uniform float frequency : hint_range(0.0, 2.0) = 0.5;
 uniform float light_offset : hint_range(0.00001, 1.0) = 0.5;

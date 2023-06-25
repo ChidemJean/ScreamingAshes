@@ -20,10 +20,10 @@ expand_margin_left = 5.0
 expand_margin_right = 5.0
 
 [node name="FastSlotView" type="HBoxContainer"]
-margin_right = 63.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 35, 35 )
-custom_constants/separation = 10
+offset_right = 63.0
+offset_bottom = 35.0
+custom_minimum_size = Vector2( 35, 35 )
+theme_override_constants/separation = 10
 script = ExtResource( 3 )
 thumbPath = NodePath("Panel/Thumb")
 defaultStyleBox = ExtResource( 2 )
@@ -31,27 +31,27 @@ selectedStyleBox = ExtResource( 4 )
 panelPath = NodePath("Panel")
 
 [node name="Panel" type="Panel" parent="."]
-margin_right = 35.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 35, 35 )
-custom_styles/panel = ExtResource( 2 )
+offset_right = 35.0
+offset_bottom = 35.0
+custom_minimum_size = Vector2( 35, 35 )
+theme_override_styles/panel = ExtResource( 2 )
 
 [node name="Thumb" type="TextureRect" parent="Panel"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -14.5
-margin_top = -14.5
-margin_right = 14.5
-margin_bottom = 14.5
+offset_left = -14.5
+offset_top = -14.5
+offset_right = 14.5
+offset_bottom = 14.5
 expand = true
 stretch_mode = 6
 
 [node name="ShortcutBox3" parent="." instance=ExtResource( 1 )]
-margin_left = 45.0
-margin_top = 9.0
-margin_right = 63.0
-margin_bottom = 26.0
+offset_left = 45.0
+offset_top = 9.0
+offset_right = 63.0
+offset_bottom = 26.0
 size_flags_vertical = 4
-custom_styles/panel = SubResource( 6 )
+theme_override_styles/panel = SubResource( 6 )

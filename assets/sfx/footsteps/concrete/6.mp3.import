@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/6.mp3-d2136ff1565cf221986518e4c0fee7ff.mp3str"
+uid="uid://bpo07st6vei4s"
+path="res://.godot/imported/6.mp3-d2136ff1565cf221986518e4c0fee7ff.mp3str"
 
 [deps]
 
 source_file="res://assets/sfx/footsteps/concrete/6.mp3"
-dest_files=[ "res://.import/6.mp3-d2136ff1565cf221986518e4c0fee7ff.mp3str" ]
+dest_files=["res://.godot/imported/6.mp3-d2136ff1565cf221986518e4c0fee7ff.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

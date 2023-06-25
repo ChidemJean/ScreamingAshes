@@ -9,7 +9,7 @@ namespace ChidemGames.Core.Items.Weapons
         bool Shoot();
         bool Reload();
         void ReloadFinish();
-        void PlayReloadSfx(float reloadTime, Spatial clipPivot);
+        void PlayReloadSfx(float reloadTime, Node3D clipPivot);
         void ButtBlow();
     }
 }

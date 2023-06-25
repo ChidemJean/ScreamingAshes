@@ -3,7 +3,7 @@ using System;
 
 namespace ChidemGames.Core.Characters
 {
-	public class LightLevel : Viewport
+	public partial class LightLevel : SubViewport
 	{
 
 		[Export]
@@ -14,27 +14,27 @@ namespace ChidemGames.Core.Characters
 		[Export]
 		NodePath rootPath;
 
-		Spatial root;
+		Node3D root;
 
 		public override void _Ready()
 		{
-			root = GetNode<Spatial>(rootPath);
+			root = GetNode<Node3D>(rootPath);
 			player = GetNode<Player>(playerPath);
 		}
 
-		public override void _Process(float delta)
+		public override void _Process(double delta)
 		{
 			if (player != null && player.lightLevelPos != null) {
-				root.GlobalTranslation = player.lightLevelPos.GlobalTranslation;
+				root.GlobalPosition = player.lightLevelPos.GlobalTranslation;
 
-				Image img = GetTexture().GetData();
-				img.Lock();
+				Image img = GetTexture().GetImage();
+				//img.Lock();
 				float amount = 0;
 				float size = img.GetHeight() * img.GetWidth();
 				for (int y = 0; y < img.GetHeight(); y++) {
 					for (int x = 0; x < img.GetWidth(); x++) {
 						Color color = img.GetPixel(x, y);
-						amount += (color.r + color.g + color.b) / 3;
+						amount += (color.R + color.G + color.B) / 3;
 					}
 				}
 				player.lightLevel = amount / size;

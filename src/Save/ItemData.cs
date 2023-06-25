@@ -3,7 +3,7 @@ using System;
 
 namespace ChidemGames.Save
 {
-   public class ItemData : Node
+   public partial class ItemData : Node
    {
    }
 }

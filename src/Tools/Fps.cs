@@ -3,9 +3,9 @@ using System;
 
 namespace ChidemGames.Tools
 {
-   public class Fps : Label
+   public partial class Fps : Label
    {
-      public override void _Process(float delta)
+      public override void _Process(double delta)
       {
          this.Text = Engine.GetFramesPerSecond().ToString();
       }

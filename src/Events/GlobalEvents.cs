@@ -4,47 +4,47 @@ using ChidemGames.Ui;
 
 namespace ChidemGames.Events
 {
-   public class GlobalEvents : Node
+   public partial class GlobalEvents : Node
    {
       
 		[Signal]
-      delegate void RenderSizeChanged(Vector2 newSize, float scale);
+      public delegate void RenderSizeChangedEventHandler(Vector2 newSize, float scale);
 
       [Signal]
-      delegate void ChangeRenderSize(float scale);
+      public delegate void ChangeRenderSizeEventHandler(float scale);
 
       [Signal]
-      delegate void ExplosionHappened(Vector3 position);
+      public delegate void ExplosionHappenedEventHandler(Vector3 position);
 
       [Signal]
-      delegate void CueForceChange(float avg);
+      public delegate void CueForceChangeEventHandler(float avg);
 
       [Signal]
-      delegate void TakeItem(string itemId, bool openMenu);
+      public delegate void TakeItemEventHandler(string itemId, bool openMenu);
 
       [Signal]
-      delegate void OpenMenu();
+      public delegate void OpenMenuEventHandler();
 
       [Signal]
-      delegate void CloseMenu();
+      public delegate void CloseMenuEventHandler();
 
       [Signal]
-      delegate void OnCloseMenu();
+      public delegate void OnCloseMenuEventHandler();
 
       [Signal]
-      delegate void OnSlotMouseEnter(SlotInventory slotInventory);
+      public delegate void OnSlotMouseEnterEventHandler(SlotInventory slotInventory);
 
       [Signal]
-      delegate void OnSlotMouseLeave(SlotInventory slotInventory);
+      public delegate void OnSlotMouseLeaveEventHandler(SlotInventory slotInventory);
 
       [Signal]
-      delegate void DetachItemFromSlot(ItemInventory item);
+      public delegate void DetachItemFromSlotEventHandler(ItemInventory item);
 
       [Signal]
-      delegate void OnFastSlotAttach(int slotIndex, string itemId);
+      public delegate void OnFastSlotAttachEventHandler(int slotIndex, string itemId);
 
       [Signal]
-      delegate void OnFastSlotDetach(int slotIndex);
+      public delegate void OnFastSlotDetachEventHandler(int slotIndex);
 
    }
 }

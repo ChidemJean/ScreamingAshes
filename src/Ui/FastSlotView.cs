@@ -5,7 +5,7 @@ using ChidemGames.Resources;
 
 namespace ChidemGames.Ui
 {
-   public class FastSlotView : HBoxContainer
+   public partial class FastSlotView : HBoxContainer
    {
 		[Export]
 		NodePath thumbPath;

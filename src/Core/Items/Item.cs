@@ -5,11 +5,11 @@ using ChidemGames.Core.Characters;
 
 namespace ChidemGames.Core.Items
 {
-   public class Item : RigidBody
+   public partial class Item : RigidBody3D
    {
       [Export]
       NodePath leftHandPositionPath;
-      private Position3D leftHandPosition;
+      private Marker3D leftHandPosition;
 
       [Export]
       protected NodePath playerPath;
@@ -17,14 +17,14 @@ namespace ChidemGames.Core.Items
 
       [Export]
       NodePath meshesHolderPath;
-      Spatial meshesHolder;
+      Node3D meshesHolder;
 
-      List<MeshInstance> meshes = new List<MeshInstance>();
+      List<MeshInstance3D> meshes = new List<MeshInstance3D>();
 
-      [Export(PropertyHint.Layers3dRender)]
+      [Export(PropertyHint.Layers3DRender)]
       uint defaultLayer;
 
-      [Export(PropertyHint.Layers3dRender)]
+      [Export(PropertyHint.Layers3DRender)]
       uint layerHighlight;
 
       bool isHighlighted = false;
@@ -41,7 +41,7 @@ namespace ChidemGames.Core.Items
       [Export]
       public bool isInteractive = true;
 
-      public Position3D LeftHandPosition
+      public Marker3D LeftHandPosition
       {
          get
          {
@@ -54,24 +54,24 @@ namespace ChidemGames.Core.Items
       public override void _Ready()
       {
          globalManager = GetNode<GlobalManager>("/root/GlobalManager");
-         meshesHolder = GetNode<Spatial>(meshesHolderPath);
+         meshesHolder = GetNode<Node3D>(meshesHolderPath);
          if (meshesHolder != null) {
             foreach (var child in meshesHolder.GetChildren()) {
-               if (child is MeshInstance) {
-                  meshes.Add((MeshInstance) child);
+               if (child is MeshInstance3D) {
+                  meshes.Add((MeshInstance3D) child);
                }
             }
          }
 
          if (leftHandPositionPath != null)
          {
-            leftHandPosition = GetNode<Position3D>(leftHandPositionPath);
+            leftHandPosition = GetNode<Marker3D>(leftHandPositionPath);
          }
       }
 
-      public void ChangePhysics(ModeEnum modeEnum)
+      public void ChangePhysics(bool freeze)
       {
-         Mode = modeEnum;
+         Freeze = freeze;
       }
 
       public bool ChangeHighlight(bool highlight = true)

@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/monster_scream_6.mp3-ed7c3870c69bda0751ce2888563b3ce2.mp3str"
+uid="uid://bbdl2wud751ph"
+path="res://.godot/imported/monster_scream_6.mp3-ed7c3870c69bda0751ce2888563b3ce2.mp3str"
 
 [deps]
 
 source_file="res://assets/sfx/monster_screams/monster_scream_6.mp3"
-dest_files=[ "res://.import/monster_scream_6.mp3-ed7c3870c69bda0751ce2888563b3ce2.mp3str" ]
+dest_files=["res://.godot/imported/monster_scream_6.mp3-ed7c3870c69bda0751ce2888563b3ce2.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

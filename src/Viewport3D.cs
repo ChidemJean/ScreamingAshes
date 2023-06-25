@@ -5,7 +5,7 @@ using ChidemGames.Events;
 namespace ChidemGames.Game
 {
 
-   public class Viewport3D : Viewport
+   public class Viewport3D : SubViewport
    {
       [Export] 
 		private float scaleFactor = 1.0f;
@@ -21,10 +21,10 @@ namespace ChidemGames.Game
          globalEvents = GetNode<GlobalEvents>("/root/GlobalEvents");
 			originalSize = Size;
          currentScale = scaleFactor;
-         Connect("size_changed", this, nameof(OnResize));
+         SizeChanged += OnResize;
          await ToSignal(GetTree().CreateTimer(.75f), "timeout");
 			UpdateViewport3DSize(scaleFactor);
-         globalEvents.Connect(GameEvent.ChangeRenderSize, this, nameof(UpdateViewport3DSize));
+         globalEvents.ChangeRenderSize += UpdateViewport3DSize;
       }
 
       public void OnResize()

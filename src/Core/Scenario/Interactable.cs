@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace ChidemGames.Core.Scenario
 {
-   public class Interactable : Spatial
+   public partial class Interactable : Node3D
    {
       [Export]
       NodePath animationPlayerPath;
@@ -16,15 +16,15 @@ namespace ChidemGames.Core.Scenario
 
       [Export]
       NodePath meshesHolderPath;
-      Spatial meshesHolder;
+      Node3D meshesHolder;
 
-		[Export(PropertyHint.Layers3dRender)]
+		[Export(PropertyHint.Layers3DRender)]
       uint defaultLayer;
 
-      [Export(PropertyHint.Layers3dRender)]
+      [Export(PropertyHint.Layers3DRender)]
       uint layerHighlight;
 
-      List<MeshInstance> meshes = new List<MeshInstance>();
+      List<MeshInstance3D> meshes = new List<MeshInstance3D>();
 
 		[Export]
 		float waitToOut = 0;
@@ -33,14 +33,14 @@ namespace ChidemGames.Core.Scenario
 
       public override void _Ready()
       {
-         meshesHolder = GetNode<Spatial>(meshesHolderPath);
+         meshesHolder = GetNode<Node3D>(meshesHolderPath);
          if (meshesHolder != null)
          {
             foreach (var child in meshesHolder.GetChildren())
             {
-               if (child is MeshInstance)
+               if (child is MeshInstance3D)
                {
-                  meshes.Add((MeshInstance)child);
+                  meshes.Add((MeshInstance3D)child);
                }
             }
          }

@@ -4,7 +4,7 @@ using ChidemGames.Events;
 
 namespace ChidemGames.Ui
 {
-    public class FastInventory : Control
+    public partial class FastInventory : Control
     {
     }
 }

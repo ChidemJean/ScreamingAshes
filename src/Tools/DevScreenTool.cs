@@ -4,7 +4,7 @@ using ChidemGames.Utils;
 
 namespace ChidemGames.Tools 
 {
-    public class DevScreenTool : Node
+    public partial class DevScreenTool : Node
     {
 
         public override void _Ready()

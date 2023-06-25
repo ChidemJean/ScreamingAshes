@@ -4,7 +4,7 @@ using ChidemGames.Core.Items.Weapons;
 
 namespace ChidemGames.Resources
 {
-    public class FirearmClipResource : ItemResource
+    public partial class FirearmClipResource : ItemResource
     {
         [Export]
         public FirearmClipType type = FirearmClipType.Pistol;

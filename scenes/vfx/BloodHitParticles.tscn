@@ -1,11 +1,11 @@
 [gd_scene load_steps=26 format=2]
 
-[ext_resource path="res://assets/vfx/light_point.png" type="Texture" id=1]
-[ext_resource path="res://assets/vfx/smoke.png" type="Texture" id=2]
-[ext_resource path="res://assets/vfx/blood_sprite.png" type="Texture" id=3]
+[ext_resource path="res://assets/vfx/light_point.png" type="Texture2D" id=1]
+[ext_resource path="res://assets/vfx/smoke.png" type="Texture2D" id=2]
+[ext_resource path="res://assets/vfx/blood_sprite.png" type="Texture2D" id=3]
 [ext_resource path="res://src/Core/Vfx/BloodHitParticles.cs" type="Script" id=4]
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="StandardMaterial3D" id=1]
 flags_transparent = true
 flags_unshaded = true
 flags_do_not_receive_shadows = true
@@ -18,10 +18,10 @@ albedo_color = Color( 1, 0, 0, 0.345098 )
 albedo_texture = ExtResource( 2 )
 
 [sub_resource type="Gradient" id=2]
-offsets = PoolRealArray( 0, 0.575931, 1 )
-colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+offsets = PackedFloat32Array( 0, 0.575931, 1 )
+colors = PackedColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=3]
+[sub_resource type="GradientTexture2D" id=3]
 gradient = SubResource( 2 )
 
 [sub_resource type="Curve" id=4]
@@ -30,7 +30,7 @@ _data = [ Vector2( 0, 0 ), 0.0, 3.04057, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 [sub_resource type="CurveTexture" id=5]
 curve = SubResource( 4 )
 
-[sub_resource type="ParticlesMaterial" id=6]
+[sub_resource type="ParticleProcessMaterial" id=6]
 lifetime_randomness = 0.32
 gravity = Vector3( 0, 0, 0 )
 angle = 360.0
@@ -41,7 +41,7 @@ color_ramp = SubResource( 3 )
 
 [sub_resource type="QuadMesh" id=7]
 
-[sub_resource type="SpatialMaterial" id=8]
+[sub_resource type="StandardMaterial3D" id=8]
 flags_transparent = true
 flags_unshaded = true
 flags_do_not_receive_shadows = true
@@ -54,10 +54,10 @@ particles_anim_loop = false
 albedo_texture = ExtResource( 1 )
 
 [sub_resource type="Gradient" id=9]
-offsets = PoolRealArray( 0, 0.283668, 1 )
-colors = PoolColorArray( 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1 )
+offsets = PackedFloat32Array( 0, 0.283668, 1 )
+colors = PackedColorArray( 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1 )
 
-[sub_resource type="GradientTexture" id=10]
+[sub_resource type="GradientTexture2D" id=10]
 gradient = SubResource( 9 )
 
 [sub_resource type="Curve" id=11]
@@ -66,7 +66,7 @@ _data = [ Vector2( 0, 0.0087719 ), 0.0, 0.0, 0, 0, Vector2( 0.239362, 0.175439 )
 [sub_resource type="CurveTexture" id=12]
 curve = SubResource( 11 )
 
-[sub_resource type="ParticlesMaterial" id=13]
+[sub_resource type="ParticleProcessMaterial" id=13]
 lifetime_randomness = 0.02
 emission_shape = 1
 emission_sphere_radius = 0.15
@@ -86,7 +86,7 @@ color_ramp = SubResource( 10 )
 
 [sub_resource type="QuadMesh" id=14]
 
-[sub_resource type="SpatialMaterial" id=15]
+[sub_resource type="StandardMaterial3D" id=15]
 flags_transparent = true
 flags_unshaded = true
 flags_do_not_receive_shadows = true
@@ -98,10 +98,10 @@ particles_anim_loop = false
 albedo_texture = ExtResource( 3 )
 
 [sub_resource type="Gradient" id=18]
-offsets = PoolRealArray( 0, 0.154728, 0.653295, 1 )
-colors = PoolColorArray( 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+offsets = PackedFloat32Array( 0, 0.154728, 0.653295, 1 )
+colors = PackedColorArray( 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=19]
+[sub_resource type="GradientTexture2D" id=19]
 gradient = SubResource( 18 )
 
 [sub_resource type="Curve" id=20]
@@ -110,7 +110,7 @@ _data = [ Vector2( 0, 0.135965 ), 0.0, 0.00993444, 0, 0, Vector2( 0.37234, 0.837
 [sub_resource type="CurveTexture" id=21]
 curve = SubResource( 20 )
 
-[sub_resource type="ParticlesMaterial" id=16]
+[sub_resource type="ParticleProcessMaterial" id=16]
 emission_shape = 1
 emission_sphere_radius = 0.05
 direction = Vector3( 0, -1, 0 )
@@ -122,7 +122,7 @@ anim_speed = 1.0
 [sub_resource type="QuadMesh" id=17]
 
 [node name="BloodHit" type="Particles"]
-transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0 )
+transform = Transform3D( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0 )
 material_override = SubResource( 1 )
 emitting = false
 amount = 2
@@ -146,7 +146,7 @@ process_material = SubResource( 13 )
 draw_pass_1 = SubResource( 14 )
 
 [node name="Blood" type="Particles" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0588863, 0, 0 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0588863, 0, 0 )
 visible = false
 material_override = SubResource( 15 )
 emitting = false

@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/scream_short_3.mp3-3266257f73c651445a69e02824495810.mp3str"
+uid="uid://ctq7bk7bblnio"
+path="res://.godot/imported/scream_short_3.mp3-3266257f73c651445a69e02824495810.mp3str"
 
 [deps]
 
 source_file="res://assets/sfx/screams/scream_short_3.mp3"
-dest_files=[ "res://.import/scream_short_3.mp3-3266257f73c651445a69e02824495810.mp3str" ]
+dest_files=["res://.godot/imported/scream_short_3.mp3-3266257f73c651445a69e02824495810.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

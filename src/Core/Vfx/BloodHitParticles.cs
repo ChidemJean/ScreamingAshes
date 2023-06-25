@@ -4,15 +4,15 @@ using Godot.Collections;
 
 namespace ChidemGames.Core.Vfx
 {
-    public class BloodHitParticles : Particles
+    public partial class BloodHitParticles : GpuParticles3D
     {
-        Array<Particles> particles = new Array<Particles>();
+        Array<GpuParticles3D> particles = new Array<GpuParticles3D>();
 
         public override void _Ready()
         {
             particles.Add(this);
             foreach (var node in GetChildren()) {
-                particles.Add((Particles) node);
+                particles.Add((GpuParticles3D) node);
             }
         }
 

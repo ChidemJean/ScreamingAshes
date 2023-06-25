@@ -6,11 +6,11 @@ namespace ChidemGames.Core.Audio
 
     public interface AdaptiveAudioEmitter
     {
-        RayCast GetTopRay();
-        RayCast GetLeftRay();
-        RayCast GetRightRay();
-        RayCast GetForwardRay();
-        RayCast GetBackwardRay();
-        RayCast GetAimRay();
+        RayCast3D GetTopRay();
+        RayCast3D GetLeftRay();
+        RayCast3D GetRightRay();
+        RayCast3D GetForwardRay();
+        RayCast3D GetBackwardRay();
+        RayCast3D GetAimRay();
     }
 }

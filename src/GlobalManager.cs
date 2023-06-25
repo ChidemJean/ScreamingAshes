@@ -7,11 +7,11 @@ namespace ChidemGames
 {
     public enum StateFocus { GAME, GAME_MENU, INVISIBLE }
 
-    public class GlobalManager : Node
+    public partial class GlobalManager : Node
     {
         public Player currentPlayer;
 
-        public Spatial main3dNode = null;
+        public Node3D main3dNode = null;
 
         public StateFocus stateFocus = StateFocus.GAME;
 

@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/9mm-pistol-shot.wav-2f46fa1e559b4cc77a857254adff8b3b.sample"
+type="AudioStreamWAV"
+uid="uid://cgc7nscn71ik5"
+path="res://.godot/imported/9mm-pistol-shot.wav-2f46fa1e559b4cc77a857254adff8b3b.sample"
 
 [deps]
 
 source_file="res://assets/sfx/9mm-pistol-shot.wav"
-dest_files=[ "res://.import/9mm-pistol-shot.wav-2f46fa1e559b4cc77a857254adff8b3b.sample" ]
+dest_files=["res://.godot/imported/9mm-pistol-shot.wav-2f46fa1e559b4cc77a857254adff8b3b.sample"]
 
 [params]
 

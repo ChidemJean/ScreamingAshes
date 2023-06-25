@@ -3,7 +3,7 @@ using System;
 
 namespace ChidemGames.Resources
 {
-   public class ItemResource : Resource
+   public partial class ItemResource : Resource
    {
 		[Export]
 		public string itemId;
@@ -12,7 +12,7 @@ namespace ChidemGames.Resources
 		public Texture texture;
 
 		[Export]
-		public Texture textureWhite;
+		public Texture2D textureWhite;
 
 		[Export]
 		public int slotsX = 1;

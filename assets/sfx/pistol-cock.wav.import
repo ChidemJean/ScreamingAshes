@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/pistol-cock.wav-060e083bbce8d7ad7cd398066f9f2b35.sample"
+type="AudioStreamWAV"
+uid="uid://b7gd5fph7f774"
+path="res://.godot/imported/pistol-cock.wav-060e083bbce8d7ad7cd398066f9f2b35.sample"
 
 [deps]
 
 source_file="res://assets/sfx/pistol-cock.wav"
-dest_files=[ "res://.import/pistol-cock.wav-060e083bbce8d7ad7cd398066f9f2b35.sample" ]
+dest_files=["res://.godot/imported/pistol-cock.wav-060e083bbce8d7ad7cd398066f9f2b35.sample"]
 
 [params]
 

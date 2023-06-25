@@ -5,7 +5,7 @@ using ChidemGames.Events;
 
 namespace ChidemGames.Debug
 {
-    public class CLI : VBoxContainer
+    public partial class CLI : VBoxContainer
     {
 
         [Export] public NodePath cmdLabelPath;
@@ -16,7 +16,7 @@ namespace ChidemGames.Debug
         public LineEdit input;
         public Control close;
         private bool isOpen = false;
-        private SceneTreeTween tween;
+        private Tween tween;
         private string initialCmdText;
         private List<string> history = new List<string>();
         private int selectedHistoryKey = 0;
@@ -51,8 +51,8 @@ namespace ChidemGames.Debug
                 if (@event is InputEventKey) {
                     InputEventKey _event = (InputEventKey) @event;
                     if (_event.IsPressed()) return; 
-                    bool KeyArrowUp = _event.Scancode == (uint) KeyList.Up;
-                    bool KeyArrowDown = _event.Scancode == (uint) KeyList.Down;
+                    bool KeyArrowUp = _event.PhysicalKeycode == Key.Up;
+                    bool KeyArrowDown = _event.PhysicalKeycode == Key.Down;
                     if (KeyArrowUp || KeyArrowDown) {
                         if (history.Count > 0) {
                             input.GrabFocus();
@@ -68,14 +68,14 @@ namespace ChidemGames.Debug
             if (@event is InputEventKey) {
                 InputEventKey _input = (InputEventKey) @event;
                 if (!_input.IsPressed()) {
-                    if (_input.Scancode == (uint) KeyList.Quoteleft) {
+                    if (_input.PhysicalKeycode == Key.Quoteleft) {
                         if (isOpen) {
                             Close();
                             return;
                         }
                         Open();
                     }
-                    if (_input.Scancode == (uint) KeyList.Escape) {
+                    if (_input.PhysicalKeycode == Key.Escape) {
                         Close();
                     }
                 }
@@ -167,7 +167,7 @@ namespace ChidemGames.Debug
         {
             if (@event is InputEventMouseButton) {
                 InputEventMouseButton _event = (InputEventMouseButton) @event;
-                if (!_event.IsPressed() && _event.ButtonIndex == (int) ButtonList.Left) {
+                if (!_event.IsPressed() && _event.ButtonIndex == MouseButton.Left) {
                     Close();
                 }
             }
@@ -192,7 +192,7 @@ namespace ChidemGames.Debug
                 tween.Kill();
             }
             tween = CreateTween();
-            tween.TweenProperty(this, "rect_position:y", -RectSize.y, .25f);
+            tween.TweenProperty(this, "rect_position:y", -Size.Y, .25f);
             await ToSignal(tween, "finished");
             Visible = false;
             selectedHistoryKey = 0;

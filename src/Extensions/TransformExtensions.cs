@@ -5,46 +5,46 @@ namespace ChidemGames.Extensions
 {
    public static class TransformExtensions
    {
-      public static Transform LookAtBasis(this Transform owner, Vector3 target)
+      public static Transform3D LookAtBasis(this Transform3D owner, Vector3 target)
       {
          Basis lookingAtBasis = new Basis();
-         lookingAtBasis.z = target - owner.origin;
-         lookingAtBasis.x = Vector3.Up.Cross(lookingAtBasis.z);
-         lookingAtBasis.y = lookingAtBasis.z.Cross(lookingAtBasis.x);
+         lookingAtBasis.Z = target - owner.Origin;
+         lookingAtBasis.X = Vector3.Up.Cross(lookingAtBasis.Z);
+         lookingAtBasis.Y = lookingAtBasis.Z.Cross(lookingAtBasis.X);
          lookingAtBasis = lookingAtBasis.Orthonormalized();
 
-         owner.basis = lookingAtBasis;
+         owner.Basis = lookingAtBasis;
 
          return owner;
       }
 
-		public static Transform AlignBasis(this Transform owner, Vector3 target)
+		public static Transform3D AlignBasis(this Transform3D owner, Vector3 target)
       {
          Basis lookingAtBasis = new Basis();
-         lookingAtBasis.z = target - owner.origin;
-         lookingAtBasis.x = Vector3.Up.Cross(lookingAtBasis.z);
-         lookingAtBasis.y = lookingAtBasis.z.Cross(lookingAtBasis.x);
+         lookingAtBasis.Z = target - owner.Origin;
+         lookingAtBasis.X = Vector3.Up.Cross(lookingAtBasis.Z);
+         lookingAtBasis.Y = lookingAtBasis.Z.Cross(lookingAtBasis.X);
          lookingAtBasis = lookingAtBasis.Orthonormalized();
 
-         owner.basis = lookingAtBasis;
+         owner.Basis = lookingAtBasis;
 
          return owner;
       }
 
-		public static Transform ChangeBasis(this Transform owner, Basis basisTarget)
+		public static Transform3D ChangeBasis(this Transform3D owner, Basis basisTarget)
 		{
-			owner.basis = basisTarget;
+			owner.Basis = basisTarget;
 			return owner;
 		}
 
-		public static Transform LookAtWithY(this Transform owner, Vector3 newY, Vector3 vUp)
+		public static Transform3D LookAtWithY(this Transform3D owner, Vector3 newY, Vector3 vUp)
 		{
-			owner.basis.y = newY.Normalized();
-			owner.basis.z = vUp * -1;
-			owner.basis.x = owner.basis.z.Cross(owner.basis.y).Normalized();
-			owner.basis.z = owner.basis.y.Cross(owner.basis.x).Normalized();
-			owner.basis.x = owner.basis.x * -1;
-			owner.basis = owner.basis.Orthonormalized();
+			owner.Basis.Y = newY.Normalized();
+			owner.Basis.Z = vUp * -1;
+			owner.Basis.X = owner.Basis.Z.Cross(owner.Basis.Y).Normalized();
+			owner.Basis.Z = owner.Basis.Y.Cross(owner.Basis.X).Normalized();
+			owner.Basis.X = owner.Basis.X * -1;
+			owner.Basis = owner.Basis.Orthonormalized();
 
 			return owner;
 		}

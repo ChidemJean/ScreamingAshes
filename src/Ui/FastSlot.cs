@@ -4,7 +4,7 @@ using ChidemGames.Events;
 
 namespace ChidemGames.Ui
 {
-   public class FastSlot : SlotInventory
+   public partial class FastSlot : SlotInventory
    {
 		[Export]
 		int slotIndex = 0;

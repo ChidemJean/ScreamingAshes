@@ -6,7 +6,7 @@ using ChidemGames.Debug;
 namespace ChidemGames.Core.Audio
 {
 
-    public class AdaptiveAudioPlayer : AudioStreamPlayer3D
+    public partial class AdaptiveAudioPlayer : AudioStreamPlayer3D
     {
         
         [Export]
