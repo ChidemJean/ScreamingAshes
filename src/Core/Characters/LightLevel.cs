@@ -25,7 +25,7 @@ namespace ChidemGames.Core.Characters
 		public override void _Process(double delta)
 		{
 			if (player != null && player.lightLevelPos != null) {
-				root.GlobalPosition = player.lightLevelPos.GlobalTranslation;
+				root.GlobalPosition = player.lightLevelPos.GlobalPosition;
 
 				Image img = GetTexture().GetImage();
 				//img.Lock();

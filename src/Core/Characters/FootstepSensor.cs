@@ -5,7 +5,7 @@ using ChidemGames.Debug;
 
 namespace ChidemGames.Core.Characters
 {
-    public class FootstepSensor : Area
+    public partial class FootstepSensor : Area3D
     {
         [Export]
         NodePath sfxPath;
@@ -36,7 +36,7 @@ namespace ChidemGames.Core.Characters
             if (node.IsInGroup(NodeGroups.ConcreteBuildings)) {
                 category = "concrete";
             }
-            if (node is KinematicBody && (player.GetBottomRay().IsColliding() || !player.IsOnFloor())) {
+            if (node is CharacterBody3D && (player.GetBottomRay().IsColliding() || !player.IsOnFloor())) {
                 return;
             }
 

@@ -7,7 +7,7 @@ using ChidemGames.Extensions;
 
 namespace ChidemGames.Ui
 {
-   public class ItemInventory : Button
+   public partial class ItemInventory : Button
    {
 		[Export]
 		NodePath thumbPath;
@@ -117,33 +117,33 @@ namespace ChidemGames.Ui
 		public void UpdateSize(Vector2 sizeSlot, Vector2 gridMargin)
 		{
 			if (gridMargin == Vector2.Zero) {
-				RectMinSize = sizeSlot;
-				RectSize = sizeSlot;
-				RectPivotOffset = sizeSlot / 2;
+				CustomMinimumSize = sizeSlot;
+				Size = sizeSlot;
+				PivotOffset = sizeSlot / 2;
 				return;
 			}
-			float marginX = (gridMargin.x * itemRes.slotsX) - gridMargin.x;
-			float marginY = (gridMargin.y * itemRes.slotsY) - gridMargin.y;
+			float marginX = (gridMargin.X * itemRes.slotsX) - gridMargin.X;
+			float marginY = (gridMargin.Y * itemRes.slotsY) - gridMargin.Y;
 			Vector2 newSize = (sizeSlot * new Vector2(itemRes.slotsX, itemRes.slotsY)) + new Vector2(marginX, marginY);
-			RectMinSize = newSize;
-			RectSize = newSize;
-			RectPivotOffset = newSize / 2;
+			CustomMinimumSize = newSize;
+			Size = newSize;
+			PivotOffset = newSize / 2;
 		}
 
-      public override void _Process(float delta)
+      public override void _Process(double delta)
       {
          if (isFollowingMouse) {
 				Vector2 mousePosition = GetViewport().GetMousePosition();
 				if (slotsXOriginal == slotsX) {
-				RectGlobalPosition = mousePosition;
+				GlobalPosition = mousePosition;
 				} else if (slotsXOriginal > slotsYOriginal) {
-					float x = (RectSize.y / 2 - RectSize.x / 2);
-					float y = (RectSize.x / 2 - RectSize.y / 2);
-					RectGlobalPosition = (mousePosition + (new Vector2(x, y)));
+					float x = (Size.Y / 2 - Size.X / 2);
+					float y = (Size.X / 2 - Size.Y / 2);
+					GlobalPosition = (mousePosition + (new Vector2(x, y)));
 				} else {
-					float x = (RectSize.y / 2 - RectSize.x / 2);
-					float y = (RectSize.x / 2 - RectSize.y / 2);
-					RectGlobalPosition = (mousePosition + (new Vector2(x, y)));
+					float x = (Size.Y / 2 - Size.X / 2);
+					float y = (Size.X / 2 - Size.Y / 2);
+					GlobalPosition = (mousePosition + (new Vector2(x, y)));
 				}
 			}
       }
@@ -152,7 +152,7 @@ namespace ChidemGames.Ui
 		{
 			slotsX = slotsXOriginal;
 			slotsY = slotsYOriginal;
-			RectRotation = 0;
+			Rotation = 0;
 		}
 
 		public void Rotate()
@@ -163,12 +163,12 @@ namespace ChidemGames.Ui
 			if (slotsX == slotsXOriginal) {
 				slotsX = slotsYOriginal;
 				slotsY = slotsXOriginal;
-				RectRotation = 90;
+				Rotation = 90;
 				return;
 			}
 			slotsX = slotsXOriginal;
 			slotsY = slotsYOriginal;
-			RectRotation = 0;
+			Rotation = 0;
 		}
 
 		public void Place(List<SlotInventory> _slots, Vector2 gridMargin)
@@ -177,18 +177,18 @@ namespace ChidemGames.Ui
 			isFollowingMouse = false;
 			SlotInventory slotPivot = _slots[0];
 			slotInventoryPivot = slotPivot;
-			slotPivotPos = new Vector2(slotPivot.Pos.x, slotPivot.Pos.y);
+			slotPivotPos = new Vector2(slotPivot.Pos.X, slotPivot.Pos.Y);
 			
 			if (slotsXOriginal == slotsX) {
-				RectGlobalPosition = slotPivot.RectGlobalPosition;
+				GlobalPosition = slotPivot.GlobalPosition;
 			} else if (slotsXOriginal > slotsYOriginal) {
-				float x = (RectSize.y / 2 - RectSize.x / 2);
-				float y = (RectSize.x / 2 - RectSize.y / 2);
-				RectGlobalPosition = (slotPivot.RectGlobalPosition + (new Vector2(x, y)));
+				float x = (Size.Y / 2 - Size.X / 2);
+				float y = (Size.X / 2 - Size.Y / 2);
+				GlobalPosition = (slotPivot.GlobalPosition + (new Vector2(x, y)));
 			} else {
-				float x = (RectSize.y / 2 - RectSize.x / 2);
-				float y = (RectSize.x / 2 - RectSize.y / 2);
-				RectGlobalPosition = (slotPivot.RectGlobalPosition + (new Vector2(x, y)));
+				float x = (Size.Y / 2 - Size.X / 2);
+				float y = (Size.X / 2 - Size.Y / 2);
+				GlobalPosition = (slotPivot.GlobalPosition + (new Vector2(x, y)));
 			}
 			// } else if (slotsXOriginal > slotsYOriginal) {
 			// 	RectGlobalPosition = (slotPivot.RectGlobalPosition + (new Vector2(-(RectSize.x/3f - gridMargin.x * 1.25f), (RectSize.y/2  + gridMargin.y * .5f))));

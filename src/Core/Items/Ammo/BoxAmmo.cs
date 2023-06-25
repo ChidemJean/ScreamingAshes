@@ -4,7 +4,7 @@ using System;
 namespace ChidemGames.Core.Items.Ammo
 {
 
-    public class BoxAmmo : Item
+    public partial class BoxAmmo : Item
     {
         [Export]
         public int bullets = 0;

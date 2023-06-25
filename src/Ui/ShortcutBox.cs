@@ -5,7 +5,7 @@ using ChidemGames.Utils;
 namespace ChidemGames.Ui
 {
 
-   public class ShortcutBox : PanelContainer
+   public partial class ShortcutBox : PanelContainer
    {
 		[Export]
 		public string inputEventName = "";
@@ -14,7 +14,7 @@ namespace ChidemGames.Ui
 		NodePath labelPath;
 		Label label;
 
-		Godot.Collections.Array actionList;
+		Godot.Collections.Array<InputEvent> actionList;
 
 		bool usingJoypad = false;
 
@@ -32,7 +32,7 @@ namespace ChidemGames.Ui
 				return;
 			}
 
-			actionList = InputMap.GetActionList(inputEventName);
+			actionList = InputMap.ActionGetEvents(inputEventName);
          usingJoypad = Input.GetConnectedJoypads().Count > 0;
 
 			UpdateLabel();
@@ -61,7 +61,7 @@ namespace ChidemGames.Ui
 			foreach (var action in actionList) {
 				if (!usingJoypad && (action is InputEventKey)) {
 					var eventKey = (InputEventKey) action;
-					label.Text = OS.GetScancodeString(eventKey.Scancode == 0 ? eventKey.PhysicalScancode : eventKey.Scancode);
+					label.Text = OS.GetKeycodeString(eventKey.Keycode == 0 ? eventKey.PhysicalKeycode : eventKey.Keycode);
 					break;
 				}
 				if (usingJoypad && action is InputEventJoypadMotion) {

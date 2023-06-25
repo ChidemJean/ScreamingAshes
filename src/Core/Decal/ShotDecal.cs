@@ -3,7 +3,7 @@ using System;
 
 namespace ChidemGames.Core.Decal
 {
-    public class ShotDecal : MeshInstance
+    public partial class ShotDecal : MeshInstance3D
     {
         public async override void _Ready()
         {

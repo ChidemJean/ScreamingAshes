@@ -3,7 +3,7 @@ using System;
 
 namespace ChidemGames.Core
 {
-    public class Main3dNode : Spatial
+    public partial class Main3dNode : Node3D
     {
         GlobalManager globalManager;
         

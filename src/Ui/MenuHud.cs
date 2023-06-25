@@ -4,7 +4,7 @@ using ChidemGames.Events;
 
 namespace ChidemGames.Ui
 {
-   public class MenuHud : Control
+   public partial class MenuHud : Control
    {
       [Export]
       public NodePath holderMenuPath;
@@ -18,19 +18,19 @@ namespace ChidemGames.Ui
 
       public override void _Ready()
       {
-			globalManager = GetNode<GlobalManager>("/root/GlobalManager");
-			globalEvents = GetNode<GlobalEvents>("/root/GlobalEvents");
-         holderMenu = GetNode<Control>(holderMenuPath);
-			holderMenu.RectGlobalPosition = new Vector2(GetViewport().Size.x, 0);
-			Color modulate = holderMenu.Modulate;
-			modulate.a = 0;
-			holderMenu.Modulate = modulate;
+		globalManager = GetNode<GlobalManager>("/root/GlobalManager");
+		globalEvents = GetNode<GlobalEvents>("/root/GlobalEvents");
+		holderMenu = GetNode<Control>(holderMenuPath);
+		holderMenu.GlobalPosition = new Vector2(GetViewport().Size.x, 0);
+		Color modulate = holderMenu.Modulate;
+		modulate.A = 0;
+		holderMenu.Modulate = modulate;
 
-			globalEvents.Connect(GameEvent.OpenMenu, this, nameof(OpenMenu));
-			globalEvents.Connect(GameEvent.CloseMenu, this, nameof(CloseMenu));
+		globalEvents.Connect(GameEvent.OpenMenu, this, nameof(OpenMenu));
+		globalEvents.Connect(GameEvent.CloseMenu, this, nameof(CloseMenu));
       }
 
-      public override void _Process(float delta)
+      public override void _Process(double delta)
       {
 			if (Input.IsActionJustPressed("escape"))
          {

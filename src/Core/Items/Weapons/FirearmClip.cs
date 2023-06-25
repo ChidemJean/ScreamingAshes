@@ -3,7 +3,7 @@ using System;
 
 namespace ChidemGames.Core.Items.Weapons
 {
-    public class FirearmClip : Item
+    public partial class FirearmClip : Item
     {
         [Export]
         public int bullets = 5;

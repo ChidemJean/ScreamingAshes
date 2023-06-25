@@ -5,7 +5,7 @@ using ChidemGames.Core.Characters;
 namespace ChidemGames.Ui
 {
 
-   public class StaminaBox : HBoxContainer
+   public partial class StaminaBox : HBoxContainer
    {
 		[Export]
 		NodePath iconPath;
@@ -24,7 +24,7 @@ namespace ChidemGames.Ui
 			staminaProgress = GetNode<ProgressBar>(staminaProgressPath);
       }
 
-      public override void _Process(float delta)
+      public override void _Process(double delta)
       {
          base._Process(delta);
 			if (globalManager.currentPlayer != null) {

@@ -4,7 +4,7 @@ using ChidemGames.Core.Items;
 
 namespace ChidemGames.Core.Items.Ammo
 {
-   public class Box9mm : Item
+   public partial class Box9mm : Item
    {
    }
 }

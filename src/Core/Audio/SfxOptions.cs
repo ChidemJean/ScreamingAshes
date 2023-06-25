@@ -5,7 +5,7 @@ using Godot.Collections;
 namespace ChidemGames.Core.Audio
 {
 
-   public class SfxOptions : Spatial
+   public partial class SfxOptions : Node3D
    {
       [Export]
       Dictionary<string, AudioStream> streams = new Dictionary<string, AudioStream>();

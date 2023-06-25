@@ -247,7 +247,7 @@ namespace ChidemGames.Ui
          var itemScene = ResourceLoader.Load<PackedScene>(itemScenePath);
          Item itemNode = itemScene.Instantiate<Item>();
          globalManager.main3dNode.AddChild(itemNode);
-         itemNode.GlobalPosition = globalManager.currentPlayer.GlobalPosition + (globalManager.currentPlayer.GlobalTransform.basis.z.Normalized() * 3 + (new Vector3(0, 3f, 0)));
+         itemNode.GlobalPosition = globalManager.currentPlayer.GlobalPosition + (globalManager.currentPlayer.GlobalTransform.Basis.Z.Normalized() * 3 + (new Vector3(0, 3f, 0)));
          itemNode.ChangePhysics(false);
       }
 
@@ -261,8 +261,8 @@ namespace ChidemGames.Ui
             return _slots;
          }
 
-         int pivotPosX = Mathf.FloorToInt(item.slotPivotPos.x);
-         int pivotPosY = Mathf.FloorToInt(item.slotPivotPos.y);
+         int pivotPosX = Mathf.FloorToInt(item.slotPivotPos.X);
+         int pivotPosY = Mathf.FloorToInt(item.slotPivotPos.Y);
 
          for (int x = 0; x < item.slotsX; x++)
          {
@@ -298,10 +298,10 @@ namespace ChidemGames.Ui
          if (slotHover.type == SlotType.Backpack)
          {
 
-            itemDrag.UpdateSize(slots[0, 0].RectSize, GetGridMargin());
+            itemDrag.UpdateSize(slots[0, 0].Size, GetGridMargin());
 
-            int pivotPosX = Mathf.FloorToInt(slotHover.Pos.x);
-            int pivotPosY = Mathf.FloorToInt(slotHover.Pos.y);
+            int pivotPosX = Mathf.FloorToInt(slotHover.Pos.X);
+            int pivotPosY = Mathf.FloorToInt(slotHover.Pos.Y);
             canPlace = true;
 
             for (int x = 0; x < itemDrag.slotsX; x++)
@@ -331,7 +331,7 @@ namespace ChidemGames.Ui
          else
          {
             itemDrag.ResetRotation();
-            itemDrag.UpdateSize(slotHover.RectSize, Vector2.Zero);
+            itemDrag.UpdateSize(slotHover.Size, Vector2.Zero);
             slotsHovered.Add(slotHover);
             if (slotHover.type == SlotType.Fast)
             {
@@ -391,7 +391,7 @@ namespace ChidemGames.Ui
          return true;
       }
 
-      public override void _Process(float delta)
+      public override void _Process(double delta)
       {
          if (Engine.GetFramesDrawn() % 60 == 0) {
             GD.Print(items.Count);

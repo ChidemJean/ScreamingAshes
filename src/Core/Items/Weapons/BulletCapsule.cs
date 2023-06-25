@@ -4,7 +4,7 @@ using System;
 namespace ChidemGames.Core.Weapons
 {
 
-    public class BulletCapsule : RigidBody
+    public partial class BulletCapsule : RigidBody3D
     {
         public override async void _Ready()
         {

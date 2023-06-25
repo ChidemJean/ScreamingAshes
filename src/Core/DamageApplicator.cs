@@ -4,7 +4,7 @@ using ChidemGames.Core.Characters;
 
 namespace ChidemGames.Core
 {
-    public class DamageApplicator : Area
+    public partial class DamageApplicator : Area3D
     {
         [Export]
         float damage = .2f;

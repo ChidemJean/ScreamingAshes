@@ -9,7 +9,7 @@ namespace ChidemGames.Resources
 		public string itemId;
 
 		[Export]
-		public Texture texture;
+		public Texture2D texture;
 
 		[Export]
 		public Texture2D textureWhite;

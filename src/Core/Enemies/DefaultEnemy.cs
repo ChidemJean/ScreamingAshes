@@ -9,7 +9,7 @@ using ChidemGames.Core.Characters;
 
 namespace ChidemGames.Core.Enemies
 {
-   public class DefaultEnemy : KinematicBody, AdaptiveAudioEmitter
+   public partial class DefaultEnemy : CharacterBody3D, AdaptiveAudioEmitter
    {
 
 		// RAYS
@@ -20,13 +20,13 @@ namespace ChidemGames.Core.Enemies
       [Export] NodePath leftRayPath;
       [Export] NodePath forwardRayPath;
       [Export] NodePath backwardRayPath;
-      RayCast aimRay;
-      RayCast topRay;
-      RayCast bottomRay;
-      RayCast rightRay;
-      RayCast leftRay;
-      RayCast forwardRay;
-      RayCast backwardRay;
+      RayCast3D aimRay;
+      RayCast3D topRay;
+      RayCast3D bottomRay;
+      RayCast3D rightRay;
+      RayCast3D leftRay;
+      RayCast3D forwardRay;
+      RayCast3D backwardRay;
 
 		[Export]
 		float patrolSpeed = 2f;
@@ -50,14 +50,14 @@ namespace ChidemGames.Core.Enemies
 
 		[Export]
 		NodePath navigationAgentPath;
-		NavigationAgent navigationAgent;
+		NavigationAgent3D navigationAgent;
 
 		Player player = null;
 
 		GlobalManager globalManager;
 		GlobalEvents globalEvents;
 
-		List<Position3D> waypoints = new List<Position3D>();
+		List<Marker3D> waypoints = new List<Marker3D>();
 		public int waypointIdx;
 		
 		RandomNumberGenerator rng = new RandomNumberGenerator();
@@ -69,11 +69,11 @@ namespace ChidemGames.Core.Enemies
 
 		[Export]
 		NodePath closeSightPath;
-		Area closeSight;
+		Area3D closeSight;
 
 		[Export]
 		NodePath farSightPath;
-		Area farSight;
+		Area3D farSight;
 
 		public bool playerInCloseSigth = false;
 		public bool playerInFarSigth = false;
@@ -87,9 +87,9 @@ namespace ChidemGames.Core.Enemies
 
 		[Export]
 		NodePath headPath;
-		Area head;
+		Area3D head;
 
-		[Export(PropertyHint.Layers3dPhysics)]
+		[Export(PropertyHint.Layers3DPhysics)]
 		uint playerMask;
 
 		[Export]
@@ -111,7 +111,7 @@ namespace ChidemGames.Core.Enemies
 
 		[Export]
 		NodePath meshDebugPath;
-		MeshInstance meshDebug;
+		MeshInstance3D meshDebug;
 
 		bool playHuntingSfx = false;
 		bool playIdleSfx = false;
@@ -144,45 +144,47 @@ namespace ChidemGames.Core.Enemies
 			globalManager = GetNode<GlobalManager>("/root/GlobalManager");
 			globalEvents = GetNode<GlobalEvents>("/root/GlobalEvents");
 
-			navigationAgent = GetNode<NavigationAgent>(navigationAgentPath);
+			navigationAgent = GetNode<NavigationAgent3D>(navigationAgentPath);
 			animationTree = GetNode<AnimationTree>(animationTreePath);
 			sfx = GetNode<SfxOptions>(sfxPath);
-			closeSight = GetNode<Area>(closeSightPath);
-			farSight = GetNode<Area>(farSightPath);
-			head = GetNode<Area>(headPath);
+			closeSight = GetNode<Area3D>(closeSightPath);
+			farSight = GetNode<Area3D>(farSightPath);
+			head = GetNode<Area3D>(headPath);
 
 			closeSight.Connect("body_entered", this, nameof(OnCloseSightEntered));
 			closeSight.Connect("body_exited", this, nameof(OnCloseSightExited));
 			farSight.Connect("body_entered", this, nameof(OnFarSightEntered));
 			farSight.Connect("body_exited", this, nameof(OnFarSightExited));
 
-			aimRay = GetNode<RayCast>(aimRayPath);
-         topRay = GetNode<RayCast>(topRayPath);
-         bottomRay = GetNode<RayCast>(bottomRayPath);
-         rightRay = GetNode<RayCast>(rightRayPath);
-         leftRay = GetNode<RayCast>(leftRayPath);
-         forwardRay = GetNode<RayCast>(forwardRayPath);
-         backwardRay = GetNode<RayCast>(backwardRayPath);
+			aimRay = GetNode<RayCast3D>(aimRayPath);
+         topRay = GetNode<RayCast3D>(topRayPath);
+         bottomRay = GetNode<RayCast3D>(bottomRayPath);
+         rightRay = GetNode<RayCast3D>(rightRayPath);
+         leftRay = GetNode<RayCast3D>(leftRayPath);
+         forwardRay = GetNode<RayCast3D>(forwardRayPath);
+         backwardRay = GetNode<RayCast3D>(backwardRayPath);
 
 			var _waypoints = GetTree().GetNodesInGroup("DefaultEnemyWaypoints");
 			foreach (var _waypoint in _waypoints) {
-				waypoints.Add((Position3D) _waypoint);
+				waypoints.Add((Marker3D) _waypoint);
 			}
 
 			if (waypoints.Count > 0) {
-				navigationAgent.SetTargetLocation(waypoints[rng.RandiRange(0, waypoints.Count - 1)].GlobalTranslation);
+				navigationAgent.TargetPosition = waypoints[rng.RandiRange(0, waypoints.Count - 1)].GlobalPosition;
 			}
 
 			viewportDebug = GetNode<Viewport>(viewportDebugPath);
 			labelDebug = GetNode<Label>(labelDebugPath);
-			meshDebug = GetNode<MeshInstance>(meshDebugPath);
+			meshDebug = GetNode<MeshInstance3D>(meshDebugPath);
       }
 
-      public override void _PhysicsProcess(float delta)
+      public override void _PhysicsProcess(double _delta)
       {
-			if (!IsOnFloor())
+		float delta = (float) _delta;
+
+		if (!IsOnFloor())
          {
-            velocity.y -= gravity * 7f * delta;
+            velocity.Y -= gravity * 7f * delta;
          }
 
 			if (isDead) return;
@@ -198,7 +200,7 @@ namespace ChidemGames.Core.Enemies
 					if (navigationAgent.IsNavigationFinished()) {
 						PatrolTimer();
 						state = EnemyState.Waiting;
-						navigationAgent.SetTargetLocation(waypoints[rng.RandiRange(0, waypoints.Count - 1)].GlobalTranslation);
+						navigationAgent.TargetPosition = waypoints[rng.RandiRange(0, waypoints.Count - 1)].GlobalPosition;
 						return;
 					}
 					if (Engine.GetFramesDrawn() % 60 == 0) CheckPlayer();
@@ -211,13 +213,13 @@ namespace ChidemGames.Core.Enemies
 						PatrolTimer();
 						state = EnemyState.Waiting;
 					}
-					navigationAgent.SetTargetLocation(globalManager.currentPlayer.GlobalTranslation);
+					navigationAgent.TargetPosition = globalManager.currentPlayer.GlobalPosition;
 					curSpeed = chasingSpeed;
 					motionTimeScale = 2;
 					break;
 
             case EnemyState.Hunting:
-					if (Engine.GetFramesDrawn() % 20 == 0) navigationAgent.SetTargetLocation(globalManager.currentPlayer.GlobalTranslation);
+					if (Engine.GetFramesDrawn() % 20 == 0) navigationAgent.TargetPosition = globalManager.currentPlayer.GlobalPosition;
 					curSpeed = huntingSpeed;
 					motionTimeScale = 3;
 					if (!playHuntingSfx) {
@@ -246,13 +248,13 @@ namespace ChidemGames.Core.Enemies
 
 			// DEBUG ------------------------------------------------
 			labelDebug.Text = $"{GetStateName()}\nPlayer Close Sight: {playerInCloseSigth}\nPlayer Far Sight: {playerInFarSigth}";
-			SpatialMaterial material = meshDebug.MaterialOverride as SpatialMaterial;
+			var material = meshDebug.MaterialOverride as BaseMaterial3D;
 			material.AlbedoTexture = viewportDebug.GetTexture();
       }
 
 		public float DistanceToPlayer()
 		{
-			return GlobalTranslation.DistanceTo(globalManager.currentPlayer.GlobalTranslation);
+			return GlobalPosition.DistanceTo(globalManager.currentPlayer.GlobalPosition);
 		}
 
 		public async void Attack()
@@ -305,8 +307,9 @@ namespace ChidemGames.Core.Enemies
 
 		public void CheckPlayer()
 		{
-			var spaceState = GetWorld().DirectSpaceState;
-			var result = spaceState.IntersectRay(head.GlobalTranslation, globalManager.currentPlayer.GlobalTranslation + new Vector3(0,2f,0), null, playerMask);
+			var spaceState = GetWorld3D().DirectSpaceState;
+			var rayQuery = PhysicsRayQueryParameters3D.Create(head.GlobalPosition, globalManager.currentPlayer.GlobalPosition + new Vector3(0,2f,0), playerMask);
+			var result = spaceState.IntersectRay(rayQuery);
 			bool isPlayerBehindWall = false;
 
 			if (result.Count > 0) {
@@ -321,11 +324,11 @@ namespace ChidemGames.Core.Enemies
 					if (playerInFarSigth) {
 						if (!targetPlayer.isCrouching && targetPlayer.lightLevel > farLightDetectionLevel) {
 							state = EnemyState.Hunting;
-							navigationAgent.SetTargetLocation(globalManager.currentPlayer.GlobalTranslation);
+							navigationAgent.TargetPosition = globalManager.currentPlayer.GlobalPosition;
 						}
 						if (targetPlayer.isCrouching && targetPlayer.lightLevel > farCrouchedLightDetectionLevel) {
 							state = EnemyState.Hunting;
-							navigationAgent.SetTargetLocation(globalManager.currentPlayer.GlobalTranslation);
+							navigationAgent.TargetPosition = globalManager.currentPlayer.GlobalPosition;
 						}
 					}
 				}
@@ -340,22 +343,24 @@ namespace ChidemGames.Core.Enemies
 			if (waypointIdx > waypoints.Count - 1) {
 				waypointIdx = 0;
 			}
-			navigationAgent.SetTargetLocation(waypoints[waypointIdx].GlobalTranslation);
+			navigationAgent.TargetPosition = waypoints[waypointIdx].GlobalPosition;
 		}
 
 		public void MoveTowards(float speed, float delta)
 		{
 			if (speed > 0) {
-				var targetPos = navigationAgent.GetNextLocation();
-				direction = GlobalTranslation.DirectionTo(targetPos);
-				Vector3 lookingPos = lastTargetPos.LinearInterpolate(targetPos, 1.25f);
-				LookAt(new Vector3(lookingPos.x, GlobalTranslation.y, lookingPos.z), Vector3.Up);
+				var targetPos = navigationAgent.GetNextPathPosition();
+				direction = GlobalPosition.DirectionTo(targetPos);
+				Vector3 lookingPos = lastTargetPos.Lerp(targetPos, 1.25f);
+				LookAt(new Vector3(lookingPos.X, GlobalPosition.Y, lookingPos.Z), Vector3.Up);
 				lastTargetPos = lookingPos;
 			}
 			if (state == EnemyState.Hunting && DistanceToPlayer() <= rangeToAttack) {
 				return;
 			}
-			velocity = MoveAndSlide(direction * speed);
+			velocity = direction * speed;
+			Velocity = velocity;
+			MoveAndSlide();
 			if (playerInFarHearing) {
 				CheckPlayer();
 			}
@@ -408,37 +413,37 @@ namespace ChidemGames.Core.Enemies
 			}
 		}
 
-      public RayCast GetTopRay()
+      public RayCast3D GetTopRay()
       {
          return topRay;
       }
 
-      public RayCast GetLeftRay()
+      public RayCast3D GetLeftRay()
       {
          return leftRay;
       }
 
-      public RayCast GetRightRay()
+      public RayCast3D GetRightRay()
       {
          return rightRay;
       }
 
-      public RayCast GetForwardRay()
+      public RayCast3D GetForwardRay()
       {
          return forwardRay;
       }
 
-      public RayCast GetBackwardRay()
+      public RayCast3D GetBackwardRay()
       {
          return backwardRay;
       }
 
-      public RayCast GetAimRay()
+      public RayCast3D GetAimRay()
       {
          return aimRay;
       }
 
-      public RayCast GetBottomRay()
+      public RayCast3D GetBottomRay()
       {
          return bottomRay;
       }

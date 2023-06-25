@@ -4,7 +4,7 @@ using ChidemGames.Events;
 
 namespace ChidemGames.Ui
 {
-   public class SlotInventory : Button
+   public partial class SlotInventory : Button
    {
 		Vector2 pos = Vector2.Zero;
 

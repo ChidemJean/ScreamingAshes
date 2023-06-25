@@ -32,7 +32,7 @@ namespace ChidemGames.Core.Audio
         [Export]
         public bool autoPlay = true;
 
-        List<RayCast> rays = new List<RayCast>();
+        List<RayCast3D> rays = new List<RayCast3D>();
 
         string type = "generic";
 
@@ -94,17 +94,17 @@ namespace ChidemGames.Core.Audio
                 float xWidth = 0;
                 float zWidth = 0;
 
-                foreach (RayCast ray in rays) {
+                foreach (RayCast3D ray in rays) {
                     if (ray.IsColliding()) {
                         Vector3 cp = ray.GetCollisionPoint();
-                        roomSize += cp.DistanceTo(GlobalTranslation);
+                        roomSize += cp.DistanceTo(GlobalPosition);
 
                         if (ray.Name == "Right" || ray.Name == "Left") {
                             //cp = ray.GetCollisionPoint();
-                            zWidth += cp.DistanceTo(GlobalTranslation);
+                            zWidth += cp.DistanceTo(GlobalPosition);
                         } else if (ray.Name == "Forward" || ray.Name == "Backward") {
                             //cp = ray.GetCollisionPoint();
-                            xWidth += cp.DistanceTo(GlobalTranslation);
+                            xWidth += cp.DistanceTo(GlobalPosition);
                         }
                     }
                 }

@@ -10,7 +10,7 @@ using ChidemGames.Resources;
 
 namespace ChidemGames.Core.Items.Weapons
 {
-   public class Pistol : Weapon, Shootable
+   public partial class Pistol : Weapon, Shootable
    {
       [Export]
       NodePath animPlayerPath;
@@ -18,7 +18,7 @@ namespace ChidemGames.Core.Items.Weapons
 
       [Export]
       NodePath muzzleFlashParticlesPath;
-      Particles muzzleFlashParticles;
+      GpuParticles3D muzzleFlashParticles;
 
       [Export]
       NodePath sxfPath;
@@ -26,11 +26,11 @@ namespace ChidemGames.Core.Items.Weapons
 
       [Export]
       NodePath capsulePositionPath;
-      Position3D capsulePosition;
+      Marker3D capsulePosition;
 
       [Export]
       NodePath slidePath;
-      MeshInstance slide;
+      MeshInstance3D slide;
 
       [Export]
       PackedScene capsule9mm;
@@ -44,7 +44,7 @@ namespace ChidemGames.Core.Items.Weapons
       [Export]
       Godot.Collections.Array<FirearmClipType> acceptedClipTypes = new Godot.Collections.Array<FirearmClipType>();
 
-      Spatial game3dRoot;
+      Node3D game3dRoot;
 
       Vector3 initilSlidePosition;
 
@@ -56,7 +56,7 @@ namespace ChidemGames.Core.Items.Weapons
       [Export]
       NodePath clipPosPath;
 
-      Position3D clipPos;
+      Marker3D clipPos;
 
       FirearmClip currentClip = null;
 
@@ -65,45 +65,35 @@ namespace ChidemGames.Core.Items.Weapons
 
       [Export]
       NodePath bulletFromPath;
-      Position3D bulletFrom;
+      Marker3D bulletFrom;
 
       [Export]
       float bulletRange = 100f;
-
-      [Export]
-      NodePath laserPath;
-
-      ImmediateGeometry laser;
 
       int tempBullets = 0;
 
       public override void _Ready()
       {
          base._Ready();
-         game3dRoot = GetNode<Spatial>("/root/MainScene/ViewportContainer/Viewport/Game");
+         game3dRoot = GetNode<Node3D>("/root/MainScene/ViewportContainer/Viewport/Game");
          animPlayer = GetNode<AnimationPlayer>(animPlayerPath);
-         muzzleFlashParticles = GetNode<Particles>(muzzleFlashParticlesPath);
+         muzzleFlashParticles = GetNode<GpuParticles3D>(muzzleFlashParticlesPath);
          sfx = GetNode<SfxOptions>(sxfPath);
-         capsulePosition = GetNode<Position3D>(capsulePositionPath);
-         bulletFrom = GetNode<Position3D>(bulletFromPath);
-         clipPos = GetNode<Position3D>(clipPosPath);
-         slide = GetNode<MeshInstance>(slidePath);
-         laser = GetNode<ImmediateGeometry>(laserPath);
+         capsulePosition = GetNode<Marker3D>(capsulePositionPath);
+         bulletFrom = GetNode<Marker3D>(bulletFromPath);
+         clipPos = GetNode<Marker3D>(clipPosPath);
+         slide = GetNode<MeshInstance3D>(slidePath);
+
          if (playerPath != null)
          {
             player = GetNode<Player>(playerPath);
          }
-         initilSlidePosition = slide.Translation;
+         initilSlidePosition = slide.Position;
 
          currentClip = clipPos.GetChildOrNull<FirearmClip>(0);
          if (currentClip != null) {
             currentClip.isTakeable = false;
          }
-
-         laser.Begin(Mesh.PrimitiveType.Lines);
-         laser.AddVertex(bulletFrom.Translation);
-         laser.AddVertex(bulletFrom.Translation + bulletFrom.Transform.basis.z.Normalized() * bulletRange * 500);
-         laser.End();
       }
 
       public bool Shoot()
@@ -115,7 +105,7 @@ namespace ChidemGames.Core.Items.Weapons
          }
 
          var tween = GetTree().CreateTween();
-         tween.TweenProperty(slide, "translation:z", initilSlidePosition.z + slideAmount, .07f);
+         tween.TweenProperty(slide, "translation:z", initilSlidePosition.Z + slideAmount, .07f);
          isSlideOpen = true;
 
          if (currentClip.bullets - 1 < 0)
@@ -132,13 +122,13 @@ namespace ChidemGames.Core.Items.Weapons
          // 
          var resultShootRay = GetBulletRay();
 
-         if (resultShootRay != null && resultShootRay.Contains("position"))
+         if (resultShootRay.Count > 0)
          {
             Vector3 shootPosition = (Vector3)resultShootRay["position"];
             Vector3 shootNormal = (Vector3)resultShootRay["normal"];
-            var decalNode = bulletDecal.Instance<ShotDecal>();
-            GetNode<Spatial>("/root/MainScene/ViewportContainer/Viewport/Game").AddChild(decalNode);
-            decalNode.GlobalTranslation = shootPosition;
+            var decalNode = bulletDecal.Instantiate<ShotDecal>();
+            GetNode<Node3D>("/root/MainScene/ViewportContainer/Viewport/Game").AddChild(decalNode);
+            decalNode.GlobalPosition = shootPosition;
          }
          //
 
@@ -146,7 +136,7 @@ namespace ChidemGames.Core.Items.Weapons
 
          if (currentClip.bullets > 0)
          {
-            tween.TweenProperty(slide, "translation:z", initilSlidePosition.z, .06f);
+            tween.TweenProperty(slide, "translation:z", initilSlidePosition.Z, .06f);
             isSlideOpen = false;
          }
 
@@ -155,9 +145,9 @@ namespace ChidemGames.Core.Items.Weapons
 
       public void SpawnCapsule()
       {
-         RigidBody capsule = capsule9mm.Instance<RigidBody>();
+         RigidBody3D capsule = capsule9mm.Instantiate<RigidBody3D>();
          game3dRoot.AddChild(capsule);
-         capsule.GlobalTranslation = capsulePosition.GlobalTranslation;
+         capsule.GlobalPosition = capsulePosition.GlobalPosition;
          capsule.ApplyImpulse(Vector3.Zero, new Vector3(capsuleDropSpeed * 2, capsuleDropSpeed, 0));
       }
 
@@ -201,22 +191,22 @@ namespace ChidemGames.Core.Items.Weapons
          return true;
       }
 
-      public async void PlayReloadSfx(float reloadTime, Spatial clipPivot)
+      public async void PlayReloadSfx(float reloadTime, Node3D clipPivot)
       {
          var tween = GetTree().CreateTween();
-         tween.TweenProperty(slide, "translation:z", initilSlidePosition.z + slideAmount, .07f);
+         tween.TweenProperty(slide, "translation:z", initilSlidePosition.Z + slideAmount, .07f);
          CatchClip(reloadTime, clipPivot);
          await ToSignal(GetTree().CreateTimer(reloadTime * .85f), "timeout");
          tween = GetTree().CreateTween();
-         tween.TweenProperty(slide, "translation:z", initilSlidePosition.z, .07f);
+         tween.TweenProperty(slide, "translation:z", initilSlidePosition.Z, .07f);
          sfx.PlaySfx("cock", player);
       }
 
-      public async void CatchClip(float reloadTime, Spatial clipPivot)
+      public async void CatchClip(float reloadTime, Node3D clipPivot)
       {
          DropClip();
          await ToSignal(GetTree().CreateTimer(reloadTime * .3f), "timeout");
-         Spatial clipNode = SpawnClip(clipPivot);
+         Node3D clipNode = SpawnClip(clipPivot);
          await ToSignal(GetTree().CreateTimer(reloadTime * .5f), "timeout");
          clipPivot.RemoveChild(clipNode);
          clipPos.AddChild(clipNode);
@@ -229,7 +219,7 @@ namespace ChidemGames.Core.Items.Weapons
             var clipToDrop = currentClip;
             currentClip = null;
             var tween = GetTree().CreateTween();
-            tween.TweenProperty(clipToDrop, "global_translation:y", clipToDrop.GlobalTranslation.y - 10f, 1.27f);
+            tween.TweenProperty(clipToDrop, "global_translation:y", clipToDrop.GlobalPosition.Y - 10f, 1.27f);
             await ToSignal(tween, "finished");
             clipToDrop.QueueFree();
          }
@@ -237,14 +227,15 @@ namespace ChidemGames.Core.Items.Weapons
 
       public Godot.Collections.Dictionary GetBulletRay()
       {
-         var spaceState = GetWorld().DirectSpaceState;
-         var resultShootRay = spaceState.IntersectRay(bulletFrom.GlobalTranslation, bulletFrom.GlobalTranslation + GlobalTransform.basis.z.Normalized() * bulletRange);
+         var spaceState = GetWorld3D().DirectSpaceState;
+         var rayQuery = PhysicsRayQueryParameters3D.Create(bulletFrom.GlobalPosition, bulletFrom.GlobalPosition + GlobalTransform.Basis.Z.Normalized() * bulletRange);
+         var resultShootRay = spaceState.IntersectRay(rayQuery);
          return resultShootRay;
       }
 
-      public Spatial SpawnClip(Node parent)
+      public Node3D SpawnClip(Node parent)
       {
-         var clipNode = clip.Instance<FirearmClip>();
+         var clipNode = clip.Instantiate<FirearmClip>();
          clipNode.bullets = tempBullets;
          tempBullets = 0;
          currentClip = clipNode;
@@ -268,7 +259,7 @@ namespace ChidemGames.Core.Items.Weapons
       {
       }
 
-      public override void _PhysicsProcess(float delta)
+      public override void _PhysicsProcess(double delta)
       {
          base._PhysicsProcess(delta);
          if (player == null) {
@@ -276,16 +267,16 @@ namespace ChidemGames.Core.Items.Weapons
          }
 			if (player.isAiming) {
 				var resultShootRay = GetBulletRay();
-				if (resultShootRay != null && resultShootRay.Contains("position"))
+				if (resultShootRay.Count > 0)
 				{
-					((MeshInstance)laser.GetChild(0)).Visible = true;
+					// ((MeshInstance3D)laser.GetChild(0)).Visible = true;
 					Vector3 shootPosition = (Vector3)resultShootRay["position"];
-					((MeshInstance)laser.GetChild(0)).GlobalTranslation = shootPosition;
+					// ((MeshInstance3D)laser.GetChild(0)).GlobalPosition = shootPosition;
 				} else {
-					((MeshInstance)laser.GetChild(0)).Visible = false;
+					// ((MeshInstance3D)laser.GetChild(0)).Visible = false;
 				}
 			} else {
-				((MeshInstance)laser.GetChild(0)).Visible = false;
+				// ((MeshInstance3D)laser.GetChild(0)).Visible = false;
 			}
       }
    }
