@@ -54,9 +54,9 @@ namespace ChidemGames.Ui
 		public void OpenMenu()
 		{
 			globalManager.ChangeStateFocus(StateFocus.GAME_MENU);
-			var tween = GetTree().CreateTween();
+			var tween = CreateTween();
 			tween.TweenProperty(holderMenu, "modulate:a", 1f, .55f);
-			tween.Parallel().TweenProperty(holderMenu, "rect_global_position:x", 0, .45f);
+			tween.Parallel().TweenProperty(holderMenu, "global_position:x", 0, .45f);
 			isOpen = true;
 			if (globalManager.currentPlayer != null) {
 				globalManager.currentPlayer.PlayTakingBackpackAnim();
@@ -66,9 +66,9 @@ namespace ChidemGames.Ui
 		public void CloseMenu()
 		{
 			globalManager.ChangeStateFocus(StateFocus.GAME);
-			var tween = GetTree().CreateTween();
+			var tween = CreateTween();
 			tween.TweenProperty(holderMenu, "modulate:a", 0f, .2f);
-			tween.Parallel().TweenProperty(holderMenu, "rect_global_position:x", GetViewport().GetVisibleRect().Size.X, .35f);
+			tween.Parallel().TweenProperty(holderMenu, "global_position:x", GetViewport().GetVisibleRect().Size.X, .35f);
 			isOpen = false;
 			globalEvents.EmitSignal(GameEvent.OnCloseMenu);
 			if (globalManager.currentPlayer != null) {

@@ -1,7 +1,8 @@
-[gd_scene load_steps=41 format=3 uid="uid://dbcevydyyhdar"]
+[gd_scene load_steps=42 format=3 uid="uid://dbcevydyyhdar"]
 
 [ext_resource type="FontFile" path="res://assets/fonts/baloom_small.tres" id="2"]
 [ext_resource type="Script" path="res://src/Tools/Fps.cs" id="3"]
+[ext_resource type="PackedScene" uid="uid://bckm7wfx8c6pw" path="res://scenes/Game.tscn" id="3_crr2d"]
 [ext_resource type="AudioStream" uid="uid://nsdtlw05odpq" path="res://assets/music/whitenoise.mp3" id="4"]
 [ext_resource type="Shader" path="res://assets/ui/shaders/chromatic_aberration.tres" id="5"]
 [ext_resource type="Texture2D" uid="uid://sorw2ardg70u" path="res://assets/crosshair.png" id="6"]
@@ -17,7 +18,7 @@
 [ext_resource type="FontFile" path="res://assets/fonts/primary/primary_regular.tres" id="16"]
 [ext_resource type="StyleBox" path="res://assets/ui/styles/current_item_hand_style_box.tres" id="17"]
 [ext_resource type="PackedScene" path="res://scenes/ui/FastSlotView.tscn" id="18"]
-[ext_resource type="PackedScene" path="res://scenes/ui/StaminaBox.tscn" id="19"]
+[ext_resource type="PackedScene" uid="uid://bwxyri7fgy3hr" path="res://scenes/ui/StaminaBox.tscn" id="19"]
 [ext_resource type="Texture2D" uid="uid://j8qu4pwxahu1" path="res://assets/ui/health_icon.png" id="20"]
 [ext_resource type="Texture2D" uid="uid://c6htr5ljvimyb" path="res://assets/ui/sanity_icon.png" id="21"]
 [ext_resource type="Texture2D" uid="uid://dav26oxqpnm0t" path="res://assets/ui/scary_icon.png" id="22"]
@@ -25,7 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://cekxmahp5bhs3" path="res://assets/ui/phone.png" id="27"]
 [ext_resource type="Script" path="res://src/Ui/FastInventory.cs" id="28"]
 [ext_resource type="FontFile" path="res://assets/fonts/primary/primary_bold.tres" id="29"]
-[ext_resource type="PackedScene" path="res://scenes/ui/ShortcutBox.tscn" id="30"]
+[ext_resource type="PackedScene" uid="uid://i0ceotwosxxs" path="res://scenes/ui/ShortcutBox.tscn" id="30"]
 [ext_resource type="FontFile" path="res://assets/fonts/primary/primary_regular_small.tres" id="31"]
 [ext_resource type="PackedScene" uid="uid://b3870ceo7ir6k" path="res://scenes/ui/MenuHud.tscn" id="32"]
 [ext_resource type="Script" path="res://src/Core/MainCameraFollower.cs" id="33"]
@@ -79,16 +80,20 @@ size_2d_override_stretch = true
 render_target_update_mode = 4
 script = ExtResource("8")
 
+[node name="Game" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_crr2d")]
+
 [node name="VCOutline" type="SubViewportContainer" parent="."]
 material = SubResource("14")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="VCOutline"]
 transparent_bg = true
 handle_input_locally = false
+gui_disable_input = true
 size = Vector2i(1600, 860)
 render_target_update_mode = 4
 
@@ -99,12 +104,14 @@ script = ExtResource("33")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4")
+autoplay = true
 bus = &"music"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
@@ -112,7 +119,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="Control" type="Control" parent="MarginContainer"]
 layout_mode = 2
-mouse_filter = 1
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="MarginContainer/Control"]
 layout_mode = 0
@@ -132,6 +139,7 @@ script = ExtResource("3")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
@@ -157,7 +165,7 @@ negativeColor = Color(1, 0.141176, 0.141176, 1)
 
 [node name="Container" type="Control" parent="DebugPlayer"]
 layout_mode = 2
-mouse_filter = 1
+mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="DebugPlayer/Container"]
 layout_mode = 0
@@ -183,6 +191,7 @@ stretch = true
 
 [node name="LightLevelViewport" type="SubViewport" parent="DebugPlayer/Container/VBoxContainer/LightLevel/LightLevelWrapper/LightLevel"]
 handle_input_locally = false
+gui_disable_input = true
 size = Vector2i(20, 20)
 render_target_update_mode = 4
 script = ExtResource("10")
@@ -208,6 +217,7 @@ mesh = SubResource("5")
 [node name="LightLevelLabel" type="Label" parent="DebugPlayer/Container/VBoxContainer/LightLevel"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("36")
+theme_override_font_sizes/font_size = 10
 text = "0"
 
 [node name="Spacer2" type="HBoxContainer" parent="DebugPlayer/Container/VBoxContainer"]
@@ -222,12 +232,14 @@ theme_override_constants/separation = 10
 [node name="Label" type="Label" parent="DebugPlayer/Container/VBoxContainer/Up"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("36")
+theme_override_font_sizes/font_size = 10
 text = "Up ray:"
 
 [node name="Up" type="Label" parent="DebugPlayer/Container/VBoxContainer/Up"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.47451, 0.47451, 1)
 theme_override_fonts/font = ExtResource("36")
+theme_override_font_sizes/font_size = 10
 text = "false"
 
 [node name="Down" type="HBoxContainer" parent="DebugPlayer/Container/VBoxContainer"]
@@ -237,12 +249,14 @@ theme_override_constants/separation = 10
 [node name="Label" type="Label" parent="DebugPlayer/Container/VBoxContainer/Down"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("36")
+theme_override_font_sizes/font_size = 10
 text = "Down ray:"
 
 [node name="Down" type="Label" parent="DebugPlayer/Container/VBoxContainer/Down"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.47451, 0.47451, 1)
 theme_override_fonts/font = ExtResource("36")
+theme_override_font_sizes/font_size = 10
 text = "false"
 
 [node name="Right" type="HBoxContainer" parent="DebugPlayer/Container/VBoxContainer"]
@@ -252,12 +266,14 @@ theme_override_constants/separation = 10
 [node name="Label" type="Label" parent="DebugPlayer/Container/VBoxContainer/Right"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("36")
+theme_override_font_sizes/font_size = 10
 text = "Right ray:"
 
 [node name="Right" type="Label" parent="DebugPlayer/Container/VBoxContainer/Right"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.47451, 0.47451, 1)
 theme_override_fonts/font = ExtResource("36")
+theme_override_font_sizes/font_size = 10
 text = "false"
 
 [node name="Left" type="HBoxContainer" parent="DebugPlayer/Container/VBoxContainer"]
@@ -267,12 +283,14 @@ theme_override_constants/separation = 10
 [node name="Label" type="Label" parent="DebugPlayer/Container/VBoxContainer/Left"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("36")
+theme_override_font_sizes/font_size = 10
 text = "Left ray:"
 
 [node name="Left" type="Label" parent="DebugPlayer/Container/VBoxContainer/Left"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.47451, 0.47451, 1)
 theme_override_fonts/font = ExtResource("36")
+theme_override_font_sizes/font_size = 10
 text = "false"
 
 [node name="Forward" type="HBoxContainer" parent="DebugPlayer/Container/VBoxContainer"]
@@ -282,12 +300,14 @@ theme_override_constants/separation = 10
 [node name="Label" type="Label" parent="DebugPlayer/Container/VBoxContainer/Forward"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("36")
+theme_override_font_sizes/font_size = 10
 text = "Forward ray:"
 
 [node name="Forward" type="Label" parent="DebugPlayer/Container/VBoxContainer/Forward"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.47451, 0.47451, 1)
 theme_override_fonts/font = ExtResource("36")
+theme_override_font_sizes/font_size = 10
 text = "false"
 
 [node name="Backward" type="HBoxContainer" parent="DebugPlayer/Container/VBoxContainer"]
@@ -297,12 +317,14 @@ theme_override_constants/separation = 10
 [node name="Label" type="Label" parent="DebugPlayer/Container/VBoxContainer/Backward"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("36")
+theme_override_font_sizes/font_size = 10
 text = "Backward ray:"
 
 [node name="Backward" type="Label" parent="DebugPlayer/Container/VBoxContainer/Backward"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.47451, 0.47451, 1)
 theme_override_fonts/font = ExtResource("36")
+theme_override_font_sizes/font_size = 10
 text = "false"
 
 [node name="Aim" type="HBoxContainer" parent="DebugPlayer/Container/VBoxContainer"]
@@ -312,12 +334,14 @@ theme_override_constants/separation = 10
 [node name="Label" type="Label" parent="DebugPlayer/Container/VBoxContainer/Aim"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("36")
+theme_override_font_sizes/font_size = 10
 text = "Aim ray:"
 
 [node name="Aim" type="Label" parent="DebugPlayer/Container/VBoxContainer/Aim"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.47451, 0.47451, 1)
 theme_override_fonts/font = ExtResource("36")
+theme_override_font_sizes/font_size = 10
 text = "false"
 
 [node name="Spacer" type="HBoxContainer" parent="DebugPlayer/Container/VBoxContainer"]
@@ -332,12 +356,14 @@ theme_override_constants/separation = 10
 [node name="Label" type="Label" parent="DebugPlayer/Container/VBoxContainer/Ambient"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("36")
+theme_override_font_sizes/font_size = 10
 text = "Ambient:"
 
 [node name="Ambient" type="Label" parent="DebugPlayer/Container/VBoxContainer/Ambient"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.443137, 0.439216, 1, 1)
 theme_override_fonts/font = ExtResource("36")
+theme_override_font_sizes/font_size = 10
 text = "false"
 
 [node name="Bus" type="HBoxContainer" parent="DebugPlayer/Container/VBoxContainer"]
@@ -347,12 +373,14 @@ theme_override_constants/separation = 10
 [node name="Label" type="Label" parent="DebugPlayer/Container/VBoxContainer/Bus"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("36")
+theme_override_font_sizes/font_size = 10
 text = "Bus:"
 
 [node name="Bus" type="Label" parent="DebugPlayer/Container/VBoxContainer/Bus"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.443137, 0.439216, 1, 1)
 theme_override_fonts/font = ExtResource("36")
+theme_override_font_sizes/font_size = 10
 text = "false"
 
 [node name="FootstepRight" type="HBoxContainer" parent="DebugPlayer/Container/VBoxContainer"]
@@ -362,12 +390,14 @@ theme_override_constants/separation = 10
 [node name="Label" type="Label" parent="DebugPlayer/Container/VBoxContainer/FootstepRight"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("36")
+theme_override_font_sizes/font_size = 10
 text = "FootstepRight:"
 
 [node name="FootstepRight" type="Label" parent="DebugPlayer/Container/VBoxContainer/FootstepRight"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.443137, 0.439216, 1, 1)
 theme_override_fonts/font = ExtResource("36")
+theme_override_font_sizes/font_size = 10
 text = "false"
 
 [node name="FootstepLeft" type="HBoxContainer" parent="DebugPlayer/Container/VBoxContainer"]
@@ -377,12 +407,14 @@ theme_override_constants/separation = 10
 [node name="Label" type="Label" parent="DebugPlayer/Container/VBoxContainer/FootstepLeft"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("36")
+theme_override_font_sizes/font_size = 10
 text = "FootstepLeft:"
 
 [node name="FootstepLeft" type="Label" parent="DebugPlayer/Container/VBoxContainer/FootstepLeft"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.443137, 0.439216, 1, 1)
 theme_override_fonts/font = ExtResource("36")
+theme_override_font_sizes/font_size = 10
 text = "false"
 
 [node name="Spacer3" type="HBoxContainer" parent="DebugPlayer/Container/VBoxContainer"]
@@ -397,12 +429,14 @@ theme_override_constants/separation = 10
 [node name="Label" type="Label" parent="DebugPlayer/Container/VBoxContainer/ItemSelect"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("36")
+theme_override_font_sizes/font_size = 10
 text = "Item highlight:"
 
 [node name="ItemSelect" type="Label" parent="DebugPlayer/Container/VBoxContainer/ItemSelect"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.443137, 0.439216, 1, 1)
 theme_override_fonts/font = ExtResource("36")
+theme_override_font_sizes/font_size = 10
 text = "false"
 
 [node name="HUD" type="Control" parent="."]
@@ -412,7 +446,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
+mouse_filter = 2
 script = ExtResource("37")
 crosshairPath = NodePath("Crosshair")
 crosshairHandPath = NodePath("CrosshairHandInteract")
@@ -428,6 +462,7 @@ offset_left = -20.0
 offset_top = -20.0
 offset_right = 99.0
 offset_bottom = 72.0
+mouse_filter = 2
 theme_override_constants/margin_left = 13
 theme_override_constants/margin_top = 40
 script = ExtResource("35")
@@ -447,7 +482,6 @@ theme_override_constants/separation = 15
 layout_mode = 2
 
 [node name="Label" parent="HUD/InteractFeedback/VBoxContainer/Take/ShortcutBox" index="0"]
-layout_mode = 2
 text = "E"
 
 [node name="Label" type="Label" parent="HUD/InteractFeedback/VBoxContainer/Take"]
@@ -464,7 +498,6 @@ theme_override_constants/separation = 15
 layout_mode = 2
 
 [node name="Label" parent="HUD/InteractFeedback/VBoxContainer/Inspect/ShortcutBox" index="0"]
-layout_mode = 2
 text = "I"
 
 [node name="Label" type="Label" parent="HUD/InteractFeedback/VBoxContainer/Inspect"]
@@ -481,7 +514,6 @@ theme_override_constants/separation = 15
 layout_mode = 2
 
 [node name="Label" parent="HUD/InteractFeedback/VBoxContainer/Interact/ShortcutBox" index="0"]
-layout_mode = 2
 text = "E"
 
 [node name="Label" type="Label" parent="HUD/InteractFeedback/VBoxContainer/Interact"]
@@ -501,6 +533,7 @@ offset_left = -10.0
 offset_top = -10.0
 offset_right = 5.0
 offset_bottom = 5.0
+mouse_filter = 2
 texture = ExtResource("6")
 expand_mode = 1
 stretch_mode = 6
@@ -517,6 +550,7 @@ offset_left = -10.0
 offset_top = -10.0
 offset_right = 10.0
 offset_bottom = 10.0
+mouse_filter = 2
 texture = ExtResource("38")
 expand_mode = 1
 stretch_mode = 6
@@ -533,6 +567,7 @@ theme_override_constants/margin_bottom = 32
 
 [node name="Container" type="Control" parent="HUD/Main"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="StatsBar" type="VBoxContainer" parent="HUD/Main/Container"]
 layout_mode = 0
@@ -569,6 +604,7 @@ offset_right = 17.0
 offset_bottom = 17.0
 pivot_offset = Vector2(20, 21)
 max_value = 1.0
+show_percentage = false
 
 [node name="Health" type="TextureRect" parent="HUD/Main/Container/StatsBar/MainStats/HealthBar"]
 custom_minimum_size = Vector2(22, 22)
@@ -602,6 +638,7 @@ offset_right = 17.0
 offset_bottom = 17.0
 pivot_offset = Vector2(20, 21)
 value = 100.0
+show_percentage = false
 
 [node name="Sanity" type="TextureRect" parent="HUD/Main/Container/StatsBar/MainStats/SanityBar"]
 custom_minimum_size = Vector2(22, 22)
@@ -635,6 +672,7 @@ offset_right = 17.0
 offset_bottom = 17.0
 pivot_offset = Vector2(20, 21)
 value = 10.0
+show_percentage = false
 
 [node name="Scary" type="TextureRect" parent="HUD/Main/Container/StatsBar/MainStats/ScaryBar"]
 custom_minimum_size = Vector2(22, 22)
@@ -686,18 +724,21 @@ layout_mode = 2
 size_flags_vertical = 4
 texture = ExtResource("27")
 expand_mode = 1
-stretch_mode = 6
+stretch_mode = 5
 
 [node name="ShortcutBox" parent="HUD/Main/Container/Items/PhoneContainer/Phone" instance=ExtResource("30")]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -9.0
-offset_top = 5.0
-offset_right = 9.0
-offset_bottom = 24.0
+offset_left = -12.0
+offset_top = 3.0
+offset_right = 13.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 0
 inputEventName = "phone_interact"
 
 [node name="BagContainer" type="VBoxContainer" parent="HUD/Main/Container/Items"]
@@ -721,15 +762,18 @@ tint_under = Color(1, 1, 1, 0.184314)
 tint_progress = Color(1, 1, 1, 0.239216)
 
 [node name="ShortcutBox" parent="HUD/Main/Container/Items/BagContainer/Bag" instance=ExtResource("30")]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -11.0
-offset_top = 4.0
-offset_right = 7.0
-offset_bottom = 23.0
+offset_top = 1.0
+offset_right = 14.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 0
 inputEventName = "open_inventory"
 
 [node name="Spacer" type="Control" parent="HUD/Main/Container/Items"]
@@ -749,6 +793,7 @@ layout_mode = 2
 self_modulate = Color(1, 1, 1, 0.588235)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("12")
+theme_override_font_sizes/font_size = 42
 text = "25"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD/Main/Container/Items/Ammo"]
@@ -761,7 +806,7 @@ custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
 texture = ExtResource("14")
 expand_mode = 1
-stretch_mode = 6
+stretch_mode = 5
 
 [node name="AvailableAmmo" type="Label" parent="HUD/Main/Container/Items/Ammo/HBoxContainer"]
 layout_mode = 2
@@ -781,16 +826,12 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Thumb" parent="HUD/Main/Container/Items/FastInv/FastSlotView/Panel" index="0"]
-layout_mode = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 29.0
-offset_bottom = 29.0
+layout_mode = 1
+anchors_preset = 8
+grow_horizontal = 2
+grow_vertical = 2
 expand_mode = 1
+stretch_mode = 5
 
 [node name="ShortcutBox3" parent="HUD/Main/Container/Items/FastInv/FastSlotView" index="1"]
 layout_mode = 2
@@ -804,16 +845,12 @@ slotIndex = 1
 layout_mode = 2
 
 [node name="Thumb" parent="HUD/Main/Container/Items/FastInv/FastSlotView2/Panel" index="0"]
-layout_mode = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 29.0
-offset_bottom = 29.0
+layout_mode = 1
+anchors_preset = 8
+grow_horizontal = 2
+grow_vertical = 2
 expand_mode = 1
+stretch_mode = 5
 
 [node name="ShortcutBox3" parent="HUD/Main/Container/Items/FastInv/FastSlotView2" index="1"]
 layout_mode = 2
@@ -827,16 +864,12 @@ slotIndex = 2
 layout_mode = 2
 
 [node name="Thumb" parent="HUD/Main/Container/Items/FastInv/FastSlotView3/Panel" index="0"]
-layout_mode = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 29.0
-offset_bottom = 29.0
+layout_mode = 1
+anchors_preset = 8
+grow_horizontal = 2
+grow_vertical = 2
 expand_mode = 1
+stretch_mode = 5
 
 [node name="ShortcutBox3" parent="HUD/Main/Container/Items/FastInv/FastSlotView3" index="1"]
 layout_mode = 2
@@ -850,14 +883,20 @@ theme_override_styles/panel = ExtResource("17")
 
 [node name="TextureRect" type="TextureRect" parent="HUD/Main/Container/Items/FastInv/Current"]
 self_modulate = Color(1, 1, 1, 0.415686)
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("23")
 expand_mode = 1
-stretch_mode = 6
+stretch_mode = 5
 
 [node name="QuestBar" type="VBoxContainer" parent="HUD/Main/Container"]
+visible = false
 layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
@@ -896,9 +935,7 @@ permitindo a entrada, procure nas redondezas
 uma forma de entrar na cidade."
 
 [node name="MenuHud" parent="HUD" instance=ExtResource("32")]
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
+layout_mode = 1
 offset_left = 1600.0
 offset_right = 1600.0
 
@@ -907,6 +944,7 @@ visible = false
 layout_mode = 0
 offset_right = 25.0
 offset_bottom = 25.0
+mouse_filter = 2
 value = 80.0
 fill_mode = 5
 nine_patch_stretch = true
@@ -915,9 +953,11 @@ texture_progress = ExtResource("11")
 tint_under = Color(1, 1, 1, 0.490196)
 
 [node name="CLI" parent="." instance=ExtResource("7")]
+visible = false
 anchors_preset = 15
 
 [node name="Label2" type="Label" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.117647)
 anchors_preset = 5
 anchor_left = 0.5

@@ -1,8 +1,0 @@
-{
-	"contains_albedo": true,
-	"resolution": 512,
-	"src": {
-		"a": "res://terrain/materials/Ground063_1K-JPG/Ground063_1K_Displacement.jpg",
-		"rgb": "res://terrain/materials/Ground063_1K-JPG/Ground063_1K_Color.jpg"
-	}
-}

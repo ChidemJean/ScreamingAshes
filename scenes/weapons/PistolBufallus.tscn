@@ -48,11 +48,8 @@ _data = {
 [node name="PistolBufallus" type="RigidBody3D"]
 collision_layer = 32
 collision_mask = 4108
+freeze = true
 script = ExtResource("2")
-meshesHolderPath = NodePath("pistol_taurus")
-defaultLayer = 1
-layerHighlight = 64
-itemId = "PistolBufallus"
 animPlayerPath = NodePath("AnimationPlayer")
 muzzleFlashParticlesPath = NodePath("MuzzleParticles")
 sxfPath = NodePath("Sfx")
@@ -65,7 +62,10 @@ clipPosPath = NodePath("ClipPost")
 bulletDecal = ExtResource("10")
 bulletFromPath = NodePath("BulletFrom")
 bulletRange = 600.0
-laserPath = NodePath("")
+meshesHolderPath = NodePath("pistol_taurus")
+defaultLayer = 1
+layerHighlight = 64
+itemId = "PistolBufallus"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.175122, 0.0288309)

@@ -75,7 +75,6 @@ namespace ChidemGames.Core.Items.Weapons
       public override void _Ready()
       {
          base._Ready();
-         game3dRoot = GetNode<Node3D>("/root/MainScene/ViewportContainer/Viewport/Game");
          animPlayer = GetNode<AnimationPlayer>(animPlayerPath);
          muzzleFlashParticles = GetNode<GpuParticles3D>(muzzleFlashParticlesPath);
          sfx = GetNode<SfxOptions>(sxfPath);
@@ -94,6 +93,7 @@ namespace ChidemGames.Core.Items.Weapons
          if (currentClip != null) {
             currentClip.isTakeable = false;
          }
+         game3dRoot = globalManager.main3dNode;
       }
 
       public bool Shoot()

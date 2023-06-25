@@ -1,29 +1,24 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://i0ceotwosxxs"]
 
-[ext_resource path="res://assets/fonts/primary/primary_regular_small.tres" type="FontFile" id=1]
-[ext_resource path="res://src/Ui/ShortcutBox.cs" type="Script" id=2]
-[ext_resource path="res://assets/ui/styles/shortcut_box_style.tres" type="StyleBox" id=3]
-[ext_resource path="res://assets/ui/styles/shortcut_selected_box_style.tres" type="StyleBox" id=4]
+[ext_resource type="FontFile" path="res://assets/fonts/primary/primary_regular_small.tres" id="1"]
+[ext_resource type="Script" path="res://src/Ui/ShortcutBox.cs" id="2"]
+[ext_resource type="StyleBox" uid="uid://2p1fwlqawvji" path="res://assets/ui/styles/shortcut_box_style.tres" id="3"]
+[ext_resource type="StyleBox" path="res://assets/ui/styles/shortcut_selected_box_style.tres" id="4"]
 
 [node name="ShortcutBox" type="PanelContainer"]
-offset_top = 130.0
-offset_right = 18.0
-offset_bottom = 149.0
-custom_minimum_size = Vector2( 0, 17 )
-theme_override_styles/panel = ExtResource( 3 )
-script = ExtResource( 2 )
+custom_minimum_size = Vector2(0, 17)
+offset_right = 25.0
+offset_bottom = 23.0
+theme_override_styles/panel = ExtResource("3")
+script = ExtResource("2")
 labelPath = NodePath("Label")
-defaultStyleBox = ExtResource( 3 )
-selectedStyleBox = ExtResource( 4 )
+defaultStyleBox = ExtResource("3")
+selectedStyleBox = ExtResource("4")
 
 [node name="Label" type="Label" parent="."]
-offset_left = 1.0
-offset_top = 3.0
-offset_right = 17.0
-offset_bottom = 16.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource( 1 )
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1")
+theme_override_font_sizes/font_size = 12
 text = "Tab"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1

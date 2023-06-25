@@ -137,7 +137,6 @@ namespace ChidemGames.Debug
 
                     case "crs":
                         float size = cmdParams[0].ToFloat() / 10f;
-                        GD.Print(size);
                         globalEvents.EmitSignal(GameEvent.ChangeRenderSize, size);
                         Close();
                         break;

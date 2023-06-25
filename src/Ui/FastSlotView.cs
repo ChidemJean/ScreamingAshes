@@ -95,7 +95,7 @@ namespace ChidemGames.Ui
 		public void Select()
 		{
 			isSelected = true;
-			panel.Set("custom_styles/panel", selectedStyleBox);
+			panel.Set("theme_override_styles/panel", selectedStyleBox);
 			var tween = GetTree().CreateTween();
 			tween.TweenProperty(thumb, "modulate:a", .9f, .16f);
 		}
@@ -103,7 +103,7 @@ namespace ChidemGames.Ui
 		public void Unselect()
 		{
 			isSelected = false;
-			panel.Set("custom_styles/panel", defaultStyleBox);
+			panel.Set("theme_override_styles/panel", defaultStyleBox);
 			var tween = GetTree().CreateTween();
 			tween.TweenProperty(thumb, "modulate:a", .08f, .1f);
 		}

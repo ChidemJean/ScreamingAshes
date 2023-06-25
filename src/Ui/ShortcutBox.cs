@@ -44,11 +44,11 @@ namespace ChidemGames.Ui
 				return;
 			}
 			if (@event.IsActionPressed(inputEventName)) {
-				Set("custom_styles/panel", selectedStyleBox);
+				Set("theme_override_styles/panel", selectedStyleBox);
 				return;
 			}
 			if (@event.IsActionReleased(inputEventName)) {
-				Set("custom_styles/panel", defaultStyleBox);
+				Set("theme_override_styles/panel", defaultStyleBox);
 				return;
 			}
 		}

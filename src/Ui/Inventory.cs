@@ -162,7 +162,7 @@ namespace ChidemGames.Ui
 
       public Vector2 GetGridMargin()
       {
-         return new Vector2(grid.Get("custom_constants/vseparation").ToString().ToFloat(), grid.Get("custom_constants/hseparation").ToString().ToFloat());
+         return new Vector2(grid.Get("theme_override_constants/v_separation").ToString().ToFloat(), grid.Get("theme_override_constants/h_separation").ToString().ToFloat());
       }
 
       public void AddItem(string itemId, int subitems = 0)
@@ -195,11 +195,11 @@ namespace ChidemGames.Ui
             itemDrag.UpdateSize(slots[0, 0].Size, GetGridMargin());
 
             bool _openMenu = openMenu;
-            
             if (!openMenu) {
                TryAutomaticPlaceItem();
                _openMenu = !canPlace;
             }
+            GD.Print(itemId);
 
             if (_openMenu)
             {
@@ -399,7 +399,6 @@ namespace ChidemGames.Ui
       public override void _Process(double delta)
       {
          if (Engine.GetFramesDrawn() % 60 == 0) {
-            GD.Print(items.Count);
          }
       }
 

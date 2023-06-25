@@ -333,7 +333,7 @@ namespace ChidemGames.Core.Characters
 
       public override void _Input(InputEvent _event)
       {
-         if (_event is InputEventMouseMotion && IsPlaying())
+         if (_event is InputEventMouseMotion)
          {
             InputEventMouseMotion motionEvent = (InputEventMouseMotion)_event;
             head.Rotation = new Vector3(Mathf.Clamp(head.Rotation.X - motionEvent.Relative.Y * -1 / 1000 * sensitivity, -1, 1f), head.Rotation.Y - motionEvent.Relative.X / 1000 * sensitivity, 0);
