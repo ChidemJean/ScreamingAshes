@@ -1,90 +1,89 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://dul0rq0x6l1oq"]
 
-[ext_resource path="res://assets/fonts/baloom_small.tres" type="FontFile" id=1]
-[ext_resource path="res://assets/materials/UI/BlurWithColor.tres" type="Material" id=2]
-[ext_resource path="res://src/Debug/CLI.cs" type="Script" id=4]
+[ext_resource type="Material" uid="uid://deg32ycon3vk0" path="res://assets/materials/UI/BlurWithColor.tres" id="2"]
+[ext_resource type="FontFile" path="res://assets/fonts/secondary/secondary_medium.tres" id="3_1cy3u"]
+[ext_resource type="PackedScene" uid="uid://c0cwpnl5vmnjq" path="res://scenes/debug/LabelCmd.tscn" id="3_kbm8s"]
+[ext_resource type="Script" path="res://src/Debug/CLI.cs" id="4"]
 
-[sub_resource type="StyleBoxEmpty" id=1]
+[sub_resource type="StyleBoxEmpty" id="1"]
 content_margin_left = 45.0
-content_margin_right = 45.0
 content_margin_top = 5.0
+content_margin_right = 45.0
 content_margin_bottom = 5.0
 
 [node name="CLI" type="VBoxContainer"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 6.0
-offset_top = -1930.0
-offset_right = 6.0
-offset_bottom = -1930.0
-script = ExtResource( 4 )
-cmdLabelPath = NodePath("CMDS/MarginContainer/VBoxContainer/Label")
+offset_bottom = -379.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+script = ExtResource("4")
+cmdLabelPath = NodePath("CMDS/MarginContainer/ScrollContainer/VBoxContainer/Label")
 inputPath = NodePath("InputBg/MarginContainer/Input")
 closePath = NodePath("CMDS/TextureButton")
+labelsCtnPath = NodePath("CMDS/MarginContainer/ScrollContainer/VBoxContainer")
+labelCmd = ExtResource("3_kbm8s")
 
 [node name="CMDS" type="ColorRect" parent="."]
-material = ExtResource( 2 )
-offset_right = 1600.0
-offset_bottom = 776.0
-mouse_filter = 1
+material = ExtResource("2")
+layout_mode = 2
 size_flags_vertical = 3
-color = Color( 0, 0, 0, 1 )
+mouse_filter = 1
+color = Color(0, 0, 0, 1)
 
 [node name="TextureButton" type="TextureRect" parent="CMDS"]
+layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -105.0
 offset_top = 20.0
 offset_right = -25.0
 offset_bottom = 100.0
-expand = true
+expand_mode = 1
 stretch_mode = 6
 
 [node name="MarginContainer" type="MarginContainer" parent="CMDS"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 1
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CMDS/MarginContainer"]
-offset_left = 30.0
-offset_top = 30.0
-offset_right = 1570.0
-offset_bottom = 766.0
+[node name="ScrollContainer" type="ScrollContainer" parent="CMDS/MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
 
-[node name="Label" type="Label" parent="CMDS/MarginContainer/VBoxContainer"]
-offset_right = 1540.0
-offset_bottom = 28.0
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_fonts/font = ExtResource( 1 )
-text = "--- CLI Chidem Games ---"
+[node name="VBoxContainer" type="VBoxContainer" parent="CMDS/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" parent="CMDS/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_kbm8s")]
+layout_mode = 2
 
 [node name="InputBg" type="ColorRect" parent="."]
-offset_top = 780.0
-offset_right = 1600.0
-offset_bottom = 900.0
-custom_minimum_size = Vector2( 0, 120 )
+material = ExtResource("2")
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
 mouse_filter = 1
-color = Color( 0, 0, 0, 1 )
+color = Color(0, 0, 0, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="InputBg"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 1
-theme_override_constants/margin_right = 5
+theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 5
-theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 5
 
 [node name="Input" type="LineEdit" parent="InputBg/MarginContainer"]
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 1595.0
-offset_bottom = 115.0
+layout_mode = 2
 mouse_filter = 1
-theme_override_fonts/font = ExtResource( 1 )
-theme_override_styles/normal = SubResource( 1 )
+theme_override_fonts/font = ExtResource("3_1cy3u")
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("1")
 placeholder_text = "Digite o comando aqui"

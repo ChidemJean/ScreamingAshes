@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bckm7wfx8c6pw"]
+[gd_scene load_steps=16 format=3 uid="uid://bckm7wfx8c6pw"]
 
 [ext_resource type="Script" path="res://src/Core/Main3dNode.cs" id="1_qw7o4"]
 [ext_resource type="Environment" uid="uid://c2tgto0rwklep" path="res://default_env.tres" id="1_x11dp"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://455eameebvee" path="res://scenes/firearm_clips/PistolBufallusClip.tscn" id="10_6lnhf"]
 [ext_resource type="PackedScene" uid="uid://ds8nt3fxap61x" path="res://scenes/melee/Knife.tscn" id="11_na4ol"]
 [ext_resource type="PackedScene" uid="uid://btw78yl2xtnas" path="res://models/enemies/DefaultEnemy/default_enemy.glb" id="12_2e08u"]
-[ext_resource type="PackedScene" uid="uid://djj2jwexpvc0p" path="res://scenes/enemies/DefaultEnemy.tscn" id="17"]
 [ext_resource type="PackedScene" uid="uid://cbata51tj4ksd" path="res://scenes/weapons/PistolBufallus.tscn" id="20"]
 [ext_resource type="PackedScene" uid="uid://dthjxusctbm14" path="res://scenes/furniture/CabinetWood.tscn" id="24"]
 
@@ -78,18 +77,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.4743, 1.78622, -20.2982)
 
 [node name="Waypoint5" type="Marker3D" parent="NavigationRegion3D/Waypoints" groups=["DefaultEnemyWaypoints"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.1586, 1.78622, -16.8233)
-
-[node name="DefaultEnemy" parent="NavigationRegion3D" instance=ExtResource("17")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -8.57665, 0, -70.4506)
-
-[node name="DefaultEnemy11" parent="NavigationRegion3D" instance=ExtResource("17")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -22.5097, 0, -84.9117)
-
-[node name="DefaultEnemy12" parent="NavigationRegion3D" instance=ExtResource("17")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -22.5097, 0, -59.0778)
-
-[node name="DefaultEnemy9" parent="NavigationRegion3D" instance=ExtResource("17")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -8.72575, 0, -59.7212)
 
 [node name="Box9mm" parent="." instance=ExtResource("8_uq8go")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.764697, 5.60033, 57.6823)

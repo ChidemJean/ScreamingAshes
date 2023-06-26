@@ -41,6 +41,7 @@ namespace ChidemGames.Ui
 
       SlotInventory slotHover = null;
 
+      List<FastSlot> fastSlots = new List<FastSlot>();
       List<SlotInventory> slotsHovered = new List<SlotInventory>();
       List<ItemInventory> items = new List<ItemInventory>();
 
@@ -69,6 +70,11 @@ namespace ChidemGames.Ui
                }
                slots[x, y] = slot;
             }
+         }
+
+         foreach (var node in GetNode("FastHandItems").GetChildren())
+         {
+            fastSlots.Add((FastSlot) node);
          }
 
          // globalEvents.Connect(GameEvent.TakeItem, this, nameof(OnTakeItem));
@@ -199,7 +205,6 @@ namespace ChidemGames.Ui
                TryAutomaticPlaceItem();
                _openMenu = !canPlace;
             }
-            GD.Print(itemId);
 
             if (_openMenu)
             {
@@ -211,6 +216,19 @@ namespace ChidemGames.Ui
 
       public void TryAutomaticPlaceItem()
       {
+         if (itemDrag.itemRes.category == ItemResourceCategory.Attackable) {
+            foreach (var fastSlot in fastSlots) {
+               if (fastSlot.Status == SlotInventoryStatus.Free) {
+                  ClearHoveredSlots();
+                  slotsHovered.Add(fastSlot);
+                  canPlace = true;
+                  itemDrag.ResetRotation();
+                  itemDrag.UpdateSize(fastSlot.Size, Vector2.Zero);
+                  PlaceItem();
+                  return;
+               }
+            }
+         }
          for (int y = 0; y < slots.GetLength(1); y++)
          {
             for (int x = 0; x < slots.GetLength(0); x++)

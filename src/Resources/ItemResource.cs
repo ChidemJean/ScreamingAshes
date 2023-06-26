@@ -32,5 +32,8 @@ namespace ChidemGames.Resources
 		[Export]
 		public int subitems = 0;
 
+		[Export]
+		public ItemResourceCategory category;
+
    }
 }

@@ -11,6 +11,8 @@ namespace ChidemGames.Debug
         [Export] public NodePath cmdLabelPath;
         [Export] public NodePath inputPath;
         [Export] public NodePath closePath;
+        [Export] public NodePath labelsCtnPath;
+        [Export] public PackedScene labelCmd;
 
         public Label cmdLabel;
         public LineEdit input;
@@ -20,7 +22,15 @@ namespace ChidemGames.Debug
         private string initialCmdText;
         private List<string> history = new List<string>();
         private int selectedHistoryKey = 0;
+        private VBoxContainer labelsCtn;
         private GlobalEvents globalEvents;
+        GlobalManager globalManager;
+
+        public enum LineType {
+            Error,
+            Success,
+            Default
+        }
 
         public Dictionary<string, string> cmds = new Dictionary<string, string> 
         { 
@@ -31,19 +41,24 @@ namespace ChidemGames.Debug
             {"list_hist", "list_hist - Lista o histórico de comandos"},
             {"crs", "crs [value: 1 - 10] - Altera o render size"},
             {"inv", "inv - Solicita operação no inventário"},
+            {"sp_enemy", "sp_enemy - Spawna um novo inimigo"},
+            {"get_item", "get_item - Adiciona um item no inventário"},
+            {"kill_all", "kill_all - Mata todos os inimigos"},
         };
         
         public override void _Ready()
         {
             globalEvents = GetNode<GlobalEvents>("/root/GlobalEvents");
+            globalManager = GetNode<GlobalManager>("/root/GlobalManager");
             cmdLabel = GetNode<Label>(cmdLabelPath);
             input = GetNode<LineEdit>(inputPath);
             close = GetNode<Control>(closePath);
+            labelsCtn = GetNode<VBoxContainer>(labelsCtnPath);
             initialCmdText = cmdLabel.Text;
             // input.Connect("text_entered", this, nameof(OnTextEntered));
             // input.Connect("gui_input", this, nameof(OnGuiInput));
             // close.Connect("gui_input", this, nameof(OnGuiInputClose));
-            input.TextChanged += OnTextEntered;
+            input.TextSubmitted += OnTextEntered;
             input.GuiInput += OnGuiInput;
             close.GuiInput += OnGuiInputClose;
         }
@@ -85,6 +100,25 @@ namespace ChidemGames.Debug
             }
         }
 
+        public void SpawnNewLine(string message, LineType lineType = LineType.Default)
+        {
+            var label = labelCmd.Instantiate<Label>();
+            labelsCtn.AddChild(label);
+            Color colorLabel =  new Color(1,1,1);
+            switch (lineType) {
+                case LineType.Default:
+                    break;
+                case LineType.Error:
+                    colorLabel = new Color(1,0,0);
+                    break;
+                case LineType.Success:
+                    colorLabel = new Color(0,1,0);
+                    break;
+            }
+            label.Set("theme_override_colors/font_color", colorLabel);
+            label.Text = message;
+        }
+
         public void OnTextEntered(string newText)
         {
             if (!isOpen) return;
@@ -94,7 +128,7 @@ namespace ChidemGames.Debug
                     return;
                 }
             }
-            cmdLabel.Text += "\n" + "Comando não encontrado";
+            SpawnNewLine("Comando não encontrado");
             input.Text = "";
         }
 
@@ -103,12 +137,16 @@ namespace ChidemGames.Debug
             AddCmdToHistory(cmd);
             selectedHistoryKey = 0;
             if (cmdKey == "clear") {
-                cmdLabel.Text = initialCmdText;
+                foreach (var node in labelsCtn.GetChildren())
+                {
+                    node.QueueFree();
+                }
+                SpawnNewLine(initialCmdText);
             } else {
                 string[] cmdParams = cmd.Substr(cmd.IndexOf(cmdKey) + cmdKey.Length, cmd.Length-1).Trim().Split(" ");
                 switch (cmdKey) {
                     case "cs":
-                        cmdLabel.Text += "\n" + "'" + cmd + "' executado.";
+                        SpawnNewLine("'" + cmd + "' executado.");
                         Close();
                         break;
                     
@@ -117,7 +155,7 @@ namespace ChidemGames.Debug
                         foreach (KeyValuePair<string, string> keyValueCmd in cmds) {
                             helpStr += "\n" + keyValueCmd.Value;
                         }
-                        cmdLabel.Text += helpStr;
+                        SpawnNewLine(helpStr);
                         break;
 
                     case "clr_hist":
@@ -132,13 +170,47 @@ namespace ChidemGames.Debug
                         foreach (string histItem in history) {
                             histStr += "\n ------ ["+(history.IndexOf(histItem)+1)+"]: " + histItem;
                         }
-                        cmdLabel.Text += histStr;
+                        SpawnNewLine(histStr);
                         break;
 
                     case "crs":
                         float size = cmdParams[0].ToFloat() / 10f;
                         globalEvents.EmitSignal(GameEvent.ChangeRenderSize, size);
                         Close();
+                        break;
+
+                    case "sp_enemy":
+                        string resPath = cmdParams[0];
+                        int qtdE = cmdParams.Length == 2 ? cmdParams[1].ToInt() : 1;
+                        var enemyScene = ResourceLoader.Load<PackedScene>($"res://scenes/enemies/{resPath}.tscn");
+                        var rng = new RandomNumberGenerator();
+                        rng.Randomize();
+                        
+                        for (int i = 0; i < qtdE; i++) {
+                            var enemyNode = enemyScene.Instantiate<Node3D>();
+                            globalManager.main3dNode.AddChild(enemyNode);
+                            var _waypoints = GetTree().GetNodesInGroup("DefaultEnemyWaypoints");
+                            Vector3 pos = ((Marker3D) _waypoints[rng.RandiRange(0, _waypoints.Count - 1)]).GlobalPosition;
+                            enemyNode.GlobalPosition = pos;
+                            SpawnNewLine($"     Inimigo spawnado em {pos.ToString()}", LineType.Success);
+                        }
+                        break;
+
+                    case "get_item":
+                        string itemId = cmdParams[0];
+                        int qtd = cmdParams.Length == 2 ? cmdParams[1].ToInt() : 1;
+                        for (int i = 0; i < qtd; i++) {
+                            globalEvents.EmitSignal(GameEvent.TakeItem, itemId, false);
+                        }
+                        SpawnNewLine($"     {qtd}x {itemId} adicionado(s) no inventário", LineType.Success);
+                        break;
+
+                    case "kill_all":
+                        foreach (var node in globalManager.main3dNode.GetChildren()) {
+                            if (node.Name.ToString().ToLower().Contains("enemy") && node is CharacterBody3D) {
+                                node.QueueFree();
+                            }
+                        }
                         break;
                 }
             }
@@ -177,24 +249,26 @@ namespace ChidemGames.Debug
 
         public void Open()
         {
+            globalManager.ChangeStateFocus(StateFocus.GAME_MENU);
             this.isOpen = true;
             Visible = true;
             if (tween != null) {
                 tween.Kill();
             }
             tween = CreateTween();
-            tween.TweenProperty(this, "rect_position:y", 0f, .4f);
+            tween.TweenProperty(this, "position:y", 0f, .4f);
             input.GrabFocus();
         }
 
         public async void Close()
         {
+            globalManager.ChangeStateFocus(StateFocus.GAME);
             this.isOpen = false;
             if (tween != null) {
                 tween.Kill();
             }
             tween = CreateTween();
-            tween.TweenProperty(this, "rect_position:y", -Size.Y, .25f);
+            tween.TweenProperty(this, "position:y", -Size.Y, .25f);
             await ToSignal(tween, "finished");
             Visible = false;
             selectedHistoryKey = 0;

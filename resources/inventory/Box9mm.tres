@@ -1,15 +1,16 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://c7xpnflk8kiw2"]
 
-[ext_resource path="res://src/Resources/ItemResource.cs" type="Script" id=1]
-[ext_resource path="res://models/ammo/box9mm_thumb.png" type="Texture2D" id=2]
+[ext_resource type="Script" path="res://src/Resources/ItemResource.cs" id="1"]
+[ext_resource type="Texture2D" uid="uid://lxgddxujsr0n" path="res://models/ammo/box9mm_thumb.png" id="2"]
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource("1")
 itemId = "Box9mm"
-texture = ExtResource( 2 )
+texture = ExtResource("2")
 slotsX = 2
 slotsY = 2
 maxStack = 90
 scenePath = "res://scenes/ammo/Box9mm.tscn"
 canHandHold = false
 subitems = 30
+category = 1

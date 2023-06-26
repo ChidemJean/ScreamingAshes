@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0cwpnl5vmnjq"]
+
+[ext_resource type="FontFile" path="res://assets/fonts/secondary/secondary_medium.tres" id="1_yfvch"]
+
+[node name="Label" type="Label"]
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_yfvch")
+theme_override_font_sizes/font_size = 10
+text = "--- CLI Chidem Games ---"
