@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ds8nt3fxap61x"]
+[gd_scene load_steps=7 format=3 uid="uid://ds8nt3fxap61x"]
 
 [ext_resource type="PackedScene" uid="uid://c81704dh5myoc" path="res://models/melee/knife/knife.glb" id="1"]
 [ext_resource type="Script" path="res://src/Core/Items/Melee/Knife.cs" id="2"]
@@ -8,11 +8,15 @@
 [sub_resource type="BoxShape3D" id="1"]
 size = Vector3(0.551244, 0.333246, 2.02417)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_c1s4u"]
+size = Vector3(0.729114, 2.18494, 0.801064)
+
 [node name="Knife" type="RigidBody3D"]
 collision_layer = 32
-collision_mask = 4108
+collision_mask = 36876
 freeze = true
 script = ExtResource("2")
+hitSensorPath = NodePath("HitSensor")
 meshesHolderPath = NodePath("knife")
 defaultLayer = 1
 layerHighlight = 64
@@ -28,5 +32,12 @@ surface_material_override/1 = ExtResource("4_qcj31")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.34202, -0.939693, 4.10753e-08, 0, -4.37114e-08, -1, 0.939693, 0.34202, -1.49502e-08, 0, 0.268641, -0.367546)
 shape = SubResource("1")
+
+[node name="HitSensor" type="Area3D" parent="."]
+collision_mask = 32768
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitSensor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0150187, 0.223203, -0.382007)
+shape = SubResource("BoxShape3D_c1s4u")
 
 [editable path="knife"]

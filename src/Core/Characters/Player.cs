@@ -215,7 +215,9 @@ namespace ChidemGames.Core.Characters
       [Export]
       PackedScene bloodParticles;
 
-      String[] states = new String[] { "default", "die_forward", "die_backward" };
+      String[] animationStates = new String[] { "default", "die_forward", "die_backward" };
+
+      public bool isAttacking = false;
 
       public override void _Ready()
       {
@@ -314,18 +316,24 @@ namespace ChidemGames.Core.Characters
       public async void KnifeAttack()
       {
          isButtBlowing = true;
+         isAttacking = true;
+         ((Attackable) itemRightHand).Attack();
          animationTree.Set("parameters/knife_attack/request", (int) AnimationNodeOneShot.OneShotRequest.Fire);
          await ToSignal(GetTree().CreateTimer(knifeAttackTime), "timeout");
          isButtBlowing = false;
+         isAttacking = false;
       }
 
       public async void ButtBlow()
       {
          isButtBlowing = true;
+         isAttacking = true;
+         ((Attackable) itemRightHand).Attack();
          Shootable weapon = ((Shootable)itemRightHand);
          animationTree.Set("parameters/butt_blow_pistol/request", (int) AnimationNodeOneShot.OneShotRequest.Fire);
          await ToSignal(GetTree().CreateTimer(buttBlowingTime), "timeout");
          isButtBlowing = false;
+         isAttacking = false;
       }
 
       public Vector3 GetVelocity()
@@ -557,7 +565,7 @@ namespace ChidemGames.Core.Characters
             }
 
             // KNIFE -------------------------------------------------------
-            if (itemRightHand is Attackable && !isButtBlowing)
+            if (itemRightHand is Knife && !isButtBlowing)
             {
                if (Input.IsActionJustPressed("shot"))
                {
@@ -696,7 +704,7 @@ namespace ChidemGames.Core.Characters
          RandomNumberGenerator rng = new RandomNumberGenerator();
          rng.Randomize();
 
-         animationTree.Set("parameters/state/transition_request", states[rng.RandiRange(1, 2)]);
+         animationTree.Set("parameters/state/transition_request", animationStates[rng.RandiRange(1, 2)]);
       }
 
       public async void BackpackToHand()

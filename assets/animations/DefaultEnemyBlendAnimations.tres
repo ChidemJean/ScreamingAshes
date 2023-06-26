@@ -1,4 +1,10 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=15 format=3 uid="uid://cyq4hiiilde7l"]
+[gd_resource type="AnimationNodeBlendTree" load_steps=23 format=3 uid="uid://cyq4hiiilde7l"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gol3r"]
+animation = &"death_hips_backward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fv3be"]
+animation = &"injured_crawlingloop"
 
 [sub_resource type="AnimationNodeAnimation" id="2"]
 animation = &"mutant_long_attack"
@@ -12,12 +18,26 @@ animation = &"idle_react"
 [sub_resource type="AnimationNodeAnimation" id="5"]
 animation = &"biting_neck"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2w3cl"]
+animation = &"death_backward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a4c83"]
+animation = &"death_forward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_thn8f"]
+animation = &"death_head"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5j2sw"]
+animation = &"death_hips"
+
 [sub_resource type="AnimationNodeAnimation" id="6"]
 animation = &"bittingloop"
 
 [sub_resource type="AnimationNodeOneShot" id="7"]
 
 [sub_resource type="AnimationNodeOneShot" id="8"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_ugkmi"]
 
 [sub_resource type="AnimationNodeOneShot" id="9"]
 
@@ -37,12 +57,36 @@ blend_point_0/pos = 1.0
 blend_point_1/node = SubResource("13")
 blend_point_1/pos = -1.0
 
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_ilwki"]
+input_0/name = "default"
+input_0/auto_advance = false
+input_0/reset = true
+input_1/name = "die_forward"
+input_1/auto_advance = false
+input_1/reset = true
+input_2/name = "die_backward"
+input_2/auto_advance = false
+input_2/reset = true
+input_3/name = "die_head"
+input_3/auto_advance = false
+input_3/reset = true
+input_4/name = "die_hips"
+input_4/auto_advance = false
+input_4/reset = true
+input_5/name = "die_hips_backward"
+input_5/auto_advance = false
+input_5/reset = true
+
 [sub_resource type="AnimationNodeTimeScale" id="17"]
 
 [resource]
-graph_offset = Vector2(-335.356, -56.6871)
+graph_offset = Vector2(-700.041, -19.6905)
 nodes/Animation/node = SubResource("6")
-nodes/Animation/position = Vector2(-560, 60)
+nodes/Animation/position = Vector2(-780, 0)
+"nodes/Animation 10/node" = SubResource("AnimationNodeAnimation_gol3r")
+"nodes/Animation 10/position" = Vector2(880, 900)
+"nodes/Animation 11/node" = SubResource("AnimationNodeAnimation_fv3be")
+"nodes/Animation 11/position" = Vector2(-560, 280)
 "nodes/Animation 2/node" = SubResource("2")
 "nodes/Animation 2/position" = Vector2(520, 320)
 "nodes/Animation 3/node" = SubResource("3")
@@ -51,19 +95,31 @@ nodes/Animation/position = Vector2(-560, 60)
 "nodes/Animation 4/position" = Vector2(280, 300)
 "nodes/Animation 5/node" = SubResource("5")
 "nodes/Animation 5/position" = Vector2(780, 300)
+"nodes/Animation 6/node" = SubResource("AnimationNodeAnimation_2w3cl")
+"nodes/Animation 6/position" = Vector2(680, 640)
+"nodes/Animation 7/node" = SubResource("AnimationNodeAnimation_a4c83")
+"nodes/Animation 7/position" = Vector2(800, 500)
+"nodes/Animation 8/node" = SubResource("AnimationNodeAnimation_thn8f")
+"nodes/Animation 8/position" = Vector2(720, 740)
+"nodes/Animation 9/node" = SubResource("AnimationNodeAnimation_5j2sw")
+"nodes/Animation 9/position" = Vector2(740, 840)
 nodes/bitting_neck/node = SubResource("7")
 nodes/bitting_neck/position = Vector2(780, 140)
 nodes/idle_react/node = SubResource("8")
 nodes/idle_react/position = Vector2(280, 140)
+nodes/injured_crawl/node = SubResource("AnimationNodeBlend2_ugkmi")
+nodes/injured_crawl/position = Vector2(-324.818, 218.696)
 nodes/long_attack/node = SubResource("9")
 nodes/long_attack/position = Vector2(540, 140)
 nodes/look_around/node = SubResource("10")
 nodes/look_around/position = Vector2(40, 140)
 nodes/motion/node = SubResource("11")
-nodes/motion/position = Vector2(-320, 120)
-nodes/output/position = Vector2(980, 20)
+nodes/motion/position = Vector2(-540, 60)
+nodes/output/position = Vector2(1500, 320)
 nodes/space_motion/node = SubResource("14")
-nodes/space_motion/position = Vector2(-600, 300)
+nodes/space_motion/position = Vector2(-820, 240)
+nodes/state/node = SubResource("AnimationNodeTransition_ilwki")
+nodes/state/position = Vector2(1180, 560)
 nodes/time_scale_motion/node = SubResource("17")
-nodes/time_scale_motion/position = Vector2(-600, 200)
-node_connections = [&"output", 0, &"bitting_neck", &"bitting_neck", 0, &"long_attack", &"bitting_neck", 1, &"Animation 5", &"idle_react", 0, &"look_around", &"idle_react", 1, &"Animation 4", &"long_attack", 0, &"idle_react", &"long_attack", 1, &"Animation 2", &"look_around", 0, &"motion", &"look_around", 1, &"Animation 3", &"motion", 0, &"Animation", &"motion", 1, &"time_scale_motion", &"time_scale_motion", 0, &"space_motion"]
+nodes/time_scale_motion/position = Vector2(-820, 140)
+node_connections = [&"output", 0, &"state", &"bitting_neck", 0, &"long_attack", &"bitting_neck", 1, &"Animation 5", &"idle_react", 0, &"look_around", &"idle_react", 1, &"Animation 4", &"injured_crawl", 0, &"motion", &"injured_crawl", 1, &"Animation 11", &"long_attack", 0, &"idle_react", &"long_attack", 1, &"Animation 2", &"look_around", 0, &"injured_crawl", &"look_around", 1, &"Animation 3", &"motion", 0, &"Animation", &"motion", 1, &"time_scale_motion", &"state", 0, &"bitting_neck", &"state", 1, &"Animation 7", &"state", 2, &"Animation 6", &"state", 3, &"Animation 8", &"state", 4, &"Animation 9", &"state", 5, &"Animation 10", &"time_scale_motion", 0, &"space_motion"]

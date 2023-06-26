@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cbata51tj4ksd"]
+[gd_scene load_steps=18 format=3 uid="uid://cbata51tj4ksd"]
 
 [ext_resource type="PackedScene" uid="uid://bqr3h7jx8sb7x" path="res://models/weapons/pistol_bufallus/pistol_taurus.glb" id="1"]
 [ext_resource type="Script" path="res://src/Core/Items/Weapons/Pistol.cs" id="2"]
@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" path="res://scenes/decals/ShotDecal.tscn" id="10"]
 
 [sub_resource type="BoxShape3D" id="12"]
-size = Vector3(0.278773, 1.42543, 1.67172)
+size = Vector3(0.322921, 1.42543, 1.67172)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uxpiy"]
 transparency = 1
@@ -53,6 +53,9 @@ _data = {
 "shoot": SubResource("1")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ub7gj"]
+size = Vector3(0.791139, 1.39826, 1.82379)
+
 [node name="PistolBufallus" type="RigidBody3D"]
 collision_layer = 32
 collision_mask = 4108
@@ -70,6 +73,10 @@ clipPosPath = NodePath("ClipPost")
 bulletDecal = ExtResource("10")
 bulletFromPath = NodePath("BulletFrom")
 bulletRange = 600.0
+shotRayMask = 4294901759
+damage = 0.2
+hitSensorPath = NodePath("HitSensor")
+leftHandPositionPath = NodePath("LeftHandPosition")
 meshesHolderPath = NodePath("pistol_taurus")
 defaultLayer = 1
 layerHighlight = 64
@@ -123,5 +130,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.366607, -0.898933, -0.48161
 libraries = {
 "": SubResource("AnimationLibrary_kursk")
 }
+
+[node name="HitSensor" type="Area3D" parent="."]
+collision_mask = 32768
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitSensor"]
+shape = SubResource("BoxShape3D_ub7gj")
 
 [editable path="pistol_taurus"]

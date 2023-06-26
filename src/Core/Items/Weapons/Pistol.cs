@@ -72,6 +72,9 @@ namespace ChidemGames.Core.Items.Weapons
 
       int tempBullets = 0;
 
+      [Export(PropertyHint.Layers3DPhysics)]
+      uint shotRayMask;
+
       public override void _Ready()
       {
          base._Ready();
@@ -126,6 +129,10 @@ namespace ChidemGames.Core.Items.Weapons
          {
             Vector3 shootPosition = (Vector3)resultShootRay["position"];
             Vector3 shootNormal = (Vector3)resultShootRay["normal"];
+            Node node = (Node) resultShootRay["collider"];
+            if (node is BodyPartHittable) {
+               ((BodyPartHittable) node).ApplyDamageOnBody(damageShot, shootPosition);
+            }
             // var decalNode = bulletDecal.Instantiate<ShotDecal>();
             // GetNode<Node3D>("/root/MainScene/ViewportContainer/Viewport/Game").AddChild(decalNode);
             // decalNode.GlobalPosition = shootPosition;
@@ -228,7 +235,7 @@ namespace ChidemGames.Core.Items.Weapons
       public Godot.Collections.Dictionary GetBulletRay()
       {
          var spaceState = GetWorld3D().DirectSpaceState;
-         var rayQuery = PhysicsRayQueryParameters3D.Create(bulletFrom.GlobalPosition, bulletFrom.GlobalPosition + GlobalTransform.Basis.Z.Normalized() * bulletRange);
+         var rayQuery = PhysicsRayQueryParameters3D.Create(bulletFrom.GlobalPosition, bulletFrom.GlobalPosition + GlobalTransform.Basis.Z.Normalized() * bulletRange, shotRayMask);
          var resultShootRay = spaceState.IntersectRay(rayQuery);
          return resultShootRay;
       }
@@ -253,6 +260,11 @@ namespace ChidemGames.Core.Items.Weapons
             // var tween = GetTree().CreateTween();
             // tween.TweenProperty(slide, "translation:z", initilSlidePosition.z, .07f);
          }
+      }
+
+      public override void Attack()
+      {
+         base.Attack();
       }
 
       public void ButtBlow()

@@ -173,7 +173,10 @@ phone_interact={
 3d_physics/layer_6="Items"
 3d_physics/layer_8="Interactables"
 3d_physics/layer_11="Player"
+3d_physics/layer_13="PlayerRay"
 3d_physics/layer_15="StaticBodies"
+3d_physics/layer_16="EnemyBodyPart"
+3d_physics/layer_17="EnemyBody"
 
 [mono]
 

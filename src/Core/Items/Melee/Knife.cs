@@ -4,16 +4,23 @@ using ChidemGames.Core.Items;
 
 namespace ChidemGames.Core.Items.Melee
 {
-   public partial class Knife : Item, Attackable
+   public partial class Knife : Attackable
    {
-      public override void _Ready()
+      
+      public override void Attack()
       {
-         base._Ready();
-      }
-
-      public void Attack()
-      {
+         // var bodies = hitSensor.GetOverlappingBodies();
          
+         // foreach (var node in bodies) 
+         // {
+         //    GD.Print(node.Name);
+         //    if (node is BodyPartHittable)
+         //    {
+         //       var bodyPart = (BodyPartHittable) node;
+         //       bodyPart.ApplyDamageOnBody(damage, bodyPart.GlobalPosition);
+         //       return;
+         //    }
+         // }
       }
    }
 }

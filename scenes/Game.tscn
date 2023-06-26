@@ -45,9 +45,6 @@ transform = Transform3D(0.041213, -0.99915, 0, 0.99915, 0.041213, 0, 0, 0, 1, -2
 [node name="Trap" parent="." instance=ExtResource("5_vod7o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.119, 3.84941, 34.5544)
 
-[node name="DefaultEnemy" parent="." instance=ExtResource("17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.3306, 20.1452, 36.437)
-
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_uinu8")
 
@@ -63,15 +60,6 @@ shape = SubResource("ConcavePolygonShape3D_e5k6d")
 
 [node name="CabinetWood" parent="NavigationRegion3D" instance=ExtResource("24")]
 transform = Transform3D(1.22, 0, 0, 0, 1.22, 0, 0, 0, 1.22, 0, 0, 56.9522)
-
-[node name="DefaultEnemy2" parent="NavigationRegion3D" instance=ExtResource("17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.95172, 20.1452, -91.3305)
-
-[node name="DefaultEnemy3" parent="NavigationRegion3D" instance=ExtResource("17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.3684, 20.1452, -65.0198)
-
-[node name="DefaultEnemy4" parent="NavigationRegion3D" instance=ExtResource("17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.9813, 20.1452, -65.0198)
 
 [node name="Waypoints" type="Marker3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -76.0464)
@@ -90,6 +78,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.4743, 1.78622, -20.2982)
 
 [node name="Waypoint5" type="Marker3D" parent="NavigationRegion3D/Waypoints" groups=["DefaultEnemyWaypoints"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.1586, 1.78622, -16.8233)
+
+[node name="DefaultEnemy" parent="NavigationRegion3D" instance=ExtResource("17")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -8.57665, 0, -70.4506)
+
+[node name="DefaultEnemy11" parent="NavigationRegion3D" instance=ExtResource("17")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -22.5097, 0, -84.9117)
+
+[node name="DefaultEnemy12" parent="NavigationRegion3D" instance=ExtResource("17")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -22.5097, 0, -59.0778)
+
+[node name="DefaultEnemy9" parent="NavigationRegion3D" instance=ExtResource("17")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -8.72575, 0, -59.7212)
 
 [node name="Box9mm" parent="." instance=ExtResource("8_uq8go")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.764697, 5.60033, 57.6823)

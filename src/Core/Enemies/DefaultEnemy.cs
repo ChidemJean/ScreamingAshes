@@ -6,455 +6,529 @@ using ChidemGames.Core.Enemies.AI;
 using ChidemGames.Core.Audio;
 using ChidemGames.Events;
 using ChidemGames.Core.Characters;
+using ChidemGames.Core.Vfx;
 
 namespace ChidemGames.Core.Enemies
 {
-   public partial class DefaultEnemy : CharacterBody3D, AdaptiveAudioEmitter
-   {
+    public partial class DefaultEnemy : CharacterBody3D, BodyWithHittableParts, AdaptiveAudioEmitter
+    {
 
-		// RAYS
-      [Export] NodePath aimRayPath;
-      [Export] NodePath topRayPath;
-      [Export] NodePath bottomRayPath;
-      [Export] NodePath rightRayPath;
-      [Export] NodePath leftRayPath;
-      [Export] NodePath forwardRayPath;
-      [Export] NodePath backwardRayPath;
-      RayCast3D aimRay;
-      RayCast3D topRay;
-      RayCast3D bottomRay;
-      RayCast3D rightRay;
-      RayCast3D leftRay;
-      RayCast3D forwardRay;
-      RayCast3D backwardRay;
+        // RAYS
+        [Export] NodePath aimRayPath;
+        [Export] NodePath topRayPath;
+        [Export] NodePath bottomRayPath;
+        [Export] NodePath rightRayPath;
+        [Export] NodePath leftRayPath;
+        [Export] NodePath forwardRayPath;
+        [Export] NodePath backwardRayPath;
+        RayCast3D aimRay;
+        RayCast3D topRay;
+        RayCast3D bottomRay;
+        RayCast3D rightRay;
+        RayCast3D leftRay;
+        RayCast3D forwardRay;
+        RayCast3D backwardRay;
 
-		[Export]
-		float patrolSpeed = 2f;
+        [Export]
+        float patrolSpeed = 2f;
 
-		[Export]
-		float chasingSpeed = 3.6f;
+        [Export]
+        float chasingSpeed = 3.6f;
 
-		[Export]
-		float huntingSpeed = 4.6f;
+        [Export]
+        float huntingSpeed = 4.6f;
 
-      [Export]
-      public EnemyState state = EnemyState.Patrol;
+        [Export]
+        public EnemyState state = EnemyState.Patrol;
 
-      [Export]
-      NodePath animationTreePath;
-      public AnimationTree animationTree;
+        [Export]
+        NodePath animationTreePath;
+        public AnimationTree animationTree;
 
-      [Export]
-      NodePath sfxPath;
-      SfxOptions sfx;
+        [Export]
+        NodePath sfxPath;
+        SfxOptions sfx;
 
-		[Export]
-		NodePath navigationAgentPath;
-		NavigationAgent3D navigationAgent;
+        [Export]
+        NodePath navigationAgentPath;
+        NavigationAgent3D navigationAgent;
 
-		Player player = null;
+        Player player = null;
 
-		GlobalManager globalManager;
-		GlobalEvents globalEvents;
+        GlobalManager globalManager;
+        GlobalEvents globalEvents;
 
-		List<Marker3D> waypoints = new List<Marker3D>();
-		public int waypointIdx;
-		
-		RandomNumberGenerator rng = new RandomNumberGenerator();
+        List<Marker3D> waypoints = new List<Marker3D>();
+        public int waypointIdx;
 
-		Vector3 lastTargetPos;
+        RandomNumberGenerator rng = new RandomNumberGenerator();
 
-		[Export]
-		float patrolTime = 4f;
+        Vector3 lastTargetPos;
 
-		[Export]
-		NodePath closeSightPath;
-		Area3D closeSight;
+        [Export]
+        float patrolTime = 4f;
 
-		[Export]
-		NodePath farSightPath;
-		Area3D farSight;
+        [Export]
+        NodePath closeSightPath;
+        Area3D closeSight;
 
-		public bool playerInCloseSigth = false;
-		public bool playerInFarSigth = false;
-		public bool playerInCloseHearing = false;
-		public bool playerInFarHearing = false;
+        [Export]
+        NodePath farSightPath;
+        Area3D farSight;
 
-		public Vector3 velocity;
-		public Vector3 direction;
+        public bool playerInCloseSigth = false;
+        public bool playerInFarSigth = false;
+        public bool playerInCloseHearing = false;
+        public bool playerInFarHearing = false;
 
-		float motionTimeScale = 1;
+        public Vector3 velocity;
+        public Vector3 direction;
 
-		[Export]
-		NodePath headPath;
-		Area3D head;
+        float motionTimeScale = 1;
 
-		[Export(PropertyHint.Layers3DPhysics)]
-		uint playerMask;
+        [Export]
+        NodePath headPath;
+        RigidBody3D head;
 
-		[Export]
-		float closeLightDetectionLevel = 0;
+        [Export(PropertyHint.Layers3DPhysics)]
+        uint playerMask;
 
-		[Export]
-		float farLightDetectionLevel = 0;
+        [Export]
+        float closeLightDetectionLevel = 0;
 
-		[Export]
-		float farCrouchedLightDetectionLevel = 0;
+        [Export]
+        float farLightDetectionLevel = 0;
 
-		[Export]
-		NodePath viewportDebugPath;
-		Viewport viewportDebug;
+        [Export]
+        float farCrouchedLightDetectionLevel = 0;
 
-		[Export]
-		NodePath labelDebugPath;
-		Label labelDebug;
+        [Export]
+        NodePath viewportDebugPath;
+        Viewport viewportDebug;
 
-		[Export]
-		NodePath meshDebugPath;
-		MeshInstance3D meshDebug;
+        [Export]
+        NodePath labelDebugPath;
+        Label labelDebug;
 
-		bool playHuntingSfx = false;
-		bool playIdleSfx = false;
+        [Export]
+        NodePath meshDebugPath;
+        MeshInstance3D meshDebug;
 
-		[Export]
-		float rangeToAttack = 4f;
+		  [Export]
+		  float injuredSpeedMultipler = 1;
 
-		[Export]
-		float timeAttack = 2f;
+		  [Export]
+		  float maxHealthToInjured = .3f;
 
-		[Export]
-		float attackDamage = .2f;
+        bool playHuntingSfx = false;
+        bool playIdleSfx = false;
 
-		bool isAttacking = false;
+        [Export]
+        float rangeToAttack = 4f;
 
-		float gravity = (float)ProjectSettings.GetSetting("physics/3d/default_gravity");
+        [Export]
+        float timeAttack = 2f;
 
-		[Export]
-      public float maxHealth = 1;
+        [Export]
+        float attackDamage = .2f;
 
-      [Export]
-      public float health = 1;
+        bool isAttacking = false;
 
-      public bool isDead = false;
+        float gravity = (float)ProjectSettings.GetSetting("physics/3d/default_gravity");
 
-      public override void _Ready()
-      {
-			rng.Randomize();
+        [Export]
+        public float maxHealth = 1;
 
-			globalManager = GetNode<GlobalManager>("/root/GlobalManager");
-			globalEvents = GetNode<GlobalEvents>("/root/GlobalEvents");
+        [Export]
+        public float health = 1;
 
-			navigationAgent = GetNode<NavigationAgent3D>(navigationAgentPath);
-			animationTree = GetNode<AnimationTree>(animationTreePath);
-			sfx = GetNode<SfxOptions>(sfxPath);
-			closeSight = GetNode<Area3D>(closeSightPath);
-			farSight = GetNode<Area3D>(farSightPath);
-			head = GetNode<Area3D>(headPath);
+        public bool isDead = false;
 
-			// closeSight.Connect("body_entered", this, nameof(OnCloseSightEntered));
-			// closeSight.Connect("body_exited", this, nameof(OnCloseSightExited));
-			// farSight.Connect("body_entered", this, nameof(OnFarSightEntered));
-			// farSight.Connect("body_exited", this, nameof(OnFarSightExited));
+        [Export]
+        PackedScene bloodParticles;
 
-			closeSight.BodyEntered += OnCloseSightEntered;
-			closeSight.BodyExited += OnCloseSightExited;
-			farSight.BodyExited += OnFarSightEntered;
-			farSight.BodyExited += OnFarSightExited;
+		  public static readonly string AnimationStateDefault = "default";
+		  public static readonly string AnimationStateDieForward = "die_forward";
+		  public static readonly string AnimationStateDieBackward = "die_backward";
+		  public static readonly string AnimationStateDieHead = "die_head";
+		  public static readonly string AnimationStateDieHips = "die_hips";
+		  public static readonly string AnimationStateDieHipsBackward = "die_hips_backward";
 
-			aimRay = GetNode<RayCast3D>(aimRayPath);
-         topRay = GetNode<RayCast3D>(topRayPath);
-         bottomRay = GetNode<RayCast3D>(bottomRayPath);
-         rightRay = GetNode<RayCast3D>(rightRayPath);
-         leftRay = GetNode<RayCast3D>(leftRayPath);
-         forwardRay = GetNode<RayCast3D>(forwardRayPath);
-         backwardRay = GetNode<RayCast3D>(backwardRayPath);
+        String[] states = new String[] { AnimationStateDieForward, AnimationStateDieForward, AnimationStateDieBackward, AnimationStateDieHead, AnimationStateDieHipsBackward };
 
-			var _waypoints = GetTree().GetNodesInGroup("DefaultEnemyWaypoints");
-			foreach (var _waypoint in _waypoints) {
-				waypoints.Add((Marker3D) _waypoint);
-			}
+        public override void _Ready()
+        {
+				base._Ready();
+            
+				rng.Randomize();
 
-			if (waypoints.Count > 0) {
-				navigationAgent.TargetPosition = waypoints[rng.RandiRange(0, waypoints.Count - 1)].GlobalPosition;
-			}
+            globalManager = GetNode<GlobalManager>("/root/GlobalManager");
+            globalEvents = GetNode<GlobalEvents>("/root/GlobalEvents");
 
-			viewportDebug = GetNode<Viewport>(viewportDebugPath);
-			labelDebug = GetNode<Label>(labelDebugPath);
-			meshDebug = GetNode<MeshInstance3D>(meshDebugPath);
-      }
+            navigationAgent = GetNode<NavigationAgent3D>(navigationAgentPath);
+            animationTree = GetNode<AnimationTree>(animationTreePath);
+            sfx = GetNode<SfxOptions>(sfxPath);
+            closeSight = GetNode<Area3D>(closeSightPath);
+            farSight = GetNode<Area3D>(farSightPath);
+            head = GetNode<RigidBody3D>(headPath);
 
-      public override void _PhysicsProcess(double _delta)
-      {
-		float delta = (float) _delta;
+            // closeSight.Connect("body_entered", this, nameof(OnCloseSightEntered));
+            // closeSight.Connect("body_exited", this, nameof(OnCloseSightExited));
+            // farSight.Connect("body_entered", this, nameof(OnFarSightEntered));
+            // farSight.Connect("body_exited", this, nameof(OnFarSightExited));
 
-		if (!IsOnFloor())
-         {
-            velocity.Y -= gravity * 7f * delta;
-         }
+            closeSight.BodyEntered += OnCloseSightEntered;
+            closeSight.BodyExited += OnCloseSightExited;
+            farSight.BodyExited += OnFarSightEntered;
+            farSight.BodyExited += OnFarSightExited;
 
-			if (isDead) return;
+            aimRay = GetNode<RayCast3D>(aimRayPath);
+            topRay = GetNode<RayCast3D>(topRayPath);
+            bottomRay = GetNode<RayCast3D>(bottomRayPath);
+            rightRay = GetNode<RayCast3D>(rightRayPath);
+            leftRay = GetNode<RayCast3D>(leftRayPath);
+            forwardRay = GetNode<RayCast3D>(forwardRayPath);
+            backwardRay = GetNode<RayCast3D>(backwardRayPath);
 
-			float curSpeed = 0f;
+            var _waypoints = GetTree().GetNodesInGroup("DefaultEnemyWaypoints");
+            foreach (var _waypoint in _waypoints)
+            {
+                waypoints.Add((Marker3D)_waypoint);
+            }
 
-         switch (state)
-         {
-            case EnemyState.Idle:
-					break;
+            if (waypoints.Count > 0)
+            {
+                navigationAgent.TargetPosition = waypoints[rng.RandiRange(0, waypoints.Count - 1)].GlobalPosition;
+            }
 
-            case EnemyState.Patrol:
-					if (navigationAgent.IsNavigationFinished()) {
-						PatrolTimer();
-						state = EnemyState.Waiting;
-						navigationAgent.TargetPosition = waypoints[rng.RandiRange(0, waypoints.Count - 1)].GlobalPosition;
-						return;
-					}
-					if (Engine.GetFramesDrawn() % 60 == 0) CheckPlayer();
-					curSpeed = patrolSpeed;
-					motionTimeScale = 1;
-					break;
+            viewportDebug = GetNode<Viewport>(viewportDebugPath);
+            labelDebug = GetNode<Label>(labelDebugPath);
+            meshDebug = GetNode<MeshInstance3D>(meshDebugPath);
+        }
 
-            case EnemyState.Chasing:
-					if (navigationAgent.IsNavigationFinished()) {
-						PatrolTimer();
-						state = EnemyState.Waiting;
-					}
-					navigationAgent.TargetPosition = globalManager.currentPlayer.GlobalPosition;
-					curSpeed = chasingSpeed;
-					motionTimeScale = 2;
-					break;
+        public override void _PhysicsProcess(double _delta)
+        {
+				base._PhysicsProcess(_delta);
 
-            case EnemyState.Hunting:
-					if (Engine.GetFramesDrawn() % 20 == 0) navigationAgent.TargetPosition = globalManager.currentPlayer.GlobalPosition;
-					curSpeed = huntingSpeed;
-					motionTimeScale = 3;
-					if (!playHuntingSfx) {
-						PlayHuntingSfx();
-					}
-					Attack();
-					break;
+            float delta = (float)_delta;
 
-            case EnemyState.Waiting:
-					curSpeed = 0;
-					CheckPlayer();
-               break;
-         }
+				// DEBUG ------------------------------------------------
+            labelDebug.Text = $"{GetStateName()}\nPlayer Close Sight: {playerInCloseSigth}\nPlayer Far Sight: {playerInFarSigth}\nHealth: {100 * health}%";
+            var material = meshDebug.MaterialOverride as BaseMaterial3D;
+            material.AlbedoTexture = viewportDebug.GetTexture();
 
-			MoveTowards(curSpeed, delta);
+            if (isDead) return;
 
-			animationTree.Set("parameters/space_motion/blend_position", 1);
-			animationTree.Set("parameters/time_scale_motion/scale", motionTimeScale);
+            float curSpeed = 0f;
 
-			float curMotionBlend = (animationTree.Get($"parameters/motion/blend_amount")).ToString().ToFloat();
-			if (velocity.Length() > 0.2f) {
-				animationTree.Set("parameters/motion/blend_amount", 1);
-			} else {
-				animationTree.Set("parameters/motion/blend_amount", 0);
-			}
+            switch (state)
+            {
+                case EnemyState.Idle:
+                    break;
 
-			// DEBUG ------------------------------------------------
-			labelDebug.Text = $"{GetStateName()}\nPlayer Close Sight: {playerInCloseSigth}\nPlayer Far Sight: {playerInFarSigth}";
-			var material = meshDebug.MaterialOverride as BaseMaterial3D;
-			material.AlbedoTexture = viewportDebug.GetTexture();
-      }
+                case EnemyState.Patrol:
+                    if (navigationAgent.IsNavigationFinished())
+                    {
+                        PatrolTimer();
+                        state = EnemyState.Waiting;
+                        navigationAgent.TargetPosition = waypoints[rng.RandiRange(0, waypoints.Count - 1)].GlobalPosition;
+                        return;
+                    }
+                    if (Engine.GetFramesDrawn() % 60 == 0) CheckPlayer();
+                    curSpeed = patrolSpeed;
+                    motionTimeScale = 1;
+                    break;
 
-		public float DistanceToPlayer()
-		{
-			return GlobalPosition.DistanceTo(globalManager.currentPlayer.GlobalPosition);
-		}
+                case EnemyState.Chasing:
+                    if (navigationAgent.IsNavigationFinished())
+                    {
+                        PatrolTimer();
+                        state = EnemyState.Waiting;
+                    }
+                    navigationAgent.TargetPosition = globalManager.currentPlayer.GlobalPosition;
+                    curSpeed = chasingSpeed;
+                    motionTimeScale = 2;
+                    break;
 
-		public async void Attack()
-		{
-			if (isAttacking) return;
+                case EnemyState.Hunting:
+                    if (Engine.GetFramesDrawn() % 20 == 0) navigationAgent.TargetPosition = globalManager.currentPlayer.GlobalPosition;
+                    curSpeed = huntingSpeed;
+                    motionTimeScale = 3;
+                    if (!playHuntingSfx)
+                    {
+                        PlayHuntingSfx();
+                    }
+                    Attack();
+                    break;
 
-			if (DistanceToPlayer() <= rangeToAttack) {
-				isAttacking = true;
-				animationTree.Set("parameters/long_attack/request", (int) AnimationNodeOneShot.OneShotRequest.Fire);
-				await ToSignal(GetTree().CreateTimer(timeAttack), "timeout");
-				if (DistanceToPlayer() <= rangeToAttack) {
-					globalManager.currentPlayer.TakeDamage(attackDamage);
+                case EnemyState.Waiting:
+                    curSpeed = 0;
+                    CheckPlayer();
+                    break;
+            }
+
+            MoveTowards(curSpeed, delta);
+
+            animationTree.Set("parameters/space_motion/blend_position", 1);
+            animationTree.Set("parameters/time_scale_motion/scale", motionTimeScale);
+
+            float curMotionBlend = (animationTree.Get($"parameters/motion/blend_amount")).ToString().ToFloat();
+            if (velocity.Length() > 0.2f)
+            {
+                animationTree.Set("parameters/motion/blend_amount", 1);
+            }
+            else
+            {
+                animationTree.Set("parameters/motion/blend_amount", 0);
+            }
+        }
+
+        public float DistanceToPlayer()
+        {
+            return GlobalPosition.DistanceTo(globalManager.currentPlayer.GlobalPosition);
+        }
+
+        public async void Attack()
+        {
+            if (isAttacking) return;
+
+            if (DistanceToPlayer() <= rangeToAttack)
+            {
+                isAttacking = true;
+                animationTree.Set("parameters/long_attack/request", (int)AnimationNodeOneShot.OneShotRequest.Fire);
+                await ToSignal(GetTree().CreateTimer(timeAttack), "timeout");
+                if (DistanceToPlayer() <= rangeToAttack)
+                {
+                    globalManager.currentPlayer.TakeDamage(attackDamage);
+                }
+                isAttacking = false;
+                if (globalManager.currentPlayer.isDead)
+                {
+                    state = EnemyState.Patrol;
+                }
+            }
+        }
+
+        public async void PlayHuntingSfx()
+        {
+            playHuntingSfx = true;
+            sfx.PlayRandomSfxByCategory("screams", -1, this);
+            await ToSignal(GetTree().CreateTimer(8f), "timeout");
+            playHuntingSfx = false;
+        }
+
+        public string GetStateName()
+        {
+            switch (state)
+            {
+                case EnemyState.Idle:
+                    return "Idle";
+
+                case EnemyState.Patrol:
+                    return "Patrol";
+
+                case EnemyState.Chasing:
+                    return "Chasing";
+
+                case EnemyState.Hunting:
+                    return "Hunting";
+
+                case EnemyState.Waiting:
+                    return "Waiting";
+            }
+            return "";
+        }
+
+        public void CheckPlayer()
+        {
+            var spaceState = GetWorld3D().DirectSpaceState;
+            var rayQuery = PhysicsRayQueryParameters3D.Create(head.GlobalPosition, globalManager.currentPlayer.GlobalPosition + new Vector3(0, 2f, 0), playerMask);
+            var result = spaceState.IntersectRay(rayQuery);
+            bool isPlayerBehindWall = false;
+
+            if (result.Count > 0)
+            {
+                Node node = (Node)result["collider"];
+                if (node is Player)
+                {
+                    Player targetPlayer = (Player)node;
+                    if (playerInCloseSigth)
+                    {
+                        if (targetPlayer.lightLevel > closeLightDetectionLevel)
+                        {
+                            state = EnemyState.Chasing;
+                        }
+                    }
+                    if (playerInFarSigth)
+                    {
+                        if (!targetPlayer.isCrouching && targetPlayer.lightLevel > farLightDetectionLevel)
+                        {
+                            state = EnemyState.Hunting;
+                            navigationAgent.TargetPosition = globalManager.currentPlayer.GlobalPosition;
+                        }
+                        if (targetPlayer.isCrouching && targetPlayer.lightLevel > farCrouchedLightDetectionLevel)
+                        {
+                            state = EnemyState.Hunting;
+                            navigationAgent.TargetPosition = globalManager.currentPlayer.GlobalPosition;
+                        }
+                    }
+                }
+            }
+        }
+
+        public async void PatrolTimer()
+        {
+            await ToSignal(GetTree().CreateTimer(patrolTime), "timeout");
+            state = EnemyState.Patrol;
+            waypointIdx += 1;
+            if (waypointIdx > waypoints.Count - 1)
+            {
+                waypointIdx = 0;
+            }
+            navigationAgent.TargetPosition = waypoints[waypointIdx].GlobalPosition;
+        }
+
+        public void MoveTowards(float speed, float delta)
+        {
+            if (speed > 0)
+            {
+                var targetPos = navigationAgent.GetNextPathPosition();
+                direction = GlobalPosition.DirectionTo(targetPos);
+                Vector3 lookingPos = lastTargetPos.Lerp(targetPos, 1.25f);
+                Vector3 lookAtTargetPos = new Vector3(lookingPos.X, GlobalPosition.Y, lookingPos.Z);
+                if (GlobalPosition.DistanceTo(lookAtTargetPos) > .2f)
+                {
+                    LookAt(lookAtTargetPos, Vector3.Up);
+                }
+                lastTargetPos = lookingPos;
+            }
+            if (state == EnemyState.Hunting && DistanceToPlayer() <= rangeToAttack)
+            {
+                return;
+            }
+            velocity = direction * speed;
+				if (health <= maxHealthToInjured) {
+					velocity *= injuredSpeedMultipler;
+					animationTree.Set("parameters/injured_crawl/blend_amount", 1);
+				} else {
+					animationTree.Set("parameters/injured_crawl/blend_amount", 0);
 				}
-				isAttacking = false;
-				if (globalManager.currentPlayer.isDead) {
-					state = EnemyState.Patrol;
+				if (!IsOnFloor())
+            {
+                velocity.Y -= gravity * 7f * delta;
+            }
+
+            Velocity = velocity;
+            MoveAndSlide();
+
+            if (playerInFarHearing)
+            {
+                CheckPlayer();
+            }
+        }
+
+        public void Die()
+        {
+            isDead = true;
+            sfx.PlayRandomSfxByCategory("screams", -1, this);
+
+            RandomNumberGenerator rng = new RandomNumberGenerator();
+            rng.Randomize();
+
+            animationTree.Set("parameters/state/transition_request", states[rng.RandiRange(0, states.Length - 1)]);
+        }
+
+        public void OnCloseSightEntered(Node node)
+        {
+            if (node is Player)
+            {
+                playerInCloseSigth = true;
+            }
+        }
+        public void OnCloseSightExited(Node node)
+        {
+            if (node is Player)
+            {
+                playerInCloseSigth = false;
+            }
+        }
+        public void OnFarSightEntered(Node node)
+        {
+            if (node is Player)
+            {
+                playerInFarSigth = true;
+            }
+        }
+        public void OnFarSightExited(Node node)
+        {
+            if (node is Player)
+            {
+                playerInFarSigth = false;
+            }
+        }
+
+        public void TakeDamage(float damage, Vector3 pos)
+        {
+            health = Mathf.Clamp(health - damage, 0, maxHealth);
+
+            sfx.PlayRandomSfxByCategory("punch", -1, this);
+
+            var particles = bloodParticles.Instantiate<BloodHitParticles>();
+            globalManager.main3dNode.AddChild(particles);
+            particles.GlobalPosition = pos;
+            particles.Play();
+
+				state = EnemyState.Hunting;
+				navigationAgent.TargetPosition = globalManager.currentPlayer.GlobalPosition;
+
+            if (health == 0 && !isDead)
+            {
+                Die();
+            }
+            if (!isDead) {
+					sfx.PlayRandomSfxByCategory("screams", -1, this);
 				}
-			}
-		}
+        }
 
-		public async void PlayHuntingSfx()
-		{
-			playHuntingSfx = true;
-			sfx.PlayRandomSfxByCategory("screams", -1, this);
-			await ToSignal(GetTree().CreateTimer(8f), "timeout");
-			playHuntingSfx = false;
-		}
+        public float GetMaxHealth() => maxHealth;
 
-		public string GetStateName()
-		{
-			switch (state)
-         {
-            case EnemyState.Idle:
-					return "Idle";
+        public float GetHealth() => health;
 
-            case EnemyState.Patrol:
-					return "Patrol";
 
-            case EnemyState.Chasing:
-					return "Chasing";
+        public RayCast3D GetTopRay()
+        {
+            return topRay;
+        }
 
-            case EnemyState.Hunting:
-					return "Hunting";
+        public RayCast3D GetLeftRay()
+        {
+            return leftRay;
+        }
 
-            case EnemyState.Waiting:
-					return "Waiting";
-         }
-			return "";
-		}
+        public RayCast3D GetRightRay()
+        {
+            return rightRay;
+        }
 
-		public void CheckPlayer()
-		{
-			var spaceState = GetWorld3D().DirectSpaceState;
-			var rayQuery = PhysicsRayQueryParameters3D.Create(head.GlobalPosition, globalManager.currentPlayer.GlobalPosition + new Vector3(0,2f,0), playerMask);
-			var result = spaceState.IntersectRay(rayQuery);
-			bool isPlayerBehindWall = false;
+        public RayCast3D GetForwardRay()
+        {
+            return forwardRay;
+        }
 
-			if (result.Count > 0) {
-				Node node = (Node) result["collider"];
-				if (node is Player) {
-					Player targetPlayer = (Player) node;
-					if (playerInCloseSigth) {
-						if (targetPlayer.lightLevel > closeLightDetectionLevel) {
-							state = EnemyState.Chasing;
-						}
-					}
-					if (playerInFarSigth) {
-						if (!targetPlayer.isCrouching && targetPlayer.lightLevel > farLightDetectionLevel) {
-							state = EnemyState.Hunting;
-							navigationAgent.TargetPosition = globalManager.currentPlayer.GlobalPosition;
-						}
-						if (targetPlayer.isCrouching && targetPlayer.lightLevel > farCrouchedLightDetectionLevel) {
-							state = EnemyState.Hunting;
-							navigationAgent.TargetPosition = globalManager.currentPlayer.GlobalPosition;
-						}
-					}
-				}
-			}
-		}
+        public RayCast3D GetBackwardRay()
+        {
+            return backwardRay;
+        }
 
-		public async void PatrolTimer()
-		{
-			await ToSignal(GetTree().CreateTimer(patrolTime), "timeout");
-			state = EnemyState.Patrol;
-			waypointIdx += 1;
-			if (waypointIdx > waypoints.Count - 1) {
-				waypointIdx = 0;
-			}
-			navigationAgent.TargetPosition = waypoints[waypointIdx].GlobalPosition;
-		}
+        public RayCast3D GetAimRay()
+        {
+            return aimRay;
+        }
 
-		public void MoveTowards(float speed, float delta)
-		{
-			if (speed > 0) {
-				var targetPos = navigationAgent.GetNextPathPosition();
-				direction = GlobalPosition.DirectionTo(targetPos);
-				Vector3 lookingPos = lastTargetPos.Lerp(targetPos, 1.25f);
-				Vector3 lookAtTargetPos = new Vector3(lookingPos.X, GlobalPosition.Y, lookingPos.Z);
-				if (GlobalPosition.DistanceTo(lookAtTargetPos) > .2f) {
-					LookAt(lookAtTargetPos, Vector3.Up);
-				}
-				lastTargetPos = lookingPos;
-			}
-			if (state == EnemyState.Hunting && DistanceToPlayer() <= rangeToAttack) {
-				return;
-			}
-			velocity = direction * speed;
-			Velocity = velocity;
-			MoveAndSlide();
-			if (playerInFarHearing) {
-				CheckPlayer();
-			}
-		}
+        public RayCast3D GetBottomRay()
+        {
+            return bottomRay;
+        }
 
-		public void TakeDamage(float damage)
-      {
-         health = Mathf.Clamp(health - damage, 0, maxHealth);
-
-         sfx.PlayRandomSfxByCategory("punch", -1, this);
-
-         if (health == 0 && !isDead) {
-            Die();
-         }
-      }
-
-      public void Die()
-      {
-         isDead = true;
-         sfx.PlayRandomSfxByCategory("screams", -1, this);
-
-         RandomNumberGenerator rng = new RandomNumberGenerator();
-         rng.Randomize();
-
-         animationTree.Set("parameters/state/current", rng.RandiRange(1, 2));
-      }
-
-		public void OnCloseSightEntered(Node node) 
-		{
-			if (node is Player) {
-				playerInCloseSigth = true;
-			}
-		}
-		public void OnCloseSightExited(Node node) 
-		{
-			if (node is Player) {
-				playerInCloseSigth = false;
-			}
-		}
-		public void OnFarSightEntered(Node node) 
-		{
-			if (node is Player) {
-				playerInFarSigth = true;
-			}
-		}
-		public void OnFarSightExited(Node node) 
-		{
-			if (node is Player) {
-				playerInFarSigth = false;
-			}
-		}
-
-      public RayCast3D GetTopRay()
-      {
-         return topRay;
-      }
-
-      public RayCast3D GetLeftRay()
-      {
-         return leftRay;
-      }
-
-      public RayCast3D GetRightRay()
-      {
-         return rightRay;
-      }
-
-      public RayCast3D GetForwardRay()
-      {
-         return forwardRay;
-      }
-
-      public RayCast3D GetBackwardRay()
-      {
-         return backwardRay;
-      }
-
-      public RayCast3D GetAimRay()
-      {
-         return aimRay;
-      }
-
-      public RayCast3D GetBottomRay()
-      {
-         return bottomRay;
-      }
-
-   }
+    }
 }
