@@ -1,14 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7gaqcueqluvy"]
+[gd_scene load_steps=6 format=3 uid="uid://b7gaqcueqluvy"]
 
+[ext_resource type="Texture2D" uid="uid://d3wb5tn6efo2" path="res://assets/decals/bullet_decal.png" id="1_7l420"]
+[ext_resource type="Texture2D" uid="uid://jebk7upxkj3q" path="res://assets/decals/bullet_decal_normal_normal.png" id="2_jylnj"]
 [ext_resource type="Script" path="res://src/Core/Decal/ShotDecal.cs" id="4"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cbg8q"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jtwb3"]
 albedo_color = Color(1, 0, 1, 1)
 
-[sub_resource type="BoxMesh" id="3"]
+[sub_resource type="BoxMesh" id="BoxMesh_lkvkr"]
+size = Vector3(0.362, 0.333, 0.342)
 
-[node name="ShotDecal" type="MeshInstance3D"]
+[node name="ShotDecal" type="Decal"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_cbg8q")
-mesh = SubResource("3")
+size = Vector3(0.191084, 0.637922, 0.197843)
+texture_albedo = ExtResource("1_7l420")
+texture_normal = ExtResource("2_jylnj")
 script = ExtResource("4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+material_override = SubResource("StandardMaterial3D_jtwb3")
+mesh = SubResource("BoxMesh_lkvkr")

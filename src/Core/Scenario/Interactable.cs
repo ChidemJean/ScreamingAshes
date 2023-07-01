@@ -50,19 +50,18 @@ namespace ChidemGames.Core.Scenario
       public void Interact()
       {
          isOpen = !isOpen;
-         animationPlayer.Play($"interact_{(isOpen ? "in" : "out")}");
-			if (isOpen && waitToOut > 0) {
-				WaitToOut();
-			}
-      }
-
-      public void InteractSameAnim()
-      {
-         isOpen = !isOpen;
+         double curTime = animationPlayer.CurrentAnimationPosition == 1 ? 0 : animationPlayer.CurrentAnimationPosition;
+         
          if (isOpen) {
             animationPlayer.Play($"interact_in");
+            double animLength = animationPlayer.CurrentAnimationLength;
+            double advanceTime = (curTime > 0 && curTime < animLength) ? animLength - curTime : 0;
+            animationPlayer.Advance(advanceTime);
          } else {
-            animationPlayer.PlayBackwards($"interact_in");
+            animationPlayer.Play($"interact_out");
+            double animLength = animationPlayer.CurrentAnimationLength;
+            double advanceTime = (curTime > 0 && curTime < animLength) ? animLength - curTime : 0;
+            animationPlayer.Advance(advanceTime);
          }
 			if (isOpen && waitToOut > 0) {
 				WaitToOut();
@@ -73,7 +72,7 @@ namespace ChidemGames.Core.Scenario
 		{
 			timer = GetTree().CreateTimer(waitToOut);
 			await ToSignal(timer, "timeout");
-			if (isOpen) InteractSameAnim();
+			if (isOpen) Interact();
 		}
 
       public bool ChangeHighlight(bool highlight = true)

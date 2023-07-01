@@ -7,6 +7,7 @@ using ChidemGames.Core.Items;
 using ChidemGames.Core.Decal;
 using ChidemGames.Ui;
 using ChidemGames.Resources;
+using ChidemGames.Extensions;
 
 namespace ChidemGames.Core.Items.Weapons
 {
@@ -133,9 +134,7 @@ namespace ChidemGames.Core.Items.Weapons
             if (node is BodyPartHittable) {
                ((BodyPartHittable) node).ApplyDamageOnBody(damageShot, shootPosition);
             }
-            var decalNode = bulletDecal.Instantiate<ShotDecal>();
-            node.AddChild(decalNode);
-            decalNode.GlobalPosition = shootPosition;
+            SpawnDecal(node as Node3D, shootPosition, shootNormal);
          }
          //
 
@@ -148,6 +147,14 @@ namespace ChidemGames.Core.Items.Weapons
          }
 
          return true;
+      }
+
+      public void SpawnDecal(Node3D node, Vector3 shotPosition, Vector3 shotNormal)
+      {
+         var decalNode = bulletDecal.Instantiate<ShotDecal>();
+         node.AddChild(decalNode);
+         decalNode.GlobalPosition = shotPosition;
+         decalNode.GlobalTransform = decalNode.GlobalTransform.LookAtWithY(shotNormal, globalManager.currentPlayer.camera.GlobalTransform.Basis.Y);
       }
 
       public void SpawnCapsule()

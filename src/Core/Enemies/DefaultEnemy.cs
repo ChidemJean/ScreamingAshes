@@ -208,11 +208,11 @@ namespace ChidemGames.Core.Enemies
 
         public override void _PhysicsProcess(double _delta)
         {
-				base._PhysicsProcess(_delta);
+            base._PhysicsProcess(_delta);
 
             float delta = (float)_delta;
 
-				// DEBUG ------------------------------------------------
+            // DEBUG ------------------------------------------------
             labelDebug.Text = $"{GetStateName()}\nPlayer Close Sight: {playerInCloseSigth}\nPlayer Far Sight: {playerInFarSigth}\nHealth: {100 * health}%";
             var material = meshDebug.MaterialOverride as BaseMaterial3D;
             material.AlbedoTexture = viewportDebug.GetTexture();
