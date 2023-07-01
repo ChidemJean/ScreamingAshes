@@ -510,7 +510,7 @@ namespace ChidemGames.Core.Characters
                   skeletonIKRightCodeHand.Target = lookAtAim.GlobalTransform;
                   if (itemRightHand != null && itemRightHand.LeftHandPosition != null)
                   {
-                     skeletonIKLeftHand.Target = itemRightHand.LeftHandPosition.GlobalTransform;
+                     // skeletonIKLeftHand.Target = itemRightHand.LeftHandPosition.GlobalTransform;
                      skeletonIKLeftHand.Interpolation = Mathf.Lerp(skeletonIKLeftHand.Interpolation, 1f, delta * 18.5f);
                   }
                   float blendAimAmount = 1.0f;
@@ -655,7 +655,7 @@ namespace ChidemGames.Core.Characters
          Velocity = velocity;
          MoveAndSlide();
 
-         RayForInteract();      
+         RayForInteract();
       }
 
       public bool IsPlaying()
@@ -707,6 +707,18 @@ namespace ChidemGames.Core.Characters
          animationTree.Set("parameters/state/transition_request", animationStates[rng.RandiRange(1, 2)]);
       }
 
+      public bool Ressurect()
+      {
+         if (!isDead) {
+            return false;
+         }
+         health = maxHealth;
+         isDead = false;
+         isPlaying = true;
+         animationTree.Set("parameters/state/transition_request", "default");
+         return true;
+      }
+
       public async void BackpackToHand()
       {
          await ToSignal(GetTree().CreateTimer(2), "timeout");
@@ -756,6 +768,7 @@ namespace ChidemGames.Core.Characters
                   if (_item.isTakeable) {
                      _item.ChangeHighlight();
                      ChangeSelectedItem(_item);
+                     ChangeSelectedInteractable();
                   }
                }
                else if (item is Interactable)
@@ -763,6 +776,7 @@ namespace ChidemGames.Core.Characters
                   Interactable interactable = (Interactable)item;
                   interactable.ChangeHighlight();
                   ChangeSelectedInteractable(interactable);
+                  ChangeSelectedItem();
                }
                if (globalManager.hud != null && (item is Item || item is Interactable)) {
                   globalManager.hud.ChangeCrosshair(Ui.HUD.CrosshairType.InteractHand);

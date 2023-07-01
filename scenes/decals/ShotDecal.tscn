@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://b7gaqcueqluvy"]
 
-[ext_resource path="res://assets/decals/bullet_decal_mat.tres" type="Material" id=1]
-[ext_resource path="res://src/Core/Decal/ShotDecal.cs" type="Script" id=4]
+[ext_resource type="Script" path="res://src/Core/Decal/ShotDecal.cs" id="4"]
 
-[sub_resource type="BoxMesh" id=3]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cbg8q"]
+albedo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="BoxMesh" id="3"]
 
 [node name="ShotDecal" type="MeshInstance3D"]
-transform = Transform3D( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0 )
-mesh = SubResource( 3 )
-material/0 = ExtResource( 1 )
-script = ExtResource( 4 )
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_cbg8q")
+mesh = SubResource("3")
+script = ExtResource("4")

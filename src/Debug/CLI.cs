@@ -41,9 +41,10 @@ namespace ChidemGames.Debug
             {"list_hist", "list_hist - Lista o histórico de comandos"},
             {"crs", "crs [value: 1 - 10] - Altera o render size"},
             {"inv", "inv - Solicita operação no inventário"},
-            {"sp_enemy", "sp_enemy - Spawna um novo inimigo"},
-            {"get_item", "get_item - Adiciona um item no inventário"},
+            {"sp_enemy", "sp_enemy [EnemyId] - Spawna um novo inimigo"},
+            {"get_item", "get_item [ItemId] - Adiciona um item no inventário"},
             {"kill_all", "kill_all - Mata todos os inimigos"},
+            {"resurrect", "resurrect - Ressuscita o Player"},
         };
         
         public override void _Ready()
@@ -210,6 +211,16 @@ namespace ChidemGames.Debug
                             if (node.Name.ToString().ToLower().Contains("enemy") && node is CharacterBody3D) {
                                 node.QueueFree();
                             }
+                        }
+                        break;
+
+                    case "resurrect":
+                        var player = globalManager.currentPlayer;
+                        bool ressurect = player.Ressurect();
+                        if (ressurect) {
+                            SpawnNewLine($"     Player ressuscitado", LineType.Success);
+                        } else {
+                            SpawnNewLine($"     Não foi possível ressuscitar, player vivo", LineType.Error);
                         }
                         break;
                 }

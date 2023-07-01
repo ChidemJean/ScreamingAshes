@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" path="res://scenes/ammo/BulletCapsule.tscn" id="7"]
 [ext_resource type="AudioStream" uid="uid://cj6tea1kdqsrr" path="res://assets/sfx/empty_pistol.wav" id="8"]
 [ext_resource type="PackedScene" uid="uid://455eameebvee" path="res://scenes/firearm_clips/PistolBufallusClip.tscn" id="9"]
-[ext_resource type="PackedScene" path="res://scenes/decals/ShotDecal.tscn" id="10"]
+[ext_resource type="PackedScene" uid="uid://b7gaqcueqluvy" path="res://scenes/decals/ShotDecal.tscn" id="10"]
 
 [sub_resource type="BoxShape3D" id="12"]
 size = Vector3(0.322921, 1.42543, 1.67172)
@@ -68,6 +68,7 @@ capsulePositionPath = NodePath("CapsulesDropPos")
 slidePath = NodePath("pistol_taurus/Parte Superior")
 capsule9mm = ExtResource("7")
 capsuleDropSpeed = 5.0
+slideAmount = -0.26
 acceptedClipTypes = [0]
 clipPosPath = NodePath("ClipPost")
 bulletDecal = ExtResource("10")
@@ -124,7 +125,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.863404, -0.489844)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.260995, 0.965901)
 
 [node name="LeftHandPosition" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.366607, -0.898933, -0.481612)
+transform = Transform3D(0.503705, 0.44101, -0.742827, -0.504494, -0.547847, -0.667346, -0.701261, 0.710896, -0.0534663, 0.446678, 0.367803, -1.15489)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

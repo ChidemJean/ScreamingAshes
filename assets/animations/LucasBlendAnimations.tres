@@ -139,6 +139,7 @@ input_2/reset = true
 [sub_resource type="AnimationNodeOneShot" id="42"]
 
 [resource]
+graph_offset = Vector2(233.275, 107.097)
 nodes/Animation/node = SubResource("3")
 nodes/Animation/position = Vector2(-560, 160)
 "nodes/Animation 10/node" = SubResource("43")

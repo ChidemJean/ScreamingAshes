@@ -56,11 +56,24 @@ namespace ChidemGames.Core.Scenario
 			}
       }
 
+      public void InteractSameAnim()
+      {
+         isOpen = !isOpen;
+         if (isOpen) {
+            animationPlayer.Play($"interact_in");
+         } else {
+            animationPlayer.PlayBackwards($"interact_in");
+         }
+			if (isOpen && waitToOut > 0) {
+				WaitToOut();
+			}
+      }
+
 		public async void WaitToOut()
 		{
 			timer = GetTree().CreateTimer(waitToOut);
 			await ToSignal(timer, "timeout");
-			if (isOpen) Interact();
+			if (isOpen) InteractSameAnim();
 		}
 
       public bool ChangeHighlight(bool highlight = true)

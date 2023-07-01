@@ -104,3 +104,6 @@ transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114
 
 [node name="default_enemy" parent="." instance=ExtResource("12_2e08u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.8653, 0.5, 22.3238)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 9.28277, 27.3616)

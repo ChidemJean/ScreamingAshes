@@ -133,9 +133,9 @@ namespace ChidemGames.Core.Items.Weapons
             if (node is BodyPartHittable) {
                ((BodyPartHittable) node).ApplyDamageOnBody(damageShot, shootPosition);
             }
-            // var decalNode = bulletDecal.Instantiate<ShotDecal>();
-            // GetNode<Node3D>("/root/MainScene/ViewportContainer/Viewport/Game").AddChild(decalNode);
-            // decalNode.GlobalPosition = shootPosition;
+            var decalNode = bulletDecal.Instantiate<ShotDecal>();
+            node.AddChild(decalNode);
+            decalNode.GlobalPosition = shootPosition;
          }
          //
 
@@ -153,7 +153,7 @@ namespace ChidemGames.Core.Items.Weapons
       public void SpawnCapsule()
       {
          RigidBody3D capsule = capsule9mm.Instantiate<RigidBody3D>();
-         game3dRoot.AddChild(capsule);
+         globalManager.main3dNode.AddChild(capsule);
          capsule.GlobalPosition = capsulePosition.GlobalPosition;
          capsule.ApplyImpulse(Vector3.Zero, new Vector3(capsuleDropSpeed * 2, capsuleDropSpeed, 0));
       }
@@ -225,6 +225,8 @@ namespace ChidemGames.Core.Items.Weapons
          {
             var clipToDrop = currentClip;
             currentClip = null;
+            clipToDrop.GetParent().RemoveChild(clipToDrop);
+            globalManager.main3dNode.AddChild(clipToDrop);
             var tween = CreateTween();
             tween.TweenProperty(clipToDrop, "global_position:y", clipToDrop.GlobalPosition.Y - 10f, 1.27f);
             await ToSignal(tween, "finished");
