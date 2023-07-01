@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bhbtygjub26k7"]
+[gd_scene load_steps=8 format=3 uid="uid://bhbtygjub26k7"]
 
 [ext_resource type="PackedScene" uid="uid://b184jbdhafswv" path="res://models/phone/phone.glb" id="1_4fcy3"]
 [ext_resource type="Script" path="res://src/Core/Phone.cs" id="1_omx2j"]
@@ -20,9 +20,16 @@ emission_texture = SubResource("ViewportTexture_l0f8g")
 [sub_resource type="PlaneMesh" id="PlaneMesh_q0pl8"]
 size = Vector2(4.38, 9.5)
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_uexjp"]
+viewport_path = NodePath("SubViewport2")
+
 [node name="Phone" type="Node3D"]
 script = ExtResource("1_omx2j")
 flashlightPath = NodePath("FlashLight")
+cameraPath = NodePath("Camera3D")
+cameraPhonePath = NodePath("SubViewport2/PhoneCamera")
+cameraPhonePreviewPath = NodePath("SubViewport/PhoneUI/Control/CameraPreview")
+cameraPhonePosPath = NodePath("PhoneCameraPos")
 
 [node name="phone" parent="." instance=ExtResource("1_4fcy3")]
 
@@ -57,6 +64,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="CameraPreview" type="TextureRect" parent="SubViewport/PhoneUI/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_uexjp")
+
 [node name="Button" type="Button" parent="SubViewport/PhoneUI/Control"]
 layout_mode = 1
 anchors_preset = 8
@@ -72,10 +88,19 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Test button"
 
+[node name="SubViewport2" type="SubViewport" parent="."]
+gui_disable_input = true
+size = Vector2i(512, 1024)
+
+[node name="PhoneCamera" type="Camera3D" parent="SubViewport2"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.433419, 8.16639, 0.318892)
+current = true
+fov = 65.0
+
 [node name="FlashLight" type="SpotLight3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.22341, 9.01646, 0)
-light_energy = 10.0
-spot_range = 139.962
+light_energy = 20.0
+spot_range = 207.362
 spot_angle = 50.6425
 
 [node name="ScreenLight" type="SpotLight3D" parent="."]
@@ -86,4 +111,6 @@ spot_angle = 82.3378
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.79955e-07, 5.92452, -8.17667)
-current = true
+
+[node name="PhoneCameraPos" type="Marker3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.433753, 8.25778, 0.570402)

@@ -344,7 +344,7 @@ namespace ChidemGames.Core.Characters
 
       public override void _Input(InputEvent _event)
       {
-         if (_event is InputEventMouseMotion)
+         if (_event is InputEventMouseMotion && IsPlaying())
          {
             InputEventMouseMotion motionEvent = (InputEventMouseMotion)_event;
             head.Rotation = new Vector3(Mathf.Clamp(head.Rotation.X - motionEvent.Relative.Y * -1 / 1000 * sensitivity, -1, 1f), head.Rotation.Y - motionEvent.Relative.X / 1000 * sensitivity, 0);
@@ -514,12 +514,16 @@ namespace ChidemGames.Core.Characters
                      // skeletonIKLeftHand.Target = itemRightHand.LeftHandPosition.GlobalTransform;
                      skeletonIKLeftHand.Interpolation = Mathf.Lerp(skeletonIKLeftHand.Interpolation, 1f, delta * 18.5f);
                   }
+                  if (itemRightHand == null) {
+                     phone.OnCamera(true);
+                  }
                   float blendAimAmount = 1.0f;
                   // animationTree.Set($"parameters/{currentBlendAim}/blend_amount", Mathf.Lerp(curAimBlend, blendAimAmount, delta * 6.5f));
                }
             }
             else
             {
+               phone.OnCamera(false);
                isAiming = false;
                if (isSprinting) lookAtHead.Rotation = initialRotationLookAtHead;
                if (curAimBlend > 0)

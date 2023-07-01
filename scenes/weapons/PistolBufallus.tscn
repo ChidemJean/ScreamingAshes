@@ -45,7 +45,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0.00465851, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [4.0, 0.0]
+"values": [6.0, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kursk"]
@@ -69,12 +69,12 @@ slidePath = NodePath("pistol_taurus/Parte Superior")
 capsule9mm = ExtResource("7")
 capsuleDropSpeed = 5.0
 slideAmount = -0.26
-acceptedClipTypes = [0]
 clipPosPath = NodePath("ClipPost")
 bulletDecal = ExtResource("10")
 bulletFromPath = NodePath("BulletFrom")
 bulletRange = 600.0
 shotRayMask = 4294901759
+acceptedClipTypes = [0]
 damage = 0.2
 hitSensorPath = NodePath("HitSensor")
 leftHandPositionPath = NodePath("LeftHandPosition")
@@ -92,7 +92,7 @@ shape = SubResource("12")
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 light_energy = 0.0
 light_indirect_energy = 2.0
-omni_range = 7000.0
+omni_range = 44.8476
 
 [node name="MuzzleParticles" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.272408, 1.09818)

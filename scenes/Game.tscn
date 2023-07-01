@@ -29,7 +29,7 @@ script = ExtResource("1_qw7o4")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.733896, 0.679262, 0, -0.679262, 0.733896, 0, 8.76186, 0)
-light_energy = 0.0
+light_energy = 0.1
 light_indirect_energy = 0.0
 light_volumetric_fog_energy = 0.0
 
@@ -106,6 +106,3 @@ transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114
 
 [node name="default_enemy" parent="." instance=ExtResource("12_2e08u")]
 transform = Transform3D(1.65, 0, 0, 0, 1.65, 0, 0, 0, 1.65, 12.8653, 0.5, 22.3238)
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 9.28277, 27.3616)
