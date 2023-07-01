@@ -201,7 +201,7 @@ namespace ChidemGames.Debug
                         string itemId = cmdParams[0];
                         int qtd = cmdParams.Length == 2 ? cmdParams[1].ToInt() : 1;
                         for (int i = 0; i < qtd; i++) {
-                            globalEvents.EmitSignal(GameEvent.TakeItem, itemId, false);
+                            globalEvents.EmitSignal(GameEvent.TakeItem, itemId, false, -1);
                         }
                         SpawnNewLine($"     {qtd}x {itemId} adicionado(s) no inventário", LineType.Success);
                         break;

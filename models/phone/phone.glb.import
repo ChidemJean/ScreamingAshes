@@ -1,0 +1,59 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://b184jbdhafswv"
+path="res://.godot/imported/phone.glb-dc758144473b576c124e7ceea62c9ab5.scn"
+
+[deps]
+
+source_file="res://models/phone/phone.glb"
+dest_files=["res://.godot/imported/phone.glb-dc758144473b576c124e7ceea62c9ab5.scn"]
+
+[params]
+
+nodes/root_type="Node3D"
+nodes/root_name="Scene Root"
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+import_script/path=""
+_subresources={
+"materials": {
+"back": {
+"use_external/enabled": true,
+"use_external/path": "res://models/phone/back.tres"
+},
+"back_cam": {
+"use_external/enabled": true,
+"use_external/path": "res://models/phone/back_cam.tres"
+},
+"borda": {
+"use_external/enabled": true,
+"use_external/path": "res://models/phone/borda.tres"
+},
+"borda_front": {
+"use_external/enabled": true,
+"use_external/path": "res://models/phone/borda_front.tres"
+},
+"front_cam": {
+"use_external/enabled": true,
+"use_external/path": "res://models/phone/front_cam.tres"
+},
+"lateral": {
+"use_external/enabled": true,
+"use_external/path": "res://models/phone/lateral.tres"
+}
+}
+}
+gltf/embedded_image_handling=1

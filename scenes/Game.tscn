@@ -29,7 +29,9 @@ script = ExtResource("1_qw7o4")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.733896, 0.679262, 0, -0.679262, 0.733896, 0, 8.76186, 0)
-light_energy = 0.5
+light_energy = 0.0
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("1_x11dp")

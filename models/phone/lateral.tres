@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bgdwra2g85giv"]
+
+[resource]
+resource_name = "lateral"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.653326, 0.653326, 0.653326, 1)
+metallic = 1.0
+roughness = 0.5

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhbtygjub26k7"]
+
+[ext_resource type="PackedScene" uid="uid://b184jbdhafswv" path="res://models/phone/phone.glb" id="1_4fcy3"]
+[ext_resource type="PackedScene" uid="uid://bl7lteat5vpr6" path="res://scenes/phone/PhoneUI.tscn" id="2_r4peh"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_q0pl8"]
+size = Vector2(4.38, 9.5)
+
+[node name="Phone" type="Node3D"]
+
+[node name="phone" parent="." instance=ExtResource("1_4fcy3")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.0129957, 4.92078, -0.329342)
+mesh = SubResource("PlaneMesh_q0pl8")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+
+[node name="PhoneUI" parent="SubViewport" instance=ExtResource("2_r4peh")]

@@ -267,9 +267,9 @@ namespace ChidemGames.Core.Items.Weapons
       {
          var clipNode = clip.Instantiate<FirearmClip>();
          clipNode.bullets = tempBullets;
-         UpdateInventorySubitems();
          tempBullets = 0;
          currentClip = clipNode;
+         UpdateInventorySubitems();
          if (currentClip != null) {
             currentClip.isTakeable = false;
          }
