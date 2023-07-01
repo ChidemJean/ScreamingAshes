@@ -115,7 +115,7 @@ namespace ChidemGames.Ui
 			globalEvents.EmitSignal(GameEvent.OnSlotMouseEnter, this);
 		}
 
-		public virtual void PlaceItem(string itemId)
+		public virtual void PlaceItem(string itemId, int itemUniqueId)
 		{
 			Status = SlotInventoryStatus.Busy;
 			this.itemId = itemId;

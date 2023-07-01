@@ -42,9 +42,6 @@ namespace ChidemGames.Core.Items.Weapons
       [Export]
       float slideAmount = -0.62f;
 
-      [Export]
-      Godot.Collections.Array<FirearmClipType> acceptedClipTypes = new Godot.Collections.Array<FirearmClipType>();
-
       Node3D game3dRoot;
 
       Vector3 initilSlidePosition;
@@ -100,6 +97,15 @@ namespace ChidemGames.Core.Items.Weapons
          game3dRoot = globalManager.main3dNode;
       }
 
+      public override void UpdateBullets(int bullets = -1)
+      {
+         if (bullets == -1) return;
+
+         if (currentClip != null) {
+            currentClip.bullets = bullets;
+         }
+      }
+
       public bool Shoot()
       {
          if (currentClip == null)
@@ -119,6 +125,8 @@ namespace ChidemGames.Core.Items.Weapons
          }
 
          currentClip.bullets--;
+         UpdateInventorySubitems();
+
          animPlayer.Play("shoot");
          muzzleFlashParticles.Emitting = true;
          sfx.PlaySfx("shoot", player);
@@ -147,6 +155,11 @@ namespace ChidemGames.Core.Items.Weapons
          }
 
          return true;
+      }
+
+      public override int GetCurrentBullets()
+      {
+         return currentClip != null ? currentClip.bullets : 0;
       }
 
       public void SpawnDecal(Node3D node, Vector3 shotPosition, Vector3 shotNormal)
@@ -183,6 +196,7 @@ namespace ChidemGames.Core.Items.Weapons
                if (acceptedClipTypes.Contains(clipRes.type)) {
                   if (clipItemInv == null || itemInv.GetSubitems() > clipItemInv.GetSubitems()) {
                      clipItemInv = itemInv;
+                     break;
                   }
                }
             }
@@ -253,6 +267,7 @@ namespace ChidemGames.Core.Items.Weapons
       {
          var clipNode = clip.Instantiate<FirearmClip>();
          clipNode.bullets = tempBullets;
+         UpdateInventorySubitems();
          tempBullets = 0;
          currentClip = clipNode;
          if (currentClip != null) {

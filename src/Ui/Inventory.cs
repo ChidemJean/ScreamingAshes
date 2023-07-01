@@ -133,6 +133,7 @@ namespace ChidemGames.Ui
          }
          itemInventory.slotInventoryPivot = null;
          Clean();
+         globalEvents.EmitSignal(GameEvent.InventoryHasBeenUpdate);
       }
 
       public void OnDetachItem(ItemInventory itemInventory)
@@ -147,23 +148,36 @@ namespace ChidemGames.Ui
             slotInventory.DetachItem();
          }
          itemDrag.slotInventoryPivot = null;
+         globalEvents.EmitSignal(GameEvent.InventoryHasBeenUpdate);
       }
 
       public void PlaceItem()
       {
          if (slotsHovered.Count > 0 && canPlace)
          {
+            items.Add(itemDrag);
+            int key = items.IndexOf(itemDrag);
             foreach (SlotInventory slot in slotsHovered)
             {
-               slot.PlaceItem(itemDrag.itemId);
+               slot.PlaceItem(itemDrag.itemId, key);
             }
             itemDrag.Place(slotsHovered, GetGridMargin());
             ClearHoveredSlots();
-            items.Add(itemDrag);
             itemDrag = null;
 
+            globalEvents.EmitSignal(GameEvent.InventoryHasBeenUpdate);
             // globalManager.hud.ShowLoadCursor(5);
          }
+      }
+
+      public int GetSubitemByItemUniqueId(int uniqueId)
+      {
+         return items[uniqueId].GetSubitems();
+      }
+
+      public void UpdateSubitemsForUniqueId(int uniqueId, int subitems = 0)
+      {
+         items[uniqueId].SetSubitems(subitems);
       }
 
       public Vector2 GetGridMargin()
@@ -185,18 +199,21 @@ namespace ChidemGames.Ui
             TryAutomaticPlaceItem();
             if (!canPlace)
             {
-               DropItem(itemDrag.itemScenePath);
+               DropItem(itemDrag.itemScenePath, itemDrag.GetSubitems());
             }
          }
       }
 
-      public void OnTakeItem(string itemId, bool openMenu = false)
+      public void OnTakeItem(string itemId, bool openMenu = false, int subitems = -1)
       {
          if (itemId != null && itemInvetory != null && itemDrag == null)
          {
             itemDrag = itemInvetory.Instantiate<ItemInventory>();
             itemsHolder.AddChild(itemDrag);
             itemDrag.InitData(itemId, 1);
+            if (subitems > -1) {
+               itemDrag.SetSubitems(subitems);
+            }
             itemDrag.UpdateUi();
             itemDrag.UpdateSize(slots[0, 0].Size, GetGridMargin());
 
@@ -260,18 +277,21 @@ namespace ChidemGames.Ui
       {
          if (itemDrag != null)
          {
-            DropItem(itemDrag.itemScenePath);
+            DropItem(itemDrag.itemScenePath, itemDrag.GetSubitems());
          }
          Clean();
       }
 
-      public void DropItem(string itemScenePath)
+      public void DropItem(string itemScenePath, int subitems = 0)
       {
          var itemScene = ResourceLoader.Load<PackedScene>(itemScenePath);
          Item itemNode = itemScene.Instantiate<Item>();
          globalManager.main3dNode.AddChild(itemNode);
          itemNode.GlobalPosition = globalManager.currentPlayer.GlobalPosition + (globalManager.currentPlayer.GlobalTransform.Basis.Z.Normalized() * 3 + (new Vector3(0, 3f, 0)));
          itemNode.ChangePhysics(false);
+         if (itemNode is Weapon) {
+            ((Weapon) itemNode).UpdateBullets(subitems);
+         }
       }
 
       public List<SlotInventory> GetSlotsForItem(ItemInventory item)

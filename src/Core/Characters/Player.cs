@@ -110,7 +110,7 @@ namespace ChidemGames.Core.Characters
 
       float gravity = (float)ProjectSettings.GetSetting("physics/3d/default_gravity");
 
-      Item itemRightHand = null;
+      public Item itemRightHand = null;
 
       Vector3 initialRotationLookAtHead;
 
@@ -273,7 +273,7 @@ namespace ChidemGames.Core.Characters
 
       }
 
-      public void PlaceItemOnRightHand(string itemScenePath)
+      public void PlaceItemOnRightHand(string itemScenePath, int itemUniqueId)
       {
          var itemScene = ResourceLoader.Load<PackedScene>(itemScenePath);
          var itemNode = itemScene.Instantiate<Item>();
@@ -284,6 +284,10 @@ namespace ChidemGames.Core.Characters
          }
          itemSlotRight.AddChild(itemNode);
          itemRightHand = itemNode;
+         itemRightHand.itemUniqueId = itemUniqueId;
+         if (itemRightHand is Weapon) {
+            ((Weapon) itemRightHand).UpdateBullets(globalManager.inventory.GetSubitemByItemUniqueId(itemUniqueId));
+         }
          itemRightHand.player = this;
       }
 

@@ -20,7 +20,7 @@ namespace ChidemGames.Events
       public delegate void CueForceChangeEventHandler(float avg);
 
       [Signal]
-      public delegate void TakeItemEventHandler(string itemId, bool openMenu);
+      public delegate void TakeItemEventHandler(string itemId, bool openMenu, int subitems);
 
       [Signal]
       public delegate void OpenMenuEventHandler();
@@ -41,10 +41,13 @@ namespace ChidemGames.Events
       public delegate void DetachItemFromSlotEventHandler(ItemInventory item);
 
       [Signal]
-      public delegate void OnFastSlotAttachEventHandler(int slotIndex, string itemId);
+      public delegate void OnFastSlotAttachEventHandler(int slotIndex, string itemId, int itemUniqueId);
 
       [Signal]
       public delegate void OnFastSlotDetachEventHandler(int slotIndex);
+
+      [Signal]
+      public delegate void InventoryHasBeenUpdateEventHandler();
 
    }
 }

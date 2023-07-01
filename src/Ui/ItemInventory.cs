@@ -101,6 +101,11 @@ namespace ChidemGames.Ui
 		public void UpdateUi()
 		{
 			thumb.Texture = itemRes.texture;
+			UpdateSubitemsUi();
+		}
+
+		public void UpdateSubitemsUi()
+		{
 			qtd.Visible = subitems > 0;
 			qtdLabel.Text = GetSubitems().ToString();
 		}
@@ -113,6 +118,7 @@ namespace ChidemGames.Ui
 		public void SetSubitems(int qtd)
 		{
 			subitems = qtd;
+			UpdateSubitemsUi();
 		}
 
 		public void UpdateSize(Vector2 sizeSlot, Vector2 gridMargin)

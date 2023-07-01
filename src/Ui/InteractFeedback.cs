@@ -65,8 +65,13 @@ namespace ChidemGames.Ui
 				if (globalManager.currentPlayer.currentSelectedItem != null) {
 					string itemId = globalManager.currentPlayer.currentSelectedItem.itemId;
 					globalManager.currentPlayer.currentSelectedItem.QueueFree();
+					int subitems = -1;
+					Item item = globalManager.currentPlayer.currentSelectedItem;
+					if (item is Weapon) {
+						subitems = ((Weapon) item).GetCurrentBullets();
+					}
 					globalManager.currentPlayer.currentSelectedItem = null;
-					globalEvents.EmitSignal(GameEvent.TakeItem, itemId, false);
+					globalEvents.EmitSignal(GameEvent.TakeItem, itemId, false, subitems);
 				}
 				if (globalManager.currentPlayer.currentSelectedInteractable != null) {
 					Interactable interactable = globalManager.currentPlayer.currentSelectedInteractable;

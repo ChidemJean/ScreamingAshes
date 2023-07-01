@@ -29,6 +29,7 @@ namespace ChidemGames.Ui
 
 		string itemId = "";
 		string itemScenePath = "";
+		int itemUniqueId = 0;
 
 		[Export]
 		string inputActionName = "";
@@ -55,7 +56,10 @@ namespace ChidemGames.Ui
 				string actionName = $"fast_slot_{i+1}";
 				if (!isSelected && itemId != "" && actionName == slotActionName && @event.IsActionPressed(actionName)) {
 					Select();
-					if (this.itemScenePath != null) globalManager.currentPlayer.PlaceItemOnRightHand(this.itemScenePath);
+					if (this.itemScenePath != null) {
+						globalManager.currentPlayer.PlaceItemOnRightHand(this.itemScenePath, this.itemUniqueId);
+						globalEvents.EmitSignal(GameEvent.InventoryHasBeenUpdate);
+					}
 					return;
 				}
 				if (isSelected && actionName != slotActionName && @event.IsActionPressed(actionName)) {
@@ -65,7 +69,7 @@ namespace ChidemGames.Ui
 			}
 		}
 
-		public void OnFasSlotAttach(int slotIndex, string itemId)
+		public void OnFasSlotAttach(int slotIndex, string itemId, int itemUniqueId = 0)
 		{
 			if (this.slotIndex != slotIndex) {
 				return;
@@ -73,11 +77,12 @@ namespace ChidemGames.Ui
 			this.itemId = itemId;
 			var itemRes = ResourceLoader.Load<ItemResource>($"{globalManager.itemsResourcePath}{itemId}.tres");
 			itemScenePath = itemRes.scenePath;
+			this.itemUniqueId = itemUniqueId;
 			thumb.Texture = itemRes.textureWhite;
 			var tween = GetTree().CreateTween();
 			tween.TweenProperty(thumb, "modulate:a", .9f, .16f);
 			if (isSelected) {
-				if (this.itemScenePath != null) globalManager.currentPlayer.PlaceItemOnRightHand(this.itemScenePath);
+				if (this.itemScenePath != null) globalManager.currentPlayer.PlaceItemOnRightHand(this.itemScenePath, this.itemUniqueId);
 			}
 		}
 

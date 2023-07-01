@@ -14,10 +14,10 @@ namespace ChidemGames.Ui
 			base._Ready();
       }
 
-		public override void PlaceItem(string itemId)
+		public override void PlaceItem(string itemId, int itemUniqueId)
 		{
-			base.PlaceItem(itemId);
-			globalEvents.EmitSignal(GameEvent.OnFastSlotAttach, slotIndex, itemId);
+			base.PlaceItem(itemId, itemUniqueId);
+			globalEvents.EmitSignal(GameEvent.OnFastSlotAttach, slotIndex, itemId, itemUniqueId);
 		}
 		
 		public override void DetachItem()

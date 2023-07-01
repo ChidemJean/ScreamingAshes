@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://dbcevydyyhdar"]
+[gd_scene load_steps=43 format=3 uid="uid://dbcevydyyhdar"]
 
 [ext_resource type="FontFile" path="res://assets/fonts/baloom_small.tres" id="2"]
 [ext_resource type="Script" path="res://src/Tools/Fps.cs" id="3"]
@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://c6htr5ljvimyb" path="res://assets/ui/sanity_icon.png" id="21"]
 [ext_resource type="Texture2D" uid="uid://dav26oxqpnm0t" path="res://assets/ui/scary_icon.png" id="22"]
 [ext_resource type="Texture2D" uid="uid://cocef6ajhds32" path="res://assets/ui/pistol_icon.png" id="23"]
+[ext_resource type="Script" path="res://src/Ui/CurrentAmmo.cs" id="25_lgk70"]
 [ext_resource type="Texture2D" uid="uid://cekxmahp5bhs3" path="res://assets/ui/phone.png" id="27"]
 [ext_resource type="Script" path="res://src/Ui/FastInventory.cs" id="28"]
 [ext_resource type="FontFile" path="res://assets/fonts/primary/primary_bold.tres" id="29"]
@@ -702,6 +703,66 @@ layout_mode = 2
 [node name="StaminaBox" parent="HUD/Main/Container/StatsBar" instance=ExtResource("19")]
 layout_mode = 2
 
+[node name="Items2" type="HBoxContainer" parent="HUD/Main/Container"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -406.0
+offset_top = -162.0
+offset_right = -308.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 30
+
+[node name="PhoneContainer" type="VBoxContainer" parent="HUD/Main/Container/Items2"]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="Spacer" type="Control" parent="HUD/Main/Container/Items2/PhoneContainer"]
+custom_minimum_size = Vector2(0, 85)
+layout_mode = 2
+
+[node name="Phone" type="TextureRect" parent="HUD/Main/Container/Items2/PhoneContainer"]
+self_modulate = Color(1, 1, 1, 0.223529)
+custom_minimum_size = Vector2(38, 38)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("27")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ShortcutBox" parent="HUD/Main/Container/Items2/PhoneContainer" instance=ExtResource("30")]
+layout_mode = 2
+inputEventName = "phone_interact"
+
+[node name="BagContainer" type="VBoxContainer" parent="HUD/Main/Container/Items2"]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="Spacer" type="Control" parent="HUD/Main/Container/Items2/BagContainer"]
+custom_minimum_size = Vector2(0, 85)
+layout_mode = 2
+
+[node name="Bag" type="TextureProgressBar" parent="HUD/Main/Container/Items2/BagContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_vertical = 4
+value = 35.0
+fill_mode = 3
+texture_under = ExtResource("15")
+texture_progress = ExtResource("15")
+tint_under = Color(1, 1, 1, 0.184314)
+tint_progress = Color(1, 1, 1, 0.239216)
+
+[node name="ShortcutBox" parent="HUD/Main/Container/Items2/BagContainer" instance=ExtResource("30")]
+layout_mode = 2
+inputEventName = "open_inventory"
+
 [node name="Items" type="HBoxContainer" parent="HUD/Main/Container"]
 layout_mode = 0
 anchor_left = 1.0
@@ -714,74 +775,6 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_constants/separation = 30
 
-[node name="PhoneContainer" type="VBoxContainer" parent="HUD/Main/Container/Items"]
-layout_mode = 2
-theme_override_constants/separation = 6
-alignment = 1
-
-[node name="Spacer" type="Control" parent="HUD/Main/Container/Items/PhoneContainer"]
-custom_minimum_size = Vector2(0, 85)
-layout_mode = 2
-
-[node name="Phone" type="TextureRect" parent="HUD/Main/Container/Items/PhoneContainer"]
-self_modulate = Color(1, 1, 1, 0.223529)
-custom_minimum_size = Vector2(38, 38)
-layout_mode = 2
-size_flags_vertical = 4
-texture = ExtResource("27")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="ShortcutBox" parent="HUD/Main/Container/Items/PhoneContainer/Phone" instance=ExtResource("30")]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -9.5
-offset_top = 6.0
-offset_right = 9.5
-offset_bottom = 29.0
-grow_horizontal = 2
-grow_vertical = 0
-inputEventName = "phone_interact"
-
-[node name="BagContainer" type="VBoxContainer" parent="HUD/Main/Container/Items"]
-layout_mode = 2
-theme_override_constants/separation = 6
-alignment = 1
-
-[node name="Spacer" type="Control" parent="HUD/Main/Container/Items/BagContainer"]
-custom_minimum_size = Vector2(0, 85)
-layout_mode = 2
-
-[node name="Bag" type="TextureProgressBar" parent="HUD/Main/Container/Items/BagContainer"]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-size_flags_vertical = 4
-value = 35.0
-fill_mode = 3
-texture_under = ExtResource("15")
-texture_progress = ExtResource("15")
-tint_under = Color(1, 1, 1, 0.184314)
-tint_progress = Color(1, 1, 1, 0.239216)
-
-[node name="ShortcutBox" parent="HUD/Main/Container/Items/BagContainer/Bag" instance=ExtResource("30")]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -9.5
-offset_top = 4.0
-offset_right = 9.5
-offset_bottom = 27.0
-grow_horizontal = 2
-grow_vertical = 0
-inputEventName = "open_inventory"
-
 [node name="Spacer" type="Control" parent="HUD/Main/Container/Items"]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
@@ -790,6 +783,9 @@ layout_mode = 2
 layout_mode = 2
 theme_override_constants/separation = -12
 alignment = 1
+script = ExtResource("25_lgk70")
+currentLabelPath = NodePath("CurrentAmmo")
+totalLabelPath = NodePath("HBoxContainer/AvailableAmmo")
 
 [node name="Spacer" type="Control" parent="HUD/Main/Container/Items/Ammo"]
 custom_minimum_size = Vector2(0, 110)
@@ -800,7 +796,7 @@ self_modulate = Color(1, 1, 1, 0.588235)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("12")
 theme_override_font_sizes/font_size = 42
-text = "25"
+text = "0"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD/Main/Container/Items/Ammo"]
 modulate = Color(1, 1, 1, 0.392157)
@@ -817,7 +813,7 @@ stretch_mode = 5
 [node name="AvailableAmmo" type="Label" parent="HUD/Main/Container/Items/Ammo/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("13")
-text = "150"
+text = "0"
 
 [node name="FastInv" type="VBoxContainer" parent="HUD/Main/Container/Items"]
 layout_mode = 2

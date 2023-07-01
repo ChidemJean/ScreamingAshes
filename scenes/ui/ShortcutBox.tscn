@@ -9,6 +9,7 @@
 custom_minimum_size = Vector2(0, 17)
 offset_right = 25.0
 offset_bottom = 23.0
+size_flags_horizontal = 4
 theme_override_styles/panel = ExtResource("3")
 script = ExtResource("2")
 labelPath = NodePath("Label")
