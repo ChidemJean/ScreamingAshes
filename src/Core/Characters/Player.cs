@@ -147,8 +147,8 @@ namespace ChidemGames.Core.Characters
       string currentBlendAim = null;
 
       [Export]
-      NodePath flashLightPath;
-      SpotLight3D flashLight;
+      NodePath phonePath;
+      Phone phone;
 
       [Export]
       NodePath flashLightSlotPath;
@@ -247,7 +247,7 @@ namespace ChidemGames.Core.Characters
          neckBackpackSlot = GetNode<Marker3D>(neckBackpackSlotPath);
          handBackpackSlot = GetNode<Marker3D>(handBackpackSlotPath);
 
-         flashLight = GetNode<SpotLight3D>(flashLightPath);
+         phone = GetNode<Phone>(phonePath);
          flashLightSlot = GetNode<Node3D>(flashLightSlotPath);
          flashLightHandSlot = GetNode<Node3D>(flashLightHandSlotPath);
 
@@ -291,15 +291,12 @@ namespace ChidemGames.Core.Characters
          itemRightHand.player = this;
       }
 
-      public void RemoveItemRightHand(string itemId)
+      public void RemoveItemRightHand(string itemId = "")
       {
          if (itemRightHand != null)
          {
-            if (itemRightHand.itemId == itemId)
-            {
-               itemRightHand.QueueFree();
-               itemRightHand = null;
-            }
+            itemRightHand.QueueFree();
+            itemRightHand = null;
          }
       }
 
@@ -386,8 +383,8 @@ namespace ChidemGames.Core.Characters
             if (!isFlashlightOnHand)
             {
                isFlashlightOnHand = true;
-               flashLightSlot.RemoveChild(flashLight);
-               flashLightHandSlot.AddChild(flashLight);
+               flashLightSlot.RemoveChild(phone);
+               flashLightHandSlot.AddChild(phone);
             }
          }
          else
@@ -395,12 +392,12 @@ namespace ChidemGames.Core.Characters
             if (isFlashlightOnHand)
             {
                isFlashlightOnHand = false;
-               flashLightHandSlot.RemoveChild(flashLight);
-               flashLightSlot.AddChild(flashLight);
+               flashLightHandSlot.RemoveChild(phone);
+               flashLightSlot.AddChild(phone);
             }
          }
-         flashLight.Position = Vector3.Zero;
-         flashLight.RotationDegrees = Vector3.Zero;
+         phone.Position = Vector3.Zero;
+         phone.RotationDegrees = Vector3.Zero;
       }
 
       public void UpdateStamina(float variation, float delta)
@@ -456,7 +453,7 @@ namespace ChidemGames.Core.Characters
             else
             {
                isSprinting = false;
-               SwapFlashlightSlot(true);
+               SwapFlashlightSlot(itemRightHand == null);
             }
 
             UpdateStamina(currentStaminaVariation * (isSprinting ? -1 : 1), delta);

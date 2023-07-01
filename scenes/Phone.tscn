@@ -1,19 +1,89 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhbtygjub26k7"]
+[gd_scene load_steps=7 format=3 uid="uid://bhbtygjub26k7"]
 
 [ext_resource type="PackedScene" uid="uid://b184jbdhafswv" path="res://models/phone/phone.glb" id="1_4fcy3"]
-[ext_resource type="PackedScene" uid="uid://bl7lteat5vpr6" path="res://scenes/phone/PhoneUI.tscn" id="2_r4peh"]
+[ext_resource type="Script" path="res://src/Core/Phone.cs" id="1_omx2j"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_20hai"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_l0f8g"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_4p4ky"]
+resource_local_to_scene = true
+disable_ambient_light = true
+albedo_texture = SubResource("ViewportTexture_20hai")
+emission_enabled = true
+emission_energy_multiplier = 1.2
+emission_texture = SubResource("ViewportTexture_l0f8g")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_q0pl8"]
 size = Vector2(4.38, 9.5)
 
 [node name="Phone" type="Node3D"]
+script = ExtResource("1_omx2j")
+flashlightPath = NodePath("FlashLight")
 
 [node name="phone" parent="." instance=ExtResource("1_4fcy3")]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.0129957, 4.92078, -0.329342)
+[node name="PhoneScreen" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.999989, 0, -0.00462522, 0.00462522, -4.37114e-08, -0.999989, -2.02175e-10, -1, 4.37109e-08, -0.0129957, 4.92078, -0.329342)
+material_override = SubResource("ORMMaterial3D_4p4ky")
 mesh = SubResource("PlaneMesh_q0pl8")
 
 [node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+size = Vector2i(432, 768)
 
-[node name="PhoneUI" parent="SubViewport" instance=ExtResource("2_r4peh")]
+[node name="PhoneUI" type="MarginContainer" parent="SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Control" type="Control" parent="SubViewport/PhoneUI"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="SubViewport/PhoneUI/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="SubViewport/PhoneUI/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.0
+offset_top = -15.5
+offset_right = 49.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Test button"
+
+[node name="FlashLight" type="SpotLight3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.22341, 9.01646, 0)
+light_energy = 10.0
+spot_range = 139.962
+spot_angle = 50.6425
+
+[node name="ScreenLight" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.01301, -0.716281)
+light_energy = 5.0
+spot_range = 45.8499
+spot_angle = 82.3378
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.79955e-07, 5.92452, -8.17667)
+current = true

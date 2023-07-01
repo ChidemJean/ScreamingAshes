@@ -54,13 +54,18 @@ namespace ChidemGames.Ui
 			string slotActionName = $"fast_slot_{slotIndex+1}";
 			for (int i = 0; i < 3; i++) {
 				string actionName = $"fast_slot_{i+1}";
-				if (!isSelected && itemId != "" && actionName == slotActionName && @event.IsActionPressed(actionName)) {
-					Select();
-					if (this.itemScenePath != null) {
-						globalManager.currentPlayer.PlaceItemOnRightHand(this.itemScenePath, this.itemUniqueId);
-						globalEvents.EmitSignal(GameEvent.InventoryHasBeenUpdate);
+				if (!isSelected && actionName == slotActionName && @event.IsActionPressed(actionName)) {
+					if (itemId != "") {
+						Select();
+						if (this.itemScenePath != null) {
+							globalManager.currentPlayer.PlaceItemOnRightHand(this.itemScenePath, this.itemUniqueId);
+							globalEvents.EmitSignal(GameEvent.InventoryHasBeenUpdate);
+						}
+						return;
+					} else {
+						globalManager.currentPlayer.RemoveItemRightHand();
+						return;
 					}
-					return;
 				}
 				if (isSelected && actionName != slotActionName && @event.IsActionPressed(actionName)) {
 					Unselect();
