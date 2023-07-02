@@ -182,6 +182,7 @@ flashlight={
 3d_physics/layer_15="StaticBodies"
 3d_physics/layer_16="EnemyBodyPart"
 3d_physics/layer_17="EnemyBody"
+3d_physics/layer_25="PhoneScreen"
 
 [mono]
 
