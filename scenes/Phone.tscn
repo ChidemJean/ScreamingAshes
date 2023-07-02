@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bhbtygjub26k7"]
+[gd_scene load_steps=10 format=3 uid="uid://bhbtygjub26k7"]
 
 [ext_resource type="PackedScene" uid="uid://b184jbdhafswv" path="res://models/phone/phone.glb" id="1_4fcy3"]
 [ext_resource type="Script" path="res://src/Core/Phone.cs" id="1_omx2j"]
+[ext_resource type="PackedScene" uid="uid://bl7lteat5vpr6" path="res://scenes/phone/PhoneUI.tscn" id="3_41ti4"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_20hai"]
 viewport_path = NodePath("SubViewport")
@@ -23,7 +24,7 @@ size = Vector2(4.38, 9.5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ws0c0"]
 size = Vector3(4.35873, 0.0262823, 9.54527)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_uexjp"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_b85pb"]
 viewport_path = NodePath("SubViewport2")
 
 [node name="Phone" type="Node3D"]
@@ -31,7 +32,7 @@ script = ExtResource("1_omx2j")
 flashlightPath = NodePath("FlashLight")
 cameraPath = NodePath("Camera3D")
 cameraPhonePath = NodePath("SubViewport2/PhoneCamera")
-cameraPhonePreviewPath = NodePath("SubViewport/PhoneUI/Control/CameraPreview")
+cameraPhonePreviewPath = NodePath("SubViewport/PhoneUI/HomeScreen/CameraPreview")
 cameraPhonePosPath = NodePath("PhoneCameraPos")
 viewportPath = NodePath("SubViewport")
 panelFacePath = NodePath("PhoneScreen")
@@ -41,7 +42,7 @@ rayMask = 16777216
 [node name="phone" parent="." instance=ExtResource("1_4fcy3")]
 
 [node name="PhoneScreen" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.999989, 0, -0.00462522, 0.00462522, -4.37114e-08, -0.999989, -2.02175e-10, -1, 4.37109e-08, -0.0129957, 4.92078, -0.329342)
+transform = Transform3D(-0.999989, 0, -0.00462522, 0.00462522, -4.37114e-08, -0.999989, -2.02175e-10, -1, 4.37109e-08, -0.00520333, 4.92074, -0.329342)
 material_override = SubResource("ORMMaterial3D_4p4ky")
 mesh = SubResource("PlaneMesh_q0pl8")
 
@@ -56,55 +57,13 @@ shape = SubResource("BoxShape3D_ws0c0")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 disable_3d = true
-size = Vector2i(432, 768)
+size = Vector2i(400, 768)
+render_target_update_mode = 3
 
-[node name="PhoneUI" type="MarginContainer" parent="SubViewport"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+[node name="PhoneUI" parent="SubViewport" instance=ExtResource("3_41ti4")]
 
-[node name="Control" type="Control" parent="SubViewport/PhoneUI"]
-layout_mode = 2
-
-[node name="ColorRect" type="ColorRect" parent="SubViewport/PhoneUI/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="CameraPreview" type="TextureRect" parent="SubViewport/PhoneUI/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("ViewportTexture_uexjp")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="SubViewport/PhoneUI/Control"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Button" type="Button" parent="SubViewport/PhoneUI/Control/VBoxContainer"]
-layout_mode = 2
-text = "Test button"
-
-[node name="Button2" type="Button" parent="SubViewport/PhoneUI/Control/VBoxContainer"]
-layout_mode = 2
-text = "Test button"
-
-[node name="Button3" type="Button" parent="SubViewport/PhoneUI/Control/VBoxContainer"]
-layout_mode = 2
-text = "Test button"
+[node name="CameraPreview" parent="SubViewport/PhoneUI/HomeScreen" index="0"]
+texture = SubResource("ViewportTexture_b85pb")
 
 [node name="SubViewport2" type="SubViewport" parent="."]
 gui_disable_input = true
@@ -132,3 +91,6 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.7995
 
 [node name="PhoneCameraPos" type="Marker3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.433753, 8.25778, 0.570402)
+
+[editable path="phone"]
+[editable path="SubViewport/PhoneUI"]

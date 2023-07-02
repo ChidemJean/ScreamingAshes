@@ -1,6 +1,124 @@
-[gd_scene format=3 uid="uid://bl7lteat5vpr6"]
+[gd_scene load_steps=27 format=3 uid="uid://bl7lteat5vpr6"]
 
-[node name="PhoneUi" type="Control"]
+[ext_resource type="Texture2D" uid="uid://b2mbb7y457i3o" path="res://assets/phone/wallpapers/img-08.jpg" id="1_6hu74"]
+[ext_resource type="FontFile" path="res://assets/fonts/primary/primary_bold.tres" id="2_lqhww"]
+[ext_resource type="FontFile" path="res://assets/fonts/primary/primary_regular.tres" id="2_ub4v4"]
+[ext_resource type="Texture2D" uid="uid://fikkjobv5gmw" path="res://assets/phone/phone-alt-solid.png" id="3_65uxu"]
+[ext_resource type="Texture2D" uid="uid://cvuxmj1pdm430" path="res://assets/phone/user.png" id="3_c5p8e"]
+[ext_resource type="Texture2D" uid="uid://rfrvskyh5suv" path="res://assets/phone/comment-dots-solid.png" id="4_yktet"]
+[ext_resource type="Texture2D" uid="uid://cvcw8sxq2plgy" path="res://assets/phone/map-solid.png" id="5_4gh0l"]
+[ext_resource type="Texture2D" uid="uid://cexjapm821oc3" path="res://assets/phone/camera-solid.png" id="6_ubajj"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_uexjp"]
+viewport_path = NodePath("SubViewport2")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5kqvi"]
+bg_color = Color(0, 0, 0, 0.113725)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f2e06"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gpd75"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fqbwl"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4mj1o"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 26
+corner_radius_top_right = 26
+corner_radius_bottom_right = 26
+corner_radius_bottom_left = 26
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gh18p"]
+bg_color = Color(0.0784314, 0.996078, 0.0588235, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wd6my"]
+bg_color = Color(0.0588235, 0.756863, 0.0431373, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bv2tq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4timx"]
+bg_color = Color(0.956863, 0.301961, 0.239216, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ki0cr"]
+bg_color = Color(0.733333, 0.141176, 0.101961, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ocdu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v0y7w"]
+bg_color = Color(0, 0.231373, 0.670588, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m8jtw"]
+bg_color = Color(0, 0.156863, 0.486275, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i8asx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jvk8u"]
+bg_color = Color(0.317647, 0.317647, 0.317647, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_40npd"]
+bg_color = Color(0.239216, 0.239216, 0.239216, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6iy0p"]
+
+[node name="PhoneUI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -8,7 +126,60 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Wallpaper" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_6hu74")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="HomeScreen" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="CameraPreview" type="TextureRect" parent="HomeScreen"]
+visible = false
+layout_mode = 2
+texture = SubResource("ViewportTexture_uexjp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HomeScreen"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HomeScreen/VBoxContainer"]
+layout_mode = 2
+
+[node name="CameraScreen" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MapScreen" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MessageListScream" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MessageScreem" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,8 +187,907 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-text = "Test button"
+[node name="ColorRect" type="ColorRect" parent="MessageScreem"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.956863, 0.301961, 0.239216, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="MessageScreem"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 55
+theme_override_constants/margin_bottom = 0
+
+[node name="Control" type="VBoxContainer" parent="MessageScreem/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MessageScreem/MarginContainer/Control"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_right = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MessageScreem/MarginContainer/Control/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ub4v4")
+text = "Mensagens"
+
+[node name="MarginContainer2" type="ColorRect" parent="MessageScreem/MarginContainer/Control"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_top = 22
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 120
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="Contact" type="HBoxContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="UserThumb" type="TextureRect" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("3_c5p8e")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Data" type="VBoxContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="Control" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact/Data"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact/Data/HBoxContainer"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -15.0
+offset_right = 118.0
+offset_bottom = 15.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lqhww")
+theme_override_font_sizes/font_size = 18
+text = "Desconhecido"
+
+[node name="Hour" type="Label" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact/Data/HBoxContainer"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -118.0
+offset_top = -15.0
+offset_bottom = 15.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lqhww")
+theme_override_font_sizes/font_size = 18
+text = "23:03"
+horizontal_alignment = 2
+
+[node name="LastMessage" type="Label" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact/Data"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ub4v4")
+text = "Estou esperando no saguão do hospital"
+
+[node name="Control" type="Control" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact/Data"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact/Data"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5kqvi")
+
+[node name="Contact2" type="HBoxContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="UserThumb" type="TextureRect" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact2"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("3_c5p8e")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Data" type="VBoxContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="Control" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact2/Data"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact2/Data/HBoxContainer"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -15.0
+offset_right = 118.0
+offset_bottom = 15.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lqhww")
+theme_override_font_sizes/font_size = 18
+text = "Desconhecido"
+
+[node name="Hour" type="Label" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact2/Data/HBoxContainer"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -118.0
+offset_top = -15.0
+offset_bottom = 15.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lqhww")
+theme_override_font_sizes/font_size = 18
+text = "23:03"
+horizontal_alignment = 2
+
+[node name="LastMessage" type="Label" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact2/Data"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ub4v4")
+text = "Estou esperando no saguão do hospital"
+
+[node name="Control" type="Control" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact2/Data"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact2/Data"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5kqvi")
+
+[node name="Contact3" type="HBoxContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="UserThumb" type="TextureRect" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact3"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("3_c5p8e")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Data" type="VBoxContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="Control" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact3/Data"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact3/Data/HBoxContainer"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -15.0
+offset_right = 118.0
+offset_bottom = 15.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lqhww")
+theme_override_font_sizes/font_size = 18
+text = "Desconhecido"
+
+[node name="Hour" type="Label" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact3/Data/HBoxContainer"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -118.0
+offset_top = -15.0
+offset_bottom = 15.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lqhww")
+theme_override_font_sizes/font_size = 18
+text = "23:03"
+horizontal_alignment = 2
+
+[node name="LastMessage" type="Label" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact3/Data"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ub4v4")
+text = "Estou esperando no saguão do hospital"
+
+[node name="Control" type="Control" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact3/Data"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact3/Data"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5kqvi")
+
+[node name="Contact4" type="HBoxContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="UserThumb" type="TextureRect" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact4"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("3_c5p8e")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Data" type="VBoxContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact4"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="Control" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact4/Data"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact4/Data/HBoxContainer"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -15.0
+offset_right = 118.0
+offset_bottom = 15.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lqhww")
+theme_override_font_sizes/font_size = 18
+text = "Desconhecido"
+
+[node name="Hour" type="Label" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact4/Data/HBoxContainer"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -118.0
+offset_top = -15.0
+offset_bottom = 15.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lqhww")
+theme_override_font_sizes/font_size = 18
+text = "23:03"
+horizontal_alignment = 2
+
+[node name="LastMessage" type="Label" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact4/Data"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ub4v4")
+text = "Estou esperando no saguão do hospital"
+
+[node name="Control" type="Control" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact4/Data"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact4/Data"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5kqvi")
+
+[node name="Contact5" type="HBoxContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="UserThumb" type="TextureRect" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact5"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("3_c5p8e")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Data" type="VBoxContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact5"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="Control" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact5/Data"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact5/Data/HBoxContainer"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -15.0
+offset_right = 118.0
+offset_bottom = 15.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lqhww")
+theme_override_font_sizes/font_size = 18
+text = "Desconhecido"
+
+[node name="Hour" type="Label" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact5/Data/HBoxContainer"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -118.0
+offset_top = -15.0
+offset_bottom = 15.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lqhww")
+theme_override_font_sizes/font_size = 18
+text = "23:03"
+horizontal_alignment = 2
+
+[node name="LastMessage" type="Label" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact5/Data"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ub4v4")
+text = "Estou esperando no saguão do hospital"
+
+[node name="Control" type="Control" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact5/Data"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact5/Data"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5kqvi")
+
+[node name="Contact6" type="HBoxContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="UserThumb" type="TextureRect" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact6"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("3_c5p8e")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Data" type="VBoxContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact6"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="Control" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact6/Data"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact6/Data/HBoxContainer"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -15.0
+offset_right = 118.0
+offset_bottom = 15.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lqhww")
+theme_override_font_sizes/font_size = 18
+text = "Desconhecido"
+
+[node name="Hour" type="Label" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact6/Data/HBoxContainer"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -118.0
+offset_top = -15.0
+offset_bottom = 15.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lqhww")
+theme_override_font_sizes/font_size = 18
+text = "23:03"
+horizontal_alignment = 2
+
+[node name="LastMessage" type="Label" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact6/Data"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ub4v4")
+text = "Estou esperando no saguão do hospital"
+
+[node name="Control" type="Control" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact6/Data"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact6/Data"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5kqvi")
+
+[node name="Contact7" type="HBoxContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="UserThumb" type="TextureRect" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact7"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("3_c5p8e")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Data" type="VBoxContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact7"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="Control" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact7/Data"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact7/Data/HBoxContainer"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -15.0
+offset_right = 118.0
+offset_bottom = 15.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lqhww")
+theme_override_font_sizes/font_size = 18
+text = "Desconhecido"
+
+[node name="Hour" type="Label" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact7/Data/HBoxContainer"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -118.0
+offset_top = -15.0
+offset_bottom = 15.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lqhww")
+theme_override_font_sizes/font_size = 18
+text = "23:03"
+horizontal_alignment = 2
+
+[node name="LastMessage" type="Label" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact7/Data"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ub4v4")
+text = "Estou esperando no saguão do hospital"
+
+[node name="Control" type="Control" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact7/Data"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact7/Data"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5kqvi")
+
+[node name="Contact8" type="HBoxContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="UserThumb" type="TextureRect" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact8"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("3_c5p8e")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Data" type="VBoxContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact8"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="Control" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact8/Data"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact8/Data/HBoxContainer"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -15.0
+offset_right = 118.0
+offset_bottom = 15.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lqhww")
+theme_override_font_sizes/font_size = 18
+text = "Desconhecido"
+
+[node name="Hour" type="Label" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact8/Data/HBoxContainer"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -118.0
+offset_top = -15.0
+offset_bottom = 15.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lqhww")
+theme_override_font_sizes/font_size = 18
+text = "23:03"
+horizontal_alignment = 2
+
+[node name="LastMessage" type="Label" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact8/Data"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ub4v4")
+text = "Estou esperando no saguão do hospital"
+
+[node name="Control" type="Control" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact8/Data"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact8/Data"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5kqvi")
+
+[node name="Contact9" type="HBoxContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="UserThumb" type="TextureRect" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact9"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("3_c5p8e")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Data" type="VBoxContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact9"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="Control" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact9/Data"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact9/Data/HBoxContainer"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -15.0
+offset_right = 118.0
+offset_bottom = 15.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lqhww")
+theme_override_font_sizes/font_size = 18
+text = "Desconhecido"
+
+[node name="Hour" type="Label" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact9/Data/HBoxContainer"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -118.0
+offset_top = -15.0
+offset_bottom = 15.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lqhww")
+theme_override_font_sizes/font_size = 18
+text = "23:03"
+horizontal_alignment = 2
+
+[node name="LastMessage" type="Label" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact9/Data"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ub4v4")
+text = "Estou esperando no saguão do hospital"
+
+[node name="Control" type="Control" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact9/Data"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact9/Data"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5kqvi")
+
+[node name="Contact10" type="HBoxContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="UserThumb" type="TextureRect" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact10"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("3_c5p8e")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Data" type="VBoxContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact10"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="Control" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact10/Data"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact10/Data/HBoxContainer"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -15.0
+offset_right = 118.0
+offset_bottom = 15.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lqhww")
+theme_override_font_sizes/font_size = 18
+text = "Desconhecido"
+
+[node name="Hour" type="Label" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact10/Data/HBoxContainer"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -118.0
+offset_top = -15.0
+offset_bottom = 15.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lqhww")
+theme_override_font_sizes/font_size = 18
+text = "23:03"
+horizontal_alignment = 2
+
+[node name="LastMessage" type="Label" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact10/Data"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ub4v4")
+text = "Estou esperando no saguão do hospital"
+
+[node name="Control" type="Control" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact10/Data"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact10/Data"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5kqvi")
+
+[node name="Titlebar" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 55.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 14
+
+[node name="Hour" type="Label" parent="Titlebar"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("2_lqhww")
+theme_override_font_sizes/font_size = 16
+text = "23:35"
+
+[node name="Battery" type="ProgressBar" parent="Titlebar"]
+custom_minimum_size = Vector2(70, 22)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_styles/background = SubResource("StyleBoxFlat_f2e06")
+theme_override_styles/fill = SubResource("StyleBoxFlat_gpd75")
+value = 80.0
+show_percentage = false
+
+[node name="Panel" type="Panel" parent="Titlebar/Battery"]
+custom_minimum_size = Vector2(6, 10)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = -6.05
+offset_right = 5.0
+offset_bottom = 5.95
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fqbwl")
+
+[node name="MenuBottom" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 16
+
+[node name="Panel" type="Panel" parent="MenuBottom"]
+self_modulate = Color(1, 1, 1, 0.913725)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4mj1o")
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBottom"]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 14
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuBottom/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 22
+alignment = 1
+
+[node name="TextureButton" type="Button" parent="MenuBottom/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(74, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_gh18p")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gh18p")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wd6my")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bv2tq")
+
+[node name="TextureRect" type="TextureRect" parent="MenuBottom/MarginContainer/HBoxContainer/TextureButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = -20.0
+offset_right = 18.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_65uxu")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureButton2" type="Button" parent="MenuBottom/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(74, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_4timx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4timx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ki0cr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8ocdu")
+
+[node name="TextureRect" type="TextureRect" parent="MenuBottom/MarginContainer/HBoxContainer/TextureButton2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = -20.0
+offset_right = 18.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_yktet")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureButton3" type="Button" parent="MenuBottom/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(74, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_v0y7w")
+theme_override_styles/hover = SubResource("StyleBoxFlat_v0y7w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_m8jtw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_i8asx")
+
+[node name="TextureRect" type="TextureRect" parent="MenuBottom/MarginContainer/HBoxContainer/TextureButton3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = -20.0
+offset_right = 18.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_4gh0l")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureButton4" type="Button" parent="MenuBottom/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(74, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_jvk8u")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jvk8u")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_40npd")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6iy0p")
+
+[node name="TextureRect" type="TextureRect" parent="MenuBottom/MarginContainer/HBoxContainer/TextureButton4"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = -20.0
+offset_right = 18.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_ubajj")
+expand_mode = 1
+stretch_mode = 5

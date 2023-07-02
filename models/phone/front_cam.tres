@@ -1,8 +1,12 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://c02hv02nnptux"]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c02hv02nnptux"]
+
+[ext_resource type="Texture2D" uid="uid://2j5uukmho2es" path="res://assets/phone/front_cam.png" id="1_rhl6b"]
 
 [resource]
 resource_name = "front_cam"
+transparency = 1
 cull_mode = 2
 vertex_color_use_as_albedo = true
 albedo_color = Color(0.066658, 0.066658, 0.066658, 1)
+albedo_texture = ExtResource("1_rhl6b")
 roughness = 0.5

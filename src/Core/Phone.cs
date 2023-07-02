@@ -111,24 +111,14 @@ namespace ChidemGames.Core
 
 			var mousePos2D = new Vector2(((Vector3)mousePos3D).X, -((Vector3)mousePos3D).Z);
 
-			GD.Print("----------------------------------------------------");
-			GD.Print("mousePos: " + mousePos2D.ToString());
 			mousePos2D.X += meshSize.X / 2;
 			mousePos2D.Y += meshSize.Y / 2;
-			GD.Print("+= meshSize / 2: " + mousePos2D.ToString());
 
 			mousePos2D.X = mousePos2D.X / meshSize.X;
 			mousePos2D.Y = mousePos2D.Y / meshSize.Y;
-			GD.Print("= mousePos2D / meshSize: " + mousePos2D.ToString());
 
 			mousePos2D.X = mousePos2D.X * viewport.Size.X;
 			mousePos2D.Y = mousePos2D.Y * viewport.Size.Y;
-			GD.Print("= mousePos2D.Y * viewport.Size.Y: " + mousePos2D.ToString());
-
-			GD.Print(mousePos2D);
-			GD.Print("meshsize: " + meshSize.ToString());
-			GD.Print("viewport: " + viewport.Size.ToString());
-			GD.Print("----------------------------------------------------");
 
 			mousePos2D.Y = viewport.Size.Y - mousePos2D.Y;
 
