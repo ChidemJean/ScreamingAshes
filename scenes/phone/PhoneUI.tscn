@@ -1,17 +1,175 @@
-[gd_scene load_steps=35 format=3 uid="uid://bl7lteat5vpr6"]
+[gd_scene load_steps=51 format=3 uid="uid://bl7lteat5vpr6"]
 
 [ext_resource type="Texture2D" uid="uid://b2mbb7y457i3o" path="res://assets/phone/wallpapers/img-08.jpg" id="1_6hu74"]
 [ext_resource type="FontFile" path="res://assets/fonts/primary/primary_bold.tres" id="2_lqhww"]
+[ext_resource type="Script" path="res://src/Core/Ui_World3D/Phone/PhoneScreen.cs" id="2_qec66"]
 [ext_resource type="FontFile" path="res://assets/fonts/primary/primary_regular.tres" id="2_ub4v4"]
 [ext_resource type="Texture2D" uid="uid://fikkjobv5gmw" path="res://assets/phone/phone-alt-solid.png" id="3_65uxu"]
 [ext_resource type="Texture2D" uid="uid://cvuxmj1pdm430" path="res://assets/phone/user.png" id="3_c5p8e"]
+[ext_resource type="Texture2D" uid="uid://xw4t4ttbbhda" path="res://assets/phone/notes_app_icon.png" id="3_vvm6t"]
+[ext_resource type="Texture2D" uid="uid://drhpu1voknq18" path="res://assets/maps/hospital.jpg" id="4_swaoo"]
 [ext_resource type="Texture2D" uid="uid://rfrvskyh5suv" path="res://assets/phone/comment-dots-solid.png" id="4_yktet"]
+[ext_resource type="Texture2D" uid="uid://gxehuairry7f" path="res://assets/phone/photos_app_icon.png" id="5_3bnhr"]
 [ext_resource type="Texture2D" uid="uid://cvcw8sxq2plgy" path="res://assets/phone/map-solid.png" id="5_4gh0l"]
 [ext_resource type="Texture2D" uid="uid://bpvgc7uxrncdl" path="res://assets/phone/paper-plane-solid.png" id="5_hp6cf"]
+[ext_resource type="Texture2D" uid="uid://6n23w3mwsi6y" path="res://assets/phone/long-arrow-alt-left-solid.png" id="5_o5fyx"]
+[ext_resource type="Texture2D" uid="uid://bx6bm45rilvij" path="res://assets/phone/chevron-down-solid.png" id="6_lq8a5"]
+[ext_resource type="Texture2D" uid="uid://bnp4iaxgkwrek" path="res://assets/phone/long-arrow-alt-right-solid.png" id="6_ns0s3"]
+[ext_resource type="FontFile" path="res://assets/fonts/primary/primary_semibold.tres" id="6_tijrh"]
 [ext_resource type="Texture2D" uid="uid://cexjapm821oc3" path="res://assets/phone/camera-solid.png" id="6_ubajj"]
+[ext_resource type="PackedScene" uid="uid://baqqg56qfty7h" path="res://scenes/ui/phone/header_screen.tscn" id="10_1oef1"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vkhbw"]
+texture = ExtResource("3_vvm6t")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ragcy"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4mj1o"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 26
+corner_radius_top_right = 26
+corner_radius_bottom_right = 26
+corner_radius_bottom_left = 26
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gh18p"]
+bg_color = Color(0.0784314, 0.996078, 0.0588235, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wd6my"]
+bg_color = Color(0.0588235, 0.756863, 0.0431373, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bv2tq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4timx"]
+bg_color = Color(0.956863, 0.301961, 0.239216, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ki0cr"]
+bg_color = Color(0.733333, 0.141176, 0.101961, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ocdu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v0y7w"]
+bg_color = Color(0, 0.231373, 0.670588, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m8jtw"]
+bg_color = Color(0, 0.156863, 0.486275, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i8asx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jvk8u"]
+bg_color = Color(0.317647, 0.317647, 0.317647, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_40npd"]
+bg_color = Color(0.239216, 0.239216, 0.239216, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6iy0p"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_uexjp"]
 viewport_path = NodePath("SubViewport2")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fcxdy"]
+content_margin_left = 7.0
+content_margin_top = 7.0
+content_margin_right = 7.0
+content_margin_bottom = 7.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.231373, 0.670588, 0.243137)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6b1d2"]
+bg_color = Color(0.956863, 0.301961, 0.239216, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.956863, 0.301961, 0.239216, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8gv7k"]
+content_margin_left = 15.0
+content_margin_top = 0.0
+content_margin_right = 15.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.669025, 0.787391, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gw3ct"]
+bg_color = Color(0.956863, 0.301961, 0.239216, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.956863, 0.301961, 0.239216, 0)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0bdif"]
+bg_color = Color(0.956863, 0.301961, 0.239216, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.956863, 0.301961, 0.239216, 0)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5kqvi"]
 bg_color = Color(0, 0, 0, 0.113725)
@@ -97,77 +255,6 @@ bg_color = Color(1, 1, 1, 1)
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4mj1o"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 26
-corner_radius_top_right = 26
-corner_radius_bottom_right = 26
-corner_radius_bottom_left = 26
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gh18p"]
-bg_color = Color(0.0784314, 0.996078, 0.0588235, 1)
-corner_radius_top_left = 18
-corner_radius_top_right = 18
-corner_radius_bottom_right = 18
-corner_radius_bottom_left = 18
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wd6my"]
-bg_color = Color(0.0588235, 0.756863, 0.0431373, 1)
-corner_radius_top_left = 18
-corner_radius_top_right = 18
-corner_radius_bottom_right = 18
-corner_radius_bottom_left = 18
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bv2tq"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4timx"]
-bg_color = Color(0.956863, 0.301961, 0.239216, 1)
-corner_radius_top_left = 18
-corner_radius_top_right = 18
-corner_radius_bottom_right = 18
-corner_radius_bottom_left = 18
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ki0cr"]
-bg_color = Color(0.733333, 0.141176, 0.101961, 1)
-corner_radius_top_left = 18
-corner_radius_top_right = 18
-corner_radius_bottom_right = 18
-corner_radius_bottom_left = 18
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ocdu"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v0y7w"]
-bg_color = Color(0, 0.231373, 0.670588, 1)
-corner_radius_top_left = 18
-corner_radius_top_right = 18
-corner_radius_bottom_right = 18
-corner_radius_bottom_left = 18
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m8jtw"]
-bg_color = Color(0, 0.156863, 0.486275, 1)
-corner_radius_top_left = 18
-corner_radius_top_right = 18
-corner_radius_bottom_right = 18
-corner_radius_bottom_left = 18
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i8asx"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jvk8u"]
-bg_color = Color(0.317647, 0.317647, 0.317647, 1)
-corner_radius_top_left = 18
-corner_radius_top_right = 18
-corner_radius_bottom_right = 18
-corner_radius_bottom_left = 18
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_40npd"]
-bg_color = Color(0.239216, 0.239216, 0.239216, 1)
-corner_radius_top_left = 18
-corner_radius_top_right = 18
-corner_radius_bottom_right = 18
-corner_radius_bottom_left = 18
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6iy0p"]
-
 [node name="PhoneUI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -188,6 +275,219 @@ expand_mode = 1
 stretch_mode = 6
 
 [node name="HomeScreen" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 70
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 120
+script = ExtResource("2_qec66")
+
+[node name="VBoxContainer" type="GridContainer" parent="HomeScreen"]
+layout_mode = 2
+theme_override_constants/h_separation = 25
+theme_override_constants/v_separation = 25
+columns = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HomeScreen/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="TextureButton" type="PanelContainer" parent="HomeScreen/VBoxContainer/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(0, 55)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_vkhbw")
+
+[node name="Label" type="Label" parent="HomeScreen/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ub4v4")
+theme_override_font_sizes/font_size = 16
+text = "Notas"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HomeScreen/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="TextureButton" type="PanelContainer" parent="HomeScreen/VBoxContainer/VBoxContainer2"]
+clip_contents = true
+custom_minimum_size = Vector2(0, 55)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ragcy")
+
+[node name="TextureRect" type="TextureRect" parent="HomeScreen/VBoxContainer/VBoxContainer2/TextureButton"]
+layout_mode = 2
+texture = ExtResource("5_3bnhr")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="HomeScreen/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ub4v4")
+theme_override_font_sizes/font_size = 16
+text = "Fotos"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuBottom" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -60.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 16
+
+[node name="Panel" type="Panel" parent="MenuBottom"]
+self_modulate = Color(1, 1, 1, 0.913725)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4mj1o")
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBottom"]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 14
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuBottom/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 22
+alignment = 1
+
+[node name="TextureButton" type="Button" parent="MenuBottom/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(74, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_gh18p")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gh18p")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wd6my")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bv2tq")
+
+[node name="TextureRect" type="TextureRect" parent="MenuBottom/MarginContainer/HBoxContainer/TextureButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = -20.0
+offset_right = 18.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_65uxu")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureButton2" type="Button" parent="MenuBottom/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(74, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_4timx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4timx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ki0cr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8ocdu")
+
+[node name="TextureRect" type="TextureRect" parent="MenuBottom/MarginContainer/HBoxContainer/TextureButton2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = -20.0
+offset_right = 18.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_yktet")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureButton3" type="Button" parent="MenuBottom/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(74, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_v0y7w")
+theme_override_styles/hover = SubResource("StyleBoxFlat_v0y7w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_m8jtw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_i8asx")
+
+[node name="TextureRect" type="TextureRect" parent="MenuBottom/MarginContainer/HBoxContainer/TextureButton3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = -20.0
+offset_right = 18.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_4gh0l")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureButton4" type="Button" parent="MenuBottom/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(74, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_jvk8u")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jvk8u")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_40npd")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6iy0p")
+
+[node name="TextureRect" type="TextureRect" parent="MenuBottom/MarginContainer/HBoxContainer/TextureButton4"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = -20.0
+offset_right = 18.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_ubajj")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CameraScreen" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_qec66")
+
+[node name="CameraPreview" type="TextureRect" parent="CameraScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_uexjp")
+
+[node name="MapListScreen" type="Control" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -195,41 +495,412 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+script = ExtResource("2_qec66")
 
-[node name="CameraPreview" type="TextureRect" parent="HomeScreen"]
-visible = false
+[node name="ColorRect" type="ColorRect" parent="MapListScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.231373, 0.670588, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="MapListScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 55
+theme_override_constants/margin_bottom = 0
+
+[node name="Control" type="VBoxContainer" parent="MapListScreen/MarginContainer"]
 layout_mode = 2
-texture = SubResource("ViewportTexture_uexjp")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HomeScreen"]
+[node name="MarginContainer" type="MarginContainer" parent="MapListScreen/MarginContainer/Control"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="HeaderScreen" parent="MapListScreen/MarginContainer/Control/MarginContainer" instance=ExtResource("10_1oef1")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HomeScreen/VBoxContainer"]
+[node name="MarginContainer2" type="ColorRect" parent="MapListScreen/MarginContainer/Control"]
 layout_mode = 2
+size_flags_vertical = 3
 
-[node name="CameraScreen" type="Control" parent="."]
-visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="ScrollContainer" type="ScrollContainer" parent="MapListScreen/MarginContainer/Control/MarginContainer2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MapListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_top = 22
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 120
+
+[node name="GridContainer" type="GridContainer" parent="MapListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="Map" type="VBoxContainer" parent="MapListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="Panel" type="PanelContainer" parent="MapListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/GridContainer/Map"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fcxdy")
+
+[node name="TextureRect" type="TextureRect" parent="MapListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/GridContainer/Map/Panel"]
+layout_mode = 2
+texture = ExtResource("4_swaoo")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MapListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/GridContainer/Map"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ub4v4")
+theme_override_font_sizes/font_size = 16
+text = "Planta do hospital"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Map2" type="VBoxContainer" parent="MapListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="Panel" type="PanelContainer" parent="MapListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/GridContainer/Map2"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fcxdy")
+
+[node name="TextureRect" type="TextureRect" parent="MapListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/GridContainer/Map2/Panel"]
+layout_mode = 2
+texture = ExtResource("4_swaoo")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MapListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/GridContainer/Map2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ub4v4")
+theme_override_font_sizes/font_size = 16
+text = "Planta do hospital"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Map3" type="VBoxContainer" parent="MapListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="Panel" type="PanelContainer" parent="MapListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/GridContainer/Map3"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fcxdy")
+
+[node name="TextureRect" type="TextureRect" parent="MapListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/GridContainer/Map3/Panel"]
+layout_mode = 2
+texture = ExtResource("4_swaoo")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MapListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/GridContainer/Map3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ub4v4")
+theme_override_font_sizes/font_size = 16
+text = "Planta do hospital"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Map4" type="VBoxContainer" parent="MapListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="Panel" type="PanelContainer" parent="MapListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/GridContainer/Map4"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fcxdy")
+
+[node name="TextureRect" type="TextureRect" parent="MapListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/GridContainer/Map4/Panel"]
+layout_mode = 2
+texture = ExtResource("4_swaoo")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MapListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/GridContainer/Map4"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ub4v4")
+theme_override_font_sizes/font_size = 16
+text = "Planta do hospital"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MapScreen" type="Control" parent="."]
 visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="MessageListScream" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_qec66")
+
+[node name="MarginContainer" type="MarginContainer" parent="MapScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 55
+theme_override_constants/margin_bottom = 0
+
+[node name="Control" type="Control" parent="MapScreen/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MapScreen/MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -800.0
+offset_top = -512.0
+offset_right = 800.0
+offset_bottom = 512.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_swaoo")
+stretch_mode = 6
+
+[node name="Controls" type="MarginContainer" parent="MapScreen/MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -800.0
+offset_top = -67.0
+offset_right = 800.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_right = 25
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MapScreen/MarginContainer/Control/Controls"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="Button" type="Button" parent="MapScreen/MarginContainer/Control/Controls/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_6b1d2")
+
+[node name="TextureRect" type="TextureRect" parent="MapScreen/MarginContainer/Control/Controls/HBoxContainer/Button"]
+self_modulate = Color(0.956863, 0.301961, 0.239216, 1)
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.5
+offset_top = -17.5
+offset_right = 15.5
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_o5fyx")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Floor" type="PanelContainer" parent="MapScreen/MarginContainer/Control/Controls/HBoxContainer"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8gv7k")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MapScreen/MarginContainer/Control/Controls/HBoxContainer/Floor"]
+layout_mode = 2
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="Label" type="Label" parent="MapScreen/MarginContainer/Control/Controls/HBoxContainer/Floor/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_tijrh")
+theme_override_font_sizes/font_size = 18
+text = "Térreo"
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MapScreen/MarginContainer/Control/Controls/HBoxContainer/Floor/HBoxContainer"]
+self_modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+texture = ExtResource("6_lq8a5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Button2" type="Button" parent="MapScreen/MarginContainer/Control/Controls/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_6b1d2")
+
+[node name="TextureRect" type="TextureRect" parent="MapScreen/MarginContainer/Control/Controls/HBoxContainer/Button2"]
+self_modulate = Color(0.956863, 0.301961, 0.239216, 1)
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.5
+offset_top = -17.5
+offset_right = 15.5
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_ns0s3")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ColorRect" type="ColorRect" parent="MapScreen"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 100.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 0.533333)
+
+[node name="MarginContainer" type="MarginContainer" parent="MapScreen/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HeaderScreen" parent="MapScreen/ColorRect/MarginContainer" instance=ExtResource("10_1oef1")]
+layout_mode = 2
+
+[node name="Label" parent="MapScreen/ColorRect/MarginContainer/HeaderScreen" index="0"]
+text = ""
+
+[node name="BackHeaderBtn" parent="MapScreen/ColorRect/MarginContainer/HeaderScreen" index="1"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 65.0
+offset_bottom = 20.0
+grow_vertical = 2
+
+[node name="Control" type="HBoxContainer" parent="MapScreen/ColorRect/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 20
+alignment = 2
+
+[node name="Button" type="Button" parent="MapScreen/ColorRect/MarginContainer/Control"]
+custom_minimum_size = Vector2(32, 38)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_gw3ct")
+
+[node name="TextureRect" type="TextureRect" parent="MapScreen/ColorRect/MarginContainer/Control/Button"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.5
+offset_top = -17.5
+offset_right = 15.5
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_o5fyx")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MapScreen/ColorRect/MarginContainer/Control"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ub4v4")
+theme_override_font_sizes/font_size = 16
+text = "Planta do hospital"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button2" type="Button" parent="MapScreen/ColorRect/MarginContainer/Control"]
+custom_minimum_size = Vector2(32, 48)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_0bdif")
+
+[node name="TextureRect" type="TextureRect" parent="MapScreen/ColorRect/MarginContainer/Control/Button2"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.5
+offset_top = -17.5
+offset_right = 15.5
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_ns0s3")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Control2" type="Control" parent="MapScreen/ColorRect/MarginContainer"]
+layout_mode = 2
+
+[node name="MessageListScream" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_qec66")
 
 [node name="ColorRect" type="ColorRect" parent="MessageListScream"]
 layout_mode = 1
@@ -255,16 +926,13 @@ layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MessageListScream/MarginContainer/Control"]
 layout_mode = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_right = 30
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MessageListScream/MarginContainer/Control/MarginContainer"]
-custom_minimum_size = Vector2(0, 40)
+[node name="HeaderScreen" parent="MessageListScream/MarginContainer/Control/MarginContainer" instance=ExtResource("10_1oef1")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MessageListScream/MarginContainer/Control/MarginContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_ub4v4")
+[node name="Label" parent="MessageListScream/MarginContainer/Control/MarginContainer/HeaderScreen" index="0"]
 text = "Mensagens"
 
 [node name="MarginContainer2" type="ColorRect" parent="MessageListScream/MarginContainer/Control"]
@@ -970,6 +1638,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_qec66")
 
 [node name="ColorRect" type="ColorRect" parent="MessageScreem"]
 layout_mode = 1
@@ -995,16 +1664,13 @@ layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MessageScreem/MarginContainer/Control"]
 layout_mode = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_right = 30
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer"]
-custom_minimum_size = Vector2(0, 40)
+[node name="HeaderScreen" parent="MessageScreem/MarginContainer/Control/MarginContainer" instance=ExtResource("10_1oef1")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MessageScreem/MarginContainer/Control/MarginContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_ub4v4")
+[node name="Label" parent="MessageScreem/MarginContainer/Control/MarginContainer/HeaderScreen" index="0"]
 text = "Desconhecido"
 
 [node name="MarginContainer2" type="ColorRect" parent="MessageScreem/MarginContainer/Control"]
@@ -1260,133 +1926,6 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_fqbwl")
 
-[node name="MenuBottom" type="MarginContainer" parent="."]
-custom_minimum_size = Vector2(0, 120)
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 16
-
-[node name="Panel" type="Panel" parent="MenuBottom"]
-self_modulate = Color(1, 1, 1, 0.913725)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_4mj1o")
-
-[node name="MarginContainer" type="MarginContainer" parent="MenuBottom"]
-layout_mode = 2
-theme_override_constants/margin_left = 18
-theme_override_constants/margin_top = 14
-theme_override_constants/margin_right = 18
-theme_override_constants/margin_bottom = 14
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MenuBottom/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 22
-alignment = 1
-
-[node name="TextureButton" type="Button" parent="MenuBottom/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(74, 0)
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_gh18p")
-theme_override_styles/hover = SubResource("StyleBoxFlat_gh18p")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_wd6my")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_bv2tq")
-
-[node name="TextureRect" type="TextureRect" parent="MenuBottom/MarginContainer/HBoxContainer/TextureButton"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -22.0
-offset_top = -20.0
-offset_right = 18.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_65uxu")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="TextureButton2" type="Button" parent="MenuBottom/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(74, 0)
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_4timx")
-theme_override_styles/hover = SubResource("StyleBoxFlat_4timx")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ki0cr")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_8ocdu")
-
-[node name="TextureRect" type="TextureRect" parent="MenuBottom/MarginContainer/HBoxContainer/TextureButton2"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -22.0
-offset_top = -20.0
-offset_right = 18.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_yktet")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="TextureButton3" type="Button" parent="MenuBottom/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(74, 0)
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_v0y7w")
-theme_override_styles/hover = SubResource("StyleBoxFlat_v0y7w")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_m8jtw")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_i8asx")
-
-[node name="TextureRect" type="TextureRect" parent="MenuBottom/MarginContainer/HBoxContainer/TextureButton3"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -22.0
-offset_top = -20.0
-offset_right = 18.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("5_4gh0l")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="TextureButton4" type="Button" parent="MenuBottom/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(74, 0)
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_jvk8u")
-theme_override_styles/hover = SubResource("StyleBoxFlat_jvk8u")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_40npd")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_6iy0p")
-
-[node name="TextureRect" type="TextureRect" parent="MenuBottom/MarginContainer/HBoxContainer/TextureButton4"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -22.0
-offset_top = -20.0
-offset_right = 18.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("6_ubajj")
-expand_mode = 1
-stretch_mode = 5
+[editable path="MapScreen/ColorRect/MarginContainer/HeaderScreen"]
+[editable path="MessageListScream/MarginContainer/Control/MarginContainer/HeaderScreen"]
+[editable path="MessageScreem/MarginContainer/Control/MarginContainer/HeaderScreen"]

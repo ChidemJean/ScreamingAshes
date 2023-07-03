@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dji0jybr6gcih"]
+
+[ext_resource type="Texture2D" uid="uid://bcsmwkhbtpx3u" path="res://assets/phone/chevron-left-solid.png" id="1_skugq"]
+[ext_resource type="FontFile" path="res://assets/fonts/primary/primary_bold.tres" id="2_qmr0t"]
+
+[node name="BackHeaderBtn" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(18, 0)
+layout_mode = 2
+texture = ExtResource("1_skugq")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_qmr0t")
+theme_override_font_sizes/font_size = 14
+text = "Voltar"
+vertical_alignment = 1
