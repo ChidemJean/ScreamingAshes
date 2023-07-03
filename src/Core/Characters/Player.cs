@@ -7,6 +7,7 @@ using ChidemGames.Core.Scenario;
 using ChidemGames.Core.Audio;
 using ChidemGames.Extensions;
 using ChidemGames.Core.Vfx;
+using ChidemGames.Core.Ui_World3D.Phone;
 
 namespace ChidemGames.Core.Characters
 {

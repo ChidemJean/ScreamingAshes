@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://bl7lteat5vpr6"]
+[gd_scene load_steps=58 format=3 uid="uid://bl7lteat5vpr6"]
 
 [ext_resource type="Texture2D" uid="uid://b2mbb7y457i3o" path="res://assets/phone/wallpapers/img-08.jpg" id="1_6hu74"]
 [ext_resource type="FontFile" path="res://assets/fonts/primary/primary_bold.tres" id="2_lqhww"]
@@ -17,7 +17,11 @@
 [ext_resource type="Texture2D" uid="uid://bnp4iaxgkwrek" path="res://assets/phone/long-arrow-alt-right-solid.png" id="6_ns0s3"]
 [ext_resource type="FontFile" path="res://assets/fonts/primary/primary_semibold.tres" id="6_tijrh"]
 [ext_resource type="Texture2D" uid="uid://cexjapm821oc3" path="res://assets/phone/camera-solid.png" id="6_ubajj"]
+[ext_resource type="Script" path="res://src/Core/Ui_World3D/Phone/ScreenLink.cs" id="6_w36wg"]
 [ext_resource type="PackedScene" uid="uid://baqqg56qfty7h" path="res://scenes/ui/phone/header_screen.tscn" id="10_1oef1"]
+[ext_resource type="Script" path="res://src/Core/Ui_World3D/Phone/CameraScreen.cs" id="11_ljxru"]
+[ext_resource type="Texture2D" uid="uid://bae6hcmx2rqxv" path="res://assets/phone/wallpapers/images.jpeg" id="19_plwnk"]
+[ext_resource type="Texture2D" uid="uid://cjd0wn1egi34b" path="res://assets/phone/wallpapers/iphone-14-1440x2560-abstract-ios-16-dark-24086.jpg" id="20_rf2uv"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vkhbw"]
 texture = ExtResource("3_vvm6t")
@@ -293,6 +297,7 @@ theme_override_constants/margin_top = 70
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 120
 script = ExtResource("2_qec66")
+key = "home"
 
 [node name="VBoxContainer" type="GridContainer" parent="HomeScreen"]
 layout_mode = 2
@@ -304,11 +309,14 @@ columns = 4
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
+script = ExtResource("6_w36wg")
+screenKey = "note_list"
 
 [node name="TextureButton" type="PanelContainer" parent="HomeScreen/VBoxContainer/VBoxContainer"]
 clip_contents = true
 custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_vkhbw")
 
 [node name="Label" type="Label" parent="HomeScreen/VBoxContainer/VBoxContainer"]
@@ -323,11 +331,14 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
+script = ExtResource("6_w36wg")
+screenKey = "photo_list"
 
 [node name="TextureButton" type="PanelContainer" parent="HomeScreen/VBoxContainer/VBoxContainer2"]
 clip_contents = true
 custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ragcy")
 
 [node name="TextureRect" type="TextureRect" parent="HomeScreen/VBoxContainer/VBoxContainer2/TextureButton"]
@@ -383,6 +394,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_gh18p")
 theme_override_styles/hover = SubResource("StyleBoxFlat_gh18p")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_wd6my")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_bv2tq")
+script = ExtResource("6_w36wg")
 
 [node name="TextureRect" type="TextureRect" parent="MenuBottom/MarginContainer/HBoxContainer/TextureButton"]
 layout_mode = 1
@@ -408,6 +420,8 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_4timx")
 theme_override_styles/hover = SubResource("StyleBoxFlat_4timx")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ki0cr")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_8ocdu")
+script = ExtResource("6_w36wg")
+screenKey = "message_list"
 
 [node name="TextureRect" type="TextureRect" parent="MenuBottom/MarginContainer/HBoxContainer/TextureButton2"]
 layout_mode = 1
@@ -433,6 +447,8 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_v0y7w")
 theme_override_styles/hover = SubResource("StyleBoxFlat_v0y7w")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_m8jtw")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_i8asx")
+script = ExtResource("6_w36wg")
+screenKey = "map_list"
 
 [node name="TextureRect" type="TextureRect" parent="MenuBottom/MarginContainer/HBoxContainer/TextureButton3"]
 layout_mode = 1
@@ -458,6 +474,8 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_jvk8u")
 theme_override_styles/hover = SubResource("StyleBoxFlat_jvk8u")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_40npd")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_6iy0p")
+script = ExtResource("6_w36wg")
+screenKey = "camera"
 
 [node name="TextureRect" type="TextureRect" parent="MenuBottom/MarginContainer/HBoxContainer/TextureButton4"]
 layout_mode = 1
@@ -484,7 +502,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("2_qec66")
+script = ExtResource("11_ljxru")
+key = "camera"
 
 [node name="CameraPreview" type="TextureRect" parent="CameraScreen"]
 layout_mode = 1
@@ -504,6 +523,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_qec66")
+key = "map_list"
 
 [node name="ColorRect" type="ColorRect" parent="MapListScreen"]
 layout_mode = 1
@@ -566,10 +586,13 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 5
+script = ExtResource("6_w36wg")
+screenKey = "map"
 
 [node name="Panel" type="PanelContainer" parent="MapListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/GridContainer/Map"]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_fcxdy")
 
 [node name="TextureRect" type="TextureRect" parent="MapListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/GridContainer/Map/Panel"]
@@ -592,10 +615,13 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 5
+script = ExtResource("6_w36wg")
+screenKey = "map"
 
 [node name="Panel" type="PanelContainer" parent="MapListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/GridContainer/Map2"]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_fcxdy")
 
 [node name="TextureRect" type="TextureRect" parent="MapListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/GridContainer/Map2/Panel"]
@@ -618,10 +644,13 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 5
+script = ExtResource("6_w36wg")
+screenKey = "map"
 
 [node name="Panel" type="PanelContainer" parent="MapListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/GridContainer/Map3"]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_fcxdy")
 
 [node name="TextureRect" type="TextureRect" parent="MapListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/GridContainer/Map3/Panel"]
@@ -639,32 +668,6 @@ text = "Planta do hospital"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Map4" type="VBoxContainer" parent="MapListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 5
-
-[node name="Panel" type="PanelContainer" parent="MapListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/GridContainer/Map4"]
-custom_minimum_size = Vector2(0, 120)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_fcxdy")
-
-[node name="TextureRect" type="TextureRect" parent="MapListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/GridContainer/Map4/Panel"]
-layout_mode = 2
-texture = ExtResource("4_swaoo")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="MapListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/GridContainer/Map4"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_ub4v4")
-theme_override_font_sizes/font_size = 16
-text = "Planta do hospital"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="MapScreen" type="Control" parent="."]
 visible = false
 layout_mode = 1
@@ -674,6 +677,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_qec66")
+key = "map"
 
 [node name="MarginContainer" type="MarginContainer" parent="MapScreen"]
 layout_mode = 1
@@ -836,6 +840,7 @@ offset_top = -20.0
 offset_right = 65.0
 offset_bottom = 20.0
 grow_vertical = 2
+screenKey = "map_list"
 
 [node name="Control" type="HBoxContainer" parent="MapScreen/ColorRect/MarginContainer"]
 layout_mode = 2
@@ -900,7 +905,7 @@ stretch_mode = 5
 [node name="Control2" type="Control" parent="MapScreen/ColorRect/MarginContainer"]
 layout_mode = 2
 
-[node name="MessageListScream" type="Control" parent="."]
+[node name="MessageListScreen" type="Control" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -909,8 +914,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_qec66")
+key = "message_list"
 
-[node name="ColorRect" type="ColorRect" parent="MessageListScream"]
+[node name="ColorRect" type="ColorRect" parent="MessageListScreen"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -919,7 +925,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.956863, 0.301961, 0.239216, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="MessageListScream"]
+[node name="MarginContainer" type="MarginContainer" parent="MessageListScreen"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -929,25 +935,25 @@ grow_vertical = 2
 theme_override_constants/margin_top = 55
 theme_override_constants/margin_bottom = 0
 
-[node name="Control" type="VBoxContainer" parent="MessageListScream/MarginContainer"]
+[node name="Control" type="VBoxContainer" parent="MessageListScreen/MarginContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MessageListScream/MarginContainer/Control"]
+[node name="MarginContainer" type="MarginContainer" parent="MessageListScreen/MarginContainer/Control"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_right = 20
 
-[node name="HeaderScreen" parent="MessageListScream/MarginContainer/Control/MarginContainer" instance=ExtResource("10_1oef1")]
+[node name="HeaderScreen" parent="MessageListScreen/MarginContainer/Control/MarginContainer" instance=ExtResource("10_1oef1")]
 layout_mode = 2
 
-[node name="Label" parent="MessageListScream/MarginContainer/Control/MarginContainer/HeaderScreen" index="0"]
+[node name="Label" parent="MessageListScreen/MarginContainer/Control/MarginContainer/HeaderScreen" index="0"]
 text = "Mensagens"
 
-[node name="MarginContainer2" type="ColorRect" parent="MessageListScream/MarginContainer/Control"]
+[node name="MarginContainer2" type="ColorRect" parent="MessageListScreen/MarginContainer/Control"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MessageListScream/MarginContainer/Control/MarginContainer2"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MessageListScreen/MarginContainer/Control/MarginContainer2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -955,7 +961,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MessageListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 22
@@ -963,32 +969,35 @@ theme_override_constants/margin_top = 22
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 120
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MessageListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 15
 
-[node name="Contact" type="HBoxContainer" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Contact" type="HBoxContainer" parent="MessageListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 15
+script = ExtResource("6_w36wg")
+screenKey = "message"
 
-[node name="UserThumb" type="TextureRect" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact"]
+[node name="UserThumb" type="TextureRect" parent="MessageListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 texture = ExtResource("3_c5p8e")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Data" type="VBoxContainer" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact"]
+[node name="Data" type="VBoxContainer" parent="MessageListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
 
-[node name="HBoxContainer" type="Control" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact/Data"]
+[node name="HBoxContainer" type="Control" parent="MessageListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact/Data"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+mouse_filter = 2
 
-[node name="Name" type="Label" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact/Data/HBoxContainer"]
+[node name="Name" type="Label" parent="MessageListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact/Data/HBoxContainer"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -1002,7 +1011,7 @@ theme_override_fonts/font = ExtResource("2_lqhww")
 theme_override_font_sizes/font_size = 18
 text = "Desconhecido"
 
-[node name="Hour" type="Label" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact/Data/HBoxContainer"]
+[node name="Hour" type="Label" parent="MessageListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact/Data/HBoxContainer"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -1020,42 +1029,45 @@ theme_override_font_sizes/font_size = 18
 text = "23:03"
 horizontal_alignment = 2
 
-[node name="LastMessage" type="Label" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact/Data"]
+[node name="LastMessage" type="Label" parent="MessageListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact/Data"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_ub4v4")
 text = "Estou esperando no saguão do hospital"
 
-[node name="Control" type="Control" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact/Data"]
+[node name="Control" type="Control" parent="MessageListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact/Data"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="Panel" type="Panel" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact/Data"]
+[node name="Panel" type="Panel" parent="MessageListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact/Data"]
 custom_minimum_size = Vector2(0, 1)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5kqvi")
 
-[node name="Contact2" type="HBoxContainer" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Contact2" type="HBoxContainer" parent="MessageListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 15
+script = ExtResource("6_w36wg")
+screenKey = "message"
 
-[node name="UserThumb" type="TextureRect" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact2"]
+[node name="UserThumb" type="TextureRect" parent="MessageListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact2"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 texture = ExtResource("3_c5p8e")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Data" type="VBoxContainer" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact2"]
+[node name="Data" type="VBoxContainer" parent="MessageListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact2"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
 
-[node name="HBoxContainer" type="Control" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact2/Data"]
+[node name="HBoxContainer" type="Control" parent="MessageListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact2/Data"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+mouse_filter = 2
 
-[node name="Name" type="Label" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact2/Data/HBoxContainer"]
+[node name="Name" type="Label" parent="MessageListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact2/Data/HBoxContainer"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -1069,7 +1081,7 @@ theme_override_fonts/font = ExtResource("2_lqhww")
 theme_override_font_sizes/font_size = 18
 text = "Desconhecido"
 
-[node name="Hour" type="Label" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact2/Data/HBoxContainer"]
+[node name="Hour" type="Label" parent="MessageListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact2/Data/HBoxContainer"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -1087,42 +1099,45 @@ theme_override_font_sizes/font_size = 18
 text = "23:03"
 horizontal_alignment = 2
 
-[node name="LastMessage" type="Label" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact2/Data"]
+[node name="LastMessage" type="Label" parent="MessageListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact2/Data"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_ub4v4")
 text = "Estou esperando no saguão do hospital"
 
-[node name="Control" type="Control" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact2/Data"]
+[node name="Control" type="Control" parent="MessageListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact2/Data"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="Panel" type="Panel" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact2/Data"]
+[node name="Panel" type="Panel" parent="MessageListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact2/Data"]
 custom_minimum_size = Vector2(0, 1)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5kqvi")
 
-[node name="Contact3" type="HBoxContainer" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Contact3" type="HBoxContainer" parent="MessageListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 15
+script = ExtResource("6_w36wg")
+screenKey = "message"
 
-[node name="UserThumb" type="TextureRect" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact3"]
+[node name="UserThumb" type="TextureRect" parent="MessageListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact3"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 texture = ExtResource("3_c5p8e")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Data" type="VBoxContainer" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact3"]
+[node name="Data" type="VBoxContainer" parent="MessageListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact3"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
 
-[node name="HBoxContainer" type="Control" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact3/Data"]
+[node name="HBoxContainer" type="Control" parent="MessageListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact3/Data"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+mouse_filter = 2
 
-[node name="Name" type="Label" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact3/Data/HBoxContainer"]
+[node name="Name" type="Label" parent="MessageListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact3/Data/HBoxContainer"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -1136,7 +1151,7 @@ theme_override_fonts/font = ExtResource("2_lqhww")
 theme_override_font_sizes/font_size = 18
 text = "Desconhecido"
 
-[node name="Hour" type="Label" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact3/Data/HBoxContainer"]
+[node name="Hour" type="Label" parent="MessageListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact3/Data/HBoxContainer"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -1154,491 +1169,22 @@ theme_override_font_sizes/font_size = 18
 text = "23:03"
 horizontal_alignment = 2
 
-[node name="LastMessage" type="Label" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact3/Data"]
+[node name="LastMessage" type="Label" parent="MessageListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact3/Data"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_ub4v4")
 text = "Estou esperando no saguão do hospital"
 
-[node name="Control" type="Control" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact3/Data"]
+[node name="Control" type="Control" parent="MessageListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact3/Data"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="Panel" type="Panel" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact3/Data"]
+[node name="Panel" type="Panel" parent="MessageListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact3/Data"]
 custom_minimum_size = Vector2(0, 1)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5kqvi")
 
-[node name="Contact4" type="HBoxContainer" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 15
-
-[node name="UserThumb" type="TextureRect" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact4"]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-texture = ExtResource("3_c5p8e")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Data" type="VBoxContainer" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact4"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-
-[node name="HBoxContainer" type="Control" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact4/Data"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-
-[node name="Name" type="Label" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact4/Data/HBoxContainer"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -15.0
-offset_right = 118.0
-offset_bottom = 15.0
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_lqhww")
-theme_override_font_sizes/font_size = 18
-text = "Desconhecido"
-
-[node name="Hour" type="Label" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact4/Data/HBoxContainer"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -118.0
-offset_top = -15.0
-offset_bottom = 15.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_lqhww")
-theme_override_font_sizes/font_size = 18
-text = "23:03"
-horizontal_alignment = 2
-
-[node name="LastMessage" type="Label" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact4/Data"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_ub4v4")
-text = "Estou esperando no saguão do hospital"
-
-[node name="Control" type="Control" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact4/Data"]
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-
-[node name="Panel" type="Panel" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact4/Data"]
-custom_minimum_size = Vector2(0, 1)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_5kqvi")
-
-[node name="Contact5" type="HBoxContainer" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 15
-
-[node name="UserThumb" type="TextureRect" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact5"]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-texture = ExtResource("3_c5p8e")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Data" type="VBoxContainer" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact5"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-
-[node name="HBoxContainer" type="Control" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact5/Data"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-
-[node name="Name" type="Label" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact5/Data/HBoxContainer"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -15.0
-offset_right = 118.0
-offset_bottom = 15.0
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_lqhww")
-theme_override_font_sizes/font_size = 18
-text = "Desconhecido"
-
-[node name="Hour" type="Label" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact5/Data/HBoxContainer"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -118.0
-offset_top = -15.0
-offset_bottom = 15.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_lqhww")
-theme_override_font_sizes/font_size = 18
-text = "23:03"
-horizontal_alignment = 2
-
-[node name="LastMessage" type="Label" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact5/Data"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_ub4v4")
-text = "Estou esperando no saguão do hospital"
-
-[node name="Control" type="Control" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact5/Data"]
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-
-[node name="Panel" type="Panel" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact5/Data"]
-custom_minimum_size = Vector2(0, 1)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_5kqvi")
-
-[node name="Contact6" type="HBoxContainer" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 15
-
-[node name="UserThumb" type="TextureRect" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact6"]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-texture = ExtResource("3_c5p8e")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Data" type="VBoxContainer" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact6"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-
-[node name="HBoxContainer" type="Control" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact6/Data"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-
-[node name="Name" type="Label" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact6/Data/HBoxContainer"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -15.0
-offset_right = 118.0
-offset_bottom = 15.0
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_lqhww")
-theme_override_font_sizes/font_size = 18
-text = "Desconhecido"
-
-[node name="Hour" type="Label" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact6/Data/HBoxContainer"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -118.0
-offset_top = -15.0
-offset_bottom = 15.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_lqhww")
-theme_override_font_sizes/font_size = 18
-text = "23:03"
-horizontal_alignment = 2
-
-[node name="LastMessage" type="Label" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact6/Data"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_ub4v4")
-text = "Estou esperando no saguão do hospital"
-
-[node name="Control" type="Control" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact6/Data"]
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-
-[node name="Panel" type="Panel" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact6/Data"]
-custom_minimum_size = Vector2(0, 1)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_5kqvi")
-
-[node name="Contact7" type="HBoxContainer" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 15
-
-[node name="UserThumb" type="TextureRect" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact7"]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-texture = ExtResource("3_c5p8e")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Data" type="VBoxContainer" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact7"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-
-[node name="HBoxContainer" type="Control" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact7/Data"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-
-[node name="Name" type="Label" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact7/Data/HBoxContainer"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -15.0
-offset_right = 118.0
-offset_bottom = 15.0
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_lqhww")
-theme_override_font_sizes/font_size = 18
-text = "Desconhecido"
-
-[node name="Hour" type="Label" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact7/Data/HBoxContainer"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -118.0
-offset_top = -15.0
-offset_bottom = 15.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_lqhww")
-theme_override_font_sizes/font_size = 18
-text = "23:03"
-horizontal_alignment = 2
-
-[node name="LastMessage" type="Label" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact7/Data"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_ub4v4")
-text = "Estou esperando no saguão do hospital"
-
-[node name="Control" type="Control" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact7/Data"]
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-
-[node name="Panel" type="Panel" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact7/Data"]
-custom_minimum_size = Vector2(0, 1)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_5kqvi")
-
-[node name="Contact8" type="HBoxContainer" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 15
-
-[node name="UserThumb" type="TextureRect" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact8"]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-texture = ExtResource("3_c5p8e")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Data" type="VBoxContainer" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact8"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-
-[node name="HBoxContainer" type="Control" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact8/Data"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-
-[node name="Name" type="Label" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact8/Data/HBoxContainer"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -15.0
-offset_right = 118.0
-offset_bottom = 15.0
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_lqhww")
-theme_override_font_sizes/font_size = 18
-text = "Desconhecido"
-
-[node name="Hour" type="Label" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact8/Data/HBoxContainer"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -118.0
-offset_top = -15.0
-offset_bottom = 15.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_lqhww")
-theme_override_font_sizes/font_size = 18
-text = "23:03"
-horizontal_alignment = 2
-
-[node name="LastMessage" type="Label" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact8/Data"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_ub4v4")
-text = "Estou esperando no saguão do hospital"
-
-[node name="Control" type="Control" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact8/Data"]
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-
-[node name="Panel" type="Panel" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact8/Data"]
-custom_minimum_size = Vector2(0, 1)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_5kqvi")
-
-[node name="Contact9" type="HBoxContainer" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 15
-
-[node name="UserThumb" type="TextureRect" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact9"]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-texture = ExtResource("3_c5p8e")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Data" type="VBoxContainer" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact9"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-
-[node name="HBoxContainer" type="Control" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact9/Data"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-
-[node name="Name" type="Label" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact9/Data/HBoxContainer"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -15.0
-offset_right = 118.0
-offset_bottom = 15.0
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_lqhww")
-theme_override_font_sizes/font_size = 18
-text = "Desconhecido"
-
-[node name="Hour" type="Label" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact9/Data/HBoxContainer"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -118.0
-offset_top = -15.0
-offset_bottom = 15.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_lqhww")
-theme_override_font_sizes/font_size = 18
-text = "23:03"
-horizontal_alignment = 2
-
-[node name="LastMessage" type="Label" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact9/Data"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_ub4v4")
-text = "Estou esperando no saguão do hospital"
-
-[node name="Control" type="Control" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact9/Data"]
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-
-[node name="Panel" type="Panel" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact9/Data"]
-custom_minimum_size = Vector2(0, 1)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_5kqvi")
-
-[node name="Contact10" type="HBoxContainer" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 15
-
-[node name="UserThumb" type="TextureRect" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact10"]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-texture = ExtResource("3_c5p8e")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Data" type="VBoxContainer" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact10"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-
-[node name="HBoxContainer" type="Control" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact10/Data"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-
-[node name="Name" type="Label" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact10/Data/HBoxContainer"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -15.0
-offset_right = 118.0
-offset_bottom = 15.0
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_lqhww")
-theme_override_font_sizes/font_size = 18
-text = "Desconhecido"
-
-[node name="Hour" type="Label" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact10/Data/HBoxContainer"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -118.0
-offset_top = -15.0
-offset_bottom = 15.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_lqhww")
-theme_override_font_sizes/font_size = 18
-text = "23:03"
-horizontal_alignment = 2
-
-[node name="LastMessage" type="Label" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact10/Data"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_ub4v4")
-text = "Estou esperando no saguão do hospital"
-
-[node name="Control" type="Control" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact10/Data"]
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-
-[node name="Panel" type="Panel" parent="MessageListScream/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Contact10/Data"]
-custom_minimum_size = Vector2(0, 1)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_5kqvi")
-
-[node name="MessageScreem" type="Control" parent="."]
+[node name="MessageScreen" type="Control" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -1647,8 +1193,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_qec66")
+key = "message"
 
-[node name="ColorRect" type="ColorRect" parent="MessageScreem"]
+[node name="ColorRect" type="ColorRect" parent="MessageScreen"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1657,7 +1204,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.956863, 0.301961, 0.239216, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="MessageScreem"]
+[node name="MarginContainer" type="MarginContainer" parent="MessageScreen"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1667,25 +1214,28 @@ grow_vertical = 2
 theme_override_constants/margin_top = 55
 theme_override_constants/margin_bottom = 0
 
-[node name="Control" type="VBoxContainer" parent="MessageScreem/MarginContainer"]
+[node name="Control" type="VBoxContainer" parent="MessageScreen/MarginContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MessageScreem/MarginContainer/Control"]
+[node name="MarginContainer" type="MarginContainer" parent="MessageScreen/MarginContainer/Control"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_right = 20
 
-[node name="HeaderScreen" parent="MessageScreem/MarginContainer/Control/MarginContainer" instance=ExtResource("10_1oef1")]
+[node name="HeaderScreen" parent="MessageScreen/MarginContainer/Control/MarginContainer" instance=ExtResource("10_1oef1")]
 layout_mode = 2
 
-[node name="Label" parent="MessageScreem/MarginContainer/Control/MarginContainer/HeaderScreen" index="0"]
+[node name="Label" parent="MessageScreen/MarginContainer/Control/MarginContainer/HeaderScreen" index="0"]
 text = "Desconhecido"
 
-[node name="MarginContainer2" type="ColorRect" parent="MessageScreem/MarginContainer/Control"]
+[node name="BackHeaderBtn" parent="MessageScreen/MarginContainer/Control/MarginContainer/HeaderScreen" index="1"]
+screenKey = "message_list"
+
+[node name="MarginContainer2" type="ColorRect" parent="MessageScreen/MarginContainer/Control"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer2"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MessageScreen/MarginContainer/Control/MarginContainer2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1693,7 +1243,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MessageScreen/MarginContainer/Control/MarginContainer2/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 22
@@ -1701,15 +1251,15 @@ theme_override_constants/margin_top = 22
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 120
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MessageScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 9
 
-[node name="Message" type="HBoxContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Message" type="HBoxContainer" parent="MessageScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Message"]
+[node name="RichTextLabel" type="RichTextLabel" parent="MessageScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Message"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -1722,10 +1272,10 @@ fit_content = true
 scroll_active = false
 threaded = true
 
-[node name="Message5" type="HBoxContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Message5" type="HBoxContainer" parent="MessageScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Message5"]
+[node name="RichTextLabel" type="RichTextLabel" parent="MessageScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Message5"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -1738,10 +1288,10 @@ fit_content = true
 scroll_active = false
 threaded = true
 
-[node name="Message3" type="HBoxContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Message3" type="HBoxContainer" parent="MessageScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Message3"]
+[node name="RichTextLabel" type="RichTextLabel" parent="MessageScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Message3"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -1755,10 +1305,10 @@ scroll_active = false
 threaded = true
 text_direction = 2
 
-[node name="Message2" type="HBoxContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Message2" type="HBoxContainer" parent="MessageScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Message2"]
+[node name="RichTextLabel" type="RichTextLabel" parent="MessageScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Message2"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -1771,10 +1321,10 @@ fit_content = true
 scroll_active = false
 threaded = true
 
-[node name="Message4" type="HBoxContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Message4" type="HBoxContainer" parent="MessageScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Message4"]
+[node name="RichTextLabel" type="RichTextLabel" parent="MessageScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Message4"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -1787,10 +1337,10 @@ fit_content = true
 scroll_active = false
 threaded = true
 
-[node name="Message6" type="HBoxContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Message6" type="HBoxContainer" parent="MessageScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Message6"]
+[node name="RichTextLabel" type="RichTextLabel" parent="MessageScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Message6"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -1804,10 +1354,10 @@ scroll_active = false
 threaded = true
 text_direction = 2
 
-[node name="Message7" type="HBoxContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Message7" type="HBoxContainer" parent="MessageScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Message7"]
+[node name="RichTextLabel" type="RichTextLabel" parent="MessageScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Message7"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -1820,10 +1370,10 @@ fit_content = true
 scroll_active = false
 threaded = true
 
-[node name="Message8" type="HBoxContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Message8" type="HBoxContainer" parent="MessageScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MessageScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Message8"]
+[node name="RichTextLabel" type="RichTextLabel" parent="MessageScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Message8"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -1836,7 +1386,7 @@ fit_content = true
 scroll_active = false
 threaded = true
 
-[node name="InputCtn" type="MarginContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer2"]
+[node name="InputCtn" type="MarginContainer" parent="MessageScreen/MarginContainer/Control/MarginContainer2"]
 visible = false
 layout_mode = 1
 anchors_preset = 12
@@ -1850,15 +1400,15 @@ grow_vertical = 0
 theme_override_constants/margin_left = 25
 theme_override_constants/margin_right = 25
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer2/InputCtn"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MessageScreen/MarginContainer/Control/MarginContainer2/InputCtn"]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="MessageScreem/MarginContainer/Control/MarginContainer2/InputCtn/HBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MessageScreen/MarginContainer/Control/MarginContainer2/InputCtn/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_10iwb")
 
-[node name="LineEdit" type="LineEdit" parent="MessageScreem/MarginContainer/Control/MarginContainer2/InputCtn/HBoxContainer/PanelContainer"]
+[node name="LineEdit" type="LineEdit" parent="MessageScreen/MarginContainer/Control/MarginContainer2/InputCtn/HBoxContainer/PanelContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_placeholder_color = Color(0.545098, 0.545098, 0.545098, 1)
@@ -1868,12 +1418,12 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_wjswp")
 theme_override_styles/read_only = SubResource("StyleBoxEmpty_qtg81")
 placeholder_text = "Mensagem"
 
-[node name="Button" type="Button" parent="MessageScreem/MarginContainer/Control/MarginContainer2/InputCtn/HBoxContainer"]
+[node name="Button" type="Button" parent="MessageScreen/MarginContainer/Control/MarginContainer2/InputCtn/HBoxContainer"]
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_qrbx8")
 
-[node name="TextureRect" type="TextureRect" parent="MessageScreem/MarginContainer/Control/MarginContainer2/InputCtn/HBoxContainer/Button"]
+[node name="TextureRect" type="TextureRect" parent="MessageScreen/MarginContainer/Control/MarginContainer2/InputCtn/HBoxContainer/Button"]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 1
 anchors_preset = 8
@@ -1891,7 +1441,7 @@ texture = ExtResource("5_hp6cf")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="NotesListScreem" type="Control" parent="."]
+[node name="NoteListScreen" type="Control" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -1899,8 +1449,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_qec66")
+key = "note_list"
 
-[node name="ColorRect" type="ColorRect" parent="NotesListScreem"]
+[node name="ColorRect" type="ColorRect" parent="NoteListScreen"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1909,7 +1461,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.945098, 0.713726, 0.027451, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="NotesListScreem"]
+[node name="MarginContainer" type="MarginContainer" parent="NoteListScreen"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1919,37 +1471,38 @@ grow_vertical = 2
 theme_override_constants/margin_top = 55
 theme_override_constants/margin_bottom = 0
 
-[node name="Control" type="VBoxContainer" parent="NotesListScreem/MarginContainer"]
+[node name="Control" type="VBoxContainer" parent="NoteListScreen/MarginContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="NotesListScreem/MarginContainer/Control"]
+[node name="MarginContainer" type="MarginContainer" parent="NoteListScreen/MarginContainer/Control"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_right = 20
 
-[node name="HeaderScreen" parent="NotesListScreem/MarginContainer/Control/MarginContainer" instance=ExtResource("10_1oef1")]
+[node name="HeaderScreen" parent="NoteListScreen/MarginContainer/Control/MarginContainer" instance=ExtResource("10_1oef1")]
 layout_mode = 2
 
-[node name="Label" parent="NotesListScreem/MarginContainer/Control/MarginContainer/HeaderScreen" index="0"]
+[node name="Label" parent="NoteListScreen/MarginContainer/Control/MarginContainer/HeaderScreen" index="0"]
 text = "Notas"
 
-[node name="Label2" parent="NotesListScreem/MarginContainer/Control/MarginContainer/HeaderScreen" index="2"]
+[node name="Label2" parent="NoteListScreen/MarginContainer/Control/MarginContainer/HeaderScreen" index="2"]
 visible = true
 text = "Criar"
 
-[node name="MarginContainer2" type="ColorRect" parent="NotesListScreem/MarginContainer/Control"]
+[node name="MarginContainer2" type="ColorRect" parent="NoteListScreen/MarginContainer/Control"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="NotesListScreem/MarginContainer/Control/MarginContainer2"]
+[node name="ScrollContainer" type="ScrollContainer" parent="NoteListScreen/MarginContainer/Control/MarginContainer2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+horizontal_scroll_mode = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="NoteListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 22
@@ -1957,25 +1510,28 @@ theme_override_constants/margin_top = 22
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 120
 
-[node name="VBoxContainer" type="VBoxContainer" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="NoteListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 15
 
-[node name="Note" type="HBoxContainer" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Note" type="HBoxContainer" parent="NoteListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 15
+script = ExtResource("6_w36wg")
+screenKey = "note"
 
-[node name="Data" type="VBoxContainer" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note"]
+[node name="Data" type="VBoxContainer" parent="NoteListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
 
-[node name="HBoxContainer" type="Control" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note/Data"]
+[node name="HBoxContainer" type="Control" parent="NoteListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note/Data"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+mouse_filter = 2
 
-[node name="Name" type="Label" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note/Data/HBoxContainer"]
+[node name="Name" type="Label" parent="NoteListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note/Data/HBoxContainer"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -1989,7 +1545,7 @@ theme_override_fonts/font = ExtResource("2_lqhww")
 theme_override_font_sizes/font_size = 18
 text = "Sobre o puzzle do cofre"
 
-[node name="Hour" type="Label" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note/Data/HBoxContainer"]
+[node name="Hour" type="Label" parent="NoteListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note/Data/HBoxContainer"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -2007,150 +1563,34 @@ theme_override_font_sizes/font_size = 18
 text = "23:03"
 horizontal_alignment = 2
 
-[node name="Resume" type="Label" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note/Data"]
+[node name="Resume" type="Label" parent="NoteListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note/Data"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_ub4v4")
 text = "Encontrei um papel da casa da rua Nóbrega com um número suspeito 1458"
+autowrap_mode = 3
 
-[node name="Control" type="Control" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note/Data"]
+[node name="Control" type="Control" parent="NoteListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note/Data"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="Panel" type="Panel" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note/Data"]
+[node name="Panel" type="Panel" parent="NoteListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note/Data"]
 custom_minimum_size = Vector2(0, 1)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5kqvi")
 
-[node name="Note2" type="HBoxContainer" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 15
-
-[node name="Data" type="VBoxContainer" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note2"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-
-[node name="HBoxContainer" type="Control" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note2/Data"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-
-[node name="Name" type="Label" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note2/Data/HBoxContainer"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -15.0
-offset_right = 118.0
-offset_bottom = 15.0
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_lqhww")
-theme_override_font_sizes/font_size = 18
-text = "Sobre o puzzle do cofre"
-
-[node name="Hour" type="Label" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note2/Data/HBoxContainer"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -118.0
-offset_top = -15.0
-offset_bottom = 15.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_lqhww")
-theme_override_font_sizes/font_size = 18
-text = "23:03"
-horizontal_alignment = 2
-
-[node name="Resume" type="Label" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note2/Data"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_ub4v4")
-text = "Encontrei um papel da casa da rua Nóbrega com um número suspeito 1458"
-
-[node name="Control" type="Control" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note2/Data"]
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-
-[node name="Panel" type="Panel" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note2/Data"]
-custom_minimum_size = Vector2(0, 1)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_5kqvi")
-
-[node name="Note3" type="HBoxContainer" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 15
-
-[node name="Data" type="VBoxContainer" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note3"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-
-[node name="HBoxContainer" type="Control" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note3/Data"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-
-[node name="Name" type="Label" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note3/Data/HBoxContainer"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -15.0
-offset_right = 118.0
-offset_bottom = 15.0
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_lqhww")
-theme_override_font_sizes/font_size = 18
-text = "Sobre o puzzle do cofre"
-
-[node name="Hour" type="Label" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note3/Data/HBoxContainer"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -118.0
-offset_top = -15.0
-offset_bottom = 15.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_lqhww")
-theme_override_font_sizes/font_size = 18
-text = "23:03"
-horizontal_alignment = 2
-
-[node name="Resume" type="Label" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note3/Data"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_ub4v4")
-text = "Encontrei um papel da casa da rua Nóbrega com um número suspeito 1458"
-
-[node name="Control" type="Control" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note3/Data"]
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-
-[node name="Panel" type="Panel" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note3/Data"]
-custom_minimum_size = Vector2(0, 1)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_5kqvi")
-
-[node name="NoteScreem" type="Control" parent="."]
+[node name="NoteScreen" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_qec66")
+key = "note"
 
-[node name="ColorRect" type="ColorRect" parent="NoteScreem"]
+[node name="ColorRect" type="ColorRect" parent="NoteScreen"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -2159,7 +1599,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.945098, 0.713726, 0.027451, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="NoteScreem"]
+[node name="MarginContainer" type="MarginContainer" parent="NoteScreen"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -2169,29 +1609,32 @@ grow_vertical = 2
 theme_override_constants/margin_top = 55
 theme_override_constants/margin_bottom = 0
 
-[node name="Control" type="VBoxContainer" parent="NoteScreem/MarginContainer"]
+[node name="Control" type="VBoxContainer" parent="NoteScreen/MarginContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="NoteScreem/MarginContainer/Control"]
+[node name="MarginContainer" type="MarginContainer" parent="NoteScreen/MarginContainer/Control"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_right = 20
 
-[node name="HeaderScreen" parent="NoteScreem/MarginContainer/Control/MarginContainer" instance=ExtResource("10_1oef1")]
+[node name="HeaderScreen" parent="NoteScreen/MarginContainer/Control/MarginContainer" instance=ExtResource("10_1oef1")]
 layout_mode = 2
 
-[node name="Label" parent="NoteScreem/MarginContainer/Control/MarginContainer/HeaderScreen" index="0"]
+[node name="Label" parent="NoteScreen/MarginContainer/Control/MarginContainer/HeaderScreen" index="0"]
 text = "Notas"
 
-[node name="Label2" parent="NoteScreem/MarginContainer/Control/MarginContainer/HeaderScreen" index="2"]
+[node name="BackHeaderBtn" parent="NoteScreen/MarginContainer/Control/MarginContainer/HeaderScreen" index="1"]
+screenKey = "note_list"
+
+[node name="Label2" parent="NoteScreen/MarginContainer/Control/MarginContainer/HeaderScreen" index="2"]
 visible = true
 text = "Editar"
 
-[node name="MarginContainer2" type="ColorRect" parent="NoteScreem/MarginContainer/Control"]
+[node name="MarginContainer2" type="ColorRect" parent="NoteScreen/MarginContainer/Control"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="NoteScreem/MarginContainer/Control/MarginContainer2"]
+[node name="ScrollContainer" type="ScrollContainer" parent="NoteScreen/MarginContainer/Control/MarginContainer2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -2199,7 +1642,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="NoteScreem/MarginContainer/Control/MarginContainer2/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="NoteScreen/MarginContainer/Control/MarginContainer2/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 22
@@ -2207,10 +1650,10 @@ theme_override_constants/margin_top = 22
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 120
 
-[node name="ContentVBox" type="VBoxContainer" parent="NoteScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer"]
+[node name="ContentVBox" type="VBoxContainer" parent="NoteScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Text" type="RichTextLabel" parent="NoteScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/ContentVBox"]
+[node name="Text" type="RichTextLabel" parent="NoteScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/ContentVBox"]
 layout_mode = 2
 focus_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -2225,7 +1668,7 @@ context_menu_enabled = true
 threaded = true
 selection_enabled = true
 
-[node name="TextEdit" type="TextEdit" parent="NoteScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer"]
+[node name="TextEdit" type="TextEdit" parent="NoteScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer"]
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -2238,6 +1681,404 @@ text = "Encontrei um papel da casa da rua Nóbrega com um número suspeito [colo
 placeholder_text = "Digite aqui sua nota..."
 wrap_mode = 1
 scroll_fit_content_height = true
+
+[node name="PhotoListScreen" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_qec66")
+key = "photo_list"
+
+[node name="ColorRect" type="ColorRect" parent="PhotoListScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PhotoListScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 55
+theme_override_constants/margin_bottom = 0
+
+[node name="Control" type="VBoxContainer" parent="PhotoListScreen/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PhotoListScreen/MarginContainer/Control"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="HeaderScreen" parent="PhotoListScreen/MarginContainer/Control/MarginContainer" instance=ExtResource("10_1oef1")]
+layout_mode = 2
+
+[node name="Label" parent="PhotoListScreen/MarginContainer/Control/MarginContainer/HeaderScreen" index="0"]
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Fotos"
+
+[node name="TextureRect" parent="PhotoListScreen/MarginContainer/Control/MarginContainer/HeaderScreen/BackHeaderBtn" index="0"]
+self_modulate = Color(0, 0, 1, 1)
+
+[node name="Label" parent="PhotoListScreen/MarginContainer/Control/MarginContainer/HeaderScreen/BackHeaderBtn" index="1"]
+theme_override_colors/font_color = Color(0, 0, 1, 1)
+
+[node name="Label2" parent="PhotoListScreen/MarginContainer/Control/MarginContainer/HeaderScreen" index="2"]
+visible = true
+theme_override_colors/font_color = Color(0, 0, 1, 1)
+text = "Nova"
+
+[node name="MarginContainer2" type="ColorRect" parent="PhotoListScreen/MarginContainer/Control"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PhotoListScreen/MarginContainer/Control/MarginContainer2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PhotoListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="GridContainer" type="GridContainer" parent="PhotoListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 4
+
+[node name="TextureRect" type="TextureRect" parent="PhotoListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("19_plwnk")
+expand_mode = 1
+stretch_mode = 6
+script = ExtResource("6_w36wg")
+screenKey = "photo"
+
+[node name="TextureRect2" type="TextureRect" parent="PhotoListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_6hu74")
+expand_mode = 1
+stretch_mode = 6
+script = ExtResource("6_w36wg")
+screenKey = "photo"
+
+[node name="TextureRect3" type="TextureRect" parent="PhotoListScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("20_rf2uv")
+expand_mode = 1
+stretch_mode = 6
+script = ExtResource("6_w36wg")
+screenKey = "photo"
+
+[node name="PhotoScreen" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_qec66")
+key = "photo"
+
+[node name="ColorRect" type="ColorRect" parent="PhotoScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PhotoScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 55
+theme_override_constants/margin_bottom = 0
+
+[node name="Control" type="VBoxContainer" parent="PhotoScreen/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PhotoScreen/MarginContainer/Control"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="HeaderScreen" parent="PhotoScreen/MarginContainer/Control/MarginContainer" instance=ExtResource("10_1oef1")]
+layout_mode = 2
+
+[node name="Label" parent="PhotoScreen/MarginContainer/Control/MarginContainer/HeaderScreen" index="0"]
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Fotos"
+
+[node name="BackHeaderBtn" parent="PhotoScreen/MarginContainer/Control/MarginContainer/HeaderScreen" index="1"]
+screenKey = "photo_list"
+
+[node name="TextureRect" parent="PhotoScreen/MarginContainer/Control/MarginContainer/HeaderScreen/BackHeaderBtn" index="0"]
+self_modulate = Color(0, 0, 1, 1)
+
+[node name="Label" parent="PhotoScreen/MarginContainer/Control/MarginContainer/HeaderScreen/BackHeaderBtn" index="1"]
+theme_override_colors/font_color = Color(0, 0, 1, 1)
+
+[node name="Label2" parent="PhotoScreen/MarginContainer/Control/MarginContainer/HeaderScreen" index="2"]
+visible = true
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "Apagar"
+
+[node name="MarginContainer2" type="ColorRect" parent="PhotoScreen/MarginContainer/Control"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PhotoScreen/MarginContainer/Control/MarginContainer2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PhotoScreen/MarginContainer/Control/MarginContainer2/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PhotoScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PhotoScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("20_rf2uv")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PhotoScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+vertical_scroll_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PhotoScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/ScrollContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="PhotoScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+texture = ExtResource("1_6hu74")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TextureRect2" type="TextureRect" parent="PhotoScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+texture = ExtResource("19_plwnk")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TextureRect3" type="TextureRect" parent="PhotoScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+texture = ExtResource("20_rf2uv")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TextureRect4" type="TextureRect" parent="PhotoScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+texture = ExtResource("1_6hu74")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TextureRect5" type="TextureRect" parent="PhotoScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+texture = ExtResource("19_plwnk")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TextureRect6" type="TextureRect" parent="PhotoScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+texture = ExtResource("20_rf2uv")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TextureRect7" type="TextureRect" parent="PhotoScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+texture = ExtResource("1_6hu74")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TextureRect8" type="TextureRect" parent="PhotoScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+texture = ExtResource("19_plwnk")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TextureRect9" type="TextureRect" parent="PhotoScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+texture = ExtResource("20_rf2uv")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TextureRect10" type="TextureRect" parent="PhotoScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+texture = ExtResource("1_6hu74")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TextureRect11" type="TextureRect" parent="PhotoScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+texture = ExtResource("19_plwnk")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TextureRect12" type="TextureRect" parent="PhotoScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+texture = ExtResource("20_rf2uv")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TextureRect13" type="TextureRect" parent="PhotoScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+texture = ExtResource("1_6hu74")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TextureRect14" type="TextureRect" parent="PhotoScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+texture = ExtResource("19_plwnk")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TextureRect15" type="TextureRect" parent="PhotoScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+texture = ExtResource("20_rf2uv")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TextureRect16" type="TextureRect" parent="PhotoScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+texture = ExtResource("1_6hu74")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TextureRect17" type="TextureRect" parent="PhotoScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+texture = ExtResource("19_plwnk")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TextureRect18" type="TextureRect" parent="PhotoScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+texture = ExtResource("20_rf2uv")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TextureRect19" type="TextureRect" parent="PhotoScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+texture = ExtResource("1_6hu74")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TextureRect20" type="TextureRect" parent="PhotoScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+texture = ExtResource("19_plwnk")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TextureRect21" type="TextureRect" parent="PhotoScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+texture = ExtResource("20_rf2uv")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TextureRect22" type="TextureRect" parent="PhotoScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+texture = ExtResource("1_6hu74")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TextureRect23" type="TextureRect" parent="PhotoScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+texture = ExtResource("19_plwnk")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TextureRect24" type="TextureRect" parent="PhotoScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+texture = ExtResource("20_rf2uv")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TextureRect25" type="TextureRect" parent="PhotoScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+texture = ExtResource("1_6hu74")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TextureRect26" type="TextureRect" parent="PhotoScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+texture = ExtResource("19_plwnk")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TextureRect27" type="TextureRect" parent="PhotoScreen/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+texture = ExtResource("20_rf2uv")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="Titlebar" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -2283,7 +2124,11 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_fqbwl")
 
 [editable path="MapScreen/ColorRect/MarginContainer/HeaderScreen"]
-[editable path="MessageListScream/MarginContainer/Control/MarginContainer/HeaderScreen"]
-[editable path="MessageScreem/MarginContainer/Control/MarginContainer/HeaderScreen"]
-[editable path="NotesListScreem/MarginContainer/Control/MarginContainer/HeaderScreen"]
-[editable path="NoteScreem/MarginContainer/Control/MarginContainer/HeaderScreen"]
+[editable path="MessageListScreen/MarginContainer/Control/MarginContainer/HeaderScreen"]
+[editable path="MessageScreen/MarginContainer/Control/MarginContainer/HeaderScreen"]
+[editable path="NoteListScreen/MarginContainer/Control/MarginContainer/HeaderScreen"]
+[editable path="NoteScreen/MarginContainer/Control/MarginContainer/HeaderScreen"]
+[editable path="PhotoListScreen/MarginContainer/Control/MarginContainer/HeaderScreen"]
+[editable path="PhotoListScreen/MarginContainer/Control/MarginContainer/HeaderScreen/BackHeaderBtn"]
+[editable path="PhotoScreen/MarginContainer/Control/MarginContainer/HeaderScreen"]
+[editable path="PhotoScreen/MarginContainer/Control/MarginContainer/HeaderScreen/BackHeaderBtn"]

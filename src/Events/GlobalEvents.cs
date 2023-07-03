@@ -49,5 +49,8 @@ namespace ChidemGames.Events
       [Signal]
       public delegate void InventoryHasBeenUpdateEventHandler();
 
+      [Signal]
+      public delegate void OpenPhoneScreenEventHandler(string key);
+
    }
 }

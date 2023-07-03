@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://bhbtygjub26k7"]
 
 [ext_resource type="PackedScene" uid="uid://b184jbdhafswv" path="res://models/phone/phone.glb" id="1_4fcy3"]
-[ext_resource type="Script" path="res://src/Core/Phone.cs" id="1_omx2j"]
+[ext_resource type="Script" path="res://src/Core/Ui_World3D/Phone/Phone.cs" id="1_qmqr0"]
 [ext_resource type="PackedScene" uid="uid://bl7lteat5vpr6" path="res://scenes/phone/PhoneUI.tscn" id="3_41ti4"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_20hai"]
@@ -28,12 +28,10 @@ size = Vector3(4.35873, 0.0262823, 9.54527)
 viewport_path = NodePath("SubViewport2")
 
 [node name="Phone" type="Node3D"]
-script = ExtResource("1_omx2j")
+script = ExtResource("1_qmqr0")
 flashlightPath = NodePath("FlashLight")
+phoneUiPath = NodePath("SubViewport/PhoneUI")
 cameraPath = NodePath("Camera3D")
-cameraPhonePath = NodePath("SubViewport2/PhoneCamera")
-cameraPhonePreviewPath = NodePath("SubViewport/PhoneUI/CameraScreen/CameraPreview")
-cameraPhonePosPath = NodePath("PhoneCameraPos")
 viewportPath = NodePath("SubViewport")
 panelFacePath = NodePath("PhoneScreen")
 touchAreaPath = NodePath("PhoneScreen/Screen")
@@ -61,6 +59,11 @@ size = Vector2i(400, 768)
 render_target_update_mode = 3
 
 [node name="PhoneUI" parent="SubViewport" instance=ExtResource("3_41ti4")]
+
+[node name="CameraScreen" parent="SubViewport/PhoneUI" index="3"]
+cameraPhonePath = NodePath("../../../SubViewport2/PhoneCamera")
+cameraPhonePreviewPath = NodePath("CameraPreview")
+cameraPhonePosPath = NodePath("../../../PhoneCameraPos")
 
 [node name="CameraPreview" parent="SubViewport/PhoneUI/CameraScreen" index="0"]
 texture = SubResource("ViewportTexture_ra785")
@@ -96,5 +99,11 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.4337
 [editable path="phone"]
 [editable path="SubViewport/PhoneUI"]
 [editable path="SubViewport/PhoneUI/MapScreen/ColorRect/MarginContainer/HeaderScreen"]
-[editable path="SubViewport/PhoneUI/MessageListScream/MarginContainer/Control/MarginContainer/HeaderScreen"]
-[editable path="SubViewport/PhoneUI/MessageScreem/MarginContainer/Control/MarginContainer/HeaderScreen"]
+[editable path="SubViewport/PhoneUI/MessageListScreen/MarginContainer/Control/MarginContainer/HeaderScreen"]
+[editable path="SubViewport/PhoneUI/MessageScreen/MarginContainer/Control/MarginContainer/HeaderScreen"]
+[editable path="SubViewport/PhoneUI/NoteListScreen/MarginContainer/Control/MarginContainer/HeaderScreen"]
+[editable path="SubViewport/PhoneUI/NoteScreen/MarginContainer/Control/MarginContainer/HeaderScreen"]
+[editable path="SubViewport/PhoneUI/PhotoListScreen/MarginContainer/Control/MarginContainer/HeaderScreen"]
+[editable path="SubViewport/PhoneUI/PhotoListScreen/MarginContainer/Control/MarginContainer/HeaderScreen/BackHeaderBtn"]
+[editable path="SubViewport/PhoneUI/PhotoScreen/MarginContainer/Control/MarginContainer/HeaderScreen"]
+[editable path="SubViewport/PhoneUI/PhotoScreen/MarginContainer/Control/MarginContainer/HeaderScreen/BackHeaderBtn"]

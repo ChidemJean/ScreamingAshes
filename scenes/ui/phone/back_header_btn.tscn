@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dji0jybr6gcih"]
+[gd_scene load_steps=4 format=3 uid="uid://dji0jybr6gcih"]
 
+[ext_resource type="Script" path="res://src/Core/Ui_World3D/Phone/ScreenLink.cs" id="1_ehg5y"]
 [ext_resource type="Texture2D" uid="uid://bcsmwkhbtpx3u" path="res://assets/phone/chevron-left-solid.png" id="1_skugq"]
 [ext_resource type="FontFile" path="res://assets/fonts/primary/primary_bold.tres" id="2_qmr0t"]
 
@@ -8,6 +9,8 @@ offset_right = 40.0
 offset_bottom = 40.0
 theme_override_constants/separation = 8
 alignment = 1
+script = ExtResource("1_ehg5y")
+screenKey = "home"
 
 [node name="TextureRect" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(18, 0)
