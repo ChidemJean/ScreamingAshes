@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://baqqg56qfty7h"]
+[gd_scene load_steps=4 format=3 uid="uid://baqqg56qfty7h"]
 
 [ext_resource type="FontFile" path="res://assets/fonts/primary/primary_regular.tres" id="1_vwd8p"]
 [ext_resource type="PackedScene" uid="uid://dji0jybr6gcih" path="res://scenes/ui/phone/back_header_btn.tscn" id="2_l15as"]
+[ext_resource type="FontFile" path="res://assets/fonts/primary/primary_bold.tres" id="3_12amj"]
 
 [node name="HeaderScreen" type="Control"]
 custom_minimum_size = Vector2(0, 40)
@@ -28,3 +29,21 @@ vertical_alignment = 1
 
 [node name="BackHeaderBtn" parent="." instance=ExtResource("2_l15as")]
 layout_mode = 0
+
+[node name="Label2" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -39.0
+offset_top = -12.0
+offset_bottom = 12.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_12amj")
+theme_override_font_sizes/font_size = 14
+text = "Novo"
+vertical_alignment = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://bl7lteat5vpr6"]
+[gd_scene load_steps=54 format=3 uid="uid://bl7lteat5vpr6"]
 
 [ext_resource type="Texture2D" uid="uid://b2mbb7y457i3o" path="res://assets/phone/wallpapers/img-08.jpg" id="1_6hu74"]
 [ext_resource type="FontFile" path="res://assets/fonts/primary/primary_bold.tres" id="2_lqhww"]
@@ -223,6 +223,12 @@ corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4g5c3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2ucqb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o2hnp"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f2e06"]
 content_margin_left = 2.0
 content_margin_top = 2.0
@@ -233,6 +239,7 @@ border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_right = 6
@@ -470,6 +477,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="CameraScreen" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1883,6 +1891,354 @@ texture = ExtResource("5_hp6cf")
 expand_mode = 1
 stretch_mode = 5
 
+[node name="NotesListScreem" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="NotesListScreem"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.945098, 0.713726, 0.027451, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="NotesListScreem"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 55
+theme_override_constants/margin_bottom = 0
+
+[node name="Control" type="VBoxContainer" parent="NotesListScreem/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="NotesListScreem/MarginContainer/Control"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="HeaderScreen" parent="NotesListScreem/MarginContainer/Control/MarginContainer" instance=ExtResource("10_1oef1")]
+layout_mode = 2
+
+[node name="Label" parent="NotesListScreem/MarginContainer/Control/MarginContainer/HeaderScreen" index="0"]
+text = "Notas"
+
+[node name="Label2" parent="NotesListScreem/MarginContainer/Control/MarginContainer/HeaderScreen" index="2"]
+visible = true
+text = "Criar"
+
+[node name="MarginContainer2" type="ColorRect" parent="NotesListScreem/MarginContainer/Control"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="NotesListScreem/MarginContainer/Control/MarginContainer2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_top = 22
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 120
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="Note" type="HBoxContainer" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Data" type="VBoxContainer" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="Control" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note/Data"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note/Data/HBoxContainer"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -15.0
+offset_right = 118.0
+offset_bottom = 15.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lqhww")
+theme_override_font_sizes/font_size = 18
+text = "Sobre o puzzle do cofre"
+
+[node name="Hour" type="Label" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note/Data/HBoxContainer"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -118.0
+offset_top = -15.0
+offset_bottom = 15.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lqhww")
+theme_override_font_sizes/font_size = 18
+text = "23:03"
+horizontal_alignment = 2
+
+[node name="Resume" type="Label" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note/Data"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ub4v4")
+text = "Encontrei um papel da casa da rua Nóbrega com um número suspeito 1458"
+
+[node name="Control" type="Control" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note/Data"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note/Data"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5kqvi")
+
+[node name="Note2" type="HBoxContainer" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Data" type="VBoxContainer" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="Control" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note2/Data"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note2/Data/HBoxContainer"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -15.0
+offset_right = 118.0
+offset_bottom = 15.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lqhww")
+theme_override_font_sizes/font_size = 18
+text = "Sobre o puzzle do cofre"
+
+[node name="Hour" type="Label" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note2/Data/HBoxContainer"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -118.0
+offset_top = -15.0
+offset_bottom = 15.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lqhww")
+theme_override_font_sizes/font_size = 18
+text = "23:03"
+horizontal_alignment = 2
+
+[node name="Resume" type="Label" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note2/Data"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ub4v4")
+text = "Encontrei um papel da casa da rua Nóbrega com um número suspeito 1458"
+
+[node name="Control" type="Control" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note2/Data"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note2/Data"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5kqvi")
+
+[node name="Note3" type="HBoxContainer" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Data" type="VBoxContainer" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="Control" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note3/Data"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note3/Data/HBoxContainer"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -15.0
+offset_right = 118.0
+offset_bottom = 15.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lqhww")
+theme_override_font_sizes/font_size = 18
+text = "Sobre o puzzle do cofre"
+
+[node name="Hour" type="Label" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note3/Data/HBoxContainer"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -118.0
+offset_top = -15.0
+offset_bottom = 15.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lqhww")
+theme_override_font_sizes/font_size = 18
+text = "23:03"
+horizontal_alignment = 2
+
+[node name="Resume" type="Label" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note3/Data"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ub4v4")
+text = "Encontrei um papel da casa da rua Nóbrega com um número suspeito 1458"
+
+[node name="Control" type="Control" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note3/Data"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="NotesListScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/VBoxContainer/Note3/Data"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5kqvi")
+
+[node name="NoteScreem" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="NoteScreem"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.945098, 0.713726, 0.027451, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="NoteScreem"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 55
+theme_override_constants/margin_bottom = 0
+
+[node name="Control" type="VBoxContainer" parent="NoteScreem/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="NoteScreem/MarginContainer/Control"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="HeaderScreen" parent="NoteScreem/MarginContainer/Control/MarginContainer" instance=ExtResource("10_1oef1")]
+layout_mode = 2
+
+[node name="Label" parent="NoteScreem/MarginContainer/Control/MarginContainer/HeaderScreen" index="0"]
+text = "Notas"
+
+[node name="Label2" parent="NoteScreem/MarginContainer/Control/MarginContainer/HeaderScreen" index="2"]
+visible = true
+text = "Editar"
+
+[node name="MarginContainer2" type="ColorRect" parent="NoteScreem/MarginContainer/Control"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="NoteScreem/MarginContainer/Control/MarginContainer2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="NoteScreem/MarginContainer/Control/MarginContainer2/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_top = 22
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 120
+
+[node name="ContentVBox" type="VBoxContainer" parent="NoteScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Text" type="RichTextLabel" parent="NoteScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer/ContentVBox"]
+layout_mode = 2
+focus_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_ub4v4")
+theme_override_fonts/bold_font = ExtResource("2_lqhww")
+theme_override_fonts/mono_font = ExtResource("6_tijrh")
+bbcode_enabled = true
+text = "Encontrei um papel da casa da rua Nóbrega com um número suspeito [color=#FF0000][b]1458[/b][/color], tinha um objeto que não consegui identificar ao lado."
+fit_content = true
+scroll_following = true
+context_menu_enabled = true
+threaded = true
+selection_enabled = true
+
+[node name="TextEdit" type="TextEdit" parent="NoteScreem/MarginContainer/Control/MarginContainer2/ScrollContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ub4v4")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4g5c3")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2ucqb")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_o2hnp")
+text = "Encontrei um papel da casa da rua Nóbrega com um número suspeito [color=#FF0000][b]1458[/b][/color], tinha um objeto que não consegui identificar ao lado."
+placeholder_text = "Digite aqui sua nota..."
+wrap_mode = 1
+scroll_fit_content_height = true
+
 [node name="Titlebar" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 10
@@ -1929,3 +2285,5 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_fqbwl")
 [editable path="MapScreen/ColorRect/MarginContainer/HeaderScreen"]
 [editable path="MessageListScream/MarginContainer/Control/MarginContainer/HeaderScreen"]
 [editable path="MessageScreem/MarginContainer/Control/MarginContainer/HeaderScreen"]
+[editable path="NotesListScreem/MarginContainer/Control/MarginContainer/HeaderScreen"]
+[editable path="NoteScreem/MarginContainer/Control/MarginContainer/HeaderScreen"]
