@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://d1u0py0a1o6hj"]
+
+[ext_resource type="Texture2D" uid="uid://damhd0mnpitmi" path="res://assets/materials/floor/marble_tiles_star/Tiles081_1K_Color.jpg" id="1_73f65"]
+[ext_resource type="Texture2D" uid="uid://bfbw5buh0y653" path="res://assets/materials/floor/marble_tiles_star/Tiles081_1K_NormalGL.jpg" id="2_dntij"]
+[ext_resource type="Texture2D" uid="uid://br30i63am0avu" path="res://assets/materials/floor/marble_tiles_star/Tiles081_1K_Roughness.jpg" id="3_sl3qx"]
+
+[resource]
+albedo_texture = ExtResource("1_73f65")
+roughness_texture = ExtResource("3_sl3qx")
+normal_enabled = true
+normal_texture = ExtResource("2_dntij")
+uv1_scale = Vector3(0.2, 0.2, 0.2)
+uv1_triplanar = true
