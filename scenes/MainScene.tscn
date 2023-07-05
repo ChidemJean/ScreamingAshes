@@ -1,7 +1,6 @@
-[gd_scene load_steps=43 format=3 uid="uid://dbcevydyyhdar"]
+[gd_scene load_steps=42 format=3 uid="uid://dbcevydyyhdar"]
 
 [ext_resource type="FontFile" path="res://assets/fonts/baloom_small.tres" id="2"]
-[ext_resource type="Script" path="res://src/Tools/Fps.cs" id="3"]
 [ext_resource type="PackedScene" uid="uid://bckm7wfx8c6pw" path="res://scenes/Game.tscn" id="3_crr2d"]
 [ext_resource type="Shader" path="res://assets/ui/shaders/chromatic_aberration.tres" id="5"]
 [ext_resource type="Texture2D" uid="uid://sorw2ardg70u" path="res://assets/crosshair.png" id="6"]
@@ -107,34 +106,6 @@ script = ExtResource("33")
 stream = ExtResource("6_vut2c")
 autoplay = true
 bus = &"music"
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="Control" type="Control" parent="MarginContainer"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="Label" type="Label" parent="MarginContainer/Control"]
-layout_mode = 0
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 14.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 0.156863)
-theme_override_fonts/font = ExtResource("2")
-text = "FPS"
-script = ExtResource("3")
 
 [node name="DebugPlayer" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -958,15 +929,14 @@ tint_under = Color(1, 1, 1, 0.490196)
 visible = false
 
 [node name="Label2" type="Label" parent="."]
-visible = false
 modulate = Color(1, 1, 1, 0.117647)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -239.5
-offset_top = 37.0
-offset_right = 241.5
-offset_bottom = 65.0
+offset_left = -263.0
+offset_top = 13.0
+offset_right = 263.0
+offset_bottom = 44.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2")
 text = "O jogo está em desenvolvimento e não corresponde  com o produto final"

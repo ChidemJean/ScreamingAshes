@@ -19,6 +19,7 @@ config/icon="res://icon.png"
 
 GlobalEvents="*res://src/Events/GlobalEvents.cs"
 GlobalManager="*res://src/GlobalManager.cs"
+DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 
 [display]
 
@@ -32,7 +33,7 @@ project/assembly_name="ScreamingAshes"
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg")
 
 [gui]
 
