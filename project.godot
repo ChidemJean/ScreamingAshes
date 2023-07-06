@@ -25,6 +25,7 @@ DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 
 window/size/viewport_width=1600
 window/size/viewport_height=860
+window/size/mode=3
 window/vsync/vsync_mode=false
 
 [dotnet]
@@ -183,6 +184,7 @@ flashlight={
 3d_physics/layer_15="StaticBodies"
 3d_physics/layer_16="EnemyBodyPart"
 3d_physics/layer_17="EnemyBody"
+3d_physics/layer_20="Wall"
 3d_physics/layer_25="PhoneScreen"
 
 [mono]

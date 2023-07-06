@@ -17,5 +17,6 @@ namespace ChidemGames.Events
         public const string OnFastSlotDetach = "OnFastSlotDetach";
         public const string InventoryHasBeenUpdate = "InventoryHasBeenUpdate";
         public const string OpenPhoneScreen = "OpenPhoneScreen";
+        public const string PhoneOnHand = "PhoneOnHand";
     }
 }

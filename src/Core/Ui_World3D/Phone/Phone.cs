@@ -71,15 +71,26 @@ namespace ChidemGames.Core.Ui_World3D.Phone
 			}
 			if (Input.IsActionJustPressed("phone_interact")) {
 				if (isOn) {
-					isOn = false;
-					camera.Current = false;
-					globalManager.ChangeStateFocus(StateFocus.GAME);
+					Off();
 				} else {
-					isOn = true;
-					camera.Current = true;
-					globalManager.ChangeStateFocus(StateFocus.GAME_MENU);
+					On();
 				}
 			}
+		}
+
+		public void Off()
+		{
+			isOn = false;
+			camera.Current = false;
+			globalManager.ChangeStateFocus(StateFocus.GAME);
+		}
+
+		public void On() 
+		{
+			isOn = true;
+			camera.Current = true;
+			globalManager.currentPlayer.SwapFlashlightSlot();
+			globalManager.ChangeStateFocus(StateFocus.GAME_MENU);
 		}
 	}
 }

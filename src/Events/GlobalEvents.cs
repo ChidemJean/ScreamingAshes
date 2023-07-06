@@ -52,5 +52,8 @@ namespace ChidemGames.Events
       [Signal]
       public delegate void OpenPhoneScreenEventHandler(string key);
 
+      [Signal]
+      public delegate void PhoneOnHandEventHandler();
+
    }
 }

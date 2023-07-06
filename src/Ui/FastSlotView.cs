@@ -45,6 +45,7 @@ namespace ChidemGames.Ui
 			globalEvents = GetNode<GlobalEvents>("/root/GlobalEvents");
 			// globalEvents.Connect(GameEvent.OnFastSlotAttach, this, nameof(OnFasSlotAttach));
 			// globalEvents.Connect(GameEvent.OnFastSlotDetach, this, nameof(OnFasSlotDetach));
+			globalEvents.PhoneOnHand += Unselect;
 			globalEvents.OnFastSlotAttach += OnFasSlotAttach;
 			globalEvents.OnFastSlotDetach += OnFasSlotDetach;
       }
@@ -60,6 +61,10 @@ namespace ChidemGames.Ui
 						if (this.itemScenePath != null) {
 							globalManager.currentPlayer.PlaceItemOnRightHand(this.itemScenePath, this.itemUniqueId);
 							globalEvents.EmitSignal(GameEvent.InventoryHasBeenUpdate);
+							if (globalManager.currentPlayer.isFlashlightOnHand) {
+								globalManager.currentPlayer.phone.Off();
+								globalManager.currentPlayer.SwapFlashlightSlot(false);
+							}
 						}
 						return;
 					} else {

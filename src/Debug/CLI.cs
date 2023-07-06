@@ -45,6 +45,8 @@ namespace ChidemGames.Debug
             {"get_item", "get_item [ItemId] - Adiciona um item no inventário"},
             {"kill_all", "kill_all - Mata todos os inimigos"},
             {"resurrect", "resurrect - Ressuscita o Player"},
+            {"quit", "quit - Fechar o jogo"},
+            {"restart", "restart - Reinicia o jogo"},
         };
         
         public override void _Ready()
@@ -149,6 +151,15 @@ namespace ChidemGames.Debug
                     case "cs":
                         SpawnNewLine("'" + cmd + "' executado.");
                         Close();
+                        break;
+
+                    case "quit":
+                        GetTree().Quit();
+                        break;
+
+                    case "restart":
+                        var currentScene = GetTree().CurrentScene.SceneFilePath;
+                        GetTree().ChangeSceneToFile(currentScene);
                         break;
                     
                     case "help":

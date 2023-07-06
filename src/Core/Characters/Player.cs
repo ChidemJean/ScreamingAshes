@@ -7,6 +7,7 @@ using ChidemGames.Core.Scenario;
 using ChidemGames.Core.Audio;
 using ChidemGames.Extensions;
 using ChidemGames.Core.Vfx;
+using ChidemGames.Events;
 using ChidemGames.Core.Ui_World3D.Phone;
 
 namespace ChidemGames.Core.Characters
@@ -126,6 +127,7 @@ namespace ChidemGames.Core.Characters
       [Export] NodePath leftRayPath;
       [Export] NodePath forwardRayPath;
       [Export] NodePath backwardRayPath;
+      [Export] NodePath checkFloorRayPath;
       RayCast3D aimRay;
       RayCast3D topRay;
       RayCast3D bottomRay;
@@ -133,6 +135,7 @@ namespace ChidemGames.Core.Characters
       RayCast3D leftRay;
       RayCast3D forwardRay;
       RayCast3D backwardRay;
+      RayCast3D checkFloorRay;
 
       [Export]
       NodePath clipPivotPath;
@@ -149,7 +152,7 @@ namespace ChidemGames.Core.Characters
 
       [Export]
       NodePath phonePath;
-      Phone phone;
+      public Phone phone;
 
       [Export]
       NodePath flashLightSlotPath;
@@ -159,7 +162,7 @@ namespace ChidemGames.Core.Characters
       NodePath flashLightHandSlotPath;
       Node3D flashLightHandSlot;
 
-      bool isFlashlightOnHand = false;
+      public bool isFlashlightOnHand = false;
 
       [Export]
       public float maxStaminaValue = 1f;
@@ -220,9 +223,12 @@ namespace ChidemGames.Core.Characters
 
       public bool isAttacking = false;
 
+      GlobalEvents globalEvents;
+
       public override void _Ready()
       {
          globalManager = GetNode<GlobalManager>("/root/GlobalManager");
+         globalEvents = GetNode<GlobalEvents>("/root/GlobalEvents");
          globalManager.currentPlayer = this;
 
          currentStamina = maxStaminaValue;
@@ -271,6 +277,7 @@ namespace ChidemGames.Core.Characters
          leftRay = GetNode<RayCast3D>(leftRayPath);
          forwardRay = GetNode<RayCast3D>(forwardRayPath);
          backwardRay = GetNode<RayCast3D>(backwardRayPath);
+         checkFloorRay = GetNode<RayCast3D>(checkFloorRayPath);
 
       }
 
@@ -383,7 +390,9 @@ namespace ChidemGames.Core.Characters
          {
             if (!isFlashlightOnHand)
             {
+               RemoveItemRightHand();
                isFlashlightOnHand = true;
+               globalEvents.EmitSignal(GameEvent.PhoneOnHand);
                flashLightSlot.RemoveChild(phone);
                flashLightHandSlot.AddChild(phone);
             }
@@ -658,6 +667,16 @@ namespace ChidemGames.Core.Characters
 
          }
 
+         if (IsOnFloor() && direction.Length() > 0) {
+            if (checkFloorRay.IsColliding()) {
+               var normal = checkFloorRay.GetCollisionNormal();
+               float degree = Mathf.RadToDeg((GlobalTransform.Origin * GlobalTransform.Basis.Z.Normalized()).SignedAngleTo(normal, Vector3.Up));
+               if (Mathf.Abs(degree) > 50) {
+                  velocity.Y = speed / 4;
+               }
+            }
+         }
+
          Velocity = velocity;
          MoveAndSlide();
 
@@ -755,7 +774,7 @@ namespace ChidemGames.Core.Characters
          if (IsPlaying() && !isSprinting)
          {
             Vector3 from = camera.GlobalPosition;
-            Vector3 to = from + camera.GlobalTransform.Basis.Z * -1 * 10f;
+            Vector3 to = from + camera.GlobalTransform.Basis.Z * -1 * 12f;
             var space = GetWorld3D().DirectSpaceState;
             var rayQuery = PhysicsRayQueryParameters3D.Create(from, to, collisionMaskItemsRay);
             var itemRay = space.IntersectRay(rayQuery);

@@ -60,7 +60,7 @@ transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, -0.306217, 0)
 material_override = ExtResource("2_0kjpb")
 
 [node name="Terreo" type="StaticBody3D" parent="."]
-collision_layer = 8
+collision_layer = 524288
 collision_mask = 0
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Terreo"]
@@ -72,12 +72,11 @@ transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_maskw")
 
 [node name="Ceil" type="StaticBody3D" parent="." groups=["ConcreteBuildings"]]
-visible = false
-collision_layer = 4
+collision_layer = 8
 collision_mask = 1072
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ceil"]
-transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 0, 0)
+transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, -0.186599, 0)
 shape = SubResource("ConcavePolygonShape3D_fd6eb")
 
 [node name="hospital_floor" parent="Ceil" instance=ExtResource("2_x86p0")]
@@ -87,8 +86,7 @@ transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 0, 0)
 material_override = ExtResource("3_53ho2")
 
 [node name="SecondCeil" type="StaticBody3D" parent="." groups=["ConcreteBuildings"]]
-visible = false
-collision_layer = 4
+collision_layer = 8
 collision_mask = 1072
 
 [node name="hospital_second_floor" parent="SecondCeil" instance=ExtResource("4_k4w6y")]
@@ -108,7 +106,7 @@ mesh = SubResource("PlaneMesh_1jwpg")
 
 [node name="Building" type="StaticBody3D" parent="." groups=["ConcreteBuildings"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.83284, 0)
-collision_layer = 4
+collision_layer = 8
 collision_mask = 1072
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Building"]
@@ -172,8 +170,11 @@ font = ExtResource("10_jyr74")
 font_size = 1000
 outline_size = 0
 
-[node name="HospitalStair" parent="." instance=ExtResource("13_a512x")]
+[node name="HospitalStair" parent="." groups=["ConcreteBuildings"] instance=ExtResource("13_a512x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.3911, -0.445141, 0.121748)
+
+[node name="HospitalStair2" parent="." groups=["ConcreteBuildings"] instance=ExtResource("13_a512x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.3911, -14.5625, 0.121748)
 
 [editable path="hospital"]
 [editable path="hospital_second"]
