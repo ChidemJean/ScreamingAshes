@@ -1,21 +1,19 @@
 [gd_resource type="Environment" load_steps=3 format=3 uid="uid://c2tgto0rwklep"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_flhg0"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wh0rx"]
 
-[sub_resource type="Sky" id="Sky_dx40g"]
-sky_material = SubResource("ProceduralSkyMaterial_flhg0")
+[sub_resource type="Sky" id="Sky_fktqr"]
+sky_material = SubResource("ProceduralSkyMaterial_wh0rx")
 
 [resource]
 background_mode = 2
-background_energy_multiplier = 0.13
-sky = SubResource("Sky_dx40g")
+sky = SubResource("Sky_fktqr")
 reflected_light_source = 2
 tonemap_mode = 3
 tonemap_exposure = 0.75
 ssao_enabled = true
 sdfgi_use_occlusion = true
 glow_enabled = true
-fog_enabled = true
 fog_light_color = Color(0.231373, 0.254902, 0.290196, 1)
 volumetric_fog_albedo = Color(0, 0, 0, 1)
 adjustment_saturation = 5.21
