@@ -7,23 +7,21 @@ namespace ChidemGames.Core.Characters
 	{
 
 		[Export]
-		NodePath playerPath;
-
-		Player player;
-
-		[Export]
 		NodePath rootPath;
 
 		Node3D root;
 
+		GlobalManager globalManager;
+
 		public override void _Ready()
 		{
+			globalManager = GetNode<GlobalManager>("/root/GlobalManager");
 			root = GetNode<Node3D>(rootPath);
-			player = GetNode<Player>(playerPath);
 		}
 
 		public override void _Process(double delta)
 		{
+			var player = globalManager.currentPlayer;
 			if (player != null && player.lightLevelPos != null) {
 				root.GlobalPosition = player.lightLevelPos.GlobalPosition;
 

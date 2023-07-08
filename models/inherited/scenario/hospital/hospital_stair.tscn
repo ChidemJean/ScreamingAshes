@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://5abxc7go0v8q"]
+
+[ext_resource type="PackedScene" uid="uid://8haoff5142mu" path="res://models/scenario/hospital/hospital_stair.glb" id="1_3knaw"]
+
+[node name="hospital_stair" instance=ExtResource("1_3knaw")]
+transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 40.9366, 4.66856, 1.89991)

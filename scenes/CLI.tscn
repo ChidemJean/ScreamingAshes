@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=3 uid="uid://dul0rq0x6l1oq"]
+[gd_scene load_steps=5 format=3 uid="uid://dul0rq0x6l1oq"]
 
-[ext_resource type="Material" uid="uid://deg32ycon3vk0" path="res://assets/materials/UI/BlurWithColor.tres" id="2"]
 [ext_resource type="FontFile" path="res://assets/fonts/secondary/secondary_medium.tres" id="3_1cy3u"]
 [ext_resource type="PackedScene" uid="uid://c0cwpnl5vmnjq" path="res://scenes/debug/LabelCmd.tscn" id="3_kbm8s"]
 [ext_resource type="Script" path="res://src/Debug/CLI.cs" id="4"]
@@ -15,7 +14,8 @@ content_margin_bottom = 5.0
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = -379.0
+offset_top = -483.0
+offset_bottom = -862.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
@@ -27,7 +27,6 @@ labelsCtnPath = NodePath("CMDS/MarginContainer/ScrollContainer/VBoxContainer")
 labelCmd = ExtResource("3_kbm8s")
 
 [node name="CMDS" type="ColorRect" parent="."]
-material = ExtResource("2")
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1
@@ -65,7 +64,6 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="InputBg" type="ColorRect" parent="."]
-material = ExtResource("2")
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 mouse_filter = 1

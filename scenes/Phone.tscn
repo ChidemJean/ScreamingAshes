@@ -79,13 +79,15 @@ fov = 65.0
 
 [node name="FlashLight" type="SpotLight3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.22341, 9.01646, 0)
-light_energy = 20.0
+layers = 4
+light_energy = 18.0
 spot_range = 207.362
 spot_angle = 50.6425
 
 [node name="ScreenLight" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.01301, -0.716281)
-light_energy = 5.0
+layers = 4
+light_energy = 3.0
 light_cull_mask = 4293918722
 spot_range = 45.8499
 spot_angle = 82.3378

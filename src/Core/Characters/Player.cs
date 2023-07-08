@@ -434,7 +434,7 @@ namespace ChidemGames.Core.Characters
 
          if (!IsOnFloor())
          {
-            velocity.Y -= gravity * 4f * delta;
+            velocity.Y -= gravity * 6f * delta;
          }
 
          float speedMultiplier = 1.0f;

@@ -1,7 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://b3870ceo7ir6k"]
+[gd_scene load_steps=18 format=3 uid="uid://b3870ceo7ir6k"]
 
 [ext_resource type="Script" path="res://src/Ui/MenuHud.cs" id="1"]
-[ext_resource type="Material" uid="uid://deg32ycon3vk0" path="res://assets/materials/UI/BlurWithColor.tres" id="2"]
 [ext_resource type="Texture2D" uid="uid://dpjch65enkw4h" path="res://assets/ui/dripping_generic.png" id="3"]
 [ext_resource type="PackedScene" uid="uid://i0ceotwosxxs" path="res://scenes/ui/ShortcutBox.tscn" id="4"]
 [ext_resource type="FontFile" path="res://assets/fonts/primary/primary_regular.tres" id="5"]
@@ -80,7 +79,6 @@ layout_mode = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Menu" type="ColorRect" parent="Cols"]
-material = ExtResource("2")
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1

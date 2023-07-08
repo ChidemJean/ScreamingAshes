@@ -8,6 +8,8 @@ sky_material = SubResource("ProceduralSkyMaterial_wh0rx")
 [resource]
 background_mode = 2
 sky = SubResource("Sky_fktqr")
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 0.0
 reflected_light_source = 2
 tonemap_mode = 2
 tonemap_exposure = 0.7

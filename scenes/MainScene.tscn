@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://dbcevydyyhdar"]
+[gd_scene load_steps=43 format=3 uid="uid://dbcevydyyhdar"]
 
 [ext_resource type="FontFile" path="res://assets/fonts/baloom_small.tres" id="2"]
 [ext_resource type="PackedScene" uid="uid://bckm7wfx8c6pw" path="res://scenes/Game.tscn" id="3_crr2d"]
@@ -34,6 +34,7 @@
 [ext_resource type="Script" path="res://src/Ui/InteractFeedback.cs" id="35"]
 [ext_resource type="FontFile" path="res://assets/fonts/secondary/secondary_regular_small.tres" id="36"]
 [ext_resource type="Script" path="res://src/Ui/HUD.cs" id="37"]
+[ext_resource type="Script" path="res://src/Tools/Fps.cs" id="37_x07o8"]
 [ext_resource type="Texture2D" uid="uid://b10ckckpsybyv" path="res://assets/ui/cursor/hand_interact.png" id="38"]
 [ext_resource type="Script" path="res://src/Ui/HealthBar.cs" id="39"]
 
@@ -74,6 +75,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
+screen_space_aa = 1
 audio_listener_enable_3d = true
 size = Vector2i(1600, 860)
 size_2d_override_stretch = true
@@ -161,30 +163,28 @@ offset_right = 20.0
 offset_bottom = 20.0
 stretch = true
 
-[node name="LightLevelViewport" type="SubViewport" parent="DebugPlayer/Container/VBoxContainer/LightLevel/LightLevelWrapper/LightLevel"]
+[node name="SubViewport" type="SubViewport" parent="DebugPlayer/Container/VBoxContainer/LightLevel/LightLevelWrapper/LightLevel"]
 handle_input_locally = false
 gui_disable_input = true
 size = Vector2i(20, 20)
 render_target_update_mode = 4
 script = ExtResource("10")
-playerPath = NodePath("../../../../../../../SubViewportContainer/SubViewport/Game/Lucas/Body")
-rootPath = NodePath("Node3D")
+rootPath = NodePath("Camera3D")
 
-[node name="Node3D" type="Node3D" parent="DebugPlayer/Container/VBoxContainer/LightLevel/LightLevelWrapper/LightLevel/LightLevelViewport"]
-
-[node name="Camera3D" type="Camera3D" parent="DebugPlayer/Container/VBoxContainer/LightLevel/LightLevelWrapper/LightLevel/LightLevelViewport/Node3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.32772, 0)
-cull_mask = 513
+[node name="Camera3D" type="Camera3D" parent="DebugPlayer/Container/VBoxContainer/LightLevel/LightLevelWrapper/LightLevel/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -7.53206, 7.91419, -16.492)
+cull_mask = 517
 projection = 1
+current = true
 fov = 68.1909
-size = 2.12647
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="DebugPlayer/Container/VBoxContainer/LightLevel/LightLevelWrapper/LightLevel/LightLevelViewport/Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.828867, 0)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DebugPlayer/Container/VBoxContainer/LightLevel/LightLevelWrapper/LightLevel/SubViewport/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 8.59638e-08, -1.96662)
 layers = 512
 material_override = SubResource("4")
 cast_shadow = 0
 mesh = SubResource("5")
+skeleton = NodePath("")
 
 [node name="LightLevelLabel" type="Label" parent="DebugPlayer/Container/VBoxContainer/LightLevel"]
 layout_mode = 2
@@ -926,7 +926,6 @@ texture_progress = ExtResource("11")
 tint_under = Color(1, 1, 1, 0.490196)
 
 [node name="CLI" parent="." instance=ExtResource("7")]
-visible = false
 
 [node name="Label2" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0.117647)
@@ -940,6 +939,11 @@ offset_bottom = 44.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2")
 text = "O jogo está em desenvolvimento e não corresponde  com o produto final"
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("37_x07o8")
 
 [editable path="HUD/InteractFeedback/VBoxContainer/Take/ShortcutBox"]
 [editable path="HUD/InteractFeedback/VBoxContainer/Inspect/ShortcutBox"]

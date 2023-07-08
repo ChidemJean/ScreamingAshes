@@ -171,10 +171,42 @@ font_size = 1000
 outline_size = 0
 
 [node name="HospitalStair" parent="." groups=["ConcreteBuildings"] instance=ExtResource("13_a512x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.3911, -0.445141, 0.121748)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.948, -5.11353, -1.79238)
 
 [node name="HospitalStair2" parent="." groups=["ConcreteBuildings"] instance=ExtResource("13_a512x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.3911, -14.5625, 0.121748)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.948, -18.849, -1.79238)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.53729, 6.7875, 5.73323)
+layers = 4
+light_energy = 40.0
+light_indirect_energy = 10.0
+shadow_enabled = true
+omni_range = 22.4369
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.8882, 6.7875, 5.73323)
+layers = 4
+light_energy = 40.0
+light_indirect_energy = 10.0
+shadow_enabled = true
+omni_range = 22.4369
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.53729, 6.7875, -12.8905)
+layers = 4
+light_energy = 40.0
+light_indirect_energy = 10.0
+shadow_enabled = true
+omni_range = 22.4369
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.53729, 6.7875, 20.5266)
+layers = 4
+light_energy = 40.0
+light_indirect_energy = 10.0
+shadow_enabled = true
+omni_range = 22.4369
 
 [editable path="hospital"]
 [editable path="hospital_second"]
