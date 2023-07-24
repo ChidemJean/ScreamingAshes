@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cx514lucbxbik"]
+
+[ext_resource type="PackedScene" uid="uid://ckcshrff3lv84" path="res://models/scenario/stair_9_degraus.glb" id="1_try3k"]
+
+[node name="stair_9_degraus" instance=ExtResource("1_try3k")]
+
+[node name="Cube_004" parent="." index="0"]
+transform = Transform3D(-3.49998, 0.0114232, -1.36295e-06, 0.0114232, 3.49998, 3.72214e-09, 1.36296e-06, -7.26224e-10, -3.5, -0.180152, 0.096302, -1.49736)

@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://ua7r5exnsm8s"]
+
+[ext_resource type="Texture2D" uid="uid://dbua4ls3cqdks" path="res://models/characters/Atila/Villain_Shoes_diffuse.png" id="1_ep5en"]
+[ext_resource type="Texture2D" uid="uid://dbmjg8o00f5iq" path="res://models/characters/Atila/Villain_Shoes_normal.png" id="2_0fajq"]
+
+[resource]
+resource_name = "Shoes"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_ep5en")
+normal_enabled = true
+normal_texture = ExtResource("2_0fajq")

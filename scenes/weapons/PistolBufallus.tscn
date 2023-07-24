@@ -89,6 +89,9 @@ shape = SubResource("12")
 
 [node name="pistol_taurus" parent="." instance=ExtResource("1")]
 
+[node name="Parte Superior" parent="pistol_taurus" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0138775, 0.310816, -0.00674817)
+
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 light_energy = 0.0
 light_indirect_energy = 2.0

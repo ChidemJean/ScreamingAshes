@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bhbtygjub26k7"]
+[gd_scene load_steps=9 format=3 uid="uid://bhbtygjub26k7"]
 
 [ext_resource type="PackedScene" uid="uid://b184jbdhafswv" path="res://models/phone/phone.glb" id="1_4fcy3"]
 [ext_resource type="Script" path="res://src/Core/Ui_World3D/Phone/Phone.cs" id="1_qmqr0"]
@@ -7,16 +7,11 @@
 [sub_resource type="ViewportTexture" id="ViewportTexture_20hai"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_l0f8g"]
-viewport_path = NodePath("SubViewport")
-
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_4p4ky"]
 resource_local_to_scene = true
+shading_mode = 0
 disable_ambient_light = true
 albedo_texture = SubResource("ViewportTexture_20hai")
-emission_enabled = true
-emission_energy_multiplier = 1.2
-emission_texture = SubResource("ViewportTexture_l0f8g")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_q0pl8"]
 size = Vector2(4.38, 9.5)

@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://d0a1or0lp5nv0"]
+
+[ext_resource type="Texture2D" uid="uid://bdo2rys0uadn4" path="res://models/characters/Atila/Villain_Top_diffuse.png" id="1_72wqj"]
+[ext_resource type="Texture2D" uid="uid://gt3s8w0e87eh" path="res://models/characters/Atila/Villain_Top_normal.png" id="2_p2iiu"]
+
+[resource]
+resource_name = "Top"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_72wqj")
+normal_enabled = true
+normal_texture = ExtResource("2_p2iiu")

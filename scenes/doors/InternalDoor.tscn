@@ -1,0 +1,188 @@
+[gd_scene load_steps=13 format=3 uid="uid://d2j1blhcp5i2s"]
+
+[ext_resource type="PackedScene" uid="uid://cd0extxpq2aso" path="res://models/doors/internal_door/internal_door.glb" id="1_bp5mv"]
+[ext_resource type="PackedScene" uid="uid://bkmq6xxp00spa" path="res://models/doors/internal_door/internal_door_border.glb" id="2_qwel2"]
+[ext_resource type="Script" path="res://src/Core/Scenario/Interactable.cs" id="3_lpo8o"]
+[ext_resource type="PackedScene" uid="uid://cis0qk6j7usv" path="res://models/doors/internal_door/internal_door_handle.glb" id="3_lv48f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w88nr"]
+albedo_color = Color(1, 0.996078, 0.737255, 1)
+metallic_specular = 0.0
+roughness = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8duvh"]
+albedo_color = Color(1, 0.996078, 0.737255, 1)
+metallic_specular = 0.0
+roughness = 0.5
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0r1wn"]
+size = Vector3(0.235575, 10.5121, 4.61684)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qotq8"]
+albedo_color = Color(1, 0.996078, 0.737255, 1)
+metallic_specular = 0.0
+roughness = 0.4
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hs3o0"]
+size = Vector3(1.01982, 3.94015, 3.27558)
+
+[sub_resource type="Animation" id="Animation_w8ksy"]
+resource_name = "interact_in"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door:rotation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.4, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Door:rotation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1.74533, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.4, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Door:rotation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.4, 1)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Door/HandleInteractable/internal_door_handle:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.785398, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4, 0.6)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Door/HandleInteractable/internal_door_handle:rotation:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4, 0.6)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Door/HandleInteractable/internal_door_handle:rotation:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4, 0.6)
+}
+
+[sub_resource type="Animation" id="Animation_a840p"]
+resource_name = "interact_out"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door:rotation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Door:rotation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1.74533, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Door:rotation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ivjfv"]
+_data = {
+"interact_in": SubResource("Animation_w8ksy"),
+"interact_out": SubResource("Animation_a840p")
+}
+
+[node name="InternalDoor" type="Node3D"]
+
+[node name="internal_door_border" parent="." instance=ExtResource("2_qwel2")]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
+
+[node name="Cube_002" parent="internal_door_border" index="0"]
+material_override = SubResource("StandardMaterial3D_w88nr")
+
+[node name="Cube_004" parent="internal_door_border" index="1"]
+material_override = SubResource("StandardMaterial3D_8duvh")
+
+[node name="Door" type="RigidBody3D" parent="."]
+freeze = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00943184, 5.40387, 1.86828)
+shape = SubResource("BoxShape3D_0r1wn")
+
+[node name="internal_door" parent="Door" instance=ExtResource("1_bp5mv")]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
+
+[node name="Cube" parent="Door/internal_door" index="0"]
+material_override = SubResource("StandardMaterial3D_qotq8")
+
+[node name="HandleInteractable" type="RigidBody3D" parent="Door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00518227, 4.97358, 3.35277)
+collision_layer = 128
+collision_mask = 4096
+freeze = true
+script = ExtResource("3_lpo8o")
+animationPlayerPath = NodePath("../../AnimationPlayer")
+meshesHolderPath = NodePath("internal_door_handle")
+defaultLayer = 1
+layerHighlight = 64
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Door/HandleInteractable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.09188)
+shape = SubResource("BoxShape3D_hs3o0")
+
+[node name="internal_door_handle" parent="Door/HandleInteractable" instance=ExtResource("3_lv48f")]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, -0.00518227, 0.333725, 0.155184)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ivjfv")
+}
+
+[editable path="internal_door_border"]
+[editable path="Door/internal_door"]

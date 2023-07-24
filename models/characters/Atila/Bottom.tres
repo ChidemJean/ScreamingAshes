@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b2npru1liyjxw"]
+
+[resource]
+resource_name = "Bottom"
+cull_mode = 2
+vertex_color_use_as_albedo = true

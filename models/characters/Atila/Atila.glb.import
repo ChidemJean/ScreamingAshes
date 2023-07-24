@@ -1,0 +1,55 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://4wp2kpunqtqr"
+path="res://.godot/imported/Atila.glb-5f9961727b4de36e8b64df35604b27ef.scn"
+
+[deps]
+
+source_file="res://models/characters/Atila/Atila.glb"
+dest_files=["res://.godot/imported/Atila.glb-5f9961727b4de36e8b64df35604b27ef.scn"]
+
+[params]
+
+nodes/root_type="Node3D"
+nodes/root_name="Scene Root"
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+import_script/path=""
+_subresources={
+"materials": {
+"Body": {
+"use_external/enabled": true,
+"use_external/path": "res://models/characters/Atila/Body.tres"
+},
+"FBHead_preview_mat": {
+"use_external/enabled": true,
+"use_external/path": "res://models/characters/Atila/FBHead_preview_mat.tres"
+},
+"Hat": {
+"use_external/enabled": true,
+"use_external/path": "res://models/characters/Atila/Hat.tres"
+},
+"Shoes": {
+"use_external/enabled": true,
+"use_external/path": "res://models/characters/Atila/Shoes.tres"
+},
+"Top": {
+"use_external/enabled": true,
+"use_external/path": "res://models/characters/Atila/Top.tres"
+}
+}
+}
+gltf/embedded_image_handling=1
