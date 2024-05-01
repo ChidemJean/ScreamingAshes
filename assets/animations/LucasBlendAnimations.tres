@@ -1,7 +1,7 @@
 [gd_resource type="AnimationNodeBlendTree" load_steps=38 format=3 uid="uid://b2wsqwobrspca"]
 
 [sub_resource type="AnimationNodeAnimation" id="43"]
-animation = &"idle_backpackloop"
+animation = &"idle_backpack"
 
 [sub_resource type="AnimationNodeAnimation" id="45"]
 animation = &"die_forward"
@@ -10,7 +10,7 @@ animation = &"die_forward"
 animation = &"die_backwards"
 
 [sub_resource type="AnimationNodeAnimation" id="2"]
-animation = &"crouch_idleloop"
+animation = &"crouch_idle"
 
 [sub_resource type="AnimationNodeAnimation" id="26"]
 animation = &"reloading_pistol"
@@ -19,10 +19,10 @@ animation = &"reloading_pistol"
 animation = &"shot_pistol"
 
 [sub_resource type="AnimationNodeAnimation" id="29"]
-animation = &"pistol_idleloop"
+animation = &"pistol_idle"
 
 [sub_resource type="AnimationNodeAnimation" id="35"]
-animation = &"knife_idleloop"
+animation = &"knife_idle"
 
 [sub_resource type="AnimationNodeAnimation" id="36"]
 animation = &"knife_stabing"
@@ -34,7 +34,7 @@ animation = &"butt_blow_pistol"
 animation = &"taking_backpack"
 
 [sub_resource type="AnimationNodeAnimation" id="3"]
-animation = &"breathing_idleloop"
+animation = &"breathing_idle"
 
 [sub_resource type="AnimationNodeBlend2" id="4"]
 
@@ -51,16 +51,16 @@ filters = ["Armature/Skeleton3D:hand_ik.L", "Armature/Skeleton3D:hand_ik.R", "Ar
 [sub_resource type="AnimationNodeOneShot" id="40"]
 
 [sub_resource type="AnimationNodeAnimation" id="9"]
-animation = &"crouch_walkloop"
+animation = &"crouch_walk"
 
 [sub_resource type="AnimationNodeAnimation" id="10"]
-animation = &"crouch_rightloop"
+animation = &"crouch_right"
 
 [sub_resource type="AnimationNodeAnimation" id="11"]
-animation = &"crouch_walkloop"
+animation = &"crouch_walk"
 
 [sub_resource type="AnimationNodeAnimation" id="12"]
-animation = &"crouch_leftloop"
+animation = &"crouch_left"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="6"]
 blend_point_0/node = SubResource("9")
@@ -81,25 +81,25 @@ filters = ["Armature/Skeleton3D:hand_ik.L", "Armature/Skeleton3D:hand_ik.R", "Ar
 [sub_resource type="AnimationNodeBlend2" id="7"]
 
 [sub_resource type="AnimationNodeAnimation" id="13"]
-animation = &"runloop"
+animation = &"run"
 
 [sub_resource type="AnimationNodeAnimation" id="14"]
-animation = &"run_rightloop"
+animation = &"run_right"
 
 [sub_resource type="AnimationNodeAnimation" id="15"]
-animation = &"run_leftloop"
+animation = &"run_left"
 
 [sub_resource type="AnimationNodeAnimation" id="16"]
-animation = &"walkloop"
+animation = &"walk"
 
 [sub_resource type="AnimationNodeAnimation" id="17"]
-animation = &"walk_backwardsloop"
+animation = &"walk_backwards"
 
 [sub_resource type="AnimationNodeAnimation" id="18"]
-animation = &"walk_leftloop"
+animation = &"walk_left"
 
 [sub_resource type="AnimationNodeAnimation" id="19"]
-animation = &"walk_rightloop"
+animation = &"walk_right"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="8"]
 blend_point_0/node = SubResource("13")
@@ -139,7 +139,7 @@ input_2/reset = true
 [sub_resource type="AnimationNodeOneShot" id="42"]
 
 [resource]
-graph_offset = Vector2(233.275, 107.097)
+graph_offset = Vector2(-810.911, 427.904)
 nodes/Animation/node = SubResource("3")
 nodes/Animation/position = Vector2(-560, 160)
 "nodes/Animation 10/node" = SubResource("43")
@@ -169,9 +169,9 @@ nodes/blend/position = Vector2(-120, 420)
 nodes/blend_crouch/node = SubResource("5")
 nodes/blend_crouch/position = Vector2(-300, 220)
 nodes/blend_knife/node = SubResource("37")
-nodes/blend_knife/position = Vector2(180, 620)
+nodes/blend_knife/position = Vector2(160, 580)
 nodes/blend_pistol_aim/node = SubResource("30")
-nodes/blend_pistol_aim/position = Vector2(380, 180)
+nodes/blend_pistol_aim/position = Vector2(360, 140)
 nodes/butt_blow_pistol/node = SubResource("40")
 nodes/butt_blow_pistol/position = Vector2(1020, 200)
 nodes/crouch_motion_blend/node = SubResource("6")
@@ -183,7 +183,7 @@ nodes/knife_attack/position = Vector2(380, 620)
 nodes/motion_blend/node = SubResource("7")
 nodes/motion_blend/position = Vector2(-320, 540)
 nodes/motion_blend_space/node = SubResource("8")
-nodes/motion_blend_space/position = Vector2(-560, 480)
+nodes/motion_blend_space/position = Vector2(-560, 440)
 nodes/output/position = Vector2(2460, -280)
 nodes/reload_pistol/node = SubResource("27")
 nodes/reload_pistol/position = Vector2(600, 200)
@@ -193,4 +193,4 @@ nodes/state/node = SubResource("47")
 nodes/state/position = Vector2(2160, 20)
 nodes/take_backpack/node = SubResource("42")
 nodes/take_backpack/position = Vector2(1340, 200)
-node_connections = [&"output", 0, &"state", &"blend", 0, &"blend_crouch", &"blend", 1, &"motion_blend", &"blend_crouch", 0, &"Animation", &"blend_crouch", 1, &"Animation 2", &"blend_knife", 0, &"blend", &"blend_knife", 1, &"Animation 6", &"blend_pistol_aim", 0, &"knife_attack", &"blend_pistol_aim", 1, &"Animation 5", &"butt_blow_pistol", 0, &"shot_pistol", &"butt_blow_pistol", 1, &"Animation 8", &"idle_backpack", 0, &"take_backpack", &"idle_backpack", 1, &"Animation 10", &"knife_attack", 0, &"blend_knife", &"knife_attack", 1, &"Animation 7", &"motion_blend", 0, &"motion_blend_space", &"motion_blend", 1, &"crouch_motion_blend", &"reload_pistol", 0, &"blend_pistol_aim", &"reload_pistol", 1, &"Animation 3", &"shot_pistol", 0, &"reload_pistol", &"shot_pistol", 1, &"Animation 4", &"state", 0, &"idle_backpack", &"state", 1, &"Animation 11", &"state", 2, &"Animation 12", &"take_backpack", 0, &"butt_blow_pistol", &"take_backpack", 1, &"Animation 9"]
+node_connections = [&"blend", 0, &"blend_crouch", &"blend", 1, &"motion_blend", &"blend_crouch", 0, &"Animation", &"blend_crouch", 1, &"Animation 2", &"blend_knife", 0, &"blend", &"blend_knife", 1, &"Animation 6", &"blend_pistol_aim", 0, &"knife_attack", &"blend_pistol_aim", 1, &"Animation 5", &"butt_blow_pistol", 0, &"shot_pistol", &"butt_blow_pistol", 1, &"Animation 8", &"idle_backpack", 0, &"take_backpack", &"idle_backpack", 1, &"Animation 10", &"knife_attack", 0, &"blend_knife", &"knife_attack", 1, &"Animation 7", &"motion_blend", 0, &"motion_blend_space", &"motion_blend", 1, &"crouch_motion_blend", &"output", 0, &"state", &"reload_pistol", 0, &"blend_pistol_aim", &"reload_pistol", 1, &"Animation 3", &"shot_pistol", 0, &"reload_pistol", &"shot_pistol", 1, &"Animation 4", &"state", 0, &"idle_backpack", &"state", 1, &"Animation 11", &"state", 2, &"Animation 12", &"take_backpack", 0, &"butt_blow_pistol", &"take_backpack", 1, &"Animation 9"]

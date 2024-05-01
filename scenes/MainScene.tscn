@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bckm7wfx8c6pw" path="res://scenes/Game.tscn" id="3_crr2d"]
 [ext_resource type="Shader" path="res://assets/ui/shaders/chromatic_aberration.tres" id="5"]
 [ext_resource type="Texture2D" uid="uid://sorw2ardg70u" path="res://assets/crosshair.png" id="6"]
-[ext_resource type="AudioStream" uid="uid://dvxbkq6q32kwp" path="res://assets/music/2019-08-03_-_Please_Dont_Cry_-_David_Fesliyan.mp3" id="6_pcxgt"]
+[ext_resource type="AudioStream" uid="uid://nsdtlw05odpq" path="res://assets/music/whitenoise.mp3" id="6_vtwrb"]
 [ext_resource type="PackedScene" uid="uid://dul0rq0x6l1oq" path="res://scenes/CLI.tscn" id="7"]
 [ext_resource type="Script" path="res://src/Viewport3D.cs" id="8"]
 [ext_resource type="Script" path="res://src/Debug/DebugPlayer.cs" id="9"]
@@ -105,7 +105,7 @@ far = 350.0
 script = ExtResource("33")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_pcxgt")
+stream = ExtResource("6_vtwrb")
 autoplay = true
 bus = &"music"
 
